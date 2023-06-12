@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# rails
+gem "rails"
+
+# dev, test
+group :test, :development do
+    gem 'capybara'
+    gem 'rspec'
+    gem 'rspec-rails'
+    gem 'cucumber'
+end
+
