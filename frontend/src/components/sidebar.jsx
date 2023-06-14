@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { VscMenu } from "react-icons/vsc";
+import { VscMenu } from 'react-icons/vsc';
+import Dropdown from './Dropdown';
+import { Link } from 'react-router-dom';
+
 
 function Sidebar() {
   const [isExpanded, setExpanded] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggleExpand = () => {
+  const toggleExpand = (e) => {
+    e.stopPropagation(); // Prevent event propagation to the parent elements
     setExpanded(!isExpanded);
+    setDropdownOpen(false); // Close dropdown when sidebar minimizes
   };
 
   const handleLogout = () => {
@@ -24,11 +29,7 @@ function Sidebar() {
   const handleContactClick = () => {
     // Add your logic for Contact button click
   };
-
-  const toggleDropdown = (e) => {
-    e.stopPropagation(); // Stop click event propagation
-    setDropdownOpen(!isDropdownOpen);
-  };
+  const options = ['nike', 'adidas', 'skechers']; // Options list for dropdown box
 
   return (
     <div className={`sidebar ${isExpanded ? 'expanded' : ''}`} onClick={toggleExpand}>
@@ -40,19 +41,7 @@ function Sidebar() {
             <li onClick={handleContactClick}>Contact</li>
           </>
         )}
-        <li>
-          <li onClick={toggleDropdown}>
-            Competitor
-            <span>{isDropdownOpen ? '▲' : '▼'}</span>
-          </li>
-          {isDropdownOpen && (
-            <ul className="dropdown">
-              <li>Option 1</li>
-              <li>Option 2</li>
-              <li>Option 3</li>
-            </ul>
-          )}
-        </li>
+        <Dropdown isExpanded={isExpanded} isDropdownOpen={isDropdownOpen} setDropdownOpen={setDropdownOpen} options={options} />
       </ul>
       {isExpanded && (
         <div className="logout-button">

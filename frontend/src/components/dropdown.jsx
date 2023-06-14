@@ -1,29 +1,28 @@
-import { useState } from 'react'
-function Dropdown() {
-    const values = [
-        {label: "TestOne", value: "test1"},
-        {label: "TestTwo", value: "test2"},
-        {label: "TestThree", value: "test3"}
-    ]
+import React from 'react';
 
-    const [value, setValue] = useState('test1')
+function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
+  const toggleDropdown = (e) => {
+    e.stopPropagation(); // Prevent event propagation to the parent elements
+    setDropdownOpen(!isDropdownOpen);
+  };
 
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    }
-
-    return(
-        <div>
-            <select value = {value} onChange = {handleChange}>
-                {
-                    values.map((v) => (
-                        <option value = {v.value}>{v.label}</option>
-                    ))
-                }
-            </select>
-            <p>You have selected: {value}.</p>
-        </div>
-    )
+  return (
+    <li>
+      {isExpanded && (
+        <li onClick={toggleDropdown}>
+          Competitor
+          <span>{isDropdownOpen ? '▲' : '▼'}</span>
+        </li>
+      )}
+      {isDropdownOpen && (
+        <ul className="dropdown">
+          {options.map((option, index) => (
+            <li key={index}>{option}</li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
 }
 
 export default Dropdown;
