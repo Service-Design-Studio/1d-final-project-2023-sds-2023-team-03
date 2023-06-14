@@ -98,10 +98,12 @@
 
 .react-icon {
   position: absolute;
-  font-size: 2rem; /* or any other desired size */
+  font-size: 2rem;
   bottom: 0;
   left: 45%;
   transform: translateX(-50%);
-
+  padding: 0.3rem;
+  
 }
-/*end of sidebar*/
+
+/*end of side bar css*/
