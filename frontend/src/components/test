@@ -1,0 +1,12 @@
+import React from 'react';
+import BarGraphComponent from './BarGraphComponent';
+
+const App = () => {
+  return (
+    <div>
+      <BarGraphComponent />
+    </div>
+  );
+};
+
+export default App;
