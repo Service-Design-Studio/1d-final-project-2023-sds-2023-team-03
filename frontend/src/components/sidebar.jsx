@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VscMenu } from 'react-icons/vsc';
-import Dropdown from './Dropdown';
+import Dropdown from './Competitor';
 import { Link } from 'react-router-dom';
 
 function Sidebar() {
