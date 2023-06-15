@@ -29,7 +29,7 @@ function Sidebar() {
   const handleContactClick = () => {
     // Add your logic for Contact button click
   };
-  const options = ['nike', 'adidas', 'skechers']; // Options list for dropdown box
+  const options = ['Comfort Wear','Running']; // Options list for dropdown box
 
   return (
     <div className={`sidebar ${isExpanded ? 'expanded' : ''}`} onClick={toggleExpand}>
@@ -45,7 +45,7 @@ function Sidebar() {
       </ul>
       {isExpanded && (
         <div className="logout-button">
-          <li onClick={handleLogout}>Logout</li>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       )}
       <div className="react-icon" onClick={toggleExpand}>
