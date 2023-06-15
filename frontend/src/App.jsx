@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Sidebar from './components/sidebar'
 import Dropdown from './components/dropdown'
+import 'tailwindcss/tailwind.css';
+
 
 
 function App() {

@@ -3,13 +3,11 @@ import { VscMenu } from 'react-icons/vsc';
 import Dropdown from './Dropdown';
 import { Link } from 'react-router-dom';
 
-
 function Sidebar() {
   const [isExpanded, setExpanded] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggleExpand = (e) => {
-    e.stopPropagation(); // Prevent event propagation to the parent elements
+  const toggleExpand = () => {
     setExpanded(!isExpanded);
     setDropdownOpen(false); // Close dropdown when sidebar minimizes
   };
@@ -29,10 +27,14 @@ function Sidebar() {
   const handleContactClick = () => {
     // Add your logic for Contact button click
   };
-  const options = ['Comfort Wear','Running']; // Options list for dropdown box
+
+  const options = ['Comfort Wear', 'Running']; // Options list for dropdown box
 
   return (
-    <div className={`sidebar ${isExpanded ? 'expanded' : ''}`} onClick={toggleExpand}>
+    <div
+      className={`sidebar ${isExpanded ? 'expanded' : ''}`}
+      onClick={toggleExpand}
+    >
       <ul className={`${isExpanded ? 'expanded' : ''}`}>
         {isExpanded && (
           <>
@@ -41,15 +43,20 @@ function Sidebar() {
             <li onClick={handleContactClick}>Contact</li>
           </>
         )}
-        <Dropdown isExpanded={isExpanded} isDropdownOpen={isDropdownOpen} setDropdownOpen={setDropdownOpen} options={options} />
+        <Dropdown
+          isExpanded={isExpanded}
+          isDropdownOpen={isDropdownOpen}
+          setDropdownOpen={setDropdownOpen}
+          options={options}
+        />
       </ul>
       {isExpanded && (
         <div className="logout-button">
           <button onClick={handleLogout}>Logout</button>
         </div>
       )}
-      <div className="react-icon" onClick={toggleExpand}>
-        <VscMenu />
+      <div className="react-icon">
+        <VscMenu onClick={toggleExpand} />
       </div>
     </div>
   );

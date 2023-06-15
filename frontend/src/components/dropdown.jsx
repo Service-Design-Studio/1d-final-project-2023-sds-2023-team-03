@@ -1,4 +1,6 @@
 import React from 'react';
+import 'tailwindcss/tailwind.css';
+
 
 function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
   const toggleDropdown = (e) => {
