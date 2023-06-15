@@ -12,8 +12,8 @@ function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
     <li>
       {isExpanded && (
         <li onClick={toggleDropdown}>
-          Categories
-          <span>{isDropdownOpen ? '▲' : '▼'}</span>
+          Competitors 
+          <span>{isDropdownOpen ? ' ▲ ' : ' ▼ '}</span>
         </li>
       )}
       {isDropdownOpen && (

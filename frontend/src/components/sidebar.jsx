@@ -19,8 +19,10 @@ function Sidebar() {
   const handleHomeClick = () => {
     // Add your logic for Home button click
   };
-
-  const handleAboutClick = () => {
+  const handleInternalClick = () => {
+    // Add your logic for About button click
+  };
+  const handleExternalClick = () => {
     // Add your logic for About button click
   };
 
@@ -28,7 +30,7 @@ function Sidebar() {
     // Add your logic for Contact button click
   };
 
-  const options = ['Comfort Wear', 'Running']; // Options list for dropdown box
+  const options = ['Adidas', 'Nike','Asics','Skechers','Overall']; // Options list for dropdown box
 
   return (
     <div
@@ -39,8 +41,8 @@ function Sidebar() {
         {isExpanded && (
           <>
             <li onClick={handleHomeClick}>Home</li>
-            <li onClick={handleAboutClick}>About</li>
-            <li onClick={handleContactClick}>Contact</li>
+            <li onClick={handleInternalClick}>Internal</li>
+            <li onClick={handleExternalClick}>External</li>
           </>
         )}
         <Dropdown
