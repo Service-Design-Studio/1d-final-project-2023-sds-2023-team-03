@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'tailwindcss/tailwind.css';
 
-
 function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
+  const [isHovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
   const toggleDropdown = (e) => {
     e.stopPropagation(); // Prevent event propagation to the parent elements
     setDropdownOpen(!isDropdownOpen);
   };
 
   return (
-    <li>
+    <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {isExpanded && (
-        <li onClick={toggleDropdown}>
-          Competitors 
-          <span>{isDropdownOpen ? ' ▲ ' : ' ▼ '}</span>
+        <li onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+          Competitors
         </li>
       )}
-      {isDropdownOpen && (
-        <ul className="dropdown">
+      {(isDropdownOpen || isHovered) && (
+        <ul className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           {options.map((option, index) => (
             <li key={index}>{option}</li>
           ))}

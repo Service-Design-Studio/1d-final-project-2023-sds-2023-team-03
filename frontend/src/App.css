@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -105,5 +109,14 @@
   padding: 0.3rem;
   
 }
-
+.logout-button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 10px;
+  transform: translateX(-3%);
+  bottom: 15%;
+  margin: auto;
+}
 /*end of side bar css*/

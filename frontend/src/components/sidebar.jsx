@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
 import { VscMenu } from 'react-icons/vsc';
 import Dropdown from './Competitor';
+import { GrLogout } from 'react-icons/gr';
+import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import 'tailwindcss/tailwind.css';
 
 function Sidebar() {
   const [isExpanded, setExpanded] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
+
   const toggleExpand = () => {
     setExpanded(!isExpanded);
+    setDropdownOpen(false); // Close dropdown when sidebar minimizes
+  };
+
+  const handleMouseEnter = () => {
+    setExpanded(true);
+  };
+
+  const handleMouseLeave = () => {
+    setExpanded(false);
     setDropdownOpen(false); // Close dropdown when sidebar minimizes
   };
 
@@ -30,12 +43,15 @@ function Sidebar() {
     // Add your logic for Contact button click
   };
 
-  const options = ['Adidas', 'Nike','Asics','Skechers','Overall']; // Options list for dropdown box
+  const options = ['Adidas', 'Nike', 'Asics', 'Skechers', 'Overall']; // Options list for dropdown box
 
   return (
     <div
-      className={`sidebar ${isExpanded ? 'expanded' : ''}`}
-      onClick={toggleExpand}
+      className={`sidebar w-60 bg-gray-900 text-white transition-all duration-300 overflow-hidden ${
+        isExpanded ? 'expanded' : ''
+      }`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <ul className={`${isExpanded ? 'expanded' : ''}`}>
         {isExpanded && (
@@ -54,12 +70,14 @@ function Sidebar() {
       </ul>
       {isExpanded && (
         <div className="logout-button">
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
       )}
       <div className="react-icon">
-        <VscMenu onClick={toggleExpand} />
+        <VscMenu />
       </div>
+
+      
     </div>
   );
 }
