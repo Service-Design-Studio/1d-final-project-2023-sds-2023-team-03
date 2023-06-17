@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { VscMenu } from 'react-icons/vsc';
+import {AiOutlineHome} from 'react-icons/vsc';
+import {FcSalesPerformance} from 'react-icons/vsc';
+import {GrLogout} from 'react-icons/vsc';
+import {BiClipboard} from 'react-icons/vsc';
 import Dropdown from './Competitor';
-import { GrLogout } from 'react-icons/gr';
-import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 
