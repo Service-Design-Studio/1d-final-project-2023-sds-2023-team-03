@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { VscMenu } from 'react-icons/vsc';
-import {AiOutlineHome} from 'react-icons/vsc';
-import {FcSalesPerformance} from 'react-icons/vsc';
-import {GrLogout} from 'react-icons/vsc';
-import {BiClipboard} from 'react-icons/vsc';
-import Dropdown from './Competitor';
-import { Link } from 'react-router-dom';
+import Dropdown from './Competitor.jsx';
+import './Sidebar.css'
 
 function Sidebar() {
   const [isExpanded, setExpanded] = useState(false);

@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
-import Sidebar from './components/sidebar'
-import Dropdown from './components/dropdown'
+import './Template.css'
+import Sidebar from '../components/Sidebar.jsx'
 import 'tailwindcss/tailwind.css';
+import Calendar from '../components/Calendar.jsx'
+import DateDropdown from '../components/DateSegment.jsx'
 
 
 
@@ -13,9 +14,9 @@ function App() {
 
   return (
     <>
-    <div>
-    <Sidebar />
-    </div>
+      <div>
+        <Sidebar />
+      </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -38,7 +39,7 @@ function App() {
       </p>
 
       <div>
-        <Dropdown/>
+        <DateDropdown/>
       </div>
     </>
   )

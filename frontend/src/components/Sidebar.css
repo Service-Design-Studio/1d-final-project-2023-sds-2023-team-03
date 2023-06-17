@@ -1,0 +1,66 @@
+/* drop down box css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60px;
+    background-color: #333;
+    color: #fff;
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .sidebar.expanded {
+    width: 200px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .sidebar li:hover {
+    background-color: #555;
+  }
+  
+  .sidebar .expand-button {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .content {
+    margin-left: 60px; /* Adjust the margin to create space for the expanded sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .content.expanded {
+    margin-left: 200px;
+  }
+  
+  .react-icon {
+    position: absolute;
+    font-size: 2rem;
+    bottom: 0;
+    left: 45%;
+    transform: translateX(-50%);
+    padding: 0.3rem;
+    
+  }
+  
+  /*end of side bar css*/
