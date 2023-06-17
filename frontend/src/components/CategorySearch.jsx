@@ -22,7 +22,7 @@ const CategorySearch = () => {
     const [category, setCategory] = useState("running")
 
     function handleOnClick() {
-        const dates = (calendar && calendarDate) || presetDate;
+        const dates = (calendar && calendarDate) || presetDate
 
         if (dates.includes(null)) {
             console.log("pag")
