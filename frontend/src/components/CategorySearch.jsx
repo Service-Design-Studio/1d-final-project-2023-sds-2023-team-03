@@ -21,10 +21,14 @@ const CategorySearch = () => {
     const [category, setCategory] = useState("RUNNING")
 
     function handleOnClick() {
-        if (calendar) {
-            console.log(calendarDate[0], calendarDate[1])
+        const dates = (calendar && calendarDate) || presetDate;
+
+        if (dates.includes(null)) {
+            console.log("invalid")
         } else {
-            console.log(presetDate[0], presetDate[1], category)
+            console.log("valid")
+            console.log(dates[0], dates[1])
+            console.log(category)
         }
     }
 
