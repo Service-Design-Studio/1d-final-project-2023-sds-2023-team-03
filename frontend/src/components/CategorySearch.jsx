@@ -17,11 +17,12 @@ const CategorySearch = () => {
 
     const [calendar, setCalendar] = useState(false)
     const [presetDate, setPresetDate] = useState([lastMonth, today])
+    const [selectedPreset, setSelectedPreset] = useState('30d')
     const [calendarDate, setCalendarDate] = useState([null, null])
     const [category, setCategory] = useState("RUNNING")
 
     function handleOnClick() {
-        const dates = (calendar && calendarDate) || presetDate;
+        const dates = (calendar && calendarDate) || presetDate
 
         if (dates.includes(null)) {
             console.log("invalid")
@@ -33,15 +34,20 @@ const CategorySearch = () => {
     }
 
     function handleDateSegment(val) {
+        setSelectedPreset(val)
         switch (val) {
-            case '7d':
+            case "7d":
                 setPresetDate([lastWeek, today])
-            case '30d':
+                break;
+            case "30d":
                 setPresetDate([lastMonth, today])
-            case '6m':
+                break;
+            case "6m":
                 setPresetDate([lastHalfYear, today])
-            case '12m':
+                break;
+            case "12m":
                 setPresetDate([lastYear, today])
+                break;
         }
     }
 
@@ -68,7 +74,7 @@ const CategorySearch = () => {
                     <>
                         <Stack>
                             <Space h="xs"/>
-                            <DateSegment handleDateSegment={handleDateSegment}/>
+                            <DateSegment savedPreset={selectedPreset} handleDateSegment={handleDateSegment}/>
                         </Stack>
                         <ActionIcon onClick={() => setCalendar(!calendar)} className="calendarbutton" variant="outline">
                             <AiOutlineCalendar/>
