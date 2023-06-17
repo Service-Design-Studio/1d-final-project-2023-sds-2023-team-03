@@ -4,7 +4,7 @@ import { SegmentedControl } from '@mantine/core';
 import { useState } from 'react';
 
 
-const DateSegment = ({handleDateSegment}) => {
+const DateSegment = ({savedPreset, handleDateSegment}) => {
     const [data, setData] = useState([
       { value: '7d', label: 'Last 7 days' },
       { value: '30d', label: 'Last 30 days' },
@@ -16,11 +16,11 @@ const DateSegment = ({handleDateSegment}) => {
 
       <>
         <SegmentedControl
-          defaultValue = {data[1].value}
+          defaultValue = {savedPreset}
           label="Time period"
           placeholder="Pick a time period..."
           data={data}
-          onChange={(val) => handleDateSegment(val)}/>
+          onChange={handleDateSegment}/>
       </>
     );
 }
