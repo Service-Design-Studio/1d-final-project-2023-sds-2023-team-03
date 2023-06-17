@@ -6,7 +6,7 @@ function CategorySelect({setCategory}) {
       label="Category"
       placeholder="Pick a category..."
       data={[
-        { value: 'COMFORT', label: 'Comfortwear' },
+        { value: 'COMFORTWEAR', label: 'Comfortwear' },
         { value: 'RUNNING', label: 'Running' },
       ]}
       defaultValue="RUNNING"
