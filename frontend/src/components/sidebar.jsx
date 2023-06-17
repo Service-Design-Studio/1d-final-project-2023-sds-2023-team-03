@@ -56,7 +56,10 @@ function Sidebar() {
       <ul className={`${isExpanded ? 'expanded' : ''}`}>
         {isExpanded && (
           <>
-            <li onClick={handleHomeClick}>Home</li>
+            <li  onClick={handleHomeClick}>
+              <AiOutlineHome/>
+              Home            
+            </li>
             <li onClick={handleInternalClick}>Internal</li>
             <li onClick={handleExternalClick}>External</li>
           </>
@@ -70,16 +73,13 @@ function Sidebar() {
       </ul>
       {isExpanded && (
         <div className="logout-button">
-        <button onClick={handleLogout}>Logout</button>
-      </div>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
       )}
       <div className="react-icon">
         <VscMenu />
       </div>
-
-      
     </div>
   );
 }
-
 export default Sidebar;

@@ -68,8 +68,12 @@
 }
 
 .sidebar li {
-  padding: 10px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column; /* Display text below the logo */
+  align-items: center; /* Center-align the text */
+  justify-content: center; /* Center-align the text */
+  padding: 5px;
 }
 
 .sidebar li:hover {
@@ -116,7 +120,34 @@
   text-align: center;
   padding: 10px;
   transform: translateX(-3%);
-  bottom: 15%;
+  bottom: 10%;
   margin: auto;
 }
-/*end of side bar css*/
+
+.dropdown li:hover {
+  background-color: #444;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5em 0; /* Adjust the padding as needed */
+
+}
+
+.logo .icon {
+  font-size: 1.5rem;
+  padding-bottom: 0rem;
+}
+
+.logo:hover {
+  background-color: #555;
+}
+
+.logo .text {
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0; /* Remove the bottom margin */
+  padding-bottom: 0; /* Remove the bottom padding */
+}
