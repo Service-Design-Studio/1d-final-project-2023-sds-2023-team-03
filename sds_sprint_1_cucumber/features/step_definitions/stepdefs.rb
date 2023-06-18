@@ -117,7 +117,7 @@ World AllFns
 
 Given('that I have the default category and time period selected on the {string} page \({string} and {string})') do |given_page, given_category, given_time_period|
   category_selected = 'Running' ## change to category selected 
-  time_period_selected = 'Last 30 days'## change to time period selection
+  time_period_selected = 'Last 30 days'
   current_page = 'Sales' ## change to current page
   expect(check_category(given_category, category_selected)).to eq(TRUE)
   expect(check_time_range(given_time_period, time_period_selected)).to eq(TRUE)
