@@ -5,8 +5,7 @@ import Sidebar from './components/sidebar'
 import Dropdown from './components/competitor'
 import 'tailwindcss/tailwind.css';
 import './App.css'
-
-
+import './components/Sidebar.css';
 
 
 
