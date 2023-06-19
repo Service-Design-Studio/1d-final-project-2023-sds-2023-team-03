@@ -1,28 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {BiMask} from 'react-icons/bi'
 import 'tailwindcss/tailwind.css';
 
-
 function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
+  const [isHovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
   const toggleDropdown = (e) => {
     e.stopPropagation(); // Prevent event propagation to the parent elements
     setDropdownOpen(!isDropdownOpen);
   };
 
   return (
-    <li>
+    <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {isExpanded && (
-        <li onClick={toggleDropdown}>
-          Competitors 
-          <span>{isDropdownOpen ? ' ▲ ' : ' ▼ '}</span>
+        <li onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+          <BiMask className="sbicon" />
+          Competitors
         </li>
       )}
-      {isDropdownOpen && (
-        <ul className="dropdown">
-          {options.map((option, index) => (
-            <li key={index}>{option}</li>
-          ))}
-        </ul>
-      )}
+      {(isDropdownOpen || isHovered) && (
+  <ul className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    {options.map((option, index) => (
+      <li key={index} className={option === 'Overall' ? 'overall-option' : ''}>{option}</li>
+    ))}
+  </ul>
+)}
     </li>
   );
 }
