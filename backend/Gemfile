@@ -51,9 +51,9 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem "sqlite3"
   gem "capybara"
-  gem "rspec"
-  gem "rspec-rails"
-  gem "cucumber"
+  gem "rspec", '~> 3.12.0'
+  gem "rspec-rails", '~> 5.0'
+  gem "cucumber", '~> 8.0.0'
 end
 
 group :development do
