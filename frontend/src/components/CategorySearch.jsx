@@ -19,13 +19,13 @@ const CategorySearch = () => {
     const [presetDate, setPresetDate] = useState([lastMonth, today])
     const [selectedPreset, setSelectedPreset] = useState('30d')
     const [calendarDate, setCalendarDate] = useState([null, null])
-    const [category, setCategory] = useState("RUNNING")
+    const [category, setCategory] = useState("running")
 
     function handleOnClick() {
         const dates = (calendar && calendarDate) || presetDate
 
         if (dates.includes(null)) {
-            console.log("invalid")
+            console.log("pag")
         } else {
             console.log("valid")
             console.log(dates[0], dates[1])
@@ -60,7 +60,10 @@ const CategorySearch = () => {
                             type="range"
                             label="Time period"
                             placeholder="Click to choose..."
+                            defaultValue={[lastMonth, today]}
+                            defaultDate
                             value={calendarDate}
+                            maxDate={today}
                             onChange={setCalendarDate}>
                         </DatePickerInput>
                         <ActionIcon onClick={() => setCalendar(!calendar)} className="calendarbutton" variant="outline">
