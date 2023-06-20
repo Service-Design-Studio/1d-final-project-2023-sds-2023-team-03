@@ -41,6 +41,8 @@ gem "bootsnap", require: false
 
 gem "faker"
 
+gem "fast_jsonapi"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
