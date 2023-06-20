@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import DateSegment from './DateSegment.jsx'
 import CategorySelect from './CategorySelect.jsx'
-import { Button, Group, ActionIcon, Stack, Space } from '@mantine/core'
+import { Button, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { DatePickerInput } from '@mantine/dates'
@@ -69,14 +69,18 @@ const CategorySearch = ({handleSalesData}) => {
         }
     }
 
+
+    // Returns calendar pick if calendar button pressed. SegmentedControl otherwise.
     function renderDatePick(calendar) {
         switch (calendar) {
             case true:
                 return (
                     <>
-                        <DatePickerInput
+                        <Stack>
+                            <Space h="xs"/>
+                            <DatePickerInput
+                            className="date"
                             type="range"
-                            label="Time period"
                             placeholder="Click to choose..."
                             defaultValue={[lastMonth, today]}
                             defaultDate
@@ -84,9 +88,12 @@ const CategorySearch = ({handleSalesData}) => {
                             maxDate={today}
                             onChange={setCalendarDate}>
                         </DatePickerInput>
-                        <ActionIcon onClick={() => setCalendar(!calendar)} className="calendarbutton" variant="outline">
-                            <GiHamburgerMenu/>
-                        </ActionIcon>
+                        </Stack>
+                        <Tooltip label="Switch to date presets">
+                            <ActionIcon onClick={() => setCalendar(!calendar)} className="calendarbutton" variant="outline">
+                                <GiHamburgerMenu/>
+                            </ActionIcon>
+                        </Tooltip>
                     </> 
                 )
 
@@ -97,14 +104,18 @@ const CategorySearch = ({handleSalesData}) => {
                             <Space h="xs"/>
                             <DateSegment savedPreset={selectedPreset} handleDateSegment={handleDateSegment}/>
                         </Stack>
-                        <ActionIcon onClick={() => setCalendar(!calendar)} className="calendarbutton" variant="outline">
-                            <AiOutlineCalendar/>
-                        </ActionIcon>
+                        <Tooltip label="Switch to calendar">
+                            <ActionIcon onClick={() => setCalendar(!calendar)} className="calendarbutton" variant="outline">
+                                <AiOutlineCalendar/>
+                            </ActionIcon>
+                        </Tooltip>
                     </>
                 )
         }
     }
 
+
+    // Object return
     return (
         <Stack align="center" spacing="xs" className="dropdownContainer">
             <Group spacing="xs">
