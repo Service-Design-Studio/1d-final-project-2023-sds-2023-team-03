@@ -2,7 +2,7 @@ import './Categories.css'
 import { Stack } from '@mantine/core'
 import 'tailwindcss/tailwind.css';
 import CategorySearch from '../components/CategorySearch';
-import BarGraph from '../components/BarGraph'
+import SalesBar from '../components/SalesBar'
 import { useState } from 'react'
 
 const Categories = () => {
@@ -22,7 +22,7 @@ const Categories = () => {
                 <h1>Analysis by Category</h1>
                 <CategorySearch handleSalesData={handleSalesData} className="search"/>
                 <div className="sales-graph">
-                    <BarGraph salesData={salesData}/>
+                    <SalesBar salesData={salesData}/>
                 </div>
             </Stack>
         </>

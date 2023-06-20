@@ -31,10 +31,23 @@ const CategorySearch = ({handleSalesData}) => {
             console.log(dates[0], dates[1])
             console.log(category)
         }
+        const diff = (dates[1] - dates[0])/(1000*60*60*24);
+        var x; var y;
+        if (diff == 30) {
+            x = ["thirty", "days", "dummy", "data"];
+            y = [1, 2, 3, 4]
+        } else if (diff == 7) {
+            x = ["seven", "test", "two", "five", "seven", "test", "two", "five"];
+            y = [4, 1, 19, 9, 10, 12, 13, 90]
+        } else if (diff == 180) {
+            x = ["six", "months", "ago", "data", "no", "way"];
+            y = [1, 100, 55, 120, 12, 10]
+        }
+
 
         handleSalesData({
-            x:["this", "is", "dummy", "data"],
-            y:[5, 6, 7, 8]
+            x: x,
+            y: y 
         })
     }
 
