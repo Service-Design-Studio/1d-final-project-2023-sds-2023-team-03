@@ -1,6 +1,6 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react"; 
-function BarGraph({salesData}) {  
+function SalesBar({salesData}) {  
     const option = {
         xAxis: {
             type: 'category',
@@ -28,4 +28,4 @@ function BarGraph({salesData}) {
     }; 
     return <ReactEcharts option={option} />;
 } 
-export default BarGraph;
+export default SalesBar;
