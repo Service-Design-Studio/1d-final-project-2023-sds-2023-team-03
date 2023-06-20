@@ -4,11 +4,14 @@ import { AiOutlineHome } from 'react-icons/ai';
 import {BiDollarCircle} from 'react-icons/bi';
 import { GrLogout } from 'react-icons/gr';
 import { BiAbacus } from 'react-icons/bi';
+import {BiMask} from 'react-icons/bi'
 import Dropdown from './Competitor';
 import { Link } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import './Sidebar.css';
-import Modal from 'react-modal';
+import { Modal, Button } from '@mantine/core';
+import { motion } from 'framer-motion';
+
 
 
 function Sidebar() {
@@ -73,15 +76,15 @@ function Sidebar() {
       <ul className={`${isExpanded ? 'expanded' : ''}`}>
         {isExpanded && (
           <>
-            <div onClick={handleHomeClick} className="sblogo">
+             <div className={`sblogo sblogo-expanded ${isExpanded ? 'visible' : ''}`} onClick={handleHomeClick}>
               <AiOutlineHome className="sbicon" />
-              <span className="sbtext">Home</span>
+            <span className="sbtext">Home</span>
             </div>
-            <div onClick={handleExternalClick} className="sblogo">
+            <div onClick={handleExternalClick} className={`sblogo sblogo-expanded`}>
               <BiDollarCircle className="sbicon" />
               <span className="sbtext">External</span>
             </div>
-            <div onClick={handleInternalClick} className="sblogo">
+            <div onClick={handleInternalClick} className={`sblogo sblogo-expanded`}>
               <BiAbacus className="sbicon" />
               <span className="sbtext">Internal</span>
             </div>
@@ -94,31 +97,68 @@ function Sidebar() {
           options={options}
         />
       </ul>
+
+      {!isExpanded && (
+      <div className=" sblogo-minimized">
+      <div>
+        <AiOutlineHome className="sbicon" />
+      </div>
+      <div>
+        <BiDollarCircle className="sbicon" />
+      </div>
+      <div>
+        <BiAbacus className="sbicon" />
+      </div>
+      <div>
+        <BiMask className="sbicon" />
+      </div>
+    </div>
+      )}
       {isExpanded && (
         <div className="logout-button">
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+        <motion.button
+          onClick={handleLogout}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="logout-button-inner"
+        >
+          Logout
+        </motion.button>
+      </div>
       )}
       <div className="react-icon">
         <VscMenu />
       </div>
     
       <Modal
-        isOpen={isLogoutModalOpen}
-        onRequestClose={handleCancelLogout}
-        contentLabel="Logout Confirmation"
-        className="modal"
-        overlayClassName="overlay"
+        opened={isLogoutModalOpen}
+        onClose={handleCancelLogout}
+        title="E-Commerce Analytics"
+        size="sm"
+        overlayClassName="modal-overlay"
       >
-        <div className="modal-content">
-          <GrLogout className="modal-icon" />
-          <h2 className="modal-title">Logout Confirmation</h2>
-          <p className="modal-message">Are you sure you want to logout?</p>
-          <div className="modal-buttons">
-            <button className="modal-confirm" onClick={handleConfirmLogout}>Confirm</button>
-            <button className="modal-cancel" onClick={handleCancelLogout}>Cancel</button>
-          </div>
-        </div>
+       <div className="modal-content">
+  <h2 className="modal-title">Logout Confirmation</h2>
+  <GrLogout className="modal-icon" />
+  <p className="modal-message">Are you sure you want to logout?</p>
+  <div className="modal-buttons">
+  <motion.button
+              className="modal-confirm"
+              onClick={handleConfirmLogout}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              Confirm
+            </motion.button>
+            <motion.button
+              className="modal-cancel"
+              onClick={handleCancelLogout}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              Cancel
+            </motion.button>  </div>
+</div>
       </Modal>
 
 
