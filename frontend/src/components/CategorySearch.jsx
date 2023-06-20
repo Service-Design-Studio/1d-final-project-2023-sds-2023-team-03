@@ -7,7 +7,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { DatePickerInput } from '@mantine/dates'
 import './CategorySearch.css'
 
-const CategorySearch = () => {
+const CategorySearch = ({handleSalesData}) => {
     const today = new Date();
     const lastWeek = new Date(new Date().setDate(today.getDate() - 7))
     const lastMonth = new Date(new Date().setDate(today.getDate() - 30))
@@ -31,6 +31,11 @@ const CategorySearch = () => {
             console.log(dates[0], dates[1])
             console.log(category)
         }
+
+        handleSalesData({
+            x:["this", "is", "dummy", "data"],
+            y:[5, 6, 7, 8]
+        })
     }
 
     function handleDateSegment(val) {
