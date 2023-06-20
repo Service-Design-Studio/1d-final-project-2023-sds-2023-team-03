@@ -21,10 +21,10 @@ function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
   return (
     <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {isExpanded && (
-        <li onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+        <div className={`sblogo sblogo-expanded`} onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
           <BiMask className="sbicon" />
-          Competitors
-        </li>
+          <span className="sbtext">Competitors</span>
+        </div>
       )}
       {(isDropdownOpen || isHovered) && (
   <ul className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
