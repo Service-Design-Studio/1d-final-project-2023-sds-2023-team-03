@@ -1,31 +1,52 @@
-import React from "react";
-import ReactEcharts from "echarts-for-react"; 
-function SalesBar({salesData}) {  
-    const option = {
-        xAxis: {
-            type: 'category',
-            data: salesData.x,
-            name: "Product Name",
-            nameLocation: "middle"
-        },
-        yAxis: {
-            type: 'value',
-            name: "Sales",
-            nameLocation: "end",
-            nameRotate: false
-        },
-        series: [{
-            data: salesData.y,
-            type: 'bar',
-            showBackground: true,
-            backgroundStyle: {
-              color: 'rgba(180, 180, 180, 0.2)'
+import React, { useState } from "react";
+import Chart from "react-apexcharts"
+function SalesBar({salesData, used}) {  
+
+    var title = "Use the selectors above to search for sales data!"
+
+    if (salesData.x.length > 0) {
+        title = `Sales data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
+    } else if (salesData && used) {
+        title = `No data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
+    }
+
+    var chart = {
+        options: {
+            chart: {
+              id: "basic-bar"
+            },
+            xaxis: {
+                categories: salesData.x
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    columnWidth: '100%'
+                }
+            },
+            title: {
+                text: title,
+                align: "center",
+                style: {
+                    fontSize: '30px',
+                    fontFamily: "puma-regular"
+                }
             }
-        }],
-        grid: {
-            show: true
-        }
-    }; 
-    return <ReactEcharts option={option} />;
+        },
+        series: [
+            {
+              name: "Sales data",
+              data: salesData.y
+            }
+        ]
+    }
+
+    var height = "500";
+    if (salesData.x.length >= 50) {
+        height = "2500"
+    } else if (salesData.x.length >= 10) {
+        height = "1000"
+    }
+    return <Chart options={chart.options} series={chart.series} type="bar" width="1200" height = {height}/>;
 } 
 export default SalesBar;

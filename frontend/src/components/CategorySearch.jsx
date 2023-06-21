@@ -21,7 +21,9 @@ const CategorySearch = ({handleSalesData}) => {
     const [selectedPreset, setSelectedPreset] = useState('30d')
     const [calendarDate, setCalendarDate] = useState([null, null])
     const [category, setCategory] = useState("running")
-
+    const [loading, setLoading] = useState(false)
+    
+    // API call to backend
     async function getProductData() {
         var date;
         if (calendar) {
@@ -32,40 +34,26 @@ const CategorySearch = ({handleSalesData}) => {
 
         const start = `${date[0].getFullYear()}-${date[0].getMonth()+1}-${date[0].getDate()}`;
         const end = `${date[1].getFullYear()}-${date[1].getMonth()+1}-${date[1].getDate()}`;
-        return await axios.get(`http://localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`)
+        return {query: await axios.get(`http://localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`), start: start, end: end}
     }
 
+    // Send data to parent node
     function handleOnClick() {
-        const dates = (calendar && calendarDate) || presetDate
-
-        if (dates.includes(null)) {
-            console.log("invalid")
-        } else {
-            console.log("valid")
-        }
-        
-        const diff = (dates[1] - dates[0])/(1000*60*60*24);
-        var x; var y;
-        if (diff == 30) {
-            x = ["thirty", "days", "dummy", "data"];
-            y = [1, 2, 3, 4]
-        } else if (diff == 7) {
-            x = ["seven", "test", "two", "five", "seven", "test", "two", "five"];
-            y = [4, 1, 19, 9, 10, 12, 13, 90]
-        } else if (diff == 180) {
-            x = ["six", "months", "ago", "data", "no", "way"];
-            y = [1, 100, 55, 120, 12, 10]
-        }
-
+        setLoading(true)
         getProductData().then((res) => {
-            x = res.data.x_axis
-            y = res.data.y_axis
-            console.log(res.data)
-        }).catch()
-
-        handleSalesData({
-            x: x,
-            y: y 
+            const x = res.query.data.x_axis
+            const y = res.query.data.y_axis
+            handleSalesData({
+                x: x,
+                y: y,
+                start: res.start,
+                end: res.end,
+                category: category
+            })
+            setLoading(false)
+        }).catch(() => {
+            console.log("Error: Failed to receive data.")
+            setLoading(false)
         })
     }
 
@@ -140,7 +128,7 @@ const CategorySearch = ({handleSalesData}) => {
                 <CategorySelect setCategory={setCategory}/>
                 {renderDatePick(calendar)}
             </Group>
-            <Button className="button" onClick={handleOnClick}>
+            <Button className="button" onClick={handleOnClick} disabled={loading}>
                 Search!
             </Button>
         </Stack>

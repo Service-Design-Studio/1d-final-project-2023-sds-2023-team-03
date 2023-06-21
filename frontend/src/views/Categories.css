@@ -5,3 +5,7 @@
     text-align: center;
     overflow-x: hidden;
   }
+
+  .sales-graph {
+    margin: 0px auto;
+  }
