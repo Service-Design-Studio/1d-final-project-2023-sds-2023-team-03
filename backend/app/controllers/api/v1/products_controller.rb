@@ -9,8 +9,16 @@ module Api
         start_date = params[:start]
         end_date = params[:end]
         
-        frequencies = Product.sales_frequency(start_date, end_date, category)
-        render json: frequencies.to_json
+        products = Product.category_time_query(start_date, end_date, category)
+        frequencies = Product.sales_frequency(products)
+        revenues = Product.sales_revenue(products)
+        types = Product.top_10_types_category(products)
+        out = {
+          :frequencies => frequencies,
+          :revenues => revenues,
+          :types => types
+        }
+        render json: out.to_json
       end
     end
   end
