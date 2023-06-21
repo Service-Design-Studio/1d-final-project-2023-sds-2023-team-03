@@ -6,12 +6,8 @@ module Api
         category = params[:category].parameterize if params[:category]
         start_date = params[:start]
         end_date = params[:end]
-
-        products = Product.all
-        products = products.where("lower(product_category) = ?", category) if category
-        products = products.where(date: start_date..end_date) if start_date && end_date
-
-        render json: ProductSerializer.new(products).serialized_json
+        
+        render json: ProductSerializer.new(products_hash).serialized_json
       end
     end
   end
