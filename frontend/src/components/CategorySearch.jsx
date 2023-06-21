@@ -21,6 +21,7 @@ const CategorySearch = ({handleSalesData}) => {
     const [selectedPreset, setSelectedPreset] = useState('30d')
     const [calendarDate, setCalendarDate] = useState([null, null])
     const [category, setCategory] = useState("running")
+    const [loading, setLoading] = useState(false)
     
     // API call to backend
     async function getProductData() {
@@ -33,20 +34,26 @@ const CategorySearch = ({handleSalesData}) => {
 
         const start = `${date[0].getFullYear()}-${date[0].getMonth()+1}-${date[0].getDate()}`;
         const end = `${date[1].getFullYear()}-${date[1].getMonth()+1}-${date[1].getDate()}`;
-        return await axios.get(`http://localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`)
+        return {query: await axios.get(`http://localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`), start: start, end: end}
     }
 
     // Send data to parent node
     function handleOnClick() {
+        setLoading(true)
         getProductData().then((res) => {
-            const x = res.data.x_axis
-            const y = res.data.y_axis
+            const x = res.query.data.x_axis
+            const y = res.query.data.y_axis
             handleSalesData({
                 x: x,
-                y: y
+                y: y,
+                start: res.start,
+                end: res.end,
+                category: category
             })
+            setLoading(false)
         }).catch(() => {
             console.log("Error: Failed to receive data.")
+            setLoading(false)
         })
     }
 
@@ -121,7 +128,7 @@ const CategorySearch = ({handleSalesData}) => {
                 <CategorySelect setCategory={setCategory}/>
                 {renderDatePick(calendar)}
             </Group>
-            <Button className="button" onClick={handleOnClick}>
+            <Button className="button" onClick={handleOnClick} disabled={loading}>
                 Search!
             </Button>
         </Stack>
