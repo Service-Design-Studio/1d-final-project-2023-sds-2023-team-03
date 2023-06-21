@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { BiMask } from 'react-icons/bi';
 import 'tailwindcss/tailwind.css';
+import { Routes, Route,useNavigate } from 'react-router-dom'
+
 
 
 function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
   const [isHovered, setHovered] = useState(false);
+  const navigate = useNavigate();
+  const handleOptionClick = (route) => {
+    navigate(`/competitors/${route}`);
+    console.log('Competitors button clicked');
+
+  };
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -36,7 +44,7 @@ function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
         <ul className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           {options.map((option, index) => (
             <li key={index} className={option === 'Overall' ? 'overall-option' : ''}>
-              {option}
+            <div onClick={() => handleOptionClick(option)}>{option}</div>
             </li>
           ))}
         </ul>
