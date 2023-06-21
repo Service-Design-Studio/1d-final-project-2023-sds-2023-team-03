@@ -90,11 +90,11 @@ function Sidebar() {
             </div>
             <div onClick={handleExternalClick} className={`sblogo sblogo-expanded`}>
               <BiDollarCircle className="sbicon" />
-              <span className="sbtext">External</span>
+              <span className="sbtext">Sales</span>
             </div>
             <div onClick={handleInternalClick} className={`sblogo sblogo-expanded`}>
               <BiAbacus className="sbicon" />
-              <span className="sbtext">Internal</span>
+              <span className="sbtext">Logistics</span>
             </div>
           </>
         )}
