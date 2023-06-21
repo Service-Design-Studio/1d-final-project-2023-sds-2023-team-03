@@ -6,11 +6,23 @@ function SalesBar({salesData}) {
             type: 'category',
             data: salesData.x,
             name: "Product Name",
+            nameTextStyle: {
+                fontSize: 16,
+                fontfamily: "puma-regular",
+                lineHeight: 90
+            },
+            axisLabel: {
+                interval: 0
+            },
             nameLocation: "middle"
         },
         yAxis: {
             type: 'value',
             name: "Sales",
+            nameTextStyle: {
+                fontSize: 16,
+                fontfamily: "puma-regular",  
+            },
             nameLocation: "end",
             nameRotate: false
         },
