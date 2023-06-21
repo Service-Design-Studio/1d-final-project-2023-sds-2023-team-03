@@ -44,29 +44,17 @@ const CategorySearch = ({handleSalesData}) => {
             console.log("valid")
         }
         
-        const diff = (dates[1] - dates[0])/(1000*60*60*24);
         var x; var y;
-        if (diff == 30) {
-            x = ["thirty", "days", "dummy", "data"];
-            y = [1, 2, 3, 4]
-        } else if (diff == 7) {
-            x = ["seven", "test", "two", "five", "seven", "test", "two", "five"];
-            y = [4, 1, 19, 9, 10, 12, 13, 90]
-        } else if (diff == 180) {
-            x = ["six", "months", "ago", "data", "no", "way"];
-            y = [1, 100, 55, 120, 12, 10]
-        }
 
         getProductData().then((res) => {
             x = res.data.x_axis
             y = res.data.y_axis
-            console.log(res.data)
-        }).catch()
 
-        handleSalesData({
-            x: x,
-            y: y 
-        })
+            handleSalesData({
+                x: x,
+                y: y
+            })
+        }).catch()
     }
 
     function handleDateSegment(val) {
