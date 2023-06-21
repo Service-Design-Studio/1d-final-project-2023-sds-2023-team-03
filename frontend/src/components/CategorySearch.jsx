@@ -21,7 +21,8 @@ const CategorySearch = ({handleSalesData}) => {
     const [selectedPreset, setSelectedPreset] = useState('30d')
     const [calendarDate, setCalendarDate] = useState([null, null])
     const [category, setCategory] = useState("running")
-
+    
+    // API call to backend
     async function getProductData() {
         var date;
         if (calendar) {
@@ -35,26 +36,18 @@ const CategorySearch = ({handleSalesData}) => {
         return await axios.get(`http://localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`)
     }
 
+    // Send data to parent node
     function handleOnClick() {
-        const dates = (calendar && calendarDate) || presetDate
-
-        if (dates.includes(null)) {
-            console.log("invalid")
-        } else {
-            console.log("valid")
-        }
-        
-        var x; var y;
-
         getProductData().then((res) => {
-            x = res.data.x_axis
-            y = res.data.y_axis
-
+            const x = res.data.x_axis
+            const y = res.data.y_axis
             handleSalesData({
                 x: x,
                 y: y
             })
-        }).catch()
+        }).catch(() => {
+            console.log("Error: Failed to receive data.")
+        })
     }
 
     function handleDateSegment(val) {
