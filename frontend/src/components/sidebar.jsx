@@ -78,6 +78,9 @@ function Sidebar() {
 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={{
+        zIndex: 999, // Set a higher value for the z-index
+      }}
     >
             <animated.div style={sidebarAnimation}>
 
