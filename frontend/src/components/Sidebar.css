@@ -77,12 +77,11 @@
   }
   .dropdown li.overall-option {
     font-weight: bold;
-    color: #a6eef8;
+    color: #cd7585;
   }
   /*end of drop down*/
   .sblogo {
-
-    margin-bottom: 12px;
+    padding :2px;
 
   }
   
