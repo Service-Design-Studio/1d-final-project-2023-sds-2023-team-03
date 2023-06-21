@@ -13,6 +13,7 @@ function SalesBar({salesData, used}) {
     var chart = {
         options: {
             chart: {
+<<<<<<< HEAD
               type: "bar",
               stacked: true
             },
@@ -26,6 +27,12 @@ function SalesBar({salesData, used}) {
                         fontWeight: 4000
                     }
                 }
+=======
+              id: "basic-bar"
+            },
+            xaxis: {
+                categories: salesData.x
+>>>>>>> main
             },
             plotOptions: {
                 bar: {
@@ -44,15 +51,24 @@ function SalesBar({salesData, used}) {
         },
         series: [
             {
+<<<<<<< HEAD
                 name: "Number of sales",
                 data: salesData.y
+=======
+              name: "Sales data",
+              data: salesData.y
+>>>>>>> main
             }
         ]
     }
 
     var height = "500";
     if (salesData.x.length >= 50) {
+<<<<<<< HEAD
         height = "1500"
+=======
+        height = "2500"
+>>>>>>> main
     } else if (salesData.x.length >= 10) {
         height = "1000"
     }
