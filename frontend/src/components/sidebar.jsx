@@ -133,7 +133,7 @@ function Sidebar() {
       <Modal
         opened={isLogoutModalOpen}
         onClose={handleCancelLogout}
-        title="E-Commerce Analytics"
+        title="PUMA SEA E-Commerce Analytics"
         size="sm"
         overlayClassName="modal-overlay"
       >

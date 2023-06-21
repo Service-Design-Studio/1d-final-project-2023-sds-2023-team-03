@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {BiMask} from 'react-icons/bi'
+import React, { useState, useEffect } from 'react';
+import { BiMask } from 'react-icons/bi';
 import 'tailwindcss/tailwind.css';
 
 function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
@@ -13,10 +13,15 @@ function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
     setHovered(false);
   };
 
-  const toggleDropdown = (e) => {
-    e.stopPropagation(); // Prevent event propagation to the parent elements
+  const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
+
+  useEffect(() => {
+    if (!isHovered && !isDropdownOpen) {
+      setDropdownOpen(false);
+    }
+  }, [isHovered, isDropdownOpen]);
 
   return (
     <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -27,12 +32,14 @@ function Dropdown({ isExpanded, isDropdownOpen, setDropdownOpen, options }) {
         </div>
       )}
       {(isDropdownOpen || isHovered) && (
-  <ul className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-    {options.map((option, index) => (
-      <li key={index} className={option === 'Overall' ? 'overall-option' : ''}>{option}</li>
-    ))}
-  </ul>
-)}
+        <ul className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          {options.map((option, index) => (
+            <li key={index} className={option === 'Overall' ? 'overall-option' : ''}>
+              {option}
+            </li>
+          ))}
+        </ul>
+      )}
     </li>
   );
 }
