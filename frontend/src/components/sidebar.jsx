@@ -11,6 +11,8 @@ import 'tailwindcss/tailwind.css';
 import './Sidebar.css';
 import { Modal, Button } from '@mantine/core';
 import { motion } from 'framer-motion';
+import { useSpring, animated } from 'react-spring';
+
 
 
 
@@ -20,6 +22,9 @@ function Sidebar() {
 
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
 
+  const sidebarAnimation = useSpring({
+    width: isExpanded ? 250 : 50,
+  });
 
   const toggleExpand = () => {
     setExpanded(!isExpanded);
@@ -70,9 +75,12 @@ function Sidebar() {
       className={`sidebar w-60 bg-gray-900 text-white transition-all duration-300 overflow-hidden ${
         isExpanded ? 'expanded' : ''
       }`}
+
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+            <animated.div style={sidebarAnimation}>
+
       <ul className={`${isExpanded ? 'expanded' : ''}`}>
         {isExpanded && (
           <>
@@ -114,6 +122,8 @@ function Sidebar() {
       </div>
     </div>
       )}
+            </animated.div>
+
       {isExpanded && (
         <div className="logout-button">
         <motion.button
