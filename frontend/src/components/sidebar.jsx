@@ -7,7 +7,7 @@ import { GrLogout } from 'react-icons/gr';
 import { BiAbacus } from 'react-icons/bi';
 import {BiMask} from 'react-icons/bi'
 import Dropdown from './Competitor';
-import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import './Sidebar.css';
 import { Modal, Button } from '@mantine/core';
@@ -20,8 +20,9 @@ import { useSpring, animated } from 'react-spring';
 function Sidebar() {
   const [isExpanded, setExpanded] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+  const navigate = useNavigate();
+
 
 
   const logoutButtonAnimation = useSpring({
@@ -58,27 +59,33 @@ function Sidebar() {
   };
   
   const handleConfirmLogout = () => {
-    // Perform the logout action here
+    // Add your logic for Home button click
+    navigate('/login');  
+    setLogoutModalOpen(false);
+    setExpanded(false);
+
+
   };
   
   const handleCancelLogout = () => {
     setLogoutModalOpen(false);
   };
+
   const handleHomeClick = () => {
-    // Add your logic for Home button click
+    console.log('Home button clicked');
+    navigate('/');
   };
 
   const handleInternalClick = () => {
-    // Add your logic for About button click
+    console.log('Internal button clicked');
+    navigate('/logistics');
   };
 
   const handleExternalClick = () => {
-    // Add your logic for About button click
+    console.log('External button clicked');
+    navigate('/sales');
   };
 
-  const handleContactClick = () => {
-    // Add your logic for Contact button click
-  };
 
   const options = ['Adidas', 'Nike', 'Asics', 'Skechers', 'Overall']; // Options list for dropdown box
   // State to control the visibility of the logout confirmation modal
