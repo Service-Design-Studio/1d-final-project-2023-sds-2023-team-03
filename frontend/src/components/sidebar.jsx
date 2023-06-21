@@ -11,6 +11,8 @@ import 'tailwindcss/tailwind.css';
 import './Sidebar.css';
 import { Modal, Button } from '@mantine/core';
 import { motion } from 'framer-motion';
+import { useSpring, animated } from 'react-spring';
+
 
 
 
@@ -20,6 +22,9 @@ function Sidebar() {
 
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
 
+  const sidebarAnimation = useSpring({
+    width: isExpanded ? 150 : 50,
+  });
 
   const toggleExpand = () => {
     setExpanded(!isExpanded);
@@ -70,9 +75,12 @@ function Sidebar() {
       className={`sidebar w-60 bg-gray-900 text-white transition-all duration-300 overflow-hidden ${
         isExpanded ? 'expanded' : ''
       }`}
+
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+            <animated.div style={sidebarAnimation}>
+
       <ul className={`${isExpanded ? 'expanded' : ''}`}>
         {isExpanded && (
           <>
@@ -82,11 +90,11 @@ function Sidebar() {
             </div>
             <div onClick={handleExternalClick} className={`sblogo sblogo-expanded`}>
               <BiDollarCircle className="sbicon" />
-              <span className="sbtext">External</span>
+              <span className="sbtext">Sales</span>
             </div>
             <div onClick={handleInternalClick} className={`sblogo sblogo-expanded`}>
               <BiAbacus className="sbicon" />
-              <span className="sbtext">Internal</span>
+              <span className="sbtext">Logistics</span>
             </div>
           </>
         )}
@@ -114,6 +122,7 @@ function Sidebar() {
       </div>
     </div>
       )}
+
       {isExpanded && (
         <div className="logout-button">
         <motion.button
@@ -129,11 +138,12 @@ function Sidebar() {
       <div className="react-icon">
         <VscMenu />
       </div>
-    
+      </animated.div>
+
       <Modal
         opened={isLogoutModalOpen}
         onClose={handleCancelLogout}
-        title="E-Commerce Analytics"
+        title="PUMA SEA E-Commerce Analytics"
         size="sm"
         overlayClassName="modal-overlay"
       >
