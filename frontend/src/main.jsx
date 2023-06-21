@@ -9,9 +9,9 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Sidebar/>
-    <Header/>
     <BrowserRouter>
+      <Sidebar/>
+      <Header/>
       <Router/>
     </BrowserRouter>
   </React.StrictMode>

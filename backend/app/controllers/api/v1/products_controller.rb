@@ -1,3 +1,5 @@
+require 'json'
+
 module Api
   module V1
     class ProductsController < ApplicationController
@@ -7,7 +9,8 @@ module Api
         start_date = params[:start]
         end_date = params[:end]
         
-        render json: ProductSerializer.new(products_hash).serialized_json
+        frequencies = Product.sales_frequency(start_date, end_date, category)
+        render json: frequencies.to_json
       end
     end
   end
