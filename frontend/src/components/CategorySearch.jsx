@@ -5,6 +5,7 @@ import { Button, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { DatePickerInput } from '@mantine/dates'
+import axios from "axios"
 import './CategorySearch.css'
 
 const CategorySearch = ({handleSalesData}) => {
@@ -20,6 +21,19 @@ const CategorySearch = ({handleSalesData}) => {
     const [selectedPreset, setSelectedPreset] = useState('30d')
     const [calendarDate, setCalendarDate] = useState([null, null])
     const [category, setCategory] = useState("running")
+
+    async function getProductData() {
+        var date;
+        if (calendar) {
+            date = calendarDate;
+        } else {
+            date = presetDate;
+        }
+
+        const start = `${date[0].getFullYear()}-${date[0].getMonth()+1}-${date[0].getDate()}`;
+        const end = `${date[1].getFullYear()}-${date[1].getMonth()+1}-${date[1].getDate()}`;
+        await axios.get(`localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`)
+    }
 
     function handleOnClick() {
         const dates = (calendar && calendarDate) || presetDate
@@ -44,6 +58,9 @@ const CategorySearch = ({handleSalesData}) => {
             y = [1, 100, 55, 120, 12, 10]
         }
 
+        getProductData().then((x) => {
+            console.log(x)
+        }).catch()
 
         handleSalesData({
             x: x,
