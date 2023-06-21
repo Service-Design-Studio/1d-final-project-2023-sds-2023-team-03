@@ -77,6 +77,3 @@ yarn-debug.log*
 
 # creds
 dbpassword
-Dockerfile
-cloudbuild.yaml
-/config/credentials.yml.enc
