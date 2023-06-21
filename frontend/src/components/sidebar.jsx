@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { VscMenu } from 'react-icons/vsc';
 import { AiOutlineHome } from 'react-icons/ai';
 import {BiDollarCircle} from 'react-icons/bi';
@@ -22,6 +23,17 @@ function Sidebar() {
 
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
 
+
+  const logoutButtonAnimation = useSpring({
+    opacity: isExpanded ? 1 : 0,
+    scale: isExpanded ? 1 : 0,
+  });
+
+  const reactIconAnimation = useSpring({
+    opacity: isExpanded ? 1 : 0,
+    scale: isExpanded ? 1 : 0,
+  });
+
   const sidebarAnimation = useSpring({
     width: isExpanded ? 150 : 50,
   });
@@ -35,6 +47,7 @@ function Sidebar() {
     setExpanded(true);
   };
 
+  
   const handleMouseLeave = () => {
     setExpanded(false);
     setDropdownOpen(false); // Close dropdown when sidebar minimizes
@@ -125,37 +138,39 @@ function Sidebar() {
       </div>
     </div>
       )}
+            </animated.div>
+
 
       {isExpanded && (
-        <div className="logout-button">
-        <motion.button
+        <animated.div className="logout-button" style={logoutButtonAnimation}>
+        <animated.button
           onClick={handleLogout}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          style={{ transform: logoutButtonAnimation.transform }}
           className="logout-button-inner"
         >
           Logout
-        </motion.button>
-      </div>
+        </animated.button>
+      </animated.div>
       )}
       <div className="react-icon">
         <VscMenu />
       </div>
-      </animated.div>
 
       <Modal
         opened={isLogoutModalOpen}
         onClose={handleCancelLogout}
         title="PUMA SEA E-Commerce Analytics"
-        size="sm"
+        size="m"
         overlayClassName="modal-overlay"
+        xOffset="5wh"
+        yOffset="20vh"
       >
        <div className="modal-content">
-  <h2 className="modal-title">Logout Confirmation</h2>
-  <GrLogout className="modal-icon" />
-  <p className="modal-message">Are you sure you want to logout?</p>
-  <div className="modal-buttons">
-  <motion.button
+      <h2 className="modal-title">Logout Confirmation</h2>
+      <GrLogout className="modal-icon" />
+      <p className="modal-message">Are you sure you want to logout?</p>
+      <div className="modal-buttons">
+      <motion.button
               className="modal-confirm"
               onClick={handleConfirmLogout}
               whileHover={{ scale: 1.1 }}
