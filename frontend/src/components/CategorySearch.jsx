@@ -60,6 +60,7 @@ const CategorySearch = ({handleSalesData}) => {
         getProductData().then((res) => {
             x = res.data.x_axis
             y = res.data.y_axis
+            console.log(res.data)
         }).catch()
 
         handleSalesData({
