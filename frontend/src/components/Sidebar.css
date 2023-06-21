@@ -82,6 +82,8 @@
   /*end of drop down*/
   .sblogo {
     padding :2px;
+    margin-bottom: 12px;
+
 
   }
   
@@ -132,17 +134,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    
   }
   
   .modal-content {
     background-color: #fff;
     width: 300px;
-    padding: 23px;
+    padding: 40px;
     border-radius: 8px;
     text-align: center;
     justify-items: center;
     border: 1.5px solid #000;
+    
+
   }
   
   .modal-icon {

@@ -160,15 +160,17 @@ function Sidebar() {
         opened={isLogoutModalOpen}
         onClose={handleCancelLogout}
         title="PUMA SEA E-Commerce Analytics"
-        size="sm"
+        size="m"
         overlayClassName="modal-overlay"
+        xOffset="5wh"
+        yOffset="20vh"
       >
        <div className="modal-content">
-  <h2 className="modal-title">Logout Confirmation</h2>
-  <GrLogout className="modal-icon" />
-  <p className="modal-message">Are you sure you want to logout?</p>
-  <div className="modal-buttons">
-  <motion.button
+      <h2 className="modal-title">Logout Confirmation</h2>
+      <GrLogout className="modal-icon" />
+      <p className="modal-message">Are you sure you want to logout?</p>
+      <div className="modal-buttons">
+      <motion.button
               className="modal-confirm"
               onClick={handleConfirmLogout}
               whileHover={{ scale: 1.1 }}
