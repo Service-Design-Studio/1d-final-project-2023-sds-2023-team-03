@@ -9,8 +9,9 @@ const Categories = () => {
     const [used, setUsed] = useState(false)
 
     const [salesData, setSalesData] = useState({
-        x: [],
-        y: [],
+        frequencies: {},
+        revenues: {},
+        types: {},
         start: "",
         end: "",
         category: ""
@@ -28,7 +29,18 @@ const Categories = () => {
                <CategorySearch handleSalesData={handleSalesData} className="search"/>
                 <Space h="xl"/>
                 <div className="sales-graph">
-                    <SalesBar salesData={salesData} used={used}/>
+                    <SalesBar 
+                        salesData={
+                            {
+                                x: salesData.frequencies.x_axis,
+                                y: salesData.frequencies.y_axis,
+                                start: salesData.start,
+                                end: salesData.end,
+                                category: salesData.category
+                            }
+                        } 
+                        used={used}
+                    />
                 </div>
             </Stack>
         </>

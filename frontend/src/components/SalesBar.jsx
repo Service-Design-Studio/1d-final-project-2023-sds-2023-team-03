@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import Chart from "react-apexcharts"
 function SalesBar({salesData, used}) {  
 
+    if (!salesData.x) {
+        salesData = {
+            x: [],
+            y: [],
+            category: salesData.category,
+            start: salesData.start,
+            end: salesData.end
+        }
+    }
+
     var title = "Use the selectors above to search for sales data!"
 
     if (salesData.x.length > 0) {
