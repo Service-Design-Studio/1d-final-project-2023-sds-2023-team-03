@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'FFDINforPUMA';
+  src: url('../assets/fonts/FFDINforPUMA-Regular.ttf') format('truetype');
+}
+
 #root {
     width: 100vw;
     height: 100vh;
@@ -5,7 +10,13 @@
     text-align: center;
     overflow-x: hidden;
   }
+  #sales-title {
+    font-family: 'FFDINforPUMA';
+    text-align: left;
+    padding-left: 60px;
 
+
+  }
   .sales-graph {
     margin: 0px auto;
   }

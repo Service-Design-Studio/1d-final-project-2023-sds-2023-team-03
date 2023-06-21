@@ -24,8 +24,8 @@ const Categories = () => {
     return(
         <>
             <Stack>
-                <h1>Analysis by Category</h1>
-                <CategorySearch handleSalesData={handleSalesData} className="search"/>
+            <h1 id="sales-title">Sales Analytics</h1>
+               <CategorySearch handleSalesData={handleSalesData} className="search"/>
                 <Space h="xl"/>
                 <div className="sales-graph">
                     <SalesBar salesData={salesData} used={used}/>
