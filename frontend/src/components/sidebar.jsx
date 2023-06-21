@@ -7,7 +7,7 @@ import { GrLogout } from 'react-icons/gr';
 import { BiAbacus } from 'react-icons/bi';
 import {BiMask} from 'react-icons/bi'
 import Dropdown from './Competitor';
-import { Link } from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import './Sidebar.css';
 import { Modal, Button } from '@mantine/core';
@@ -20,8 +20,8 @@ import { useSpring, animated } from 'react-spring';
 function Sidebar() {
   const [isExpanded, setExpanded] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+  
 
 
   const logoutButtonAnimation = useSpring({
