@@ -128,6 +128,7 @@ GEM
     diff-lcs (1.5.0)
     erubi (1.12.0)
     ffi (1.15.5)
+    ffi (1.15.5-x64-mingw32)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -286,7 +287,9 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
-  cucumber
+  cucumber (~> 8.0.0)
+  cucumber-rails
+  database_cleaner
   debug
   importmap-rails
   jbuilder
@@ -307,4 +310,4 @@ RUBY VERSION
    ruby 2.7.8p225
 
 BUNDLED WITH
-   2.4.13
+   2.4.14

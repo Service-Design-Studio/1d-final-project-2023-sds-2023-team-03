@@ -1,7 +1,7 @@
 Feature: Fetching sales data for a specific product category relative to PUMA’s own data.
 
   Scenario: Fetching data with default category and time period (Happy)
-    Given I have the default category and time period selected ("Running" and "Last 30 days")
+    Given I have the default category and time period selected "Running" and "Last 30 days"
     When I press the "Fetch data" button
     Then the "Fetch data" button should grey out
     And I should see a loading message where the sales insights should be
