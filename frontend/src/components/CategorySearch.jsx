@@ -7,6 +7,8 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { DatePickerInput } from '@mantine/dates'
 import axios from "axios"
 import './CategorySearch.css'
+import ErrorModal from './ErrorModal.jsx'
+import { useDisclosure } from '@mantine/hooks'
 
 const CategorySearch = ({handleSalesData}) => {
     const today = new Date();
@@ -22,6 +24,7 @@ const CategorySearch = ({handleSalesData}) => {
     const [calendarDate, setCalendarDate] = useState([null, null])
     const [category, setCategory] = useState("running")
     const [loading, setLoading] = useState(false)
+    const [opened, { open, close }] = useDisclosure(false);
     
     // API call to backend
     async function getProductData() {
@@ -39,6 +42,10 @@ const CategorySearch = ({handleSalesData}) => {
 
     // Send data to parent node
     function handleOnClick() {
+        if (calendar && (calendarDate[0] == null || calendarDate[1] == null)) {
+            open()
+        }
+
         setLoading(true)
         getProductData().then((res) => {
             const x = res.query.data.x_axis
@@ -132,6 +139,7 @@ const CategorySearch = ({handleSalesData}) => {
             <Button className="button" onClick={handleOnClick} disabled={loading}>
                 Search!
             </Button>
+            <ErrorModal opened={opened} open={open} close={close} title="Invalid date" content="Please input a valid date before searching!"/>
         </Stack>
     )
 }
