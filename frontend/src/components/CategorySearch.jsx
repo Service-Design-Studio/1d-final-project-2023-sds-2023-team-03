@@ -55,6 +55,7 @@ const CategorySearch = ({handleSalesData}) => {
             console.log("Error: Failed to receive data.")
             setLoading(false)
         })
+        return true;
     }
 
     function handleDateSegment(val) {
