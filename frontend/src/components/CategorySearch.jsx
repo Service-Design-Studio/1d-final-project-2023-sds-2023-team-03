@@ -57,6 +57,10 @@ const CategorySearch = ({handleSalesData}) => {
             y = [1, 100, 55, 120, 12, 10]
         }
 
+        getProductData().then((res) => {
+            x = res.data.x_axis
+            y = res.data.y_axis
+        }).catch()
 
         handleSalesData({
             x: x,
