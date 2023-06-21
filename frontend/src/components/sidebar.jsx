@@ -23,7 +23,7 @@ function Sidebar() {
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
 
   const sidebarAnimation = useSpring({
-    width: isExpanded ? 250 : 50,
+    width: isExpanded ? 150 : 50,
   });
 
   const toggleExpand = () => {
@@ -122,7 +122,6 @@ function Sidebar() {
       </div>
     </div>
       )}
-            </animated.div>
 
       {isExpanded && (
         <div className="logout-button">
@@ -139,7 +138,8 @@ function Sidebar() {
       <div className="react-icon">
         <VscMenu />
       </div>
-    
+      </animated.div>
+
       <Modal
         opened={isLogoutModalOpen}
         onClose={handleCancelLogout}

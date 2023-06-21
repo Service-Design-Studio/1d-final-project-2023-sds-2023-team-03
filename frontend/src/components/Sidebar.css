@@ -57,11 +57,22 @@
     bottom: 10%;
     margin: auto;
   }
-  
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    /* Add any additional styles as needed */
+  }
 
   .dropdown li {
-  padding: 2px; 
+    padding: 2px;
+    margin-right:100px;
+    text-align: center;
+    
   }
+
+
   .dropdown li:hover {
     background-color: #444;
   }
