@@ -13,7 +13,6 @@ const Categories = () => {
 
     function handleSalesData(data) {
         setSalesData(data)
-        console.log(data)
     }
 
     return(

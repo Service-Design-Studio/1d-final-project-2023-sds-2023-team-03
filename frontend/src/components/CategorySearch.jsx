@@ -39,12 +39,11 @@ const CategorySearch = ({handleSalesData}) => {
         const dates = (calendar && calendarDate) || presetDate
 
         if (dates.includes(null)) {
-            console.log("pag")
+            console.log("invalid")
         } else {
             console.log("valid")
-            console.log(dates[0], dates[1])
-            console.log(category)
         }
+        
         const diff = (dates[1] - dates[0])/(1000*60*60*24);
         var x; var y;
         if (diff == 30) {
