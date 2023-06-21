@@ -12,7 +12,7 @@ class Product < ApplicationRecord
     #   x_axis: names of product (array)
     #   y_axis: number of sales of product (array)
     # the two fields have 1:1 mapping
-    
+
     def self.sales_frequency(start_date, end_date, category)
         products = self.category_time_query(start_date, end_date, category)
         hash = {}
@@ -23,6 +23,9 @@ class Product < ApplicationRecord
                 hash[p.product_name] = p.sales
             end
         end
+
+        # sort the hash before stripping keys/values
+        hash = hash.sort_by {|k, v| v}.reverse.to_h
 
         # output
         {
