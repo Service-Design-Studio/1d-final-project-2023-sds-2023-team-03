@@ -49,11 +49,10 @@ const CategorySearch = ({handleSalesData}) => {
 
         setLoading(true)
         getProductData().then((res) => {
-            const x = res.query.data.x_axis
-            const y = res.query.data.y_axis
             handleSalesData({
-                x: x,
-                y: y,
+                frequencies: res.query.data.frequencies,
+                revenues: res.query.data.revenues,
+                types: res.query.data.types,
                 start: res.start,
                 end: res.end,
                 category: category
