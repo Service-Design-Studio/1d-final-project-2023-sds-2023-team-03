@@ -32,7 +32,7 @@ const CategorySearch = ({handleSalesData}) => {
 
         const start = `${date[0].getFullYear()}-${date[0].getMonth()+1}-${date[0].getDate()}`;
         const end = `${date[1].getFullYear()}-${date[1].getMonth()+1}-${date[1].getDate()}`;
-        await axios.get(`localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`)
+        return await axios.get(`http://localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`)
     }
 
     function handleOnClick() {
@@ -57,8 +57,9 @@ const CategorySearch = ({handleSalesData}) => {
             y = [1, 100, 55, 120, 12, 10]
         }
 
-        getProductData().then((x) => {
-            console.log(x)
+        getProductData().then((res) => {
+            x = res.data.x_axis
+            y = res.data.y_axis
         }).catch()
 
         handleSalesData({
