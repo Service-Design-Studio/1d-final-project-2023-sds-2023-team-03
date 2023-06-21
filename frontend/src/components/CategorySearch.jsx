@@ -18,13 +18,14 @@ const CategorySearch = ({handleSalesData}) => {
     const lastYear = new Date(new Date().setDate(today.getDate() - 365))
 
 
-    const [calendar, setCalendar] = useState(false)
-    const [presetDate, setPresetDate] = useState([lastMonth, today])
-    const [selectedPreset, setSelectedPreset] = useState('30d')
-    const [calendarDate, setCalendarDate] = useState([null, null])
-    const [category, setCategory] = useState("running")
-    const [loading, setLoading] = useState(false)
-    const [opened, { open, close }] = useDisclosure(false);
+    const [calendar, setCalendar] = useState(false)                     // calendar mode status
+    const [presetDate, setPresetDate] = useState([lastMonth, today])    // date preset selectionv alue
+    const [selectedPreset, setSelectedPreset] = useState('30d')         // date preset selection
+    const [calendarDate, setCalendarDate] = useState([null, null])      // calendar date selection
+    const [category, setCategory] = useState("running")                 // category selection
+    const [loading, setLoading] = useState(false)                       // search button 
+    const [opened, { open, close }] = useDisclosure(false);             // input error modal
+    const [error, errorHandler] = useDisclosure(false);           // search error modal
     
     // API call to backend
     async function getProductData() {
@@ -37,7 +38,7 @@ const CategorySearch = ({handleSalesData}) => {
 
         const start = `${date[0].getFullYear()}-${date[0].getMonth()+1}-${date[0].getDate()}`;
         const end = `${date[1].getFullYear()}-${date[1].getMonth()+1}-${date[1].getDate()}`;
-        return {query: await axios.get(`http://localhost:3000/api/v1/products?category=${category}&start=${start}&end=${end}`), start: start, end: end}
+        return {query: await axios.get(`http://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products?category=${category}&start=${start}&end=${end}`), start: start, end: end}
     }
 
     // Send data to parent node
@@ -61,6 +62,7 @@ const CategorySearch = ({handleSalesData}) => {
         }).catch(() => {
             console.log("Error: Failed to receive data.")
             setLoading(false)
+            errorHandler.open()
         })
         return true;
     }
@@ -140,6 +142,7 @@ const CategorySearch = ({handleSalesData}) => {
                 Search!
             </Button>
             <ErrorModal opened={opened} open={open} close={close} title="Invalid date" content="Please input a valid date before searching!"/>
+            <ErrorModal opened={error} open={errorHandler.open} close={errorHandler.close} title="Search error" content="The server may be down, or you may be having connection issues."/>
         </Stack>
     )
 }
