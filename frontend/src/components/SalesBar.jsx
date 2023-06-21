@@ -23,7 +23,7 @@ function SalesBar({salesData, used}) {
                     style: {
                         fontSize: "14px",
                         fontFamily: "puma-regular",
-                        fontWeight: 4000
+                        fontWeight: 400
                     }
                 }
             },
