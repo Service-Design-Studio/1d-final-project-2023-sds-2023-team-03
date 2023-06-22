@@ -150,13 +150,15 @@ function Sidebar() {
 
       {isExpanded && (
         <animated.div className="logout-button" style={logoutButtonAnimation}>
-        <animated.button
+        <motion.button
           onClick={handleLogout}
           style={{ transform: logoutButtonAnimation.transform }}
           className="logout-button-inner"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
           Logout
-        </animated.button>
+        </motion.button>
       </animated.div>
       )}
       <div className="react-icon">

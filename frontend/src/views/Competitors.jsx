@@ -3,7 +3,8 @@ import React from 'react';
 function Competitors() {
   return (
     <div>
-      {/* Add your JSX code here */}
+      <h1 id="sales-title">Competitor x </h1>    
+
     </div>
   );
 }

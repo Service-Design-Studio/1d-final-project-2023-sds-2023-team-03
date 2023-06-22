@@ -3,7 +3,7 @@ import React from 'react';
 function Logistics() {
   return (
     <div>
-      {/* Add your JSX code here */}
+  <h1 id="sales-title">Logistics</h1>   
     </div>
   );
 }
