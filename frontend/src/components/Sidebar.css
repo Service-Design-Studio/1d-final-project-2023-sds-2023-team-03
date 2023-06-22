@@ -56,6 +56,13 @@
     transform: translateX(-3%);
     bottom: 10%;
     margin: auto;
+    background-color: #333;
+
+  }
+
+  .logout-button-inner{
+    background-color: #ffffff;
+
   }
   .dropdown {
     display: flex;
