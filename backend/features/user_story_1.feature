@@ -23,3 +23,37 @@ Feature: Fetching sales data for a specific product category relative to PUMA’
     Then the search should terminate
     And the search button should become clickable again
     And I should receive a search timeout message modal
+
+  Scenario: Switching graph - Product Frequency (Happy)
+    Given I have pressed "Search" with valid inputs
+    And the results have returned
+    And the segment control is not currently on "Product Frequency"
+    When I click on "Product Frequency"
+    Then the current graph should be replaced by the "Product Frequency" graph
+
+  Scenario: Switching graph - Product Revenue (Happy)
+    Given I have pressed "Search" with valid inputs
+    And the results have returned
+    And the segment control is not currently on "Product Revenue"
+    When I click on "Product Revenue"
+    Then the current graph should be replaced by the "Product Revenue" graph
+
+  Scenario: Switching graph - Apparel Frequency (Happy)
+    Given I have pressed "Search" with valid inputs
+    And the results have returned
+    And the segment control is not currently on "Apparel Frequency"
+    When I click on "Apparel Frequency"
+    Then the current graph should be replaced by the "Apparel Frequency" graph
+
+  Scenario: Switching graph - Apparel Revenue (Happy)
+    Given I have pressed "Search" with valid inputs
+    And the results have returned
+    And the segment control is not currently on "Apparel Revenue"
+    When I click on "Apparel Revenue"
+    Then the current graph should be replaced by the "Apparel Revenue" graph
+
+  Scenario: Switching graphs - self (Sad)
+    Given I have pressed "Search" with valid inputs
+    And the results have returned
+    When I click on a graph segment option that I am already on
+    Then the same graph as before should still be visible, and nothing should change
