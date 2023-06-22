@@ -6,7 +6,7 @@ function SalesSegment({handleOnChange}) {
         {value: "revenues", label: "Product Revenue"},
         {value: "types-frequencies", label: "Apparel Frequency"},
         {value: "types-revenues", label: "Apparel Revenue"},
-        {value: "summary", label: "Summary"},
+        {value: "summary", label: "Insights"},
     ]
 
     return (

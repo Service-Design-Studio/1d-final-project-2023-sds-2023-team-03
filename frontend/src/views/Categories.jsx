@@ -109,7 +109,7 @@ const Categories = () => {
                 )
             case "summary":
                 return (
-                    <div>test</div>
+                    <div></div>
                 )
         }
     }
