@@ -1,6 +1,6 @@
 import React from "react";
 import Chart from "react-apexcharts"
-function SalesBar({salesData, used}) {  
+function ApparelFreqBar({salesData, used}) {  
 
     if (!salesData.x) {
         salesData = {
@@ -15,9 +15,9 @@ function SalesBar({salesData, used}) {
     var title = "Use the selectors above to search for sales data!"
 
     if (salesData.x.length > 0) {
-        title = `Sales frequency data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
+        title = `Apparel frequency data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
     } else if (salesData && used) {
-        title = `No sales frequency data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
+        title = `No apparel frequency data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
     }
 
     var chart = {
@@ -26,6 +26,9 @@ function SalesBar({salesData, used}) {
               type: "bar",
               stacked: true
             },
+            colors: [
+                "#555"
+            ],
             xaxis: {
                 categories: salesData.x,
                 labels: {
@@ -54,7 +57,7 @@ function SalesBar({salesData, used}) {
         },
         series: [
             {
-                name: "Number of sales",
+                name: "Revenue",
                 data: salesData.y
             }
         ]
@@ -68,4 +71,4 @@ function SalesBar({salesData, used}) {
     }
     return <Chart options={chart.options} series={chart.series} type="bar" width="1200" height = {height}/>;
 } 
-export default SalesBar;
+export default ApparelFreqBar;

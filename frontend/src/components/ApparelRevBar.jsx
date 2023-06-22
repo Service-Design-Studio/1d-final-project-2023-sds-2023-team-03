@@ -1,6 +1,6 @@
 import React from "react";
 import Chart from "react-apexcharts"
-function SalesBar({salesData, used}) {  
+function ApparelRevBar({salesData, used}) {  
 
     if (!salesData.x) {
         salesData = {
@@ -10,14 +10,18 @@ function SalesBar({salesData, used}) {
             start: salesData.start,
             end: salesData.end
         }
+    } else {
+        salesData.y = salesData.y.map((n) => {
+            return Number(n.toFixed(0));
+        })
     }
 
     var title = "Use the selectors above to search for sales data!"
 
     if (salesData.x.length > 0) {
-        title = `Sales frequency data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
+        title = `Apparel revenue data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
     } else if (salesData && used) {
-        title = `No sales frequency data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
+        title = `No apparel revenue data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
     }
 
     var chart = {
@@ -26,6 +30,9 @@ function SalesBar({salesData, used}) {
               type: "bar",
               stacked: true
             },
+            colors: [
+                "#f1f"
+            ],
             xaxis: {
                 categories: salesData.x,
                 labels: {
@@ -54,7 +61,7 @@ function SalesBar({salesData, used}) {
         },
         series: [
             {
-                name: "Number of sales",
+                name: "Revenue",
                 data: salesData.y
             }
         ]
@@ -68,4 +75,4 @@ function SalesBar({salesData, used}) {
     }
     return <Chart options={chart.options} series={chart.series} type="bar" width="1200" height = {height}/>;
 } 
-export default SalesBar;
+export default ApparelRevBar;

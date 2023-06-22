@@ -19,13 +19,13 @@ const CategorySearch = ({handleSalesData}) => {
 
 
     const [calendar, setCalendar] = useState(false)                     // calendar mode status
-    const [presetDate, setPresetDate] = useState([lastMonth, today])    // date preset selectionv alue
+    const [presetDate, setPresetDate] = useState([lastMonth, today])    // date preset selection value
     const [selectedPreset, setSelectedPreset] = useState('30d')         // date preset selection
     const [calendarDate, setCalendarDate] = useState([null, null])      // calendar date selection
     const [category, setCategory] = useState("running")                 // category selection
     const [loading, setLoading] = useState(false)                       // search button 
-    const [nullCalendar, nullCalendarHandler] = useDisclosure(false);             // input error modal
-    const [timeout, timeoutHandler] = useDisclosure(false);                 // search error modal
+    const [nullCalendar, nullCalendarHandler] = useDisclosure(false);   // calendar input error modal
+    const [timeout, timeoutHandler] = useDisclosure(false);             // search timeout error modal
     
     // API call to backend
     async function getProductData() {
@@ -38,13 +38,19 @@ const CategorySearch = ({handleSalesData}) => {
 
         const start = `${date[0].getFullYear()}-${date[0].getMonth()+1}-${date[0].getDate()}`;
         const end = `${date[1].getFullYear()}-${date[1].getMonth()+1}-${date[1].getDate()}`;
-        return {query: await axios.get(`http://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products?category=${category}&start=${start}&end=${end}`, {timeout: 10000}), start: start, end: end}
+        return {
+            query: await axios.get(
+                `http://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products?category=${category}&start=${start}&end=${end}`, 
+                {timeout: 10000}
+                ), 
+            start: start, 
+            end: end}
     }
 
     // Send data to parent node
     function handleOnClick() {
         if (calendar && (calendarDate[0] == null || calendarDate[1] == null)) {
-            open()
+            nullCalendarHandler.open()
             return
         }
 
