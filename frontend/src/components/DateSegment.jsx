@@ -17,7 +17,6 @@ const DateSegment = ({savedPreset, handleDateSegment}) => {
       <>
         <SegmentedControl
           defaultValue = {savedPreset}
-          placeholder="Pick a time period..."
           data={data}
           onChange={handleDateSegment}/>
       </>
