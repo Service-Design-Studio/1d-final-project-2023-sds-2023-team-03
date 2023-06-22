@@ -57,6 +57,27 @@ function ApparelRevBar({salesData, used}) {
                     fontSize: '30px',
                     fontFamily: "puma-regular"
                 }
+            },
+            tooltip: {
+                y: {
+                    formatter: (val) => {
+                        return `${new Intl.NumberFormat('en-SG', {
+                            style: 'currency',
+                            currency: 'SGD'
+                        }).format(val)}`;
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                textAnchor: 'start',
+                offsetX: 0,
+                formatter: (val, opt) => {
+                    return `${new Intl.NumberFormat('en-SG', {
+                        style: 'currency',
+                        currency: 'SGD'
+                    }).format(val)}`;
+                }
             }
         },
         series: [

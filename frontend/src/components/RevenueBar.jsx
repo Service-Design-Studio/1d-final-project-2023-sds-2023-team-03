@@ -44,6 +44,11 @@ function RevenueBar({salesData, used}) {
                     }
                 }
             },
+            yaxis: {
+                labels: {
+                    show: true
+                }
+            },
             plotOptions: {
                 bar: {
                     horizontal: true,
@@ -56,6 +61,27 @@ function RevenueBar({salesData, used}) {
                 style: {
                     fontSize: '30px',
                     fontFamily: "puma-regular"
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                textAnchor: 'start',
+                offsetX: 0,
+                formatter: (val, opt) => {
+                    return `${new Intl.NumberFormat('en-SG', {
+                        style: 'currency',
+                        currency: 'SGD'
+                    }).format(val)}`;
+                }
+            },
+            tooltip: {
+                y: {
+                    formatter: (val) => {
+                        return `${new Intl.NumberFormat('en-SG', {
+                            style: 'currency',
+                            currency: 'SGD'
+                        }).format(val)}`;
+                    }
                 }
             }
         },
