@@ -40,7 +40,7 @@ const CategorySearch = ({handleSalesData}) => {
         const end = `${date[1].getFullYear()}-${date[1].getMonth()+1}-${date[1].getDate()}`;
         return {
             query: await axios.get(
-                `http://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products?category=${category}&start=${start}&end=${end}`, 
+                `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products?category=${category}&start=${start}&end=${end}`, 
                 {timeout: 10000}
                 ), 
             start: start, 
