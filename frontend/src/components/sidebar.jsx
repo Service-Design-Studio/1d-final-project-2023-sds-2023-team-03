@@ -6,8 +6,8 @@ import {BiDollarCircle} from 'react-icons/bi';
 import { GrLogout } from 'react-icons/gr';
 import { BiAbacus } from 'react-icons/bi';
 import {BiMask} from 'react-icons/bi'
-import Dropdown from './Competitor';
-import {useNavigate} from 'react-router-dom';
+import Dropdown from './competitor';
+import { Link, useNavigate } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import './Sidebar.css';
 import { Modal, Button } from '@mantine/core';
@@ -47,7 +47,6 @@ function Sidebar() {
   const handleMouseEnter = () => {
     setExpanded(true);
   };
-
   
   const handleMouseLeave = () => {
     setExpanded(false);

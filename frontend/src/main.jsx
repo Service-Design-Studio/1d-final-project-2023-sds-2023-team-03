@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Categories from './views/Categories.jsx'
-import Sidebar from './components/Sidebar.jsx'
+import Sidebar from './components/sidebar.jsx'
 import Header from './components/header.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import Router from './routes.jsx'
@@ -16,3 +16,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </React.StrictMode>
 )
+
+
