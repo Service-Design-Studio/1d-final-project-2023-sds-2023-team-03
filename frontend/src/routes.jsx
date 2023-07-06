@@ -15,12 +15,12 @@ function Router() {
     return (
         <>
             <Routes>
-                <Route path="/sales" element={<Sales/>}/>
-                <Route path="/logistics" element={<Logistics/>}/>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/login" element={<Login/>}/>
+                <Route path="/sales" element= { <Sales/> }/>
+                <Route path="/logistics" element={ <Logistics/> }/>
+                <Route path="/home" element={ <Home/> }/>
+                <Route path="/login" element={ <Login/> }/>
                 {options.map((option, index) => (
-          <Route path={`/competitors/${option}`} element={<Competitors/>} />
+          <Route path={`/competitors/${option}`} element={ <Competitors/> } />
         ))}
             </Routes>
 
