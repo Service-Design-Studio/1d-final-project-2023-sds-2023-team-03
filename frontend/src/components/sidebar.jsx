@@ -86,7 +86,7 @@ function Sidebar() {
   };
 
 
-  const options = ['Adidas', 'Nike', 'Asics', 'Skechers', 'Overall']; // Options list for dropdown box
+  const options = ['Adidas', 'Nike', 'Under Armour', 'Skechers', 'Overall']; // Options list for dropdown box
   // State to control the visibility of the logout confirmation modal
 
   return (
@@ -116,7 +116,7 @@ function Sidebar() {
             </div>
             <div onClick={handleInternalClick} className={`sblogo sblogo-expanded`}>
               <BiAbacus className="sbicon" />
-              <span className="sbtext">Logistics</span>
+              <span className="sbtext">Merchandising</span>
             </div>
           </>
         )}
