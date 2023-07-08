@@ -10,24 +10,27 @@ Feature: Sidebar Navigation
         Given the sidebar is expanded
         When I hover anywhere outside the sidebar (on the right side of the screen) from within the sidebar
         Then the sidebar should minimize and retract to the left side
-        And the sidebar will return to its default state
 
     Scenario: Navigating to Home (Happy)
         Given I am on any page other than Home
+        And I hover anywhere on the sidebar (on the left side of the screen)
         When I click on "Home" on the sidebar
         Then I should be redirected to the Home page
 
     Scenario: Navigating to Sales (Happy)
         Given I am on any page other than Sales
+        And I hover anywhere on the sidebar (on the left side of the screen)
         When I click on "Sales" on the sidebar
         Then I should be redirected to the Sales page
 
-    Scenario: Navigating to Logistics (Happy)
-        Given I am on any page other than Logistics
-        When I click on "Logistics" on the sidebar
+    Scenario: Navigating to Merchandising (Happy)
+        Given I am on any page other than Merchandising
+        And I hover anywhere on the sidebar (on the left side of the screen)
+        When I click on "Merchandising" on the sidebar
         Then I should be redirected to the Logistics page
 
     Scenario: Navigating to Same Page (Sad)
         Given I am on any page
+        And I hover anywhere on the sidebar (on the left side of the screen)
         When I click on the icon that represents my current page
         Then I should remain on the same page

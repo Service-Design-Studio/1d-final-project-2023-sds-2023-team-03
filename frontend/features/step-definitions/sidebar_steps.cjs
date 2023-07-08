@@ -30,7 +30,6 @@ actions
 
 Then('the sidebar should enlarge and expand to the right side, revealing the navigation buttons inside', async function () {
   // assert that the side bar has been in the expanded state
-
   // Verify if the sidebar is in the expanded state
   const isExpanded = await driver.executeScript("return document.querySelector('.sidebar').classList.contains('expanded')");
   assert.strictEqual(isExpanded, true);
@@ -39,98 +38,126 @@ Then('the sidebar should enlarge and expand to the right side, revealing the nav
 Then('the icons on the retracted sidebar should turn into clickable text', async function () {
   // ensure that the icons on the sidebar are visible
    // Ensure that the icons on the sidebar are visible
-
    const icons = await driver.findElements(By.css('.sblogo-minimized div'));
- 
    // Check if the icons on the retracted sidebar are visible
    const areIconsVisible = await Promise.all(icons.map(icon => icon.isDisplayed()));
- 
    assert.strictEqual(areIconsVisible.every(visible => visible), true);
-   await driver.quit()
 });
 
 // Closing Sidebar (Happy)
-Given('the sidebar is expanded', function () {
+Given('the sidebar is expanded', async function () {
   // Implement code to set up the sidebar as expanded
-  return 'pending';
+  actions 
+  const sidebar = await driver.findElement(By.className('sidebar'));
+  // Perform mouse hover action on the sidebar and check that it is expanded
+  await driver.actions().move({ origin: sidebar }).perform();
+  const isExpanded = await driver.executeScript("return document.querySelector('.sidebar').classList.contains('expanded')");
+  assert.strictEqual(isExpanded, true);
 });
 
-When('I hover anywhere outside the sidebar \\(on the right side of the screen) from within the sidebar', function () {
+When('I hover anywhere outside the sidebar \\(on the right side of the screen) from within the sidebar',async function () {
   // Write code here that turns the phrase above into concrete 
-actions
-  return 'pending';
+  // Move the mouse off the sidebar
+  const windowSize = await driver.executeScript('return [window.innerWidth, window.innerHeight];');
+  const windowWidth = windowSize[0];
+  const windowHeight = windowSize[1];
+  const actions = await driver.actions();
+
+  // Move the mouse to the center of the screen
+  await actions.move({ x: windowWidth / 2, y: windowHeight / 2 }).perform();
 });
 
-Then('the sidebar should minimize and retract to the left side', function () {
+Then('the sidebar should minimize and retract to the left side', async function () {
   // Implement code to verify the sidebar minimization and retraction
-  return 'pending';
+  const isExpanded = await driver.executeScript("return document.querySelector('.sidebar').classList.contains('expanded')");
+  assert.strictEqual(isExpanded, false);
 });
 
-Then('the sidebar will return to its default state', function () {
-  // Implement code to verify the sidebar's default state
-  return 'pending';
-});
+
 
 // Navigating to Home (Happy)
-Given('I am on any page other than Home', function () {
-  // Implement code to set up being on a page other than Home
-  return 'pending';
+Given('I am on any page other than Home', async function () {
+  // Have the page start at websiteurl/sales and check that it is not the home page (which is simply websiteurl)
+  await driver.get(websiteUrl + 'sales');
+  const currentUrl = await driver.getCurrentUrl();
+  assert.notStrictEqual(currentUrl, websiteUrl);
 });
 
-When('I click on "Home" on the sidebar', function () {
-  // Implement code to simulate clicking on the "Home" button
-  return 'pending';
+Given("I hover anywhere on the sidebar (on the left side of the screen)", async function () {
+ // have a mouse go to the sidebar, trigger the hover state on side bar
+ actions
+ const sidebar = await driver.findElement(By.className('sidebar'));
+ // Perform mouse hover action on the sidebar
+ await driver.actions().move({ origin: sidebar }).perform();
+ const isExpanded = await driver.executeScript("return document.querySelector('.sidebar').classList.contains('expanded')");
+ assert.strictEqual(isExpanded, true);
 });
 
-Then('I should be redirected to the Home page', function () {
-  // Implement code to verify the redirection to the Home page
-  return 'pending';
+When('I click on "Home" on the sidebar', async function () {
+  // Click on the icon that represents home
+  const homeButton = await driver.findElement(By.xpath("//div[contains(@class, 'sblogo-expanded')]//span[text()='Home']"));
+  await homeButton.click();
+});
+
+Then('I should be redirected to the Home page', async function () {
+  // Check that the current url is website url
+  const currentUrl = await driver.getCurrentUrl();
+  assert.strictEqual(currentUrl, websiteUrl);
 });
 
 // Navigating to Sales (Happy)
-Given('I am on any page other than Sales', function () {
-  // Implement code to set up being on a page other than Sales
-  return 'pending';
+Given('I am on any page other than Sales', async function () {
+   // Have the page start at websiteurl/sales and check that it is not the home page (which is simply websiteurl)
+  await driver.get(websiteUrl);
+  const salesUrl = websiteUrl + 'sales';
+  assert.notStrictEqual(salesUrl, websiteUrl);
 });
 
-When('I click on "Sales" on the sidebar', function () {
-  // Implement code to simulate clicking on the "Sales" button
-  return 'pending';
+When('I click on "Sales" on the sidebar', async function () {
+  const salesButton = await driver.findElement(By.xpath("//div[contains(@class, 'sblogo-expanded')]//span[text()='Sales']"));
+  await salesButton.click();
 });
 
-Then('I should be redirected to the Sales page', function () {
-  // Implement code to verify the redirection to the Sales page
-  return 'pending';
+Then('I should be redirected to the Sales page', async function () {
+    // Check that the current url is website url
+    const currentUrl = await driver.getCurrentUrl();
+    assert.strictEqual(currentUrl, websiteUrl+'sales');
 });
 
 // Navigating to Logistics (Happy)
-Given('I am on any page other than Logistics', function () {
-  // Implement code to set up being on a page other than Logistics
-  return 'pending';
+Given('I am on any page other than Merchandising', async function () {
+  await driver.get(websiteUrl);
+  const merchUrl = websiteUrl + 'merchandising';
+  assert.notStrictEqual(merchUrl, websiteUrl);
 });
 
-When('I click on "Logistics" on the sidebar', function () {
-  // Implement code to simulate clicking on the "Logistics" button
-  return 'pending';
+When('I click on "Merchandising" on the sidebar', async function () {
+  const merchButton = await driver.findElement(By.xpath("//div[contains(@class, 'sblogo-expanded')]//span[text()='Merchandising']"));
+  await merchButton.click();
 });
 
-Then('I should be redirected to the Logistics page', function () {
-  // Implement code to verify the redirection to the Logistics page
-  return 'pending';
+Then('I should be redirected to the Logistics page', async function () {
+   // Check that the current url is website url
+   const currentUrl = await driver.getCurrentUrl();
+   assert.strictEqual(currentUrl, websiteUrl+'merchandising');
 });
 
 // Navigating to Same Page (Sad)
-Given('I am on any page', function () {
-  // Implement code to set up being on any page
-  return 'pending';
+Given('I am on any page', async function () {
+  const merchUrl = websiteUrl + 'merchandising';
+  await driver.get(merchUrl);
 });
 
-When('I click on the icon that represents my current page', function () {
-  // Implement code to simulate clicking on the current page icon
-  return 'pending';
+When('I click on the icon that represents my current page', async function () {
+  const merchButton = await driver.findElement(By.xpath("//div[contains(@class, 'sblogo-expanded')]//span[text()='Merchandising']"));
+  await merchButton.click();
 });
 
-Then('I should remain on the same page', function () {
-  // Implement code to verify remaining on the same page
-  return 'pending';
+Then('I should remain on the same page', async function () {
+  const currentUrl = await driver.getCurrentUrl();
+  const merchUrl = websiteUrl + 'merchandising';
+  assert.strictEqual(currentUrl, merchUrl);
 });
+
+
+

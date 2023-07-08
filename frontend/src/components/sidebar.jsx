@@ -77,7 +77,7 @@ function Sidebar() {
 
   const handleInternalClick = () => {
     console.log('Internal button clicked');
-    navigate('/logistics');
+    navigate('/merchandising');
   };
 
   const handleExternalClick = () => {
