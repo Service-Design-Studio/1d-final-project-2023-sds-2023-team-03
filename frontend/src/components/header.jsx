@@ -28,12 +28,10 @@ const MyHeader = () => {
       style={{
         backgroundColor: '#006341',
         borderBottom: '1px solid #e5e5e5',
-        paddingLeft: '20px',
-        paddingRight: '20px',
+        padding: '20px',
         marginLeft: '-20px',
         marginRight: '-20px',
-        paddingBottom:'20px',
-        paddingTop:'20px'
+       
 
       }}
     >
