@@ -30,7 +30,28 @@ Feature: Sidebar Navigation
         Then I should be redirected to the Logistics page
 
     Scenario: Navigating to Same Page (Sad)
-        Given I am on any page
+        Given I am on '<page>'
         And I hover anywhere on the sidebar (on the left side of the screen)
-        When I click on the icon that represents my current page
-        Then I should remain on the same page
+        When I click on the icon that represents '<page>'
+        Then I should remain on '<page>'
+    Examples:
+    | page |
+    | Home |
+    | Sales |
+    | Merchandising |
+
+
+    Scenario Outline: Navigating to a Competitor
+    Given that I am on any page other than '<competitor>'
+    And I hover anywhere on the sidebar (on the left side of the screen)
+    When I click on the "<competitor>" in the competitor dropdown box
+    Then I will be redirected to the page of "<competitor>"
+
+    Examples:
+    | competitor  |
+    | Adidas |
+    | Nike  |
+    | Skechers  |
+    | Under Armour  |
+    | Overall  |
+
