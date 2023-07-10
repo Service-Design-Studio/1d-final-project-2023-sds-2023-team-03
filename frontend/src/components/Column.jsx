@@ -1,5 +1,6 @@
 import { Grid, Col } from '@mantine/core';
 import '../views/Home.css';
+import Tables from './Tables';
 
 function Column() {
   return (
@@ -19,11 +20,9 @@ function Column() {
       </div>
       </Col>
       <Col span={4} width="200px">
-      <div class="textBox">
-        <p>Product Actions</p>
-        <br></br>
-        <p>There has been a recurring number of [product] left since [date]</p> 
-      </div>
+      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <Tables></Tables>
+      </div> 
       </Col>
     </Grid>
   );
