@@ -21,7 +21,7 @@ function Tables() {
   ));
 
   return (
-    <Table withBorder>
+    <Table withBorder withColumnBorders>
       <thead>
         <tr>
           <th>Icon</th>

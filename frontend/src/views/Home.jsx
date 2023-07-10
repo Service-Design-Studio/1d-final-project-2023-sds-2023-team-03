@@ -15,6 +15,7 @@ function Home() {
       <h1 id="sales-title">Overview</h1>
       <h2>Top Products</h2>
       <Grouping></Grouping>
+      <h1 id="sales-title">Insights</h1>
       <div>
         <br></br>
         <Column></Column>
