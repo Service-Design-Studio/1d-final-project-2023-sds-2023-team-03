@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import DateSegment from './DateSegment.jsx'
 import CategorySelect from './CategorySelect.jsx'
-import { Button, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
+import { LoadingOverlay, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { DatePickerInput } from '@mantine/dates'
@@ -23,9 +23,16 @@ const CategorySearch = ({handleSalesData}) => {
     const [selectedPreset, setSelectedPreset] = useState('30d')         // date preset selection
     const [calendarDate, setCalendarDate] = useState([null, null])      // calendar date selection
     const [category, setCategory] = useState("running")                 // category selection
-    const [loading, setLoading] = useState(false)                       // search button 
+    const [loading, loadingHandler] = useDisclosure(false)                       // loading modal
     const [nullCalendar, nullCalendarHandler] = useDisclosure(false);   // calendar input error modal
     const [timeout, timeoutHandler] = useDisclosure(false);             // search timeout error modal
+    
+    
+    useEffect(() => {
+        if (!(calendar && (calendarDate[0] == null || calendarDate[1] == null))) {
+            requestData();
+        }
+    }, [calendarDate, presetDate, category])
     
     // API call to backend
     async function getProductData() {
@@ -48,13 +55,8 @@ const CategorySearch = ({handleSalesData}) => {
     }
 
     // Send data to parent node
-    function handleOnClick() {
-        if (calendar && (calendarDate[0] == null || calendarDate[1] == null)) {
-            nullCalendarHandler.open()
-            return
-        }
-
-        setLoading(true)
+    function requestData() {
+        loadingHandler.open()
         getProductData().then((res) => {
             handleSalesData({
                 frequencies: res.query.data.frequencies,
@@ -64,10 +66,10 @@ const CategorySearch = ({handleSalesData}) => {
                 end: res.end,
                 category: category
             })
-            setLoading(false)
+            loadingHandler.close()
         }).catch(() => {
             console.log("Error: Failed to receive data.")
-            setLoading(false)
+            loadingHandler.close()
             timeoutHandler.open()
         })
         return true;
@@ -141,12 +143,10 @@ const CategorySearch = ({handleSalesData}) => {
     return (
         <Stack align="center" spacing="xs" className="dropdownContainer">
             <Group spacing="xs">
+                <LoadingOverlay visible={loading} overlayBlur={2}/>
                 <CategorySelect setCategory={setCategory}/>
                 {renderDatePick(calendar)}
             </Group>
-            <Button className="button" onClick={handleOnClick} disabled={loading}>
-                Search!
-            </Button>
             <ErrorModal opened={nullCalendar} open={nullCalendarHandler.open} close={nullCalendarHandler.close} title="Invalid date" content="Please input a valid date before searching!"/>
             <ErrorModal opened={timeout} open={timeoutHandler.open} close={timeoutHandler.close} title="Search error" content="The server may be down, or you may be having connection issues."/>
         </Stack>
