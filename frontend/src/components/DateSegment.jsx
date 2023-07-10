@@ -13,7 +13,6 @@ const DateSegment = ({savedPreset, handleDateSegment}) => {
     ]);
 
     return (
-
       <>
         <SegmentedControl
           defaultValue = {savedPreset}

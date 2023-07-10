@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import DateSegment from './DateSegment.jsx'
 import CategorySelect from './CategorySelect.jsx'
-import { Button, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
+import { Box, LoadingOverlay, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { DatePickerInput } from '@mantine/dates'
@@ -11,21 +11,31 @@ import ErrorModal from './ErrorModal.jsx'
 import { useDisclosure } from '@mantine/hooks'
 
 const CategorySearch = ({handleSalesData}) => {
+    // constants for easy access
     const today = new Date();
     const lastWeek = new Date(new Date().setDate(today.getDate() - 7))
     const lastMonth = new Date(new Date().setDate(today.getDate() - 30))
     const lastHalfYear = new Date(new Date().setDate(today.getDate() - 180))
     const lastYear = new Date(new Date().setDate(today.getDate() - 365))
 
-
+    // values saved for search
     const [calendar, setCalendar] = useState(false)                     // calendar mode status
     const [presetDate, setPresetDate] = useState([lastMonth, today])    // date preset selection value
     const [selectedPreset, setSelectedPreset] = useState('30d')         // date preset selection
     const [calendarDate, setCalendarDate] = useState([null, null])      // calendar date selection
     const [category, setCategory] = useState("running")                 // category selection
-    const [loading, setLoading] = useState(false)                       // search button 
+
+    // disclosures for modals
+    const [loading, loadingHandler] = useDisclosure(true)              // loading modal
     const [nullCalendar, nullCalendarHandler] = useDisclosure(false);   // calendar input error modal
     const [timeout, timeoutHandler] = useDisclosure(false);             // search timeout error modal
+    
+    
+    useEffect(() => {
+        if (!(calendar && (calendarDate[0] == null || calendarDate[1] == null))) {
+            requestData();
+        }
+    }, [calendarDate, presetDate, category, calendar])
     
     // API call to backend
     async function getProductData() {
@@ -48,13 +58,8 @@ const CategorySearch = ({handleSalesData}) => {
     }
 
     // Send data to parent node
-    function handleOnClick() {
-        if (calendar && (calendarDate[0] == null || calendarDate[1] == null)) {
-            nullCalendarHandler.open()
-            return
-        }
-
-        setLoading(true)
+    function requestData() {
+        loadingHandler.open()
         getProductData().then((res) => {
             handleSalesData({
                 frequencies: res.query.data.frequencies,
@@ -64,10 +69,10 @@ const CategorySearch = ({handleSalesData}) => {
                 end: res.end,
                 category: category
             })
-            setLoading(false)
+            loadingHandler.close()
         }).catch(() => {
             console.log("Error: Failed to receive data.")
-            setLoading(false)
+            loadingHandler.close()
             timeoutHandler.open()
         })
         return true;
@@ -140,13 +145,13 @@ const CategorySearch = ({handleSalesData}) => {
     // Object return
     return (
         <Stack align="center" spacing="xs" className="dropdownContainer">
-            <Group spacing="xs">
-                <CategorySelect setCategory={setCategory}/>
-                {renderDatePick(calendar)}
-            </Group>
-            <Button className="button" onClick={handleOnClick} disabled={loading}>
-                Search!
-            </Button>
+            <Box pos="relative">
+                <Group spacing="xs">
+                    <LoadingOverlay visible={loading} overlayBlur={1}/>
+                    <CategorySelect setCategory={setCategory}/>
+                    {renderDatePick(calendar)}
+                </Group>
+            </Box> 
             <ErrorModal opened={nullCalendar} open={nullCalendarHandler.open} close={nullCalendarHandler.close} title="Invalid date" content="Please input a valid date before searching!"/>
             <ErrorModal opened={timeout} open={timeoutHandler.open} close={timeoutHandler.close} title="Search error" content="The server may be down, or you may be having connection issues."/>
         </Stack>
