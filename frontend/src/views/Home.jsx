@@ -1,6 +1,8 @@
 import React from 'react';
 import './Home.css';
-import CardWithStats from '../components/CardWithStats';
+import Grouping from '../components/Grouping';
+import Column from '../components/Column';
+import Refresh from '../components/Refresh';
 
 function Home() {
   return (
@@ -8,38 +10,19 @@ function Home() {
       <head>
         <link rel="stylesheet" href="Home.css" />
       </head>
-      
-
+  
       <h1 id="sales-title">Overview</h1>
       <h2>Top Products</h2>
-      
-      <div> {/* Product images*/}
-
-      <img src="https://down-sg.img.susercontent.com/file/sg-11134201-22100-pzdbjnan7wiv42" alt="Product image" class="resized-image" ></img>
-      <img src="https://down-sg.img.susercontent.com/file/sg-11134201-7qvcs-lh65gsgv6c5obe" alt="Product image" class="resized-image" ></img>
-      
-        <div> {/* Product info*/}
-
-        <span class="textBox">
-        <p>Price: $89</p>
-        <p>Sales: 7</p>
-        </span>
-
-        <span class="textBox">
-        <p>Price: $72</p>
-        <p>Sales: 72</p>
-       </span>  
-
-        <span class="textBox">
-        <p>Price: $55</p>
-        <p>Sales: 102</p>
-        </span>
-
-        </div>
+      <Grouping></Grouping>
+      <div>
+        <br></br>
+        <Column></Column>
       </div>
-        <div>
-        
-        </div> 
+
+      <div>
+        <br></br>
+        <Refresh></Refresh>
+      </div> 
     </div>
   );
 }
