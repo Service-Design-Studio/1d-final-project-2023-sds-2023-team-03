@@ -46,8 +46,8 @@ const CategorySearch = ({handleSalesData}) => {
             date = presetDate;
         }
 
-        const start = `${date[0].getFullYear()}-${date[0].getMonth()+1}-${date[0].getDate()}`;
-        const end = `${date[1].getFullYear()}-${date[1].getMonth()+1}-${date[1].getDate()}`;
+        const start = `${date[0].getDate()}-${date[0].getMonth()+1}-${date[0].getFullYear()}`;
+        const end = `${date[1].getDate()}-${date[1].getMonth()+1}-${date[1].getFullYear()}`;
         return {
             query: await axios.get(
                 `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products?category=${category}&start=${start}&end=${end}`, 
