@@ -2,9 +2,9 @@ import { SegmentedControl } from '@mantine/core';
 
 function SalesSegment({handleOnChange}) {
     const data = [
-        {value: "frequencies", label: "Product Frequency"},
+        {value: "frequencies", label: "Product Units"},
         {value: "revenues", label: "Product Revenue"},
-        {value: "types-frequencies", label: "Apparel Frequency"},
+        {value: "types-frequencies", label: "Apparel Units"},
         {value: "types-revenues", label: "Apparel Revenue"},
         {value: "summary", label: "Insights"},
     ]
