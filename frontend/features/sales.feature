@@ -27,12 +27,12 @@ Feature: Fetching sales data for a specific product category relative to PUMA’
     Then the search should terminate
     And I should receive a search timeout message modal
 
-  Scenario: Switching graph - Product Frequency (Happy)
+  Scenario: Switching graph - Product Units (Happy)
     Given I have submitted a search
     And the results have returned
-    And the segment control is not currently on "Product Frequency"
-    When I click on "Product Frequency"
-    Then the current graph should be replaced by the "Product Frequency" graph
+    And the segment control is not currently on "Product Units"
+    When I click on the "Product Units" graph segment
+    Then the current graph should be replaced by the "Product Units" graph
 
   Scenario: Switching graph - Product Revenue (Happy)
     Given I have submitted a search
@@ -41,12 +41,12 @@ Feature: Fetching sales data for a specific product category relative to PUMA’
     When I click on the "Product Revenue" graph segment
     Then the current graph should be replaced by the "Product Revenue" graph
 
-  Scenario: Switching graph - Apparel Frequency (Happy)
+  Scenario: Switching graph - Apparel Units (Happy)
     Given I have submitted a search
     And the results have returned
-    And the segment control is not currently on "Apparel Frequency"
-    When I click on the "Apparel Frequency" graph segment
-    Then the current graph should be replaced by the "Apparel Frequency" graph
+    And the segment control is not currently on "Apparel Units"
+    When I click on the "Apparel Units" graph segment
+    Then the current graph should be replaced by the "Apparel Units" graph
 
   Scenario: Switching graph - Apparel Revenue (Happy)
     Given I have submitted a search
@@ -58,5 +58,6 @@ Feature: Fetching sales data for a specific product category relative to PUMA’
   Scenario: Switching graphs - self (Sad)
     Given I have submitted a search
     And the results have returned
-    When I click on a graph segment option that I am already on
-    Then the same graph as before should still be visible, and nothing should change
+    And I click on the "Product Units" graph segment
+    When I click on the "Product Units" graph segment
+    Then the "Product Units" graph segment should still be visible

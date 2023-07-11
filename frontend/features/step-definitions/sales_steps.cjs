@@ -59,9 +59,18 @@ Then(`the header on top of the table should reflect the query parameters`, async
     const titleText = "//*[name()='text' and @class='apexcharts-title-text']"
     const titleElement = await driver.wait(until.elementLocated(By.xpath(apexSvg + titleText)), 4500);
     const res = await titleElement.getText();
-    const sol = `Sales frequency data for "running" from 2022-7-11 to 2023-7-11:`
+
+    const today = new Date();
+    const lastYear = new Date(new Date().setDate(today.getDate() - 365))
+    const todayText = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
+    const lastYearText = `${lastYear.getFullYear()}-${lastYear.getMonth()}-${lastYear.getDate()}`
+    const sol = `Product units data for "running" from ${lastYearText} to ${todayText}:`
 
     assert.strictEqual(res, sol);
+});
+
+When(`10 seconds pass without a response from the server`, async function() {
+    const lastYearButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 12 months']"));
 });
 
 Given(`I have submitted a search`, async function() {
@@ -125,9 +134,6 @@ Then(`the current graph should be replaced by the {string} graph`, async functio
     const titleText = "//*[name()='text' and @class='apexcharts-title-text']"
     const titleElement = await driver.wait(until.elementLocated(By.xpath(apexSvg + titleText)), 4500);
     const title = await titleElement.getText();
-    const status = title.includes(text);
-    console.log(status);
-    console.log(title)
-
+    const status = title.toLowerCase().includes(text.toLowerCase());
     assert.strictEqual(status, true);
 });
