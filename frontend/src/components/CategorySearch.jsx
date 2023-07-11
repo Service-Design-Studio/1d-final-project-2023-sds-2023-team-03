@@ -26,7 +26,7 @@ const CategorySearch = ({handleSalesData}) => {
     const [category, setCategory] = useState("running")                 // category selection
 
     // disclosures for modals
-    const [loading, loadingHandler] = useDisclosure(true)              // loading modal
+    const [loading, loadingHandler] = useDisclosure(false)              // loading modal
     const [nullCalendar, nullCalendarHandler] = useDisclosure(false);   // calendar input error modal
     const [timeout, timeoutHandler] = useDisclosure(false);             // search timeout error modal
     
@@ -54,7 +54,8 @@ const CategorySearch = ({handleSalesData}) => {
                 {timeout: 10000}
                 ), 
             start: start, 
-            end: end}
+            end: end
+        }
     }
 
     // Send data to parent node
