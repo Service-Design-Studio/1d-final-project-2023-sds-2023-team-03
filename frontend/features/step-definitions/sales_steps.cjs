@@ -62,35 +62,58 @@ Then(`the header on top of the table should reflect the query parameters`, async
 
     const today = new Date();
     const lastYear = new Date(new Date().setDate(today.getDate() - 365))
-    const todayText = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
-    const lastYearText = `${lastYear.getFullYear()}-${lastYear.getMonth()}-${lastYear.getDate()}`
+    const todayText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
+    const lastYearText = `${lastYear.getFullYear()}-${lastYear.getMonth()+1}-${lastYear.getDate()}`
     const sol = `Product units data for "running" from ${lastYearText} to ${todayText}:`
 
     assert.strictEqual(res, sol);
 });
 
-When(`10 seconds pass without a response from the server`, async function() {
-    const lastYearButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 12 months']"));
+When(`10 seconds pass without a response from the server`, {timeout: 10 * 5000}, async function() {
+    await driver.setNetworkConditions({
+        offline: false,
+        latency: 15,
+        download_throughput: 10,
+        upload_throughput: 10
+    })
+
+    const lastMonthButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 30 days']"));
+    await driver.actions().click(lastMonthButton).perform();
+
+    const blur = await driver.wait(until.elementLocated(By.xpath("//div[contains(@class, 'mantine-1nisyfe')]")), 10000);
+    var time = Date.now();
+    await driver.wait(until.stalenessOf(blur), 15000);
+    var time = Date.now() - time;
+    const restoreNetwork = () => {
+        driver.setNetworkConditions({
+        offline: false,
+        latency: 0,
+        download_throughput: 50 * 1024,
+        upload_throughput: 50 * 1024
+        })
+        return true;
+    }
+    await driver.wait(() => restoreNetwork(), 1500);
+
+    const finalCheck = (time < 11000)
+    assert.strictEqual(finalCheck, true);
 });
+
+Then(`I should receive a search timeout message modal`, async function() {
+    const exitButton = await driver.findElement(By.xpath("//header[contains(@class, 'mantine-ko6o8l')]"))
+    const overlay = await driver.findElement(By.xpath("//section[contains(@class, 'mantine-3cevnw')]"))
+    const overlayDisplayed = await overlay.isDisplayed();
+    await driver.actions().click(exitButton).perform();
+    await driver.wait(until.stalenessOf(overlay));
+
+    assert.strictEqual(overlayDisplayed, true);
+})
 
 Given(`I have submitted a search`, async function() {
     const lastYearButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 12 months']"));
     await driver.actions().click(lastYearButton).perform();
-    const buttonActive = await lastYearButton.getAttribute("data-active");
+    const buttonActive = await lastYearButton.getAttribute('data-active');
     assert.strictEqual(Boolean(buttonActive), true);
-})
-
-Given(`the results have returned`, async function() {
-    var blurDisplayed;
-    try {
-        const blur = await driver.wait(until.elementLocated(By.xpath("//div[contains(@class, 'mantine-1nisyfe')]")), 4500)
-        await driver.wait(until.stalenessOf(blur), 4500);
-        blurDisplayed = blur.isDisplayed();
-    } catch (TimeoutError) { 
-        blurDisplayed = false;
-    }
-
-    assert.strictEqual(blurDisplayed, false);
 })
 
 Given(`the segment control is not currently on {string}`, async function(text) {
@@ -137,3 +160,12 @@ Then(`the current graph should be replaced by the {string} graph`, async functio
     const status = title.toLowerCase().includes(text.toLowerCase());
     assert.strictEqual(status, true);
 });
+
+Then(`the {string} graph segment should still be visible`, async function (text){
+    const apexSvg = "//*[name()='svg' and @class='apexcharts-svg']"
+    const titleText = "//*[name()='text' and @class='apexcharts-title-text']"
+    const titleElement = await driver.wait(until.elementLocated(By.xpath(apexSvg + titleText)), 4500);
+    const title = await titleElement.getText();
+    const status = title.toLowerCase().includes(text.toLowerCase());
+    assert.strictEqual(status, true);
+})

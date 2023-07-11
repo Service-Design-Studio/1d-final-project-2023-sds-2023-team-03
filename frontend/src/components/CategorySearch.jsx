@@ -72,7 +72,6 @@ const CategorySearch = ({handleSalesData}) => {
             })
             loadingHandler.close()
         }).catch(() => {
-            console.log("Error: Failed to receive data.")
             loadingHandler.close()
             timeoutHandler.open()
         })
