@@ -15,9 +15,9 @@ function SalesBar({salesData, used}) {
     var title = "Use the selectors above to search for sales data!"
 
     if (salesData.x.length > 0) {
-        title = `Product unit data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
+        title = `Product units data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
     } else if (salesData && used) {
-        title = `No product unit data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
+        title = `No product units data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
     }
 
     var chart = {
