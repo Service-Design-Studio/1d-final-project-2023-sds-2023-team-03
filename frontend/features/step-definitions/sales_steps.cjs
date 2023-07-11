@@ -62,8 +62,8 @@ Then(`the header on top of the table should reflect the query parameters`, async
 
     const today = new Date();
     const lastYear = new Date(new Date().setDate(today.getDate() - 365))
-    const todayText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
-    const lastYearText = `${lastYear.getFullYear()}-${lastYear.getMonth()+1}-${lastYear.getDate()}`
+    const todayText = `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`
+    const lastYearText = `${lastYear.getDate()}-${lastYear.getMonth()+1}-${lastYear.getFullYear()}`
     const sol = `Product units data for "running" from ${lastYearText} to ${todayText}:`
 
     assert.strictEqual(res, sol);
