@@ -19,9 +19,9 @@ function RevenueBar({salesData, used}) {
     var title = "Use the selectors above to search for sales data!"
 
     if (salesData.x.length > 0) {
-        title = `Revenue data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
+        title = `Product revenue data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
     } else if (salesData && used) {
-        title = `No revenue data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
+        title = `No product revenue data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
     }
 
     var chart = {
