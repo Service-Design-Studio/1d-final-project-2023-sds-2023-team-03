@@ -62,7 +62,9 @@ group :development, :test do
   gem "cucumber", '~> 8.0.0'
 
    # Cucumber rails
-  gem "cucumber-rails"  
+  gem "cucumber-rails"
+
+  gem 'factory_bot_rails'
 end
 
 group :development do

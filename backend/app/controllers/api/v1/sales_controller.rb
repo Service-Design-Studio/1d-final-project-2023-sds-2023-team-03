@@ -29,8 +29,29 @@ module Api
             :types => types
           }
         end
-        
+
         render :json => out
+      end
+
+      def show
+        sale = Sale.find(params[:id])
+        render json: { status: 'SUCCESS', message: 'Loaded sale', data: sale }
+      end
+
+      def update
+        sale = Sale.find(params[:id])
+
+        begin
+          sale.update!(sale_params)
+          render json: { status: 'SUCCESS', message: 'Updated sale', data: sale }
+        rescue ActiveRecord::RecordInvalid
+          render json: { status: 'ERROR', message: 'Sale not updated', data: sale.errors }, status: :unprocessable_entity
+        end
+      end
+
+      private
+      def sale_params
+        params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales)
       end
     end
   end
