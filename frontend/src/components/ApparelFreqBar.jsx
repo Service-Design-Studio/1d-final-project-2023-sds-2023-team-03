@@ -15,9 +15,9 @@ function ApparelFreqBar({salesData, used}) {
     var title = "Use the selectors above to search for sales data!"
 
     if (salesData.x.length > 0) {
-        title = `Apparel frequency data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
+        title = `Apparel units data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
     } else if (salesData && used) {
-        title = `No apparel frequency data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
+        title = `No apparel units data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
     }
 
     var chart = {

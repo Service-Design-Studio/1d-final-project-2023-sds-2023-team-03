@@ -4,21 +4,27 @@ module Api
   module V1
     class ProductsController < ApplicationController
       def index
-        # Access category, start_date, and end_date parameters from request URL
-        category = params[:category].parameterize if params[:category]
-        start_date = params[:start]
-        end_date = params[:end]
-        
-        products = Product.category_time_query(start_date, end_date, category)
-        frequencies = Product.sales_frequency(products)
-        revenues = Product.sales_revenue(products)
-        types = Product.top_10_types_category(products)
-        out = {
-          :frequencies => frequencies,
-          :revenues => revenues,
-          :types => types
-        }
-        render json: out.to_json
+        # Initialize output as a blank object
+        out = {}
+
+        # Access query parameters
+
+        # If low=true
+        if params[:low] == "true"
+          out = Product.bottom_four
+        end
+
+        # If category specified
+        if params[:category]
+          category = params[:category]
+          if out.length > 0
+            out = Product.filter_category(out, category)
+          else
+            out = Product.search_category(category)
+          end
+        end
+
+        render :json => out
       end
     end
   end
