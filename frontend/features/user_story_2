@@ -3,10 +3,10 @@ Feature: Intrinsic search functionalities
     Scenario: Searching with a specific time period (Happy)
         Given that I am on the sales page with the default category and time period preset "Running" and "Last 30 days" selected
         When I press the calendar button
-        Then the time period presets should switch to a text box labeled "time period"
+        Then the time period presets should switch to a text box labeled "click to choose"
 
     Scenario: Inputting the time period for searching (Happy)
-        Given that I have switched out the time period presets for the "time period" text box
+        Given that I have switched out the time period presets for the "click to choose" text box
         When I click the text box
         Then a calendar popup should be visible, displaying the dates of the current month
 
