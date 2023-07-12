@@ -46,7 +46,6 @@ Feature: Sidebar Navigation
     And I hover anywhere on the sidebar (on the left side of the screen)
     When I click on the "<competitor>" in the competitor dropdown box
     Then I will be redirected to the page of "<competitor>"
-
     Examples:
     | competitor  |
     | Adidas |
