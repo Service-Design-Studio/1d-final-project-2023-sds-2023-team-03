@@ -10,7 +10,7 @@ function Router() {
 
 
    
-    const options = ['Adidas', 'Nike', 'Asics', 'Skechers', 'Overall'];
+    const options = ['Adidas', 'Nike', 'Asics', 'Under Armour', 'Overall'];
 
     return (
         <>
