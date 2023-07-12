@@ -36,7 +36,7 @@ function Sidebar() {
   });
 
   const sidebarAnimation = useSpring({
-    width: isExpanded ? 150 : 50,
+    width: isExpanded ? 165 : 50,
   });
 
   const toggleExpand = () => {
@@ -101,7 +101,7 @@ function Sidebar() {
         zIndex: 999, // Set a higher value for the z-index
       }}
     >
-            <animated.div style={sidebarAnimation}>
+     <animated.div style={sidebarAnimation}>
 
       <ul className={`${isExpanded ? 'expanded' : ''}`}>
         {isExpanded && (
@@ -144,7 +144,7 @@ function Sidebar() {
       </div>
     </div>
       )}
-            </animated.div>
+    </animated.div>
 
 
       {isExpanded && (
