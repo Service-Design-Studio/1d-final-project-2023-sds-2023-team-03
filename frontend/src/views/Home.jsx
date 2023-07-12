@@ -3,7 +3,6 @@ import './Home.css';
 import Grouping from '../components/Grouping';
 import Column from '../components/Column';
 import Refresh from '../components/Refresh';
-import Tables from '../components/Tables';
 
 function Home() {
   return (
@@ -25,7 +24,6 @@ function Home() {
         <br></br>
         <Refresh></Refresh>
       </div>
-
     </div>
   );
 }
