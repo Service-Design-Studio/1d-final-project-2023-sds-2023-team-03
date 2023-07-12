@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
     # suppress errors
     skip_before_action :verify_authenticity_token
 
-
     # helper methods for authentication
     helper_method :login!, :logged_in?, :current_user, :authorized?, :logout!, :set_user
 
