@@ -16,13 +16,14 @@ function Router() {
         <>
             <Routes>
                 <Route path="/sales" element={<Sales/>}/>
-                <Route path="/logistics" element={<Logistics/>}/>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/merchandising" element={<Logistics/>}/>
+                <Route path="/home" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
                 {options.map((option, index) => (
           <Route path={`/competitors/${option}`} element={ <Competitors/> } />
         ))}
             </Routes>
+        
 
 
 
