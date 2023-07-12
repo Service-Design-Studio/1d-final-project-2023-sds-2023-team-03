@@ -12,7 +12,7 @@ import 'tailwindcss/tailwind.css';
 import './Sidebar.css';
 import { Modal, Button } from '@mantine/core';
 import { motion } from 'framer-motion';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated,config } from 'react-spring';
 
 
 
@@ -37,6 +37,8 @@ function Sidebar() {
 
   const sidebarAnimation = useSpring({
     width: isExpanded ? 165 : 50,
+      config: config.stiff,
+
   });
 
   const toggleExpand = () => {
