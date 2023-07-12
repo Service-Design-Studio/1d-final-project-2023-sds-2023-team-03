@@ -7,6 +7,7 @@ function HandleClick() {
     const thirtyDaysAgoDate = thirtyDaysAgo.toISOString().slice(0, 10); // Get the 30 days ago date in YYYY-MM-DD format
 
     queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate); // Replace 'yourCategory' with your actual category value
+
   };
 
   export default HandleClick;
@@ -26,5 +27,7 @@ function HandleClick() {
       console.error('Error occurred during API request:', error);
     }
   }
+
+
 
   
