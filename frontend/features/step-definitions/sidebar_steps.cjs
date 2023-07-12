@@ -12,19 +12,15 @@ Given('the sidebar is retracted', async function () {
   //Go to home page and check if the side bar is in the minimised state
   actions
   await driver.get(websiteUrl);
-
   // Verify if the sidebar is in the retracted state
   const isExpanded = await driver.executeScript("return document.querySelector('.sidebar').classList.contains('expanded')");
   assert.strictEqual(isExpanded, false);
-
 });
 
 When('I hover anywhere on the sidebar \\(on the left side of the screen)', async function () {
   // have a mouse go to the sidebar, trigger the hover state on side bar
 actions
-
   const sidebar = await driver.findElement(By.className('sidebar'));
-
   // Perform mouse hover action on the sidebar
   await driver.actions().move({ origin: sidebar }).perform();
 });
@@ -59,12 +55,12 @@ Given('the sidebar is expanded', async function () {
 When('I hover anywhere outside the sidebar \\(on the right side of the screen) from within the sidebar',async function () {
   // Write code here that turns the phrase above into concrete 
   // Move the mouse off the sidebar
+  actions
   const windowSize = await driver.executeScript('return [window.innerWidth, window.innerHeight];');
   const windowWidth = windowSize[0];
   const windowHeight = windowSize[1];
-  const actions = await driver.actions();
   // Move the mouse to the center of the screen
-  await actions.move({ x: windowWidth / 2, y: windowHeight / 2 }).perform();
+  await driver.actions().move({ x: windowWidth / 2, y: windowHeight / 2 }).perform();
 });
 
 Then('the sidebar should minimize and retract to the left side', async function () {
