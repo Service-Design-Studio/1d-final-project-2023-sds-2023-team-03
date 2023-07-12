@@ -1,9 +1,9 @@
 class Product < ApplicationRecord
-    # Queries for stock < 50
-    def self.products_below_50
+    # Queries for FOUR lowest stock, descending order
+    def self.bottom_four
         products = Product.all
-        products = products.where(stock: ..50)
         products = products.order(stock: :desc)
+        products = products.last(4)
     end
 
     # Searches for ALL products in a category

@@ -11,7 +11,7 @@ module Api
 
         # If low=true
         if params[:low] == "true"
-          out = Product.products_below_50
+          out = Product.bottom_four
         end
 
         # If category specified
