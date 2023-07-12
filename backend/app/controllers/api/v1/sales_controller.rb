@@ -49,6 +49,12 @@ module Api
         end
       end
 
+      def create
+        sale = Sale.create!(sale_params)
+        flash[:notice] = "'#{sale.product_name}' was successfully created."
+        render json: SalesSerializer.new(sale).to_json
+      end
+
       private
       def sale_params
         params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales)
