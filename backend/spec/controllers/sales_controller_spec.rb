@@ -16,7 +16,7 @@ RSpec.describe Api::V1::SalesController, type: :controller do
   }
 
   # Create
-  describe 'POST create' do
+  describe 'POST #create' do
     it "should successfully create" do
         post :create, params: {sale: sale_params}
         
@@ -25,7 +25,18 @@ RSpec.describe Api::V1::SalesController, type: :controller do
         expect(new_sale.price).to eq(100)
         expect(new_sale.sales).to eq(8)
     end
-end
+  end
+
+  # Delete
+  describe 'DELETE #delete' do
+    it 'should successfully delete' do
+        new_sale = Sale.create! valid_attributes
+        
+        expect do
+          delete :destroy, params: {id: new_sale.id}
+        end.to change(Sale, :count).by(-1)
+    end
+  end
 
   # Read
   describe 'GET #show' do

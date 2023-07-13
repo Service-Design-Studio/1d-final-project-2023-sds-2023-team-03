@@ -51,8 +51,13 @@ module Api
 
       def create
         sale = Sale.create!(sale_params)
-        flash[:notice] = "'#{sale.product_name}' was successfully created."
         render json: SalesSerializer.new(sale).to_json
+      end
+
+      def destroy
+        sale = Sale.find params[:id]
+        sale.destroy
+        flash[:notice] = "Product '#{sale.product_name}' deleted from Sales record."
       end
 
       private
