@@ -44,7 +44,7 @@ function App() {
     return(
         <BrowserRouter>
           <Header/>
-          {loginState.isLoggedIn ? <Sidebar/> : null}
+          {loginState.isLoggedIn ? <Sidebar handleClearState={handleLogOut}/> : null}
           <Router isLoggedIn={loginState.isLoggedIn} handleLogin={handleLogin}/>
         </BrowserRouter>
     )
