@@ -31,7 +31,7 @@ const MyHeader = () => {
         padding: '20px',
         marginLeft: '-20px',
         marginRight: '-20px',
-       
+        paddingLeft: '100px'
 
       }}
     >

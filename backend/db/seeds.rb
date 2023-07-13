@@ -31,3 +31,16 @@ end
     sales: rand(0..200),
   )
 end
+
+# Generate 200 competitors
+200.times do
+  Competitor.create(
+    product_id: Faker::Number.unique.number(digits: 7),
+    product_category: ['Comfortwear', 'Running'].sample,
+    product_type: ['Shoes', 'Tshirts', 'Shorts', 'Accessories'].sample,
+    product_name: Faker::Commerce.product_name,
+    price: Faker::Commerce.price(range: 10.0..200.0),
+    stock: rand(0..500),
+    sales: rand(0..200)
+  )
+end

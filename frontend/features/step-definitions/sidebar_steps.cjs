@@ -1,3 +1,4 @@
+
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { Builder, By, until,actions } = require('selenium-webdriver');
 const assert = require('assert');
@@ -11,19 +12,15 @@ Given('the sidebar is retracted', async function () {
   //Go to home page and check if the side bar is in the minimised state
   actions
   await driver.get(websiteUrl);
-
   // Verify if the sidebar is in the retracted state
   const isExpanded = await driver.executeScript("return document.querySelector('.sidebar').classList.contains('expanded')");
   assert.strictEqual(isExpanded, false);
-
 });
 
 When('I hover anywhere on the sidebar \\(on the left side of the screen)', async function () {
   // have a mouse go to the sidebar, trigger the hover state on side bar
 actions
-
   const sidebar = await driver.findElement(By.className('sidebar'));
-
   // Perform mouse hover action on the sidebar
   await driver.actions().move({ origin: sidebar }).perform();
 });
@@ -58,13 +55,12 @@ Given('the sidebar is expanded', async function () {
 When('I hover anywhere outside the sidebar \\(on the right side of the screen) from within the sidebar',async function () {
   // Write code here that turns the phrase above into concrete 
   // Move the mouse off the sidebar
+  actions
   const windowSize = await driver.executeScript('return [window.innerWidth, window.innerHeight];');
   const windowWidth = windowSize[0];
   const windowHeight = windowSize[1];
-  const actions = await driver.actions();
-
   // Move the mouse to the center of the screen
-  await actions.move({ x: windowWidth / 2, y: windowHeight / 2 }).perform();
+  await driver.actions().move({ x: windowWidth / 2, y: windowHeight / 2 }).perform();
 });
 
 Then('the sidebar should minimize and retract to the left side', async function () {
@@ -143,20 +139,49 @@ Then('I should be redirected to the Logistics page', async function () {
 });
 
 // Navigating to Same Page (Sad)
-Given('I am on any page', async function () {
-  const merchUrl = websiteUrl + 'merchandising';
-  await driver.get(merchUrl);
+Given('I am on {string}', async function (page) {
+  if (page === 'Home') {
+    page = '';
+  }
+  const pageUrl = websiteUrl + page.toLowerCase();
+  await driver.get(pageUrl);
 });
 
-When('I click on the icon that represents my current page', async function () {
-  const merchButton = await driver.findElement(By.xpath("//div[contains(@class, 'sblogo-expanded')]//span[text()='Merchandising']"));
+When('I click on the icon that represents {string}', async function (page) {
+  const merchButton = await driver.findElement(By.xpath(`//div[contains(@class, 'sblogo-expanded')]//span[text()='${page}']`));
   await merchButton.click();
 });
 
-Then('I should remain on the same page', async function () {
+Then('I should remain on {string}', async function (page) {
+  if (page === 'Home') {
+    page = '';
+  }
   const currentUrl = await driver.getCurrentUrl();
-  const merchUrl = websiteUrl + 'merchandising';
-  assert.strictEqual(currentUrl, merchUrl);
+  const pageUrl = websiteUrl + page.toLowerCase();
+  assert.strictEqual(currentUrl, pageUrl);
+});
+
+// Competitors
+Given('that I am on any page other than {string}', async function (competitor) {
+  // Implement code to set up being on a page other than the specified competitor
+  await driver.get(websiteUrl);
+  const compUrl = websiteUrl + 'competitors/{$competitor}';
+  assert.notStrictEqual(compUrl, websiteUrl);
+});
+
+When('I click on the {string} in the competitor dropdown box', async function (competitor) {
+  const dropdown = await driver.findElement(By.xpath("//div[contains(@class, 'sblogo-expanded')]//span[text()='Competitors']"));
+  // Find and click on the specific competitor by its text
+  await driver.actions().move({ origin: dropdown }).perform();
+  console.log("Competitor" + competitor);
+  const competitorOption = await driver.wait(until.elementLocated(By.xpath(`.//div[contains(text(), '${competitor}')]`)), 5000);
+  await competitorOption.click();
+});
+
+Then('I will be redirected to the page of {string}', async function (competitor) {
+  const currentUrl = await driver.getCurrentUrl();
+  const compUrl = websiteUrl + 'competitors/' + encodeURIComponent(competitor);
+  assert.strictEqual(currentUrl, compUrl);
 });
 
 
