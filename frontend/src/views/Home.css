@@ -1,0 +1,24 @@
+.resized-image {
+    margin-right:100px; 
+    max-width: 400px;
+    max-height: 600px;
+  }
+
+
+.textBox {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 10px;
+  max-width: 200px;
+}
+
+.container {
+  position: relative;
+  height: 200px; /* Adjust the height of the container as needed */
+}
+
+.top-right-button {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+}
