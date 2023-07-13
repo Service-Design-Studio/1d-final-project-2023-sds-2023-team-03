@@ -50,7 +50,10 @@ function Login({handleLogin}) {
                     errorModalHandler.open()
                 }
             })
-            .catch((err) => console.log("Login error", err))
+            .catch((err) => {
+                console.log("Login error", err);
+                errorModalHandler.open();
+            })
     }
 
     return (
