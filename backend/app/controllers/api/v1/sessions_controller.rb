@@ -20,7 +20,6 @@ module Api
         
             def destroy
                 logout!
-                cookies.delete :sds_back_end_user_id
                 render json: {
                     status: 200,
                     logged_out: true
