@@ -4,18 +4,23 @@ import Grouping from '../components/Grouping';
 import Column from '../components/Column';
 import { Button } from '@mantine/core';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 
 
 function Home() {
 
+useEffect(() => {
+  handleClick()
+}, [])
   const [lastPressedDateTime, setLastPressedDateTime] = useState('');
   const [topProductData, setTopProductData] = useState({
-    frequencies: {}
+    topProductData: {}
   })
   const [lowStocksData, setLowStocksData] = useState({
     frequencies: {}
   })
+  const [isDataLoaded, setIsDataLoaded] = useState(false); // New state variable
 
   async function handleClick() {
     const currentDate = new Date().toISOString().slice(0, 10);
@@ -26,6 +31,8 @@ function Home() {
     setLastPressedDateTime(currentDateTime);
     setTopProductData(await queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate));
     setLowStocksData(await queryLowStocks('Comfortwear', thirtyDaysAgoDate, currentDate));
+    setIsDataLoaded(true);
+    console.log(topProductData)
 
   }
 
@@ -79,7 +86,7 @@ function Home() {
         <p class = "top-right">Last Refreshed: {lastPressedDateTime}</p>
       </div>
       <h2>Top Products</h2>
-      <Grouping topProductData = {topProductData}></Grouping>
+      {isDataLoaded && <Grouping topProductData={topProductData} />}
       
       <h2 className="insights-heading">
         Insights
@@ -87,7 +94,7 @@ function Home() {
 
       <div>
         <br></br>
-        <Column lowStocksData = {lowStocksData}></Column>
+        <Column></Column>
       </div>
 
 
