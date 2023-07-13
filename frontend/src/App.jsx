@@ -29,10 +29,9 @@ function App() {
     const getLoginStatus = () => {
         axios.get('http://127.0.0.1:3000/api/v1/logged_in', {withCredentials: true})
             .then((res) => {
+                console.log(res.status)
                 if (res.data.logged_in) {
                     handleLogin(res);
-                } else {
-                    handleLogOut;
                 }
             })
             .catch((err) => console.log("Login error", err))
@@ -45,7 +44,7 @@ function App() {
     return(
         <BrowserRouter>
           <Header/>
-          <Sidebar/>
+          {loginState.isLoggedIn ? <Sidebar/> : null}
           <Router isLoggedIn={loginState.isLoggedIn} handleLogin={handleLogin}/>
         </BrowserRouter>
     )

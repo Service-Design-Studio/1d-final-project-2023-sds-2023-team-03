@@ -41,7 +41,6 @@ module Api
             end
 
             private
-
             def session_params
                 params.require(:user).permit(:username, :password)
             end
