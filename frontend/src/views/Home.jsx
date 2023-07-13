@@ -9,23 +9,27 @@ import axios from 'axios';
 
 function Home() {
 
+  const [lastPressedDateTime, setLastPressedDateTime] = useState('');
   const [topProductData, setTopProductData] = useState({
     frequencies: {}
   })
   const [lowStocksData, setLowStocksData] = useState({
     frequencies: {}
   })
-  console.log((lowStocksData[0]))
+
   async function handleClick() {
     const currentDate = new Date().toISOString().slice(0, 10);
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     const thirtyDaysAgoDate = thirtyDaysAgo.toISOString().slice(0, 10);
-
+    const currentDateTime = new Date().toLocaleString();
+    setLastPressedDateTime(currentDateTime);
     setTopProductData(await queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate));
     setLowStocksData(await queryLowStocks('Comfortwear', thirtyDaysAgoDate, currentDate));
 
   }
+
+
 
   async function queryTopProduct(category, start, end) {
     try {
@@ -72,12 +76,13 @@ function Home() {
         <Button class="top-right-button" onClick={handleClick}>
           Refresh Data
         </Button>
+        <p class = "top-right">Last Refreshed: {lastPressedDateTime}</p>
       </div>
       <h2>Top Products</h2>
       <Grouping topProductData = {topProductData}></Grouping>
       
-      <h2 id="sales-title">
-        <center>Insights</center>
+      <h2 className="insights-heading">
+        Insights
       </h2>
 
       <div>

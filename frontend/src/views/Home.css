@@ -10,6 +10,7 @@
   border: 1px solid black;
   padding: 10px;
   max-width: 200px;
+  height: 250px
 }
 
 .container {
@@ -19,6 +20,19 @@
 
 .top-right-button {
   position: absolute;
-  top: 10px; /* Adjust the top position as needed */
-  right: 10px; /* Adjust the right position as needed */
+  top: 10px; 
+  right: 10px; 
+  background-color: blue;
+  color: white;
 }
+
+.top-right {
+  position: absolute;
+  top: 50px; 
+  right: 10px;
+}
+
+.insights-heading {
+  text-align: center;
+}
+
