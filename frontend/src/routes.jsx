@@ -6,7 +6,6 @@ import Competitors from './views/Competitors.jsx'
 import Login from './views/Login.jsx';
 
 function Router({isLoggedIn, handleLogin}) {
-
     const options = ['Adidas', 'Nike', 'Asics', 'Skechers', 'Overall'];
 
     return (
@@ -21,11 +20,8 @@ function Router({isLoggedIn, handleLogin}) {
                     <Route key={index} path={`/competitors/${option}`} element={isLoggedIn ? <Competitors/> : <Navigate to="/login"/>} />
                 ))}
             </Routes>
-
-
-
         </>
-    )
-}
+      );
+    }
 
 export default Router
