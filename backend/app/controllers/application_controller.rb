@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
         cookies[:sds_back_end_user_id] = {
             :value => @user.id,
             :expires => 24.hour.from_now,
+            :same_site => :none,
             :secure => true
         }
     end
