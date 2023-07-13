@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useForm } from '@mantine/form'
 import { Box, Group, Button } from '@mantine/core'
-import { TextInput } from '@mantine/core';
+import { TextInput, PasswordInput } from '@mantine/core';
 import axios from 'axios'
+import { useDisclosure } from '@mantine/hooks';
+import ErrorModal from '../components/ErrorModal.jsx'
 
 function Login({handleLogin}) {
     const nav = useNavigate();
@@ -12,7 +14,7 @@ function Login({handleLogin}) {
         password: "",
         errors: ""
     })
-
+    const [errorModal, errorModalHandler] = useDisclosure(false);
     const loginForm = useForm({
         initialValues: {
             username: '',
@@ -45,6 +47,7 @@ function Login({handleLogin}) {
                     setDetails({
                         errors: res.data.errors
                     })
+                    errorModalHandler.open()
                 }
             })
             .catch((err) => console.log("Login error", err))
@@ -53,6 +56,7 @@ function Login({handleLogin}) {
     return (
       <div>
           <h1 id="sales-title">Login</h1>    
+          <ErrorModal opened={errorModal} open={errorModalHandler.open} close={errorModalHandler.close} title="Login failed" content="Your credentials are invalid, or your network may be down."/>
           <Box maw={300} mx="auto">
             <form onSubmit={loginForm.onSubmit((values) => handleSubmit(values))}>
                 <TextInput
@@ -62,7 +66,7 @@ function Login({handleLogin}) {
                   {...loginForm.getInputProps('username')}
                 />
 
-                <TextInput
+                <PasswordInput
                   withAsterisk
                   label="Password"
                   placeholder="*******"

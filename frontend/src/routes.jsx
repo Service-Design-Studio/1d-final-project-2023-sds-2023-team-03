@@ -12,9 +12,9 @@ function Router({isLoggedIn, handleLogin}) {
     return (
         <>
             <Routes>
-                <Route path="/sales" element={isLoggedIn? <Sales/> : <Navigate to="/login"/>}/>
+                <Route path="/sales" element={isLoggedIn ? <Sales/> : <Navigate to="/login"/>}/>
                 <Route path="/merchandising" element={isLoggedIn ? <Logistics/> : <Navigate to="/login"/>}/>
-                <Route path="/" element={isLoggedIn? <Navigate to="/home"/> : <Navigate to="/login"/>}/>
+                <Route path="/" element={isLoggedIn ? <Navigate to="/home"/> : <Navigate to="/login"/>}/>
                 <Route path="/home" element={isLoggedIn ? <Home/> : <Navigate to="/login"/>}/>
                 <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
                 {options.map((option, index) => (
