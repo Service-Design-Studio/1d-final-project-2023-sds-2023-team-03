@@ -1,20 +1,24 @@
 class ApplicationController < ActionController::Base
     # suppress errors
-    skip_before_action :verify_authenticity_token
+    protect_from_forgery with: :null_session
 
     # helper methods for authentication
     helper_method :login!, :logged_in?, :current_user, :authorized?, :logout!, :set_user
 
     def login!
-        session[:user_id] = @user.id
+        cookies[:sds_back_end_user_id] = {
+            :value => @user.id,
+            :expires => 24.hour.from_now,
+            :secure => true
+        }
     end
 
     def logged_in?
-        !!session[:user_id]
+        !!cookies[:sds_back_end_user_id]
     end
 
     def current_user
-        @current_user ||= User.find(session[:user_id]) if session[:user_id]
+        @current_user ||= User.find(cookies[:sds_back_end_user_id]) if cookies[:sds_back_end_user_id]
     end
 
     def authorized?
@@ -22,10 +26,10 @@ class ApplicationController < ActionController::Base
     end
 
     def logout!
-        session.clear
+        session.clears
     end
 
     def set_user
-        @user = User.find_by(id: session[:user_id])
+        @user = User.find_by(id: cookies[:sds_back_end_user_id])
     end
 end
