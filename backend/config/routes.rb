@@ -8,8 +8,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      post '/session', to: 'sessions#create'
+      delete '/session', to: 'sessions#destroy'
+      get '/session', to: 'sessions#is_logged_in?'
+      get '/set_admin', to: 'sessions#set_admin!'
+
       resources :products
-      resources :sales
+      resources :sales, only: [:index, :show, :create, :update, :destroy]
+      resources :users, only: [:create, :show, :index]
     end
   end 
 
