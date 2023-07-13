@@ -10,8 +10,10 @@ Given('I am on the overview page',async function () {
   });
   
   Then('I should see summarized statistics for sales, product actions, and competitor analysis',async function () {
-    // Check if data exist in the containers
-    return 'pending';
+    const groupings = await driver.findElements(By.className('grouping'));
+    const columns = await driver.findElements(By.className('column'));
+    assert(groupings.length > 0);
+    assert(columns.length > 0);
   });
   
   Given('there is new data available',async function () {
@@ -30,13 +32,13 @@ Given('I am on the overview page',async function () {
   });
   
   Given('I have pressed the refresh button',async function () {
-    // Click refresh button
-    return 'pending';
+    const refreshButton = await driver.findElement(By.className('top-right-button'));
+    await refreshButton.click();
   });
   
   When('the results are still loading',async function () {
-    // Maybe button still greyed out
-    return 'pending';
+    const refreshButton = await driver.findElement(By.className('top-right-button'));
+    const isButtonDisabled = await refreshButton.getAttribute('disabled');
   });
   
   Then('nothing should happen',async function () {
