@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get '/logged_in', to: 'sessions#is_logged_in?'
 
       resources :products
-      resources :sales
+      resources :sales, only: [:index, :show, :create, :update, :destroy]
       resources :users, only: [:create, :show, :index]
     end
   end 
