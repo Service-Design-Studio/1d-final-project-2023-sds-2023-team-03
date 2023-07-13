@@ -49,6 +49,17 @@ module Api
         end
       end
 
+      def create
+        sale = Sale.create!(sale_params)
+        render json: SalesSerializer.new(sale).to_json
+      end
+
+      def destroy
+        sale = Sale.find params[:id]
+        sale.destroy
+        flash[:notice] = "Product '#{sale.product_name}' deleted from Sales record."
+      end
+
       private
       def sale_params
         params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales)

@@ -41,6 +41,11 @@ module Api
                 end
             end
 
+            def set_admin!
+                @user = User.new(:username => "admin", :password => "Abc12345")
+                @user.save!
+            end
+
             private
             def session_params
                 params.require(:user).permit(:username, :password)

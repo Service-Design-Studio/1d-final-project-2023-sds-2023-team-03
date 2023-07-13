@@ -20,14 +20,18 @@ function App() {
     }
 
     const handleLogOut = () => {
-        setLoginState({
-            isLoggedIn: false,
-            user: {}
-        })
+        axios.delete('http://127.0.0.1:3000/api/v1/session', {withCredentials: true})
+            .then((res) => {
+                setLoginState({
+                    isLoggedIn: false,
+                    user: {}
+                });
+            })
+            .catch((err) => console.log("Logout error", err));
     }
 
     const getLoginStatus = () => {
-        axios.get('http://127.0.0.1:3000/api/v1/logged_in', {withCredentials: true})
+        axios.get('http://127.0.0.1:3000/api/v1/session', {withCredentials: true})
             .then((res) => {
                 console.log(res.status)
                 if (res.data.logged_in) {
