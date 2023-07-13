@@ -66,6 +66,7 @@ function Login({handleLogin}) {
                   withAsterisk
                   label="Username"
                   placeholder="EnterYourUsername"
+                  id="username-input"
                   {...loginForm.getInputProps('username')}
                 />
 
@@ -73,11 +74,12 @@ function Login({handleLogin}) {
                   withAsterisk
                   label="Password"
                   placeholder="*******"
+                  id = "password-input"
                   {...loginForm.getInputProps('password')}
                 />
 
                 <Group position="right" mt="md">
-                    <Button type="submit">Submit</Button>
+                    <Button id="submit-button" type="submit">Submit</Button>
                 </Group>
             </form>
           </Box>
