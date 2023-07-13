@@ -38,7 +38,7 @@ function Login({handleLogin}) {
             password: loginDetails.password
         }
 
-        axios.post('http://127.0.0.1:3000/api/v1/login', {user}, {withCredentials: true})
+        axios.post('http://127.0.0.1:3000/api/v1/session', {user}, {withCredentials: true})
             .then((res) => {
                 if (res.data.logged_in) {
                     handleLogin(res.data);
@@ -50,7 +50,10 @@ function Login({handleLogin}) {
                     errorModalHandler.open()
                 }
             })
-            .catch((err) => console.log("Login error", err))
+            .catch((err) => {
+                console.log("Login error", err);
+                errorModalHandler.open();
+            })
     }
 
     return (

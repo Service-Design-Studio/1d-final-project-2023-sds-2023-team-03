@@ -15,7 +15,7 @@ function Router({isLoggedIn, handleLogin}) {
                 <Route path="/merchandising" element={isLoggedIn ? <Logistics/> : <Navigate to="/login"/>}/>
                 <Route path="/" element={isLoggedIn ? <Navigate to="/home"/> : <Navigate to="/login"/>}/>
                 <Route path="/home" element={isLoggedIn ? <Home/> : <Navigate to="/login"/>}/>
-                <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
+                <Route path="/login" element={isLoggedIn? <Navigate to="/home"/> : <Login handleLogin={handleLogin}/>}/>
                 {options.map((option, index) => (
                     <Route key={index} path={`/competitors/${option}`} element={isLoggedIn ? <Competitors/> : <Navigate to="/login"/>} />
                 ))}
