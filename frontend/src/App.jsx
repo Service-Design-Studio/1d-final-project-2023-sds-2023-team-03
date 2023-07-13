@@ -27,7 +27,7 @@ function App() {
     }
 
     const getLoginStatus = () => {
-        axios.get('http://localhost:3000/api/v1/logged_in', {withCredentials: true})
+        axios.get('http://127.0.0.1:3000/api/v1/logged_in', {withCredentials: true})
             .then((res) => {
                 if (res.data.logged_in) {
                     handleLogin(res);
@@ -43,11 +43,11 @@ function App() {
     })
 
     return(
-    <BrowserRouter>
-      <Header/>
-      <Sidebar/>
-      <Router/>
-    </BrowserRouter>
+        <BrowserRouter>
+          <Header/>
+          <Sidebar/>
+          <Router isLoggedIn={loginState.isLoggedIn} handleLogin={handleLogin}/>
+        </BrowserRouter>
     )
 }
 

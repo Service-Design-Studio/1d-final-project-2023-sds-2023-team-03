@@ -5,20 +5,20 @@ import Home from './views/Home.jsx'
 import Competitors from './views/Competitors.jsx'
 import Login from './views/Login.jsx';
 
-function Router({handleLogin}) {
+function Router({isLoggedIn, handleLogin}) {
 
     const options = ['Adidas', 'Nike', 'Asics', 'Skechers', 'Overall'];
 
     return (
         <>
             <Routes>
-                <Route path="/sales" element={<Sales/>}/>
-                <Route path="/merchandising" element={<Logistics/>}/>
-                <Route path="/" element={<Navigate to="/home"/>}/>
-                <Route path="/home" element={<Home/>}/>
+                <Route path="/sales" element={isLoggedIn? <Sales/> : <Navigate to="/login"/>}/>
+                <Route path="/merchandising" element={isLoggedIn ? <Logistics/> : <Navigate to="/login"/>}/>
+                <Route path="/" element={isLoggedIn? <Navigate to="/home"/> : <Navigate to="/login"/>}/>
+                <Route path="/home" element={isLoggedIn ? <Home/> : <Navigate to="/login"/>}/>
                 <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
                 {options.map((option, index) => (
-                    <Route key={index} path={`/competitors/${option}`} element={<Competitors/>} />
+                    <Route key={index} path={`/competitors/${option}`} element={isLoggedIn ? <Competitors/> : <Navigate to="/login"/>} />
                 ))}
             </Routes>
 
