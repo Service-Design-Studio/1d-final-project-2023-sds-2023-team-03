@@ -17,7 +17,7 @@ import { useSpring, animated,config } from 'react-spring';
 
 
 
-function Sidebar() {
+function Sidebar({handleClearState}) {
   const [isExpanded, setExpanded] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
@@ -61,11 +61,10 @@ function Sidebar() {
   
   const handleConfirmLogout = () => {
     // Add your logic for Home button click
+    handleClearState();
     navigate('/login');  
     setLogoutModalOpen(false);
     setExpanded(false);
-
-
   };
   
   const handleCancelLogout = () => {
