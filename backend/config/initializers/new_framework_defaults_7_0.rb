@@ -136,6 +136,7 @@
 
 # Change the return value of `ActionDispatch::Request#content_type` to the Content-Type header without modification.
 # Rails.application.config.action_dispatch.return_only_request_media_type_on_content_type = false
+Rails.application.config.action_dispatch.cookies_same_site_protection = :none
 
 # Active Storage `has_many_attached` relationships will default to replacing the current collection instead of appending to it.
 # Thus, to support submitting an empty collection, the `file_field` helper will render an hidden field `include_hidden` by default when `multiple_file_field_include_hidden` is set to `true`.
