@@ -5,8 +5,9 @@
 # Read more: https://github.com/cyu/rack-cors
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-  allow do
-    origins "localhost:5173"
+  allow do    
+    origins "sds-team-3-ecommerce-analysis-tool-jvfpcfcafa-as.a.run.app"
+
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
