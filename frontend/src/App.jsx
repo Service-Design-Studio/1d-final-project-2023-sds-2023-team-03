@@ -8,7 +8,7 @@ import axios from 'axios'
 
 function App() {
     const [loginState, setLoginState] = useState({
-        isLoggedIn: false,
+        isLoggedIn: true, // login set to true always
         user: {}
     })
 
