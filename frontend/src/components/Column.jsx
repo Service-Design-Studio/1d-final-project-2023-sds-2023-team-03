@@ -2,7 +2,7 @@ import { Grid, Col } from '@mantine/core';
 import '../views/Home.css';
 import Tables from './Tables';
 
-function Column({lowStockData}) {
+function Column({lowStocksData}) {
   return (
     <Grid gutter="lg">
       <Col span={4} width="100px">
@@ -21,7 +21,7 @@ function Column({lowStockData}) {
       </Col>
       <Col span={4} width="200px">
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <Tables lowStockData={lowStockData}></Tables>
+      <Tables lowStocksData={lowStocksData}></Tables>
       </div> 
       </Col>
     </Grid>

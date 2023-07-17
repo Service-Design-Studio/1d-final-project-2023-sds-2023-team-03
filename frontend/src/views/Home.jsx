@@ -20,7 +20,7 @@ useEffect(() => {
   const [lowStocksData, setLowStocksData] = useState({
     frequencies: {}
   })
-  const [isDataLoaded, setIsDataLoaded] = useState(false); // New state variable
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   async function handleClick() {
     const currentDate = new Date().toISOString().slice(0, 10);
@@ -32,7 +32,7 @@ useEffect(() => {
     setTopProductData(await queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate));
     setLowStocksData(await queryLowStocks('Comfortwear', thirtyDaysAgoDate, currentDate));
     setIsDataLoaded(true);
-    console.log(topProductData)
+    console.log(typeof(lowStocksData[0].product_name))
 
   }
 
@@ -94,7 +94,7 @@ useEffect(() => {
 
       <div>
         <br></br>
-        <Column></Column>
+        {isDataLoaded && <Column lowStocksData={{lowStocksData}} />}
       </div>
 
 
