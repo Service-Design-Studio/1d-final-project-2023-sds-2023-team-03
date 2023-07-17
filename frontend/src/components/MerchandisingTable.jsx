@@ -58,11 +58,9 @@ function MerchandisingTable({ data, threshold, pageSize }) {
             <DataTable    // low products
               height={'79vh'}
               withBorder
-              shadow="sm"
-              withColumnBorders
+              // withColumnBorders
               striped
               highlightOnHover
-              verticalAlignment='center'
               columns={[
                 { 
                     accessor: 'product_name', 
