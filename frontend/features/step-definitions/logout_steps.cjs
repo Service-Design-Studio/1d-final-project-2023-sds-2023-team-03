@@ -13,9 +13,7 @@ Given('I am on the sidebar', async function () {
   });
   
   Given('I am on {string} page', async function (view) {
-    if (view === 'Home') {
-      view = '';
-    }
+
     const pageUrl = websiteUrl + view.toLowerCase();
     await driver.get(pageUrl);
   });
@@ -70,9 +68,7 @@ Given('I am on the sidebar', async function () {
   });
   
  Then('I remain on the {string} page', async function (view) {
-  if (view === 'Home') {
-    view = '';
-  }
+  
   const pageUrl = websiteUrl + view.toLowerCase();
   const currentUrl = await driver.getCurrentUrl();
   assert.strictEqual(pageUrl, currentUrl);

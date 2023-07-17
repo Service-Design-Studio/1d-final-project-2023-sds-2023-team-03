@@ -2,7 +2,7 @@ Feature: Overview Page
 
 Scenario: Viewing summarized statistics on the overview page
 Given I am on the overview page
-Then I should summarized statistics for sales, product actions, and competitor analysis
+Then I should see summarized statistics for sales, product actions, and competitor analysis
 
 Scenario: Refreshing the statistics on the overview page
 Given I am on the overview page
