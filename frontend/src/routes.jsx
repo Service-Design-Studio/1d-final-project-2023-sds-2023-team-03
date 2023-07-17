@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Sales from './views/Categories.jsx'
-import Logistics from './views/Logistics.jsx'
+import Logistics from './views/Merchandising.jsx'
 import Home from './views/Home.jsx'
 import Competitors from './views/Competitors.jsx'
 import Login from './views/Login.jsx';
