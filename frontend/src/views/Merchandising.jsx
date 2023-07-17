@@ -10,7 +10,7 @@ function Logistics() {
   const pageSize = 50;
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:3000/api/v1/products")
+    axios.get("http://127.0.0.1:3000/api/v1/products/all")
     .then((res) => {
       if (res) {
         setData(res.data);
