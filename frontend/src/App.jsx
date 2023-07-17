@@ -42,7 +42,7 @@ function App() {
     }
 
     useEffect(() => {
-        getLoginStatus();
+        // getLoginStatus();
     })
 
     return(
