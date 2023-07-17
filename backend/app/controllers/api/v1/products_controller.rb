@@ -26,6 +26,12 @@ module Api
 
         render :json => out
       end
+
+      def show
+        out = Product.all
+
+        render :json => out
+      end
     end
   end
 end
