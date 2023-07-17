@@ -1,55 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Merchandising.css';
-import MerchandisingTable from '../components/MerchandisingTable.jsx'
-
-const data = 
-{
-  low: [
-    {
-      product_name: 'test1',
-      stock: 9,
-      last_resupplied: 'yday'
-    },
-    {
-      product_name: 'test2',
-      stock: 2,
-      last_resupplied: 'tmrw'
-    },
-    {
-      product_name: 'test3',
-      stock: 0,
-      last_resupplied: 'afternoon'
-    },
-    {
-      product_name: 'high1',
-      stock: 90,
-      last_resupplied: 'yday'
-    },
-    {
-      product_name: 'high2',
-      stock: 200,
-      last_resupplied: 'tmrw'
-    },
-    {
-      product_name: 'high3',
-      stock: 990,
-      last_resupplied: 'afternoon'
-    },
-    {
-      product_name: 'test2',
-      stock: 2,
-      last_resupplied: 'tmrw'
-    }
-  ]
-}
+import MerchandisingTable from '../components/MerchandisingTable.jsx';
+import axios from 'axios';
 
 function Logistics() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const threshold = 50;
+  const pageSize = 50;
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:3000/api/v1/products")
+    .then((res) => {
+      if (res) {
+        setData(res.data);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      setLoading(false);
+    })
+  }, [])
   
   return (
     <div>
       <h1 id="sales-title">Merchandising</h1> 
-      <MerchandisingTable data={data.low} threshold={threshold}/>
+      <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} fetching={loading}/>
     </div>
   );
 }
