@@ -8,7 +8,7 @@ import axios from 'axios'
 
 function App() {
     const [loginState, setLoginState] = useState({
-        isLoggedIn: false,
+        isLoggedIn: true, // login set to true always
         user: {}
     })
 
@@ -20,7 +20,7 @@ function App() {
     }
 
     const handleLogOut = () => {
-        axios.delete('http://127.0.0.1:3000/api/v1/session', {withCredentials: true})
+        axios.delete('https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/session', {withCredentials: true})
             .then((res) => {
                 setLoginState({
                     isLoggedIn: false,
@@ -31,7 +31,7 @@ function App() {
     }
 
     const getLoginStatus = () => {
-        axios.get('http://127.0.0.1:3000/api/v1/session', {withCredentials: true})
+        axios.get('https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/session', {withCredentials: true})
             .then((res) => {
                 console.log(res.status)
                 if (res.data.logged_in) {
@@ -42,7 +42,7 @@ function App() {
     }
 
     useEffect(() => {
-        getLoginStatus();
+        // getLoginStatus();
     })
 
     return(
