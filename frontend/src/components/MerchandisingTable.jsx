@@ -31,22 +31,22 @@ function MerchandisingTable({ data, threshold, pageSize, fetching }) {
     useEffect(() => {
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
-        const dataToLoad = savedData.slice(first, last)
+        const dataToLoad = savedData.sort((a, b) => {
+            var keyA = a.stock;
+            var keyB = b.stock;
+
+            if (keyA < keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
+            if (keyA > keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            return 0;
+        })
+        .slice(first, last)
         .filter(( item ) => {
             if (selectedCategories.length && !selectedCategories.some((c) => c === item.product_category)) {
                 return false;
             }
             return true;
-        })
-        .sort((a, b) => {
-            var keyA = a.stock;
-            var keyB = b.stock;
-
-            if (keyA < keyB) return -1;
-            if (keyA > keyB) return 1;
-            return 0;
         });
-        setPageData(sortStatus.direction === 'asc' ? dataToLoad : dataToLoad.reverse())
+        setPageData(dataToLoad);
     }, [selectedCategories, sortStatus, page, data]);
 
     return (
