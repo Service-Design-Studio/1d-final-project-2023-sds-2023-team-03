@@ -1,10 +1,19 @@
 import { DataTable } from 'mantine-datatable';
+import { createStyles } from '@mantine/core';
 
-function MerchandisingTable({ data }) {
+const useStyles = createStyles((theme) => ({
+    belowFifty: {
+        color: "#d0342c",
+        fontWeight: "bold"
+    }
+}));
+
+function MerchandisingTable({ data, threshold }) {
+    const { classes, cx } = useStyles();
+
     return (
         <div className='table'>
             <DataTable    // low products
-              height={'30vh'}
               maxheight={'30vh'}
               withBorder
               shadow="sm"
@@ -15,12 +24,15 @@ function MerchandisingTable({ data }) {
               columns={[
                 { accessor: 'product_name', 
                   textAlignment: 'center',
+                  cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
                 },
                 { accessor: 'stock',
                   textAlignment: 'center',
+                  cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
                 },
                 { accessor: 'last_resupplied' ,
                   textAlignment: 'center',
+                  cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
                 }
               ]}
               records={data}

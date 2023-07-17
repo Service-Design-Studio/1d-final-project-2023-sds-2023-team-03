@@ -21,26 +21,24 @@ const data =
       last_resupplied: 'afternoon'
     },
     {
-      product_name: 'test2',
-      stock: 2,
-      last_resupplied: 'tmrw'
-    }
-  ],
-  high: [
-    {
       product_name: 'high1',
       stock: 90,
       last_resupplied: 'yday'
     },
     {
       product_name: 'high2',
-      stock: 20,
+      stock: 200,
       last_resupplied: 'tmrw'
     },
     {
       product_name: 'high3',
       stock: 990,
       last_resupplied: 'afternoon'
+    },
+    {
+      product_name: 'test2',
+      stock: 2,
+      last_resupplied: 'tmrw'
     }
   ]
 }
@@ -51,7 +49,7 @@ function Logistics() {
   return (
     <div>
       <h1 id="sales-title">Merchandising</h1> 
-      <MerchandisingTable data={data.low}/>
+      <MerchandisingTable data={data.low} threshold={threshold}/>
     </div>
   );
 }
