@@ -23,7 +23,7 @@ function MerchandisingTable({ data, threshold, pageSize }) {
     const [selectedCategories, setSelectedCategories] = useState(categories);
     
 
-    const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'asc'});
+    const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'desc'});
 
     useEffect(() => {
         setSavedData(data)
