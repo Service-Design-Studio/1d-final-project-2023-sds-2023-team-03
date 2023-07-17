@@ -10,8 +10,9 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-function MerchandisingTable({ data, threshold, pageSize, fetching }) {
+function MerchandisingTable({ data, threshold, pageSize }) {
     const { classes, cx } = useStyles();
+    const [fetching, setFetching] = useState(true)
     const [savedData, setSavedData] = useState([]);
     const [page, setPage] = useState(1);
     const [pageData, setPageData] = useState(data.slice(0, pageSize));
@@ -26,6 +27,9 @@ function MerchandisingTable({ data, threshold, pageSize, fetching }) {
 
     useEffect(() => {
         setSavedData(data)
+        if (data.length > 0) {
+            setFetching(false);
+        }
     }, [data]);
 
     useEffect(() => {
