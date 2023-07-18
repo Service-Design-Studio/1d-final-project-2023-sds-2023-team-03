@@ -1,9 +1,9 @@
-import CardThing from '../components/CardThing';
+import CardComponent from './CardComponent';
 
 function CardWidth({ imageUrl, title, price, sales, mthrev, yearrev, category }) {
   return (
     <div style={{ maxWidth: '200px', margin: '0 auto' }}>
-      <CardThing imageUrl={imageUrl}
+      <CardComponent imageUrl={imageUrl}
                 title={title}
                 category={category}
                 price={price}
@@ -12,7 +12,7 @@ function CardWidth({ imageUrl, title, price, sales, mthrev, yearrev, category })
                 yearrev={yearrev}
       shadow="sm" padding="lg" radius="md" withBorder>
         
-      </CardThing>
+      </CardComponent>
     </div>
   );
 }

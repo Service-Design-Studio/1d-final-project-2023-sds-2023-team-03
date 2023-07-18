@@ -32,7 +32,7 @@ useEffect(() => {
     setTopProductData(await queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate));
     setLowStocksData(await queryLowStocks('Comfortwear', thirtyDaysAgoDate, currentDate));
     setIsDataLoaded(true);
-    console.log(typeof(lowStocksData[0].product_name))
+    console.log((lowStocksData))
 
   }
 
