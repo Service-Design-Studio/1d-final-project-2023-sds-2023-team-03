@@ -35,7 +35,6 @@ const MyHeader = () => {
   const textStyle = {
     marginRight: '1rem',
     color: '#d3d3d3',
-    fontFamily: 'PumaFontReg',
     fontSize: '1.25rem', // Use relative units like 'rem'
   };
 
