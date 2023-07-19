@@ -30,7 +30,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
             setFetching(false);
             setSavedData(data);
         }
-    }, [data]);
+    }, [data, apiLoad]);
 
     useEffect(() => {
         const first = (page - 1) * pageSize;

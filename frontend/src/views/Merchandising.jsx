@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function Logistics() {
   const [data, setData] = useState([]);
-  const [apiLoad, setApiLoad] = useState(false);
+  const [apiLoad, setApiLoad] = useState(true);
   const threshold = 50;
   const pageSize = 50;
 
@@ -37,3 +37,9 @@ function Logistics() {
 }
 
 export default Logistics;
+
+/* TODO
+- error handler
+- insights
+- expandable row -> product details
+*/
