@@ -129,7 +129,7 @@ useEffect(() => {
       <h2 className="insights-heading" style={headingStyle}>
         Insights
       </h2>
-
+      
       <div>
         <br></br>
         {isDataLoaded && <Column lowStocksData={{lowStocksData}} />}
