@@ -1,6 +1,6 @@
 import { Card, Image, Text, Button, Group } from '@mantine/core';
 
-function CardThing({ imageUrl, title, price, sales, mthrev, yearrev, category }) {
+function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, category }) {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
@@ -31,4 +31,4 @@ function CardThing({ imageUrl, title, price, sales, mthrev, yearrev, category })
   );
 }
 
-export default CardThing;
+export default CardComponent;
