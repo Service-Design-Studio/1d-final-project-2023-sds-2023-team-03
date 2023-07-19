@@ -9,16 +9,24 @@
   display: inline-block;
   border: 1px solid black;
   padding: 10px;
-  max-width: 200px;
+  max-width: 175px;
+  height: 250px
 }
 
-.container {
-  position: relative;
-  height: 200px; /* Adjust the height of the container as needed */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.top-right-button {
-  position: absolute;
-  top: 10px; /* Adjust the top position as needed */
-  right: 10px; /* Adjust the right position as needed */
+
+
+
+
+.insights-heading {
+  text-align: center;
 }
+
