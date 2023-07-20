@@ -69,7 +69,7 @@ Then('I should see summarized statistics for sales, product actions, and competi
     const isButtonDisabled = await refreshButton.getAttribute('disabled');
   });
   
-  Then('nothing should happen',async function () {
+  Then('the date should not change',async function () {
     // Date of refresh button still show not current time
     return 'pending';
   });
