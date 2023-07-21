@@ -48,8 +48,9 @@ Then('I should see summarized statistics for sales, product actions, and competi
   });
   
   When('I press the refresh button',async function () {
-    // Click refresh button
-    return 'pending';
+    actions
+    const refreshButton = await driver.findElement(By.className('top-right-button'));
+   await refreshButton.click();
   });
   
   Then('the page should display the updated statistics',async function () {
@@ -58,18 +59,19 @@ Then('I should see summarized statistics for sales, product actions, and competi
   });
   
   Given('I have pressed the refresh button',async function () {
-    return 'pending';
-
-    // const refreshButton = await driver.findElement(By.className('top-right-button'));
-    //await refreshButton.click();
+    actions
+     const refreshButton = await driver.findElement(By.className('top-right-button'));
+     await refreshButton.click();
   });
   
   When('the results are still loading',async function () {
-    const refreshButton = await driver.findElement(By.xpath('//button[text()="Refresh Data"]'));
+    const refreshButton = await driver.findElement(By.className('top-right-button'));
     const isButtonDisabled = await refreshButton.getAttribute('disabled');
   });
   
-  Then('the date should not change',async function () {
-    // Date of refresh button still show not current time
-    return 'pending';
+  Then('refresh button will be disabled',async function () {
+    const refreshButton = await driver.findElement(By.className('top-right-button'));
+    const isDisabled = await refreshButton.getAttribute('disabled');
+    assert.strictEqual(isDisabled, true, 'Refresh button is not disabled');
+
   });

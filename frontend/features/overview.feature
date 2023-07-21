@@ -14,6 +14,4 @@ Scenario: Pressing the refresh button while results are loading
 Given I am on the overview page
 And I have pressed the refresh button
 When the results are still loading
-And I pressed it again
-Then the date should not change
-
+The refresh button will be disabled
