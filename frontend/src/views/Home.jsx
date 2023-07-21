@@ -21,13 +21,7 @@ function Home() {
 
 const [isRefreshing, setIsRefreshing] = useState(false);
 
-const handleRefreshClick = async () => {
-  setIsRefreshing(true);
-  // Your API call or data refreshing logic here
-  // You can use a setTimeout to simulate the delay
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  setIsRefreshing(false);
-};
+
 
 useEffect(() => {
   handleClick()
@@ -42,20 +36,45 @@ useEffect(() => {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   async function handleClick() {
+    if (isRefreshing) {
+      // If the refreshing process is already in progress, do nothing
+      return;
+    }
+  
     const currentDate = new Date().toISOString().slice(0, 10);
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     const thirtyDaysAgoDate = thirtyDaysAgo.toISOString().slice(0, 10);
     const currentDateTime = new Date().toLocaleString();
     setLastPressedDateTime(currentDateTime);
-    setTopProductData(await queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate));
-    setLowStocksData(await queryLowStocks('Comfortwear', thirtyDaysAgoDate, currentDate));
-    setIsDataLoaded(true);
     setIsRefreshing(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+  
+    // Wrap the asynchronous operations in Promises
+    const topProductPromise = queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate);
+    const lowStocksPromise = queryLowStocks('Comfortwear', thirtyDaysAgoDate, currentDate);
+  
+    // Create a Promise that resolves after 2 seconds
+    const minWaitPromise = new Promise((resolve) => setTimeout(resolve, 2000));
+  
+    // Create a Promise that resolves after 20 seconds
+    const maxWaitPromise = new Promise((resolve) => setTimeout(resolve, 20000));
+  
+    // Use Promise.race to set an upper bound of 20 seconds
+    try {
+      const [topProductData, lowStocksData] = await Promise.all([
+        Promise.all([topProductPromise, lowStocksPromise]),
+        Promise.race([minWaitPromise, maxWaitPromise]),
+      ]);
+  
+      setTopProductData(topProductData[0]);
+      setLowStocksData(topProductData[1]);
+      setIsDataLoaded(true);
+    } catch (error) {
+      // Handle the error if data retrieval fails within 20 seconds
+      console.error('Error occurred during API request:', error);
+    }
+  
     setIsRefreshing(false);
-    console.log((lowStocksData))
-
   }
 
 
@@ -104,13 +123,14 @@ useEffect(() => {
   <Button
       className="top-right-button"
       onClick={handleClick}
+      disabled={isRefreshing} // Disable the button when refreshing is in progress
       style={{ backgroundColor: 'rgb(8 51 68)', color: 'white', marginBottom: '1em' }}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
       <IoIosRefresh
           style={{
             marginRight: '0.5em',
-            animation: isRefreshing ? 'rotate 1s linear infinite' : 'none',
+            animation: isRefreshing ? 'rotate 2s linear infinite' : 'none',
           }}
         />        Refresh
       </div>

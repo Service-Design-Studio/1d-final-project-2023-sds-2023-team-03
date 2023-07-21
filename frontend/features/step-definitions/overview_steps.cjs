@@ -39,7 +39,7 @@ Given('I am on the overview page',async function () {
     return 'pending';
   });
   
-  Then('nothing should happen',async function () {
+  Then('last refreshed date should not change',async function () {
     // Date of refresh button still show not current time
     return 'pending';
   });
