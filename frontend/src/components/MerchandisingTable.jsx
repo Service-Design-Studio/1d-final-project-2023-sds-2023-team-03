@@ -10,7 +10,7 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-function MerchandisingTable({ data, threshold, pageSize }) {
+function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     const { classes, cx } = useStyles();
     const [fetching, setFetching] = useState(true)
     const [savedData, setSavedData] = useState([]);
@@ -26,11 +26,11 @@ function MerchandisingTable({ data, threshold, pageSize }) {
     const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'desc'});
 
     useEffect(() => {
-        setSavedData(data)
-        if (data.length > 0) {
+        if (data && !apiLoad) {
             setFetching(false);
+            setSavedData(data);
         }
-    }, [data]);
+    }, [data, apiLoad]);
 
     useEffect(() => {
         const first = (page - 1) * pageSize;
@@ -96,6 +96,7 @@ function MerchandisingTable({ data, threshold, pageSize }) {
                 { 
                     accessor: 'updated_at' ,
                     textAlignment: 'center',
+                    title: "Last restocked",
                     width: 100,
                     cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
                     render: ( { updated_at } ) => dayjs(updated_at).format('DD/MM/YYYY')
