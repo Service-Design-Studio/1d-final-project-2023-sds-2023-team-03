@@ -30,48 +30,49 @@ Then('I should see summarized statistics for sales, product actions, and competi
       assert.ok(mthrev, 'mthrev attribute is missing in the CardWidth element.');
       assert.ok(yearrev, 'yearrev attribute is missing in the CardWidth element.');
     }
-     const competitionElement = await driver.findElement(By.xpath("//p[contains(text(), 'Competition')]"));
+     const competitionElement = await driver.wait(until.elementLocated(By.className('compInsights')), 5000);
      assert.ok(competitionElement, 'Competition element not found.');
      const competitionText = await competitionElement.getText();
      assert.ok(competitionText.trim().length > 0, 'Competition text is empty.');
-   
-     const productSalesElement = await driver.findElement(By.xpath("//p[contains(text(), 'Product Sales')]"));
+     const productSalesElement =  await driver.wait(until.elementLocated(By.className('salesInsights')), 5000);
      assert.ok(productSalesElement, 'Product Sales element not found.');
      const productSalesText = await productSalesElement.getText();
      assert.ok(productSalesText.trim().length > 0, 'Product Sales text is empty.');
-
   });
   
   Given('there is new data available',async function () {
-    // Add fake data in with ridiculous value that definitely makes it in
-    return 'pending';
   });
   
   When('I press the refresh button',async function () {
-    actions
-    const refreshButton = await driver.findElement(By.className('top-right-button'));
+   const refreshButton = await driver.findElement(By.className('top-right-button'));
+   await driver.wait(until.elementIsEnabled(refreshButton), 20000);
    await refreshButton.click();
   });
   
   Then('the page should display the updated statistics',async function () {
-    // Added fake data should reflect in
-    return 'pending';
+    const refreshTimeElement = await driver.wait(until.elementLocated(By.className('refreshTime')), 5000);
+    // Get the text content of the element, which should be the refresh time
+    const refreshTimeString = await refreshTimeElement.getText();
+     // Convert the refresh time string to a Date object
+    const refreshTime = new Date(refreshTimeString);
+    // Get the current system time
+    const currentSystemTime = new Date();
+    // Calculate the time difference between the refresh time and current system time
+    const timeDifferenceInSeconds = Math.abs((currentSystemTime - refreshTime) / 1000);
+    // Assert that the time difference is within the tolerance of ±1 second
+    assert.strictEqual(timeDifferenceInSeconds <= 1,true);
   });
   
   Given('I have pressed the refresh button',async function () {
-    actions
      const refreshButton = await driver.findElement(By.className('top-right-button'));
+     await driver.wait(until.elementIsEnabled(refreshButton), 20000);
      await refreshButton.click();
+     await driver.sleep(500);
   });
   
-  When('the results are still loading',async function () {
-    const refreshButton = await driver.findElement(By.className('top-right-button'));
-    const isButtonDisabled = await refreshButton.getAttribute('disabled');
-  });
   
-  Then('refresh button will be disabled',async function () {
+  Then('the refresh button will be disabled',async function () {
     const refreshButton = await driver.findElement(By.className('top-right-button'));
-    const isDisabled = await refreshButton.getAttribute('disabled');
-    assert.strictEqual(isDisabled, true, 'Refresh button is not disabled');
-
+    const isEnabled = await refreshButton.isEnabled();
+    assert.strictEqual(isEnabled, false, 'Refresh button is not disabled');
   });

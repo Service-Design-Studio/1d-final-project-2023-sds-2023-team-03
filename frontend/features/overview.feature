@@ -1,3 +1,4 @@
+@overview
 Feature: Overview Page 
 
 Scenario: Viewing summarized statistics on the overview page
@@ -12,6 +13,5 @@ Then the page should display the updated statistics
 
 Scenario: Pressing the refresh button while results are loading
 Given I am on the overview page
-And I have pressed the refresh button
-When the results are still loading
-The refresh button will be disabled
+When I press the refresh button
+Then the refresh button will be disabled
