@@ -18,5 +18,14 @@ module Backend
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Autoload the BQmethods directory
+    config.autoload_paths += %W(#{config.root}/BQmethods)
   end
 end
+
+config.before_initialize do
+  ENV["GOOGLE_APPLICATION_CREDENTIALS"] = 'backend\sds-group3-cafedc04bd19.json'
+end
+
+
