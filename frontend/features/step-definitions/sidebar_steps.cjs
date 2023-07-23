@@ -98,7 +98,7 @@ When('I click on "Home" on the sidebar', async function () {
 Then('I should be redirected to the Home page', async function () {
   // Check that the current url is website url
   const currentUrl = await driver.getCurrentUrl();
-  assert.strictEqual(currentUrl, websiteUrl);
+  assert.strictEqual(currentUrl, websiteUrl+'home');
 });
 
 // Navigating to Sales (Happy)
@@ -140,9 +140,7 @@ Then('I should be redirected to the Logistics page', async function () {
 
 // Navigating to Same Page (Sad)
 Given('I am on {string}', async function (page) {
-  if (page === 'Home') {
-    page = '';
-  }
+ 
   const pageUrl = websiteUrl + page.toLowerCase();
   await driver.get(pageUrl);
 });
@@ -153,9 +151,7 @@ When('I click on the icon that represents {string}', async function (page) {
 });
 
 Then('I should remain on {string}', async function (page) {
-  if (page === 'Home') {
-    page = '';
-  }
+
   const currentUrl = await driver.getCurrentUrl();
   const pageUrl = websiteUrl + page.toLowerCase();
   assert.strictEqual(currentUrl, pageUrl);

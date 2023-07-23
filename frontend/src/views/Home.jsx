@@ -40,14 +40,13 @@ useEffect(() => {
       // If the refreshing process is already in progress, do nothing
       return;
     }
-  
+    setIsRefreshing(true);
     const currentDate = new Date().toISOString().slice(0, 10);
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     const thirtyDaysAgoDate = thirtyDaysAgo.toISOString().slice(0, 10);
     const currentDateTime = new Date().toLocaleString();
     setLastPressedDateTime(currentDateTime);
-    setIsRefreshing(true);
   
     // Wrap the asynchronous operations in Promises
     const topProductPromise = queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate);
@@ -138,7 +137,7 @@ useEffect(() => {
     
     <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
     <p style={{ margin: 0 ,fontSize :'0.9em'}}>Last Refreshed:</p>
-    <p style={{ margin: 0 ,fontSize :'0.9em'}}>{lastPressedDateTime}</p>
+    <p className = 'refreshTime' style={{ margin: 0 ,fontSize :'0.9em'}}>{lastPressedDateTime}</p>
     </div>  
     </div>
 </div>
