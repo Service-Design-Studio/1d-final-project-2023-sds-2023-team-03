@@ -2,7 +2,7 @@ import CardComponent from './CardComponent';
 
 function CardWidth({ imageUrl, title, price, sales, mthrev, yearrev, category }) {
   return (
-    <div style={{ maxWidth: '200px', margin: '0 auto' }}>
+    <div style={{  margin: '0 auto' }}>
       <CardComponent imageUrl={imageUrl}
                 title={title}
                 category={category}

@@ -1,8 +1,11 @@
 import { Card, Image, Text, Button } from '@mantine/core';
+import React, { useState } from 'react';
 
 function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, category }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   const buttonStyles = {
-    backgroundColor: 'teal',
+    backgroundColor: '#323145',
     color: 'white',
     border: '2px gray',
     padding: '0.5em 1.5em',
@@ -14,13 +17,28 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
   const buttonHoverStyles = {
     backgroundColor: 'white',
     color: 'blue',
-    border: '1px solid blue',
+    border: '2px solid blue',
+  };
+  const cardStyles = {
+    boxShadow: '0 5px 15px rgba(0, 0, 0, 0.4)',
+    backgroundColor: '#509066', // Use different background color on hover
+    position: 'relative',
+    overflow: 'hidden',
+    transition: 'box-shadow 0.3s ease, background-color 0.3s ease', // Add background-color transition
+    padding: '3em',
+    boxShadow: isHovered
+      ? '0 5px 15px rgba(0, 0, 0, 0.4), 0 0 30px rgba(117, 185, 190, 0.6)' // Increased spread radius
+      : '0 5px 15px rgba(0, 0, 0, 0.4)',
   };
 
   return (
-    <Card>
-      <Card.Section>
-        <Image src={imageUrl} height={200} width={200} alt="Shopee" />
+    <Card
+      style={cardStyles}
+      onMouseEnter={() => setIsHovered(true)} // Handle mouse enter event
+      onMouseLeave={() => setIsHovered(false)} // Handle mouse leave event
+    >
+      <Card.Section style={{ textAlign: 'center', paddingBottom: '1em' }}>
+        <Image src={imageUrl} height={250} width={250} alt="Shopee" />
       </Card.Section>
 
       <Card.Section style={{ textAlign: 'center' }}>
@@ -35,7 +53,7 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
         <Text size="sm">Annual Revenue: {yearrev}</Text>
 
         <div style={{ marginTop: 16 }}>
-          <Button style={buttonStyles} hoverStyle={buttonHoverStyles}>
+          <Button style={buttonStyles} hoverStyles={buttonHoverStyles}>
             Link
           </Button>
         </div>
