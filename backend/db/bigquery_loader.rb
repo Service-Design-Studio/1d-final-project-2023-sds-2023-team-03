@@ -20,7 +20,7 @@ table_ref = dataset_ref.table(table_id)
 schema = [
   { name: "brand", type: "STRING" },
   { name: "product_name", type: "STRING" },
-  { name: "product_price", type: "FLOAT" },
+  { name: "product_price", type: "STRING" },
   { name: "qty_sold_per_month", type: "INTEGER" },
   { name: "image_url", type: "STRING" }
 ]
