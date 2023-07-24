@@ -5,6 +5,23 @@ const assert = require('assert');
 
 const driver = new Builder().forBrowser('chrome').build();
 const websiteUrl = 'http://localhost:5173/';
+//const websiteUrl = 'https://sds-team-3-ecommerce-analysis-tool-jvfpcfcafa-as.a.run.app/login';
+
+async function fillLoginCredentials() {
+  const currentUrl = await driver.getCurrentUrl();
+  if (currentUrl === websiteUrl + 'login') {
+    const usernameInput = await driver.findElement(By.xpath('//input[@id="username-input"]'));
+    console.log('Before sending keys to username input');
+    await usernameInput.sendKeys('admin');
+    console.log('After sending keys to username input');
+    const passwordInput = await driver.findElement(By.xpath('//input[@id="password-input"]'));
+    console.log('Before sending keys to password input');
+    await passwordInput.sendKeys('Abc12345');
+    console.log('After sending keys to password input');
+    const submitButton = await driver.findElement(By.xpath('//button[@id="submit-button"]'));
+    await submitButton.click();
+  }
+}
 
 
 // Opening Sidebar (Happy)
@@ -45,6 +62,7 @@ Then('the icons on the retracted sidebar should turn into clickable text', async
 Given('the sidebar is expanded', async function () {
   // Implement code to set up the sidebar as expanded
   actions 
+  fillLoginCredentials()
   const sidebar = await driver.findElement(By.className('sidebar'));
   // Perform mouse hover action on the sidebar and check that it is expanded
   await driver.actions().move({ origin: sidebar }).perform();
@@ -82,6 +100,7 @@ Given('I am on any page other than Home', async function () {
 Given("I hover anywhere on the sidebar (on the left side of the screen)", async function () {
  // have a mouse go to the sidebar, trigger the hover state on side bar
  actions
+ fillLoginCredentials()
  const sidebar = await driver.findElement(By.className('sidebar'));
  // Perform mouse hover action on the sidebar
  await driver.actions().move({ origin: sidebar }).perform();
@@ -98,13 +117,14 @@ When('I click on "Home" on the sidebar', async function () {
 Then('I should be redirected to the Home page', async function () {
   // Check that the current url is website url
   const currentUrl = await driver.getCurrentUrl();
-  assert.strictEqual(currentUrl, websiteUrl);
+  assert.strictEqual(currentUrl, websiteUrl+'home');
 });
 
 // Navigating to Sales (Happy)
 Given('I am on any page other than Sales', async function () {
    // Have the page start at websiteurl/sales and check that it is not the home page (which is simply websiteurl)
   await driver.get(websiteUrl);
+  fillLoginCredentials()
   const salesUrl = websiteUrl + 'sales';
   assert.notStrictEqual(salesUrl, websiteUrl);
 });
@@ -123,6 +143,7 @@ Then('I should be redirected to the Sales page', async function () {
 // Navigating to Logistics (Happy)
 Given('I am on any page other than Merchandising', async function () {
   await driver.get(websiteUrl);
+  fillLoginCredentials()
   const merchUrl = websiteUrl + 'merchandising';
   assert.notStrictEqual(merchUrl, websiteUrl);
 });
@@ -140,9 +161,7 @@ Then('I should be redirected to the Logistics page', async function () {
 
 // Navigating to Same Page (Sad)
 Given('I am on {string}', async function (page) {
-  if (page === 'Home') {
-    page = '';
-  }
+ 
   const pageUrl = websiteUrl + page.toLowerCase();
   await driver.get(pageUrl);
 });
@@ -153,9 +172,7 @@ When('I click on the icon that represents {string}', async function (page) {
 });
 
 Then('I should remain on {string}', async function (page) {
-  if (page === 'Home') {
-    page = '';
-  }
+
   const currentUrl = await driver.getCurrentUrl();
   const pageUrl = websiteUrl + page.toLowerCase();
   assert.strictEqual(currentUrl, pageUrl);
@@ -183,6 +200,8 @@ Then('I will be redirected to the page of {string}', async function (competitor)
   const compUrl = websiteUrl + 'competitors/' + encodeURIComponent(competitor);
   assert.strictEqual(currentUrl, compUrl);
 });
+
+
 
 
 

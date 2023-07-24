@@ -74,7 +74,7 @@ function Sidebar({handleClearState}) {
 
   const handleHomeClick = () => {
     console.log('Home button clicked');
-    navigate('/');
+    navigate('/home');
   };
 
   const handleInternalClick = () => {

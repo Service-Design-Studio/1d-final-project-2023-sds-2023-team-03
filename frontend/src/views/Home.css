@@ -5,28 +5,4 @@
   }
 
 
-.textBox {
-  display: inline-block;
-  border: 1px solid black;
-  padding: 10px;
-  max-width: 175px;
-  height: 250px
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-
-
-
-.insights-heading {
-  text-align: center;
-}
-
+  
