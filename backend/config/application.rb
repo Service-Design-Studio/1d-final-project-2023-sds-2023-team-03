@@ -24,8 +24,5 @@ module Backend
   end
 end
 
-config.before_initialize do
-  ENV["GOOGLE_APPLICATION_CREDENTIALS"] = 'backend\sds-group3-cafedc04bd19.json'
-end
 
 

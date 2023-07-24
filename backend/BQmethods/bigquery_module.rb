@@ -17,23 +17,29 @@ module BigQueryModule
     end
   end
 
-  def self.create_table
-    project_id = "sds-group3"
-    dataset_id = "ecommerce_data" # Replace with your desired dataset ID
-    table_id = "product_details" # Replace with your desired table ID
-
-    bigquery = Google::Cloud::Bigquery.new(project: project_id)
-    dataset = bigquery.dataset(dataset_id)
-
-    schema = [
+  def self.product_details_schema
+    [
       { name: "brand", type: "STRING" },
       { name: "product_name", type: "STRING" },
       { name: "product_price", type: "STRING" },
       { name: "quantity_sold", type: "INTEGER" },
       { name: "image_url", type: "STRING" }
     ]
+  end
 
-    table = dataset.create_table(table_id, schema: schema)
+  def self.create_table
+    project_id = "sds-group3"
+    dataset_id = "ecommerce_data" # Replace with your desired dataset ID
+    table_id = "shopee_products" # Replace with your desired table ID
+
+    bigquery = Google::Cloud::Bigquery.new(project: project_id)
+    dataset = bigquery.dataset(dataset_id)
+
+    table = dataset.create_table(table_id) do |schema|
+      product_details_schema.each do |field|
+        schema.send(field[:type].downcase, field[:name])
+      end
+    end
 
     if table
       puts "Table #{table.table_id} created with schema: #{table.schema.fields}"
