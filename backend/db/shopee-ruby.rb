@@ -368,7 +368,7 @@ def send_request_url(final_l,prod_listing,error_urls)
   final_entry << Brand_dict.fetch(competitor_name_data)
   final_entry << product_name_data
   final_entry << product_price_data
-  final_entry << prod_listing[2]
+  final_entry << prod_listing[2].to_i
   final_entry << product_img_data_f
 
   final_l << final_entry
