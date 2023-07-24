@@ -1,11 +1,11 @@
 require "google/cloud/bigquery"
 
 # Your Google Cloud project ID
-project_id = "your-gcp-project-id"
+project_id = "sds-group3"
 
 # Your dataset ID and table ID where you want to load the data
-dataset_id = "your-dataset-id"
-table_id = "your-table-id"
+dataset_id = "ecommerce_data"
+table_id = "product_sales"
 
 # Create a BigQuery client
 bigquery = Google::Cloud::Bigquery.new(project: project_id)
