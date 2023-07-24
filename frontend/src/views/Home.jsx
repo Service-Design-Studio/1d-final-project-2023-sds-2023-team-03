@@ -6,6 +6,8 @@ import { Button } from '@mantine/core';
 import axios from 'axios';
 import { useEffect } from 'react';
 import {IoIosRefresh} from 'react-icons/io'
+import Insights from '../components/OverviewInsights'; // Import the Insights component
+
 
 const headingStyle = {
   fontSize: '2em', // Equivalent to 24px for most browsers
@@ -145,13 +147,20 @@ useEffect(() => {
       {isDataLoaded && <Grouping 
       topProductData={topProductData} />}
       
-      <h2 className="insights-heading" style={headingStyle}>
-        Insights
-      </h2>
+    
+      <Insights
+        category="Example Category" // Replace with the actual category value
+        percentage={42} // Replace with the actual percentage value
+        percent={15} // Replace with the actual percent value
+        averagePrice="$100" // Replace with the actual average price value
+      />
       
       <div>
         <br></br>
-        {isDataLoaded && <Column lowStocksData={{lowStocksData}} />}
+        {isDataLoaded && 
+        
+        
+        <Column lowStocksData={{lowStocksData}} />}
       </div>
 
 
