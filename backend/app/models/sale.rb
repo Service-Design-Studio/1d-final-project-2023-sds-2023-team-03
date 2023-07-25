@@ -90,4 +90,38 @@ class Sale < ApplicationRecord
             :revenue => revenue
         }
     end
+
+    def self.top_categories_date(start_date, end_date)
+        sales_out = {}
+        units_out = {}
+        sales = Sale.all
+        sales = sales.where(date: start_date..end_date)
+        sales.each do |sale|
+            category = sale.product_category
+            sales_num = sale.sales
+            price = sale.price
+            total = sales_num * price
+            
+            if sales_out[category] then
+                sales_out[category] += total
+            else
+                sales_out[category] = total
+            end
+
+            if units_out[category] then
+                units_out[category] += sales_num
+            else
+                units_out[category] = sales_num
+            end
+        end
+
+        units_out.sort_by {|k, v| v}.reverse.to_h
+        sales_out.sort_by {|k, v| v}.to_h
+
+        out = {
+            :units => units_out,
+            :amount => sales_out
+        }
+    end
+            
 end
