@@ -31,6 +31,12 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
       : '0 5px 15px rgba(0, 0, 0, 0.4)',
   };
 
+  const linkUrl = "http://127.0.0.1:3000/api/v1/products/all"; // Replace with your link URL
+
+  const handleLinkButtonClick = () => {
+    window.open(linkUrl, "_blank");
+  };
+
   return (
     <Card
       style={cardStyles}
@@ -53,7 +59,7 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
         <Text size="sm">Annual Revenue: {yearrev}</Text>
 
         <div style={{ marginTop: 16 }}>
-          <Button style={buttonStyles} hoverStyles={buttonHoverStyles}>
+          <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>
             Link
           </Button>
         </div>

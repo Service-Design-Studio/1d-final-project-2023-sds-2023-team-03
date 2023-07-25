@@ -7,6 +7,7 @@ const websiteUrl = 'http://localhost:5173/';
 
 Given('I am on the overview page',async function () {
     await driver.get(websiteUrl);
+    driver.sleep(1000)
   });
   
 Then('I should see summarized statistics for sales, product actions, and competitor analysis',async function () {
@@ -76,3 +77,23 @@ Then('I should see summarized statistics for sales, product actions, and competi
     const isEnabled = await refreshButton.isEnabled();
     assert.strictEqual(isEnabled, false, 'Refresh button is not disabled');
   });
+
+  When('I click the top product links buttons', async function () {
+    //driver.sleep(5000)
+    //const topProduct1Button = await driver.wait(until.elementLocated(By.css('.topProduct1 .LinkButton')), 20000);
+    //const topProduct2Button = await driver.wait(until.elementLocated(By.css('.topProduct2 .LinkButton')), 20000);
+    //const topProduct3Button = await driver.wait(until.elementLocated(By.css('.topProduct3 .LinkButton')), 20000);
+    // Click on each of the buttons
+    //await topProduct1Button.click();
+    //await topProduct2Button.click();
+    //await topProduct3Button.click();
+    const linkButton = await driver.wait(until.elementLocated(By.className('LinkButton')), 5000)
+    await linkButton.click()
+    });
+  
+
+  Then('I should see the product link on new tabs', async function () {
+    // Get all the open tabs/windows
+    const windows = await driver.getAllWindowHandles();
+    assert.strictEqual(windows.length>1,true);
+    });
