@@ -1,5 +1,5 @@
 import { DataTable } from 'mantine-datatable';
-import { createStyles, MultiSelect } from '@mantine/core';
+import { createStyles, MultiSelect, Badge, Flex } from '@mantine/core';
 import { useState, useEffect, useMemo } from 'react'
 import dayjs from 'dayjs'
 
@@ -27,7 +27,6 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
 
     useEffect(() => {
         if (data && !apiLoad) {
-            setFetching(false);
             setSavedData(data);
         }
     }, [data, apiLoad]);
@@ -51,6 +50,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
             return true;
         });
         setPageData(dataToLoad);
+        setFetching(false);
     }, [selectedCategories, sortStatus, page, data]);
 
     return (
@@ -64,8 +64,20 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
               columns={[
                 { 
                     accessor: 'product_name', 
-                    textAlignment: 'center',
+                    textAlignment: 'left',
                     cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    render: (record) => (
+                        <Flex
+                          gap="md"
+                          justify="flex-start"
+                          align ="flex-start"
+                          direction="row"
+                          wrap="wrap"
+                        >
+                            {record.product_name}
+                            {record.stock < 50 ? (<Badge color="red">Restock</Badge>) : null}
+                        </Flex>
+                    )
                 },
                 { 
                     accessor: 'stock',

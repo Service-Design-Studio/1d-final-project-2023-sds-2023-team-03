@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useDisclosure } from '@mantine/hooks'
+import { Modal } from '@mantine/core'
 import './Merchandising.css';
 import MerchandisingTable from '../components/MerchandisingTable.jsx';
 import axios from 'axios';
@@ -6,6 +8,7 @@ import axios from 'axios';
 function Logistics() {
   const [data, setData] = useState([]);
   const [apiLoad, setApiLoad] = useState(true);
+  const [errorOpen, errorModalHandler] = useDisclosure(false);
   const threshold = 50;
   const pageSize = 50;
 
@@ -20,6 +23,7 @@ function Logistics() {
     })
     .catch((err) => {
       console.log(err);
+      errorModalHandler.open()
       setApiLoad(false);
     })
   }
@@ -29,10 +33,18 @@ function Logistics() {
   }, [])
   
   return (
-    <div>
+    <>
       <h1 id="sales-title">Merchandising</h1> 
       <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/>
-    </div>
+      <Modal
+        centered
+        opened={errorOpen}
+        onClose={errorModalHandler.close}
+        title="Error"
+      > 
+        There was a problem with loading the data. Please retry from the Merchandising page.
+      </Modal>
+    </>
   );
 }
 

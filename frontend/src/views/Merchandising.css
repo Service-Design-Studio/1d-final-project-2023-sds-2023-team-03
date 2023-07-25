@@ -1,4 +1,5 @@
 .table {
     width: calc(100vw - 50px);
     flex-grow: 1;
+    align-self: center;
 }
