@@ -321,8 +321,10 @@ def send_request_url(final_l,prod_listing,error_urls)
     competitor_name = soupz.at_css('div.VlDReK')
 
     product_name = soup.at_css('div._44qnta')
+    
+    product_initial_price = soup.at_css('div.Y3DvsN')
 
-    product_price = soup.at_css('div.pqTWkA')
+    product_final_price = soup.at_css('div.pqTWkA')
 
     img_perlisting = soupy.at_css("div.cxDtMn")
     product_img = img_perlisting.css("div > @style")
@@ -339,7 +341,8 @@ def send_request_url(final_l,prod_listing,error_urls)
 
 
     product_name_data = product_name.text
-    product_price_data = product_price.text
+    product_final_price_data = product_final_price.text
+    product_initial_price_data = product_initial_price.nil? || product_initial_price.text.empty? ? 'NA' : product_initial_price.text
     product_img_data = product_img.to_s
     product_img_data_f = product_img_data.match(/url\(["']([^"']+)["']\)/)[1]
 
@@ -359,18 +362,34 @@ def send_request_url(final_l,prod_listing,error_urls)
 
   puts "Product Name: #{product_name_data}"
 
-  puts "Price: #{product_price_data}"
+  puts "Initial Price: #{product_initial_price_data}"
+
+  puts "Final Price: #{product_final_price_data}"
   
   puts "Qty sold/month: #{prod_listing[2]} sold/month"
+
+  puts "Product URL: #{prod_listing[0]} sold/month"
 
   puts "Image Url: #{product_img_data_f}"
   
   final_entry = []
   final_entry << Brand_dict.fetch(competitor_name_data)
   final_entry << product_name_data
-  final_entry << product_price_data
-  final_entry << prod_listing[2].to_i
+  final_entry << product_initial_price_data
+  final_entry << product_final_price_data
+  final_entry << prod_listing[2].to_i ### sold data
+  final_entry << prod_listing[0] ## product url
   final_entry << product_img_data_f
+
+  # final_entry is in the following order:
+  # 1. Brand name
+  # 2. Product name
+  # 3. Retail Price
+  # 4. Current Price
+  # 5. Qty sold/mth
+  # 6. Product URL
+  # 7. Product image URL
+
 
   final_l << final_entry
   puts "final_entry: #{final_entry}"

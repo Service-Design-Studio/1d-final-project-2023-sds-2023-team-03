@@ -53,6 +53,8 @@ gem 'uri'
 gem 'json'
 
 gem 'cgi'
+
+gem 'csv'
 ###scraper-end
 
 gem "fast_jsonapi"
