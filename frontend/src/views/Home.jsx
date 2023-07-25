@@ -185,14 +185,14 @@ useEffect(() => {
     
       }} />}
       
-    
+      {isDataLoaded &&
       <Insights
         category="Example Category" // Replace with the actual category value
         percentage={42} // Replace with the actual percentage value
         percent={15} // Replace with the actual percent value
         averagePrice="$100" // Replace with the actual average price value
       />
-      
+      }
       <div>
         <br></br>
         {isDataLoaded && 
