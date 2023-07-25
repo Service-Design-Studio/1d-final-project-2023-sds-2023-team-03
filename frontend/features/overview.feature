@@ -15,3 +15,8 @@ Scenario: Pressing the refresh button while results are loading
 Given I am on the overview page
 When I press the refresh button
 Then the refresh button will be disabled
+
+Scenario: Viewing product link of top product
+Given I am on the overview page
+When I click the top product links buttons
+Then I should see the product link on new tabs

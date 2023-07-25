@@ -22,6 +22,7 @@ const headingStyle = {
 function Home() {
 
 const [isRefreshing, setIsRefreshing] = useState(false);
+const API_BASE_URL = 'http://127.0.0.1:3000/api/v1';
 
 
 
@@ -78,15 +79,44 @@ useEffect(() => {
     setIsRefreshing(false);
   }
 
+  async function getFilteredProductPrices(productNames) {
+    try {
+      // Fetch all products from the API
+      const allProductsResponse = await axios.get(`${API_BASE_URL}/products/all`, { timeout: 2000 });
+    
+      if (Array.isArray(allProductsResponse.data)) {
+        // Filter the products based on the product names in the input array
+        const filteredProducts = allProductsResponse.data.filter((product) =>
+          productNames.includes(product.product_name)
+        );
+        console.log(' Products:', productNames);
 
+        console.log('Filtered Products:', filteredProducts);
+  
+        // Extract and return the price data for the filtered products
+        const prices = filteredProducts.map((product) => product.price);
+        console.log('Filtered Products Price:', prices);
+
+        return prices;
+      } else {
+        // Handle the case where the API response is not an array
+        console.error('API response is not an array:', allProductsResponse.data);
+        return [];
+      }
+    } catch (error) {
+      console.error('Error occurred during API request:', error);
+      return [];
+    }
+  }
 
   async function queryTopProduct(category, start, end) {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:3000/api/v1/sales?category=${category}&start=${start}&end=${end}`,
+        `${API_BASE_URL}/sales?category=${category}&start=${start}&end=${end}`,
         { timeout: 2000 }
       );
       if (response.data) {
+        console.log(response.data)
         return response.data
       } else {
         return {
@@ -101,7 +131,7 @@ useEffect(() => {
   async function queryLowStocks(category, start, end) {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:3000/api/v1/products?low=true`,
+        `${API_BASE_URL}/products?low=true`,
         { timeout: 2000 }
       );
       if (response.data) {
@@ -145,16 +175,24 @@ useEffect(() => {
 </div>
       <h2 style={headingStyle}>Top Products</h2>
       {isDataLoaded && <Grouping 
-      topProductData={topProductData} />}
-      
+      topProductData=
+      {{
+        category: topProductData.types.revenue.x_axis,
+        title:  topProductData.frequencies.x_axis,
+        sales: topProductData.frequencies.y_axis,
+        yearrev: topProductData.revenues.y_axis,
+        price: getFilteredProductPrices(topProductData.frequencies.x_axis)
     
+      }} />}
+      
+      {isDataLoaded &&
       <Insights
         category="Example Category" // Replace with the actual category value
         percentage={42} // Replace with the actual percentage value
         percent={15} // Replace with the actual percent value
         averagePrice="$100" // Replace with the actual average price value
       />
-      
+      }
       <div>
         <br></br>
         {isDataLoaded && 
