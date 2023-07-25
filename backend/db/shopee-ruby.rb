@@ -3,7 +3,12 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'cgi'
+require 'csv'
 
+
+############### CHANGE SEARCH TERM FOR DIFFERENT CATEGORIES ###############
+search_term = 'U_A(M)'
+###########################################################################
 
 
 USER_AGENTS = [
@@ -12,18 +17,14 @@ USER_AGENTS = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36 Edg/80.0.361.69',
   # Add more user agents here
 ]
-page_count = 7
+page_count = 0
 all_products_urls = []
 
 
 # Classic (GET)
-def send_request(all_p_urls,page_count)
+def send_request(all_p_urls,page_count,search_term)
 
   # Input search term
-
-  ############### CHANGE SEARCH TERM FOR DIFFERENT CATEGORIES ###############
-  search_term = 'Running'
-  ###########################################################################
 
   url_dict = {
     'Running'=> "https://shopee.sg/mall/search?facet=11012070%2C11012195&keyword=running%20shoes&noCorrection=true&page=#{page_count}&sortBy=sales",
@@ -199,13 +200,13 @@ def send_request(all_p_urls,page_count)
   page_count += 1
 
 
-  send_request(all_p_urls,page_count)
+  send_request(all_p_urls,page_count,search_term)
 
 rescue StandardError => e
   puts "HTTP Request failed (#{e.message})"
 end
 
-send_request(all_products_urls,page_count)
+send_request(all_products_urls,page_count,search_term)
 
 puts "len of all listings_data: #{all_products_urls.length}"
 # puts "All urls n loc: #{all_products_urls}"
@@ -406,14 +407,29 @@ retry_list.each do |entry|
   send_request_url(final_list,entry,error_urls)
 end
 
-puts "final error_urls: #{error_urls}"
+# puts "final error_urls: #{error_urls}"
 
-count = 0
+# count = 0
 
-final_list.each do |product_data|
-  count = count + 1
-  puts "---------------------"
-  puts "Product #{count}:"
-  puts "---------------------"
-  puts product_data
+# final_list.each do |product_data|
+#   count = count + 1
+#   puts "---------------------"
+#   puts "Product #{count}:"
+#   puts "---------------------"
+#   puts product_data
+# end
+
+current_time = Time.now
+date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
+time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
+
+csv_filename = "#{search_term}_product_list_#{date_str}_#{time_str}.csv"
+
+CSV.open(csv_filename, 'w') do |csv|
+  final_list.each do |row|
+    row << date_str
+    csv << row
+  end
 end
+
+puts "CSV file '#{csv_filename}' created successfully."
