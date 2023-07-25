@@ -50,7 +50,6 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
             return true;
         });
         setPageData(dataToLoad);
-        setFetching(false);
     }, [selectedCategories, sortStatus, page, data]);
 
     return (
@@ -74,8 +73,8 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                           direction="row"
                           wrap="wrap"
                         >
-                            {record.product_name}
                             {record.stock < 50 ? (<Badge color="red">Restock</Badge>) : null}
+                            {record.product_name}
                         </Flex>
                     )
                 },
@@ -119,7 +118,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
               recordsPerPage={pageSize}
               page={page}
               onPageChange={(p) => setPage(p)}
-              fetching={fetching}
+              fetching={apiLoad}
               sortStatus={sortStatus}
               onSortStatusChange={setSortStatus}
             />
