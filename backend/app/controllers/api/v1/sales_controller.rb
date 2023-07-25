@@ -60,6 +60,19 @@ module Api
         flash[:notice] = "Product '#{sale.product_name}' deleted from Sales record."
       end
 
+      def all
+        sales = Sale.all
+        render :json => sales
+      end
+
+      def top_categories
+        start_date = params[:start]
+        end_date = params[:end]
+        out = Sale.top_categories_date(start_date, end_date)
+
+        render :json => out
+      end
+
       private
       def sale_params
         params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales)
