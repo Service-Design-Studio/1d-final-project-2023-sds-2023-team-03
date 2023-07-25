@@ -15,7 +15,8 @@ require 'faker'
     product_type: ['Shoes', 'Tshirts', 'Shorts', 'Accessories'].sample,
     product_name: Faker::Commerce.product_name,
     price: Faker::Commerce.price(range: 10.0..200.0),
-    stock: rand(0..500)
+    stock: rand(0..500),
+    units_sold: rand(0..155)
   )
 end
 
