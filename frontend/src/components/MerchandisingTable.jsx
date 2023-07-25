@@ -16,6 +16,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     const { classes, cx } = useStyles();
     const [fetching, setFetching] = useState(true)
     const [savedData, setSavedData] = useState([]);
+    const [pageLength, setPageLength] = useState(0);
     const [page, setPage] = useState(1);
     const [pageData, setPageData] = useState(data.slice(0, pageSize));
     const categories = useMemo(() => {
@@ -39,7 +40,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     useEffect(() => {
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
-        const dataToLoad = savedData.sort((a, b) => {
+        const filteredData = savedData.sort((a, b) => {
             if (sortStatus.columnAccessor === 'stock') {
                 var keyA = a.stock;
                 var keyB = b.stock;    
@@ -52,13 +53,15 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
             if (keyA > keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
             return 0;
         })
-        .slice(first, last)
         .filter(( item ) => {
             if (selectedCategories.length && !selectedCategories.some((c) => c === item.product_category)) {
                 return false;
             }
             return true;
         });
+        setPageLength(filteredData.length)
+
+        const dataToLoad = filteredData.slice(first, last);
         setPageData(dataToLoad);
     }, [selectedCategories, sortStatus, page, data]);
 
@@ -130,7 +133,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                     render: ( { updated_at } ) => dayjs(updated_at).format('DD/MM/YYYY')
                 }
               ]}
-              totalRecords={data.length}
+              totalRecords={pageLength}
               records={pageData}
               recordsPerPage={pageSize}
               page={page}
