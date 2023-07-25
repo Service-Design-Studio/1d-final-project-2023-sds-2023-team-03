@@ -26,8 +26,11 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'desc'});
 
     useEffect(() => {
-        if (data && !apiLoad) {
+        if (data && apiLoad==false) {
+            setFetching(false);
             setSavedData(data);
+        } else if (apiLoad) {
+            setFetching(true)
         }
     }, [data, apiLoad]);
 
@@ -118,7 +121,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
               recordsPerPage={pageSize}
               page={page}
               onPageChange={(p) => setPage(p)}
-              fetching={apiLoad}
+              fetching={fetching}
               sortStatus={sortStatus}
               onSortStatusChange={setSortStatus}
             />
