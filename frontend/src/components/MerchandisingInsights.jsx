@@ -123,7 +123,7 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
       >
         <p style={firstParagraphStyle}>Products that are doing well</p>
         <br />
-        <span className='merchInsights_above_100_sold'>{above_100_sold} products are doing well with more than 100 units sold within the last month.</span>
+        <span className='merchInsights_above_100_sold'>{above_100_sold} products are doing well with 100 or more units sold within the last month.</span>
       </div>
 
       <div

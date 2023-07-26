@@ -85,6 +85,22 @@ function Logistics() {
       errorModalHandler.open()
       setApiLoad(false);
     })
+
+    setApiLoad(true)
+    axios.get("http://127.0.0.1:3000/api/v1/sales/all?start=2021-11-11&end=2021-12-12", {timeout: 10000})
+    .then((res) => {
+      if (res && res.data.length !== null) {
+        const filtered100orMore = res.data.filter(prod => prod.sales >= 100);
+        console.log("100 or more: ", res.data.length);
+        setAbove100Sold(res.data.length);
+      }
+      setApiLoad(false);
+    })
+    .catch((err) => {
+      console.log(err);
+      errorModalHandler.open()
+      setApiLoad(false);
+    })
   }
   
   return (
@@ -104,7 +120,7 @@ function Logistics() {
         <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
       </Flex>
       {segmentValue === 'pa' ? <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : 
-      <MerchandisingInsights product_name={productName} most_stocks_left={mostStocks} needs_restocking={needsRestock} above_100_sold={50} restock_above_100_sold={5} /> }
+      <MerchandisingInsights product_name={productName} most_stocks_left={mostStocks} needs_restocking={needsRestock} above_100_sold={above100Sold} restock_above_100_sold={5} /> }
       <Modal
         centered
         opened={errorOpen}
