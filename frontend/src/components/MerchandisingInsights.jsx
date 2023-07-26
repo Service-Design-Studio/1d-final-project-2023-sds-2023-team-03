@@ -1,5 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Flex } from '@mantine/core';
+import axios from 'axios';
+
+function sendInsightsForSentimentAnalysis(insightsText) {
+    const backendUri = '';
+    const insightsToSend = {
+        insight: insight,
+    };
+
+    axios.post(backendUri, insightsToSend)
+    .then((res) => {
+        console.log("Sentiment Analysis result: ", res.data);
+    })
+    .catch((error) => {
+        // Handle errors, if any
+        console.error('Error occurred during sentiment analysis:', error);
+      });
+  }
 
 const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restocking, above_100_sold, restock_above_100_sold }) => {
   const [isInsight1Hovered, setIsInsight1Hovered] = useState(false);
@@ -64,6 +81,18 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
   const handleInsight4MouseLeave = () => {
     setIsInsight4Hovered(false);
   };
+
+useEffect(() => {
+    const insight1Text = `${product_name} has the most stocks remaining with: ${most_stocks_left} stocks remaining.`;
+    const insight2Text = `${needs_restocking} products needs restocking.`;
+    const insight3Text = `${above_100_sold} products are doing well with 100 or more units sold within the last month.`;
+    const insight4Text = `${restock_above_100_sold} products who are doing well needs restocking.`;
+
+    sendInsightsForSentimentAnalysis(insight1Text);
+    sendInsightsForSentimentAnalysis(insight2Text);
+    sendInsightsForSentimentAnalysis(insight3Text);
+    sendInsightsForSentimentAnalysis(insight4Text);
+  }, [product_name, most_stocks_left, needs_restocking, above_100_sold, restock_above_100_sold]);
 
   return (
     <div className="merchInsights" style={containerStyle}>
