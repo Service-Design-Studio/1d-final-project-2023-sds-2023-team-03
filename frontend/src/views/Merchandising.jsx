@@ -14,6 +14,11 @@ function Logistics() {
   const threshold = 50;
   const pageSize = 50;
 
+  const [mostStocksData, setMostStocksData] = useState(0);
+  const [needsRestock, setNeedsRestock] = useState(0);
+  const [above100Sold, setAbove100Sold] = useState(0);
+  const [restockAbove100Sold, setRestockAbove100Sold] = useState(0);
+
   function getMerchData() {
     setApiLoad(true)
     axios.get("http://127.0.0.1:3000/api/v1/products/all", {timeout: 10000})
@@ -34,7 +39,26 @@ function Logistics() {
     if (segmentValue === 'pa') {
       getMerchData()
     }
+    else {
+      getInsightsData()
+    }
   }, [segmentValue])
+
+  function getInsightsData() {
+    setApiLoad(true)
+    axios.get("http://127.0.0.1:3000/api/v1/sales?low=true", {timeout: 10000})
+    .then((res) => {
+      if (res && res.data.length !== null) {
+        setNeedsRestock(res.data.length);
+      }
+      setApiLoad(false);
+    })
+    .catch((err) => {
+      console.log(err);
+      errorModalHandler.open()
+      setApiLoad(false);
+    })
+  }
   
   return (
     <>
@@ -53,7 +77,7 @@ function Logistics() {
         <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
       </Flex>
       {segmentValue === 'pa' ? <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : 
-      <MerchandisingInsights product_name="Running Shoes" most_stocks_left={770} needs_restocking={0} above_100_sold={50} restock_above_100_sold={5} /> }
+      <MerchandisingInsights product_name="Running Shoes" most_stocks_left={770} needs_restocking={needsRestock} above_100_sold={50} restock_above_100_sold={5} /> }
       <Modal
         centered
         opened={errorOpen}

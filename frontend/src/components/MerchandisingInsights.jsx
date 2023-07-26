@@ -100,7 +100,7 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
 
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: needs_restocking >= '20' ? 'crimson' : (needs_restocking <= 5 ? 'lime' : 'aqua'), boxShadow: isInsight2Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: needs_restocking >= '20' ? 'crimson' : (needs_restocking <= 5 ? 'lime' : 'aquamarine'), boxShadow: isInsight2Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight2MouseEnter}
         onMouseLeave={handleInsight2MouseLeave}
       >
