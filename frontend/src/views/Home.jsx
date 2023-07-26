@@ -22,7 +22,7 @@ const headingStyle = {
 function Home() {
 
 const [isRefreshing, setIsRefreshing] = useState(false);
-const API_BASE_URL = 'http://127.0.0.1:3000/api/v1';
+const API_BASE_URL = 'https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1';
 const [isLoading, setIsLoading] = useState(true); // Add isLoading state variable and set it to true initially
 
 
