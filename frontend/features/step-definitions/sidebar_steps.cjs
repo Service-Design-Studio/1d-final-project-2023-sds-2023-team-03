@@ -78,7 +78,7 @@ When('I hover anywhere outside the sidebar \\(on the right side of the screen) f
   const windowWidth = windowSize[0];
   const windowHeight = windowSize[1];
   // Move the mouse to the center of the screen
-  await driver.actions().move({ x: windowWidth / 2, y: windowHeight / 2 }).perform();
+  await driver.actions().move({ x: Math.floor(windowWidth / 2), y: Math.floor(windowHeight / 2) }).perform();
 });
 
 Then('the sidebar should minimize and retract to the left side', async function () {
