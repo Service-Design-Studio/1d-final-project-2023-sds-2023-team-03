@@ -3,6 +3,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { Modal, SegmentedControl, Flex, Button } from '@mantine/core'
 import './Merchandising.css';
 import MerchandisingTable from '../components/MerchandisingTable.jsx';
+import MerchandisingInsights from '../components/MerchandisingInsights';
 import axios from 'axios';
 
 function Logistics() {
@@ -51,7 +52,8 @@ function Logistics() {
         />
         <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
       </Flex>
-      {segmentValue === 'pa' ? <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : null}
+      {segmentValue === 'pa' ? <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : 
+      <MerchandisingInsights product_name="Running Shoes" most_stocks_left={770} needs_restocking={0} above_100_sold={50} restock_above_100_sold={5} /> }
       <Modal
         centered
         opened={errorOpen}
