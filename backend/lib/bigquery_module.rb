@@ -19,11 +19,15 @@ module BigQueryModule
 
   def self.product_details_schema
     [
+      { name: "category", type: "STRING" },
       { name: "brand", type: "STRING" },
       { name: "product_name", type: "STRING" },
-      { name: "product_price", type: "STRING" },
+      { name: "initial_price", type: "STRING" },
+      { name: "discounted_price", type: "STRING" },
       { name: "quantity_sold", type: "INTEGER" },
+      { name: "product_url", type: "STRING" },
       { name: "image_url", type: "STRING" }
+      { name: "date_api_called", type: "DATE" }
     ]
   end
 
