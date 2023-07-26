@@ -66,7 +66,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     }, [selectedCategories, sortStatus, page, data]);
 
     return (
-        <div className='table'>
+        <div className='merch-table'>
             <DataTable    // low products
               height={'79vh'}
               withBorder
