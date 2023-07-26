@@ -22,7 +22,7 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
   
   
   When('I navigate to the top performing products section', async function () {
-    const carouselElement = await driver.wait(until.elementLocated(By.xpath('//div[@class="mantine-Carousel-root mantine-gpctky"]')), 10000); // Wait for 10 seconds
+    const carouselElement = await driver.wait(until.elementLocated(By.xpath('//div[@class="mantine-Carousel-root mantine-gpctky"]')), 4500); // Wait for 10 seconds
 });
   
   Then('I should see the keywords', async function () {
@@ -30,51 +30,50 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
   });
   
   Then('I should see top five performing products based on number sold', async function () {
-    const carouselElement = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 10000); // Wait for 10 seconds
+    const carouselElement = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 4500); // Wait for 10 seconds
     assert.strictEqual(carouselElement.length, 5);
 });
   
   When('I navigate to the competitors section', async function () {
-    const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 10000); // Wait for 10 seconds
+    const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 4500); // Wait for 10 seconds
   });
   
   Then('I should see the competitors table', async function () {
-    const compTable = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table mantine-v3audr"]')), 10000); // Wait for 10 seconds
+    const compTable = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table mantine-v3audr"]')), 4500); // Wait for 10 seconds
     assert.strictEqual(compTable.length>0,true);
 });
   
   Given('the top five performing products section have successfuly loaded data', async function () {
-    const carousel = await driver.wait(until.elementLocated(By.xpath('//div[@class="mantine-Carousel-root mantine-gpctky"]')), 10000); // Wait for 10 seconds
-    const carouselElement = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 10000); // Wait for 10 seconds
+    const carousel = await driver.wait(until.elementLocated(By.xpath('//div[@class="mantine-Carousel-root mantine-gpctky"]')), 4500); // Wait for 10 seconds
+    const carouselElement = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 4500); // Wait for 10 seconds
     assert.strictEqual(carouselElement.length, 5);
   });
   
   When('I click on a particular card', async function () {
-    const firstWindow = await driver.getWindowHandle(); // Get the handle of the first window
-    await driver.switchTo().window(firstWindow);
-    const carouselElements = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 10000); // Wait for 10 seconds
-    for (let i = 0; i < 3; i++) {
-        await driver.actions().click(carouselElements[i]).perform();
-      }
-    });
+    const windows = await driver.getAllWindowHandles(); // Get the handle of the first window
+    await driver.switchTo().window(windows[0]);
+    const carouselElement = await driver.findElement(By.xpath('//div[contains(@class, "mantine-Carousel-slide")]')); // Wait for 10 seconds
+    await driver.actions().click(carouselElement).perform();
+  });
  
   
-    Then('I should be directed to the merchant site of the product in the card', async function () {
-        const windows = await driver.getAllWindowHandles();
-        assert.strictEqual(windows.length > 3, true);
-        // Switch back to the original window
-        await driver.switchTo().window(windows[0]);
-      });
+  Then('I should be directed to the merchant site of the product in the card', async function () {
+      var windows = await driver.getAllWindowHandles();
+      
+      assert.strictEqual(windows.length > 1, true);
+      // Switch back to the original window
+      await driver.switchTo().window(windows[0]);
+  });
 
   
   Given('the competitors table has successfully loaded data', async function () {
-    const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 10000); // Wait for 10 seconds
-    const compTable =  await driver.findElement(By.xpath('//div[@class="table mantine-v3audr"]'));
+    const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 4500); // Wait for 10 seconds
+    const compTable = await driver.findElement(By.xpath('//div[@class="table mantine-v3audr"]'));
 });
   
   When('I click on a particular row on the competitors table', async function () {
     const compTable =  await driver.findElement(By.xpath('//table[@class="mantine-Table-root mantine-namr8g"]'));
-    const rows = await driver.wait(until.elementsLocated(By.xpath('//tr[@class="mantine-1mj2j8y"]')), 10000); // Wait for 10 seconds
+    const rows = await driver.wait(until.elementsLocated(By.xpath('//tr[@class="mantine-1mj2j8y"]')), 4500); // Wait for 10 seconds
     const rowsToClick = rows.slice(0, 5);
   for (const row of rowsToClick) {
     await row.click();
