@@ -277,15 +277,6 @@ useEffect(() => {
       />
     }
       
-      <div>
-        <br></br>
-        {isDataLoaded && !isLoading &&
-        
-        
-        <Column lowStocksData={{lowStocksData}} />}
-      </div>
-
-
     </div>
     
   );
