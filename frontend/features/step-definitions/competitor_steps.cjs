@@ -14,7 +14,7 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
   assert.strictEqual(currentUrl, targetUrl);
   });
   
-  Then('I should see the {string} header', async function (competitor) {
+  Then('I should see the {string} competitor header', async function (competitor) {
     const compHeader = await driver.findElement(By.xpath(`//h1[contains(text(), "${competitor}")]`));
     const compHeaderContent = await compHeader.getText();
     assert.ok(compHeaderContent.includes(competitor), `Header does not contain "${competitor}"`);
@@ -51,9 +51,10 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
   
   When('I click on a particular card', async function () {
     const firstWindow = await driver.getWindowHandle(); // Get the handle of the first window
+    await driver.switchTo().window(firstWindow);
     const carouselElements = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 10000); // Wait for 10 seconds
     for (let i = 0; i < 3; i++) {
-        await carouselElements[i].click();
+        await driver.actions().click(carouselElements[i]).perform();
       }
     });
  
@@ -71,7 +72,7 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
     const compTable =  await driver.findElement(By.xpath('//div[@class="table mantine-v3audr"]'));
 });
   
-  When('I click on a particular row', async function () {
+  When('I click on a particular row on the competitors table', async function () {
     const compTable =  await driver.findElement(By.xpath('//table[@class="mantine-Table-root mantine-namr8g"]'));
     const rows = await driver.wait(until.elementsLocated(By.xpath('//tr[@class="mantine-1mj2j8y"]')), 10000); // Wait for 10 seconds
     const rowsToClick = rows.slice(0, 5);
@@ -96,7 +97,7 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
     // Use 'this.driver' to interact with the WebDriver
   });
   
-  Then('the table should be sorted in descending order by {string}', async function (column) {
+  Then('the competitors table should be sorted in descending order by {string}', async function (column) {
     // Code to check if the competitors table is sorted by the specified column in descending order using Selenium
     // Use 'this.driver' to interact with the WebDriver
   });
