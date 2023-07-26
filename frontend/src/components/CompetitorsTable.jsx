@@ -38,7 +38,8 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
 
     const handleRowClick = (row) => {
         // TODO: Replace with link
-        window.location.href='/';
+        const url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${row.competitorName}`
+        window.open(url, '_blank');
     }
 
     const columns = [
