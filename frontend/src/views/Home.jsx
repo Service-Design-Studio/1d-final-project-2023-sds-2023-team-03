@@ -90,6 +90,7 @@ useEffect(() => {
     } catch (error) {
       // Handle the error if data retrieval fails within 20 seconds
       console.error('Error occurred during API request:', error);
+      setIsDataLoaded(false);
     }
   
     setIsRefreshing(false);
@@ -134,7 +135,9 @@ useEffect(() => {
         return response.data
       } else {
         return {
-          frequencies: {}
+          frequencies: {
+            types: {}
+          }
       }
     }
     } catch (error) {
@@ -153,7 +156,9 @@ useEffect(() => {
         return response.data
       } else {
         return {
-          frequencies: {}
+          frequencies: {
+            types: {}
+          }
       }
     }
     } catch (error) {
@@ -170,7 +175,9 @@ useEffect(() => {
       if (response.data) {
         return response.data
       } else {
-        return {}
+        return {
+          types: {}
+        }
       }
     } catch (error) {
       console.error('Error occurred during API request:', error);
