@@ -39,4 +39,5 @@ Feature: Fetching competitor data from database after scraping Merchant APIs
 		Examples:
 		| column |
 		| Sales |
+		| Price |
 
