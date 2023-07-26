@@ -1,7 +1,7 @@
 FROM node:18-alpine3.17 as build
 WORKDIR /frontend
 COPY . /frontend
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build
 
 FROM nginx:latest
