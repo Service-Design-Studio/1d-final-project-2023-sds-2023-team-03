@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :products, only: [:index, :show]
       resources :sales, only: [:index, :show, :create, :update, :destroy] do
         collection do
           get 'sales_data'
@@ -22,15 +21,17 @@ Rails.application.routes.draw do
         end
       end
 
-      # Routes for ScraperController
-      get 'fetch_all_products', to: 'scraper#fetch_all_products'
-      get 'fetch_products_by_category', to: 'scraper#fetch_products_by_category'
-      get 'fetch_products_by_brand', to: 'scraper#fetch_products_by_brand'
-      get 'fetch_products_by_date', to: 'scraper#fetch_products_by_date'
-      get 'sort_by_quantity_sold', to: 'scraper#sort_by_quantity_sold'
-
-      # New route for detect_anomalies action
-      post 'detect_anomalies', to: 'scraper#detect_anomalies'
+      # Resources for ScraperController
+      resources :scraper, only: [] do
+        collection do
+          get 'fetch_all_products'
+          get 'fetch_products_by_category'
+          get 'fetch_products_by_brand'
+          get 'fetch_products_by_date'
+          get 'sort_by_quantity_sold'
+          post 'detect_anomalies'
+        end
+      end
     end
   end
 
