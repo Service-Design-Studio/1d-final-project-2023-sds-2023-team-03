@@ -24,12 +24,12 @@ Feature: Fetching competitor data from database after scraping Merchant APIs
 	Scenario: Viewing details of a top performing product
 		Given the top five performing products section have successfuly loaded data
 		When I click on a particular card
-		Then I should be directed to the merchant site selling the product
+		Then I should be directed to the merchant site of the product in the card
 
 	Scenario: Viewing details of a product
 		Given the competitors table has successfully loaded data
 		When I click on a particular row
-		Then I should be directed to the merchant site selling the product
+		Then I should be directed to the merchant site of the product in the row
 
 	Scenario: Sorting the rows
 		Given the competitors table has successfully loaded data
