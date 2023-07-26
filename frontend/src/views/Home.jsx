@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Home.css';
 import Grouping from '../components/Grouping';
 import Column from '../components/Column';
-import { Button } from '@mantine/core';
+import { Button,Loader } from '@mantine/core';
 import axios from 'axios';
 import { useEffect } from 'react';
 import {IoIosRefresh} from 'react-icons/io'
@@ -23,6 +23,7 @@ function Home() {
 
 const [isRefreshing, setIsRefreshing] = useState(false);
 const API_BASE_URL = 'http://127.0.0.1:3000/api/v1';
+const [isLoading, setIsLoading] = useState(true); // Add isLoading state variable and set it to true initially
 
 
 
@@ -44,6 +45,7 @@ useEffect(() => {
       return;
     }
     setIsRefreshing(true);
+    setIsLoading(true); // Set isLoading to true before starting the data retrieval process
     const currentDate = new Date().toISOString().slice(0, 10);
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -71,6 +73,8 @@ useEffect(() => {
       setTopProductData(topProductData[0]);
       setLowStocksData(topProductData[1]);
       setIsDataLoaded(true);
+      setIsLoading(false); // Set isLoading to false to indicate that data loading is complete
+
     } catch (error) {
       // Handle the error if data retrieval fails within 20 seconds
       console.error('Error occurred during API request:', error);
@@ -167,6 +171,7 @@ useEffect(() => {
       </div>
     </Button>
     
+  
     <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
     <p style={{ margin: 0 ,fontSize :'0.9em'}}>Last Refreshed:</p>
     <p className = 'refreshTime' style={{ margin: 0 ,fontSize :'0.9em'}}>{lastPressedDateTime}</p>
@@ -174,7 +179,13 @@ useEffect(() => {
     </div>
 </div>
       <h2 style={headingStyle}>Top Products</h2>
-      {isDataLoaded && <Grouping 
+      {isLoading && (
+        <div className="loader-overlay">
+          <Loader size="xl" />
+        </div>
+      )}
+      
+      {isDataLoaded && !isLoading && <Grouping 
       topProductData=
       {{
         category: topProductData.types.revenue.x_axis,
@@ -185,17 +196,18 @@ useEffect(() => {
     
       }} />}
       
-      {isDataLoaded &&
+    {isDataLoaded && !isLoading &&
       <Insights
         category="Example Category" // Replace with the actual category value
         percentage={42} // Replace with the actual percentage value
         percent={15} // Replace with the actual percent value
         averagePrice="$100" // Replace with the actual average price value
       />
-      }
+    }
+      
       <div>
         <br></br>
-        {isDataLoaded && 
+        {isDataLoaded && !isLoading &&
         
         
         <Column lowStocksData={{lowStocksData}} />}
