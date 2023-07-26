@@ -3,7 +3,7 @@ Feature: Fetching competitor data from database after scraping Merchant APIs
 
 	Scenario: Visiting the Competitors page of "<competitor>"
 		When I visit the Competitors page of "<competitor>"
-		Then I should see the "<competitor>" header
+		Then I should see the "<competitor>" competitor header
 	Examples:
     | competitor  |
     | Overall |
@@ -28,14 +28,14 @@ Feature: Fetching competitor data from database after scraping Merchant APIs
 
 	Scenario: Viewing details of a product
 		Given the competitors table has successfully loaded data
-		When I click on a particular row
+		When I click on a particular row on the competitors table
 		Then I should be directed to the merchant site of the product in the row
 
 	Scenario: Sorting the rows
 		Given the competitors table has successfully loaded data
 		And the competitors table is currently sorted by "<column>" in ascending order
 		When I press the "<column>" header on the competitors table
-		Then the table should be sorted in descending order by "<column>"
+		Then the competitors table should be sorted in descending order by "<column>"
 		Examples:
 		| column |
 		| Sales |
