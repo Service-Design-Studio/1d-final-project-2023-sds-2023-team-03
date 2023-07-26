@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDisclosure } from '@mantine/hooks'
-import { Modal } from '@mantine/core'
+import { Modal, SegmentedControl, Flex, Button } from '@mantine/core'
 import './Merchandising.css';
 import MerchandisingTable from '../components/MerchandisingTable.jsx';
 import axios from 'axios';
 
 function Logistics() {
   const [data, setData] = useState([]);
+  const [segmentValue, setSegmentValue] = useState('pa')
   const [apiLoad, setApiLoad] = useState(true);
   const [errorOpen, errorModalHandler] = useDisclosure(false);
   const threshold = 50;
@@ -14,7 +15,7 @@ function Logistics() {
 
   function getMerchData() {
     setApiLoad(true)
-    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products/all", {timeout: 10000})
+    axios.get("http://127.0.0.1:3000/api/v1/products/all", {timeout: 10000})
     .then((res) => {
       if (res && res.data.length > 0) {
         setData(res.data);
@@ -29,13 +30,28 @@ function Logistics() {
   }
 
   useEffect(() => {
-    getMerchData()
-  }, [])
+    if (segmentValue === 'pa') {
+      getMerchData()
+    }
+  }, [segmentValue])
   
   return (
     <>
       <h1 id="sales-title">Merchandising</h1> 
-      <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/>
+      <Flex gap="sm" align="center">
+        <SegmentedControl 
+          color="blue"
+          radius="lg"
+          value={segmentValue}
+          onChange={setSegmentValue}
+          data={[
+            { label: 'Product Actions', value: 'pa'},
+            { label: 'Insights', value: 'i'}
+          ]}
+        />
+        <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
+      </Flex>
+      {segmentValue === 'pa' ? <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : null}
       <Modal
         centered
         opened={errorOpen}
