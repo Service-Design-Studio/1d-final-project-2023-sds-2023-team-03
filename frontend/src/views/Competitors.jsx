@@ -2,21 +2,19 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Stack, Modal, SegmentedControl, Button, Flex } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks';
 import CarouselCard from '../components/CarouselCard';
 import CompetitorsTable from '../components/CompetitorsTable';
 import './Competitors.css'
 
 const Competitors = () => {
   const [apiLoad, setApiLoad] = useState(true);
-  const [errorOpen, errorModalHandler] = useDisclosure(false);
+  const [errorOpen, setErrorOpen] = useState(false);
   const [segmentValue, setSegmentValue] = useState('pa')
+  const [competitorProducts, setCompetitorProducts] = useState([]);
+  const [topCompetitorSales, setTopCompetitorSales] = useState([]);
   const pageSize = 50;
 
   const { competitorName } = useParams();
-
-  const [competitorProducts, setCompetitorProducts] = useState([]);
-  const [topCompetitorSales, setTopCompetitorSales] = useState([]);
 
   const getCompetitorsData = useCallback(() => {
     setApiLoad(true)
@@ -30,10 +28,10 @@ const Competitors = () => {
     })
     .catch((err) => {
       console.log(err);
-      errorModalHandler.open()
+      setErrorOpen(true);
       setApiLoad(false);
     })
-  }, [competitorName, errorModalHandler]);
+  }, [competitorName]);
 
 
   useEffect(() => {
@@ -41,7 +39,7 @@ const Competitors = () => {
       getCompetitorsData()
     }
 
-  }, [segmentValue]);
+  }, [segmentValue, competitorName, getCompetitorsData]);
 
   return(
       <>
@@ -69,7 +67,7 @@ const Competitors = () => {
           <Modal
             centered
             opened={errorOpen}
-            onClose={errorModalHandler.close}
+            onClose={() => setErrorOpen(false)}
             title="Error"
             >
               There was a problem with loading the data. Please rety from the Competitors page.
