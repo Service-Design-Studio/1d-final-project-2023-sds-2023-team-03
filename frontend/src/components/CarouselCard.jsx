@@ -43,14 +43,14 @@ const CarouselCard = ({ topProducts }) => {
                     {topProducts.map((product, index) => (
                         <Carousel.Slide key={product.id}>
                             {/* TODO: Replace with link */}
-                            <Link to={'/'}>
+                            <a href={`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${product.competitorName}`} target='_blank' rel='noreferrer'>
                                 <div style={carouselContent}>
                                     <Text order={2} color="black">Rank: {index + 1}</Text>
                                     <Text color="black">Product Name: {product.product_name}</Text>
                                     <Text color="black">Number Sold: {product.sales}</Text>
                                     <Text color="black">Price: ${product.price}</Text>
                                 </div>
-                            </Link>
+                            </a>
                     </Carousel.Slide>
                     ))}
                 </Carousel>
