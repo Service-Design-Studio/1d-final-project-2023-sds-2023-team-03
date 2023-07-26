@@ -1,9 +1,16 @@
 @competitor
 Feature: Fetching competitor data from database after scraping Merchant APIs
 
-	Scenario: Visiting the Competitors page
-		When I visit the Competitors page
-		Then I should see the Competitors header
+	Scenario: Visiting the Competitors page of "<competitor>"
+		When I visit the Competitors page of "<competitor>"
+		Then I should see the "<competitor>" header
+	Examples:
+    | competitor  |
+    | Overall |
+    | Nike  |
+    | Skechers  |
+    | Under Armour  |
+    | Adidas |
 
 	Scenario: Loading top performing products section
 		When I navigate to the top performing products section
@@ -15,7 +22,7 @@ Feature: Fetching competitor data from database after scraping Merchant APIs
 		Then I should see the competitors table
 
 	Scenario: Viewing details of a top performing product
-		Given the top give performing products section have successfuly loaded data
+		Given the top five performing products section have successfuly loaded data
 		When I click on a particular card
 		Then I should be directed to the merchant site selling the product
 

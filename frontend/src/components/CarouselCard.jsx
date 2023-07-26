@@ -22,8 +22,8 @@ const CarouselCard = ({ topProducts }) => {
                 <Text color="black" align="center" mb="15px">
                     <Title order={1}>Top 5 Performing Products</Title>
                 </Text>
-                <Text color="black" align="center" mb="15px">
-                    Breathable Shoes, Running Shoes, Lightweight, Moisture Wicking
+                <Text color="black" align="center" mb="15px" className="compKeywords">
+                Breathable Shoes, Running Shoes, Lightweight, Moisture Wicking
                 </Text>
 
                 <Carousel
