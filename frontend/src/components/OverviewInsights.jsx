@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-const OverviewInsights = ({ category, percentage, percent, averagePrice }) => {
+const OverviewInsights = ({ category, percentage, percent, averagePrice,compareCategory }) => {
   const [isCompetitionHovered, setIsCompetitionHovered] = useState(false);
   const [isProductSalesHovered, setIsProductSalesHovered] = useState(false);
+  console.log('compareCategory:', compareCategory); // Add this line to check the content of compareCategory
 
   const containerStyle = {
     display: 'flex',
@@ -72,6 +73,7 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice }) => {
         <div className='insightsText compInsights'>
           <span>Your {category} is {percentage} higher priced by {percent}. </span>
           <span>Well performing products are priced on average of {averagePrice}</span>
+         
         </div>
       </div>
       <div
@@ -82,7 +84,16 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice }) => {
       >
         <p style={firstParagraphStyle}>Product Sales</p>
         <br />
-        <span className='salesInsights'>Sales have [dropped/risen] by [percent] since [date]</span>
+        <div className="salesInsights" style={{ paddingLeft: '1em', paddingRight: '1em' }}>
+  <span style={{ display: 'block' }}>Sales have [dropped/risen] by [percent] since [date]</span>
+  <span style={{ display: 'block' }}>
+    The highest revenue category is {compareCategory.highCategory} with revenue of {parseFloat(compareCategory.highCategoryRev).toFixed(2)} and unit sales of {compareCategory.highCategoryUnit}.
+  </span>
+  <span style={{ display: 'block' }}>
+    The lowest revenue category is {compareCategory.lowCategory} with revenue of {parseFloat(compareCategory.lowCategoryRev).toFixed(2)} and unit sales of {compareCategory.lowCategoryUnit}.
+  </span>
+</div>
+
       </div>
     </div>
   );
