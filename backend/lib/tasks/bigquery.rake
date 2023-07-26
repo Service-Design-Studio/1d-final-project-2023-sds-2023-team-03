@@ -1,7 +1,17 @@
 # lib/tasks/bigquery.rake
 
-require_relative '../../BQmethods/bigquery_module.rb'
-require_relative '../../db/bq_seeding.rb' # Require the file with seeded data
+#For Windows (Command Prompt):
+# set GOOGLE_APPLICATION_CREDENTIALS="C:\path\to\your\keyfile.json"
+
+# For Windows (PowerShell):
+# $env:GOOGLE_APPLICATION_CREDENTIALS="C:\path\to\your\keyfile.json"
+
+# For macOS or Linux:
+# export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/keyfile.json"
+
+
+require_relative '../bigquery_module.rb'
+require_relative '../../db/bq_seeds.rb' # Require the file with seeded data
 
 namespace :bigquery do
   desc "Create BigQuery dataset"
