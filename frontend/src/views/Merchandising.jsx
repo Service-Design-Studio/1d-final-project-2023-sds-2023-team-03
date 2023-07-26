@@ -14,7 +14,8 @@ function Logistics() {
   const threshold = 50;
   const pageSize = 50;
 
-  const [mostStocksData, setMostStocksData] = useState(0);
+  const [productName, setProductName] = useState(null);
+  const [mostStocks, setMostStocks] = useState(0);
   const [needsRestock, setNeedsRestock] = useState(0);
   const [above100Sold, setAbove100Sold] = useState(0);
   const [restockAbove100Sold, setRestockAbove100Sold] = useState(0);
@@ -58,6 +59,32 @@ function Logistics() {
       errorModalHandler.open()
       setApiLoad(false);
     })
+
+    setApiLoad(true)
+    axios.get("http://127.0.0.1:3000/api/v1/products/all", {timeout: 10000})
+    .then((res) => {
+      if (res && res.data.length > 0) {
+        const maxStockObject = res.data.reduce((maxStockObj, prod) => {
+          if (prod.stock > maxStockObj.stock) {
+            return prod;
+          }
+          else {
+            return maxStockObj;
+          }
+        }, res.data[0]);
+
+        const largestStockValue = maxStockObject.stock;
+        const largestStockProdName = maxStockObject.product_name;
+        setMostStocks(largestStockValue);
+        setProductName(largestStockProdName);
+      }
+      setApiLoad(false);
+    })
+    .catch((err) => {
+      console.log(err);
+      errorModalHandler.open()
+      setApiLoad(false);
+    })
   }
   
   return (
@@ -77,7 +104,7 @@ function Logistics() {
         <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
       </Flex>
       {segmentValue === 'pa' ? <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : 
-      <MerchandisingInsights product_name="Running Shoes" most_stocks_left={770} needs_restocking={needsRestock} above_100_sold={50} restock_above_100_sold={5} /> }
+      <MerchandisingInsights product_name={productName} most_stocks_left={mostStocks} needs_restocking={needsRestock} above_100_sold={50} restock_above_100_sold={5} /> }
       <Modal
         centered
         opened={errorOpen}

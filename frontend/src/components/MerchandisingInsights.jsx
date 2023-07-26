@@ -87,20 +87,20 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         >
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: 'aquamarine', boxShadow: isInsight1Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: 'aquamarine', padding: '0.5em', boxShadow: isInsight1Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight1MouseEnter}
         onMouseLeave={handleInsight1MouseLeave}
       >
         <p style={firstParagraphStyle}>Most Stocks</p>
         <br />
         <div className='merchInsights_popularProducts'>
-          <span>{product_name} has the most stocks left with: {most_stocks_left} stocks left.</span>
+          <span>{product_name} has the most stocks remaining with: {most_stocks_left} stocks remaining.</span>
         </div>
       </div>
 
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: needs_restocking >= '20' ? 'crimson' : (needs_restocking <= 5 ? 'lime' : 'aquamarine'), boxShadow: isInsight2Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: needs_restocking >= '20' ? 'crimson' : (needs_restocking <= 5 ? 'lime' : 'aquamarine'), padding: '0.5em', boxShadow: isInsight2Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight2MouseEnter}
         onMouseLeave={handleInsight2MouseLeave}
       >
@@ -108,10 +108,16 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         <br />
         <span className='merchInsights_restock'>{needs_restocking} products needs restocking.</span>
       </div>
+    </Flex>
 
+    <Flex
+        direction={{ base: 'column', sm: 'row' }}
+        gap={{ base: 'sm', sm: 'md' }}
+        justify={{ sm: 'center' }}
+        >
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: above_100_sold >= '10' ? 'lime' : 'aquamarine', boxShadow: isInsight3Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: above_100_sold >= '10' ? 'lime' : 'aquamarine', padding: '0.5em', boxShadow: isInsight3Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight3MouseEnter}
         onMouseLeave={handleInsight3MouseLeave}
       >
@@ -122,7 +128,7 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
 
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: restock_above_100_sold >= '5' ? 'crimson' : 'aquamarine', boxShadow: isInsight4Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: restock_above_100_sold >= '5' ? 'crimson' : 'aquamarine', padding: '0.5em', boxShadow: isInsight4Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight4MouseEnter}
         onMouseLeave={handleInsight4MouseLeave}
       >
