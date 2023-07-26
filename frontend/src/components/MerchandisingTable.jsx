@@ -49,8 +49,8 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                 var keyB = b.units_sold;
             }
 
-            if (keyA < keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
-            if (keyA > keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            if (keyA < keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            if (keyA > keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
             return 0;
         })
         .filter(( item ) => {
