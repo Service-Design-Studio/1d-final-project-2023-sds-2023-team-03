@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "cucumber-js  --import features/step-definitions/competitor_steps.cjs  --publish"
+    "test": "cucumber-js  --import features/step-definitions/*_steps.cjs  --publish"
   },
   "dependencies": {
     "@cucumber/cucumber": "^9.2.0",
