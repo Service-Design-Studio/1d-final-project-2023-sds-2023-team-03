@@ -7,7 +7,7 @@ require 'date'
 module BigQueryModule
   def self.create_dataset
     project_id = "sds-group3"
-    dataset_id = "testing_data" # Replace with your desired dataset ID
+    dataset_id = "ecommerce_data" # Replace with your desired dataset ID
 
     bigquery = Google::Cloud::Bigquery.new(project: project_id)
     dataset = bigquery.create_dataset(dataset_id)
@@ -35,8 +35,8 @@ module BigQueryModule
 
   def self.create_table
     project_id = "sds-group3"
-    dataset_id = "testing_data" # Replace with your desired dataset ID
-    table_id = "test_table" # Replace with your desired table ID
+    dataset_id = "ecommerce_data" # Replace with your desired dataset ID
+    table_id = "running_category" # Replace with your desired table ID
 
     bigquery = Google::Cloud::Bigquery.new(project: project_id)
     dataset = bigquery.dataset(dataset_id)
@@ -56,8 +56,8 @@ module BigQueryModule
 
   def self.load_data_into_table(data)
     project_id = "sds-group3"
-    dataset_id = "testing_data" # Replace with your desired dataset ID
-    table_id = "test_table" # Replace with your desired table ID
+    dataset_id = "ecommerce_data" # Replace with your desired dataset ID
+    table_id = "running_category" # Replace with your desired table ID
 
     bigquery = Google::Cloud::Bigquery.new(project: project_id)
     dataset = bigquery.dataset(dataset_id)
@@ -88,11 +88,11 @@ module BigQueryModule
 
   def self.fetch_all_products
     # Configure Google Cloud BigQuery client
-    bigquery = Google::Cloud::Bigquery.new(project: "your_project_id")
+    bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
 
     # Specify your dataset and table IDs
-    dataset_id = "your_dataset_id"
-    table_id = "your_table_id"
+    dataset_id = "ecommerce_data"
+    table_id = "running_category"
 
     # Construct the query to fetch all products
     query = "SELECT * FROM `#{dataset_id}.#{table_id}`"
@@ -122,8 +122,8 @@ module BigQueryModule
 
   def self.fetch_products_by_category(category)
     project_id = "sds-group3"
-    dataset_id = "testing_data" # Replace with your desired dataset ID
-    table_id = "test_table" # Replace with your desired table ID
+    dataset_id = "ecommerce_data" # Replace with your desired dataset ID
+    table_id = "running_category" # Replace with your desired table ID
 
     bigquery = Google::Cloud::Bigquery.new(project: project_id)
     dataset = bigquery.dataset(dataset_id)
@@ -164,11 +164,11 @@ module BigQueryModule
 
   def self.fetch_products_by_brand(brand_name)
     # Configure Google Cloud BigQuery client
-    bigquery = Google::Cloud::Bigquery.new(project: "your_project_id")
+    bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
   
     # Specify your dataset and table IDs
-    dataset_id = "your_dataset_id"
-    table_id = "your_table_id"
+    dataset_id = "ecommerce_data"
+    table_id = "running_category"
   
     # Construct the query to fetch products by brand
     query = "SELECT * FROM `#{dataset_id}.#{table_id}` WHERE brand = '#{brand_name}'"
@@ -197,11 +197,11 @@ module BigQueryModule
 
   def self.fetch_products_by_date(date)
     # Configure Google Cloud BigQuery client
-    bigquery = Google::Cloud::Bigquery.new(project: "your_project_id")
+    bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
   
     # Specify your dataset and table IDs
-    dataset_id = "your_dataset_id"
-    table_id = "your_table_id"
+    dataset_id = "ecommerce_data"
+    table_id = "running_category"
   
     # Format the date in YYYY-MM-DD format
     formatted_date = date.strftime("%Y-%m-%d")
@@ -233,8 +233,8 @@ module BigQueryModule
   
   def self.sort_by_quantity_sold
     project_id = "sds-group3"
-    dataset_id = "testing_data" # Replace with your desired dataset ID
-    table_id = "test_table" # Replace with your desired table ID
+    dataset_id = "ecommerce_data" # Replace with your desired dataset ID
+    table_id = "running_category" # Replace with your desired table ID
 
     bigquery = Google::Cloud::Bigquery.new(project: project_id)
     dataset = bigquery.dataset(dataset_id)
@@ -263,6 +263,45 @@ module BigQueryModule
         product_url: row[:product_url],
         image_url: row[:image_url],
         date_api_called: row[:date_api_called]
+      }
+    end
+    products
+  end
+
+  def self.detect_anomalies(contamination)
+    project_id = "sds-group3"
+    dataset_id = "ecommerce_data"
+    model_name = "my_kmeans_model"
+
+    # Initialize the BigQuery client
+    bigquery = Google::Cloud::Bigquery.new(project: project_id)
+
+    # Construct the BigQuery query to detect anomalies
+    query = <<~SQL
+      SELECT
+        *
+      FROM
+        ML.DETECT_ANOMALIES(MODEL `#{project_id}.#{dataset_id}.#{model_name}`,
+                            STRUCT(#{contamination} AS contamination),
+                            TABLE `#{project_id}.#{dataset_id}.running_category`)
+    SQL
+
+    # Execute the query and get the results
+    job = bigquery.query_job(query)
+    results = job.data
+
+    # Process the results and return the data as an array of hashes
+    products = results.map do |row|
+      {
+        category: row["category"],
+        brand: row["brand"],
+        product_name: row["product_name"],
+        initial_price: row["initial_price"],
+        discounted_price: row["discounted_price"],
+        quantity_sold: row["quantity_sold"],
+        product_url: row["product_url"],
+        image_url: row["image_url"],
+        date_api_called: row["date_api_called"]
       }
     end
     products
