@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { Flex } from '@mantine/core';
 import axios from 'axios';
 
-function sendInsightsForSentimentAnalysis(insightsText) {
-    const backendUri = '';
-    const insightsToSend = {
-        insight: insight,
-    };
+// function sendInsightsForSentimentAnalysis(insightsText) {
+//     const backendUri = '';
+//     const insightsToSend = {
+//         insight: insight,
+//     };
 
-    axios.post(backendUri, insightsToSend)
-    .then((res) => {
-        console.log("Sentiment Analysis result: ", res.data);
-    })
-    .catch((error) => {
-        // Handle errors, if any
-        console.error('Error occurred during sentiment analysis:', error);
-      });
-  }
+//     axios.post(backendUri, insightsToSend)
+//     .then((res) => {
+//         console.log("Sentiment Analysis result: ", res.data);
+//     })
+//     .catch((error) => {
+//         // Handle errors, if any
+//         console.error('Error occurred during sentiment analysis:', error);
+//       });
+//   }
 
 const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restocking, above_100_sold, restock_above_100_sold }) => {
   const [isInsight1Hovered, setIsInsight1Hovered] = useState(false);
@@ -82,17 +82,17 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
     setIsInsight4Hovered(false);
   };
 
-useEffect(() => {
-    const insight1Text = `${product_name} has the most stocks remaining with: ${most_stocks_left} stocks remaining.`;
-    const insight2Text = `${needs_restocking} products needs restocking.`;
-    const insight3Text = `${above_100_sold} products are doing well with 100 or more units sold within the last month.`;
-    const insight4Text = `${restock_above_100_sold} products who are doing well needs restocking.`;
+// useEffect(() => {
+//     const insight1Text = `${product_name} has the most stocks remaining with: ${most_stocks_left} stocks remaining.`;
+//     const insight2Text = `${needs_restocking} products needs restocking.`;
+//     const insight3Text = `${above_100_sold} products are doing well with 100 or more units sold within the last month.`;
+//     const insight4Text = `${restock_above_100_sold} products who are doing well needs restocking.`;
 
-    sendInsightsForSentimentAnalysis(insight1Text);
-    sendInsightsForSentimentAnalysis(insight2Text);
-    sendInsightsForSentimentAnalysis(insight3Text);
-    sendInsightsForSentimentAnalysis(insight4Text);
-  }, [product_name, most_stocks_left, needs_restocking, above_100_sold, restock_above_100_sold]);
+//     sendInsightsForSentimentAnalysis(insight1Text);
+//     sendInsightsForSentimentAnalysis(insight2Text);
+//     sendInsightsForSentimentAnalysis(insight3Text);
+//     sendInsightsForSentimentAnalysis(insight4Text);
+//   }, [product_name, most_stocks_left, needs_restocking, above_100_sold, restock_above_100_sold]);
 
   return (
     <div className="merchInsights" style={containerStyle}>
@@ -116,7 +116,7 @@ useEffect(() => {
         >
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: 'aquamarine', padding: '0.5em', boxShadow: isInsight1Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: 'deepskyblue', padding: '0.5em', boxShadow: isInsight1Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight1MouseEnter}
         onMouseLeave={handleInsight1MouseLeave}
       >
@@ -129,7 +129,7 @@ useEffect(() => {
 
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: needs_restocking >= '20' ? 'crimson' : (needs_restocking <= 5 ? 'lime' : 'aquamarine'), padding: '0.5em', boxShadow: isInsight2Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: needs_restocking >= '20' ? 'crimson' : (needs_restocking <= 5 ? 'mediumseagreen' : 'deepskyblue'), padding: '0.5em', boxShadow: isInsight2Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight2MouseEnter}
         onMouseLeave={handleInsight2MouseLeave}
       >
@@ -146,7 +146,7 @@ useEffect(() => {
         >
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: above_100_sold >= '10' ? 'lime' : 'aquamarine', padding: '0.5em', boxShadow: isInsight3Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: above_100_sold >= '10' ? 'mediumseagreen' : 'deepskyblue', padding: '0.5em', boxShadow: isInsight3Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight3MouseEnter}
         onMouseLeave={handleInsight3MouseLeave}
       >
@@ -157,7 +157,7 @@ useEffect(() => {
 
       <div
         className="textBox"
-        style={{ ...textBoxStyle, backgroundColor: restock_above_100_sold >= '5' ? 'crimson' : 'aquamarine', padding: '0.5em', boxShadow: isInsight4Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+        style={{ ...textBoxStyle, backgroundColor: restock_above_100_sold >= '5' ? 'red' : 'deepskyblue', padding: '0.5em', boxShadow: isInsight4Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight4MouseEnter}
         onMouseLeave={handleInsight4MouseLeave}
       >

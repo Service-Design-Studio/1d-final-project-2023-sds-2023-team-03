@@ -47,7 +47,7 @@ function Logistics() {
 
   function getInsightsData() {
     setApiLoad(true)
-    axios.get("http://127.0.0.1:3000/api/v1/sales?low=true", {timeout: 10000})
+    axios.get("http://127.0.0.1:3000/api/v1/products?low=true", {timeout: 10000})
     .then((res) => {
       if (res && res.data.length !== null) {
         setNeedsRestock(res.data.length);
