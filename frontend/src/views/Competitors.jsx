@@ -38,7 +38,8 @@ const Competitors = () => {
     if (segmentValue === 'pa') {
       getCompetitorsData()
     }
-  });
+
+  }, [segmentValue, competitorName, getCompetitorsData]);
 
   return(
       <>

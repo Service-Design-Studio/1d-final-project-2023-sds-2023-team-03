@@ -33,7 +33,7 @@ function Logistics() {
     if (segmentValue === 'pa') {
       getMerchData()
     }
-  })
+  }, [segmentValue])
   
   return (
     <>
