@@ -33,7 +33,7 @@ function Logistics() {
     if (segmentValue === 'pa') {
       getMerchData()
     }
-  })
+  }, [segmentValue])
   
   return (
     <>
@@ -51,7 +51,7 @@ function Logistics() {
         />
         <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
       </Flex>
-      {segmentValue === 'pa' ? <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : null}
+      {segmentValue === 'pa' ? data && <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : null}
       <Modal
         centered
         opened={errorOpen}
