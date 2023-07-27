@@ -34,6 +34,10 @@ function Logistics() {
       getMerchData()
     }
   }, [segmentValue])
+
+  useEffect(() => {
+    getMerchData();
+  }, [])
   
   return (
     <>

@@ -35,7 +35,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
         } else if (apiLoad) {
             setFetching(true)
         }
-    });
+    }, [data, apiLoad]);
 
     useEffect(() => {
         const first = (page - 1) * pageSize;
