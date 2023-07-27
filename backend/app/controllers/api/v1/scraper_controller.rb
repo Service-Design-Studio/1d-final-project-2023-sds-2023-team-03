@@ -31,6 +31,15 @@ module Api
           render json: products
         end
 
+        def train_kmeans_model
+          num_clusters = params[:num_clusters].to_i
+  
+          # Call the train_kmeans_model method from BigQueryModule
+          BigQueryModule.train_kmeans_model(num_clusters)
+  
+          render json: { message: "K-means model with #{num_clusters} clusters is being trained." }
+        end
+
         def detect_anomalies
             contamination = params[:contamination].to_f
     

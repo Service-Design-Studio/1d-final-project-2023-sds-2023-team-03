@@ -268,6 +268,37 @@ module BigQueryModule
     products
   end
 
+  def self.train_kmeans_model(num_clusters)
+    project_id = "sds-group3"
+    dataset_id = "ecommerce_data"
+    table_id = "running_category"
+
+    bigquery = Google::Cloud::Bigquery.new(project: project_id)
+    dataset = bigquery.dataset(dataset_id)
+    table = dataset.table(table_id)
+
+    model_name = "my_kmeans_model"
+    model_query = <<~SQL
+      CREATE MODEL `#{project_id}.#{dataset_id}.#{model_name}`
+      OPTIONS(
+        MODEL_TYPE = 'kmeans',
+        NUM_CLUSTERS = #{num_clusters},
+        KMEANS_INIT_METHOD = 'kmeans++'
+      ) AS
+      SELECT * 
+      FROM `#{project_id}.#{dataset_id}.#{table_id}`
+    SQL
+
+    job = bigquery.query_job(model_query)
+    job.wait_until_done!
+
+    if job.done?
+      puts "K-means model '#{model_name}' trained successfully with #{num_clusters} clusters."
+    else
+      puts "Error while training the K-means model."
+    end
+  end
+
   def self.detect_anomalies(contamination)
     project_id = "sds-group3"
     dataset_id = "ecommerce_data"
