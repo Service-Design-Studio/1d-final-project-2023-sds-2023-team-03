@@ -29,12 +29,11 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'asc'});
 
     useEffect(() => {
+        setFetching(true);
         if (data && apiLoad==false) {
             setFetching(false);
             setSavedData(data);
-        } else if (apiLoad) {
-            setFetching(true)
-        }
+        } 
     }, [data, apiLoad]);
 
     useEffect(() => {
