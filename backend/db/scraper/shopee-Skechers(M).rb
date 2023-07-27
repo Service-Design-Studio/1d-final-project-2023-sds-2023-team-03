@@ -7,7 +7,7 @@ require 'csv'
 
 
 ############### CHANGE SEARCH TERM FOR DIFFERENT CATEGORIES ###############
-search_term = 'U_A(M)'
+search_term = 'Skechers(M)'
 ###########################################################################
 
 
@@ -202,6 +202,20 @@ def send_request(all_p_urls,page_count,search_term)
 
   send_request(all_p_urls,page_count,search_term)
 
+rescue NoMethodError => e
+  if e.message.include?("undefined method `css' for nil:NilClass")
+    puts "HTTP Request succeeded, but the required element was not found in the HTML."
+    puts "Retrying in 20 seconds..."
+    sleep(20)
+    send_request(all_p_urls, page_count, search_term)
+  else
+    puts "HTTP Request failed (#{e.message})"
+  end
+rescue EOFError => e
+  puts "HTTP Request failed (end of file reached)"
+  puts "Retrying in 20 seconds..."
+  sleep(20)
+  send_request(all_p_urls, page_count, search_term)
 rescue StandardError => e
   puts "HTTP Request failed (#{e.message})"
 end
@@ -248,7 +262,16 @@ Impt_brands = ['adidassg','asicsofficial','skecherssg','sauconyofficial','under_
 final_list = []
 error_urls = []
 
-def send_request_url(final_l,prod_listing,error_urls)
+if search_term == 'Running'
+  prod_label = 'Running'
+elsif search_term == 'Comfortwear'
+  prod_label = 'Comfortwear'
+else 
+  prod_label = 'NIL'
+end
+
+
+def send_request_url(final_l,prod_listing,error_urls,cat_label)
 
   puts prod_listing[0]
 
@@ -373,6 +396,7 @@ def send_request_url(final_l,prod_listing,error_urls)
   puts "Image Url: #{product_img_data_f}"
   
   final_entry = []
+  final_entry << cat_label
   final_entry << Brand_dict.fetch(competitor_name_data)
   final_entry << product_name_data
   final_entry << product_initial_price_data
@@ -403,7 +427,7 @@ end
 
 all_products_urls.each do |entry|
   puts "PRODUCT NUMBER: #{all_products_urls.index(entry)+1} out of #{all_products_urls.length}"
-  send_request_url(final_list,entry,error_urls)
+  send_request_url(final_list,entry,error_urls,prod_label)
 end
 
 puts '---------------------------------------------------------'
@@ -423,7 +447,7 @@ puts 'retrying error_urls'
   
 retry_list.each do |entry|
   puts "RETRYING PRODUCT NUMBER: #{retry_list.index(entry)+1} out of #{retry_list.length}"
-  send_request_url(final_list,entry,error_urls)
+  send_request_url(final_list,entry,error_urls,prod_label)
 end
 
 # puts "final error_urls: #{error_urls}"
@@ -442,7 +466,7 @@ current_time = Time.now
 date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
 time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
 
-csv_filename = "#{search_term}_product_list_#{date_str}_#{time_str}.csv"
+csv_filename = "./data/#{search_term}_product_list_#{date_str}_#{time_str}.csv"
 
 CSV.open(csv_filename, 'w') do |csv|
   final_list.each do |row|
