@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDisclosure } from '@mantine/hooks'
 import { Modal, SegmentedControl, Flex, Button } from '@mantine/core'
 import './Merchandising.css';
@@ -10,6 +10,7 @@ function Logistics() {
   const [segmentValue, setSegmentValue] = useState('pa')
   const [apiLoad, setApiLoad] = useState(true);
   const [errorOpen, errorModalHandler] = useDisclosure(false);
+  const isMounted = useRef(false);
   const threshold = 50;
   const pageSize = 50;
 
@@ -30,6 +31,11 @@ function Logistics() {
   }
 
   useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false }
+  })
+
+  useEffect(() => {
     if (segmentValue === 'pa') {
       getMerchData()
     }
@@ -37,7 +43,7 @@ function Logistics() {
 
   useEffect(() => {
     getMerchData();
-  }, [])
+  }, [isMounted]);
   
   return (
     <>
