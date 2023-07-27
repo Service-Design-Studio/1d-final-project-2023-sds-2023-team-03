@@ -4,8 +4,8 @@ const { Builder, By, until,actions } = require('selenium-webdriver');
 const assert = require('assert');
 
 const driver = new Builder().forBrowser('chrome').build();
-const websiteUrl = 'http://localhost:5173/';
-//const websiteUrl = 'https://sds-team-3-ecommerce-analysis-tool-jvfpcfcafa-as.a.run.app/login';
+//const websiteUrl = 'http://localhost:5173/';
+const websiteUrl = 'https://sds-team-3-ecommerce-analysis-tool-jvfpcfcafa-as.a.run.app/';
 
 async function fillLoginCredentials() {
   const currentUrl = await driver.getCurrentUrl();
