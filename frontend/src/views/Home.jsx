@@ -275,7 +275,7 @@ useEffect(() => {
       
     {isDataLoaded && !isLoading &&
       <Insights
-        category="Example Category" // Replace with the actual category value
+        category="Running Shoe" // Replace with the actual category value
         percentage={42} // Replace with the actual percentage value
         percent={15} // Replace with the actual percent value
         averagePrice="$100" // Replace with the actual average price value
