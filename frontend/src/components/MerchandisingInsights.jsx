@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Flex } from '@mantine/core';
+import { Flex, Card, Image, Text, Group, Badge, Button } from '@mantine/core';
 import axios from 'axios';
 
 // function sendInsightsForSentimentAnalysis(insightsText) {
@@ -33,7 +33,7 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
   const textBoxStyle = {
     display: 'inline-block',
     height: '14em',
-    width: '40%', // Set a width proportional to the screen
+    width: '50%', // Set a width proportional to the screen
     marginBottom: '5em',
     boxShadow: '0 5px 15px rgba(0, 0, 0, 0.4)',
     borderRadius: '1em',
@@ -114,7 +114,66 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         gap={{ base: 'sm', sm: 'lg' }}
         justify={{ sm: 'center' }}
         >
-      <div
+
+      <Card shadow="sm" padding="lg" radius="md" withBorder
+      style={{ ...textBoxStyle, backgroundColor: 'deepskyblue', padding: '0.5em', boxShadow: isInsight1Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+      onMouseEnter={handleInsight1MouseEnter}
+      onMouseLeave={handleInsight1MouseLeave}
+      >
+        <Card.Section>
+          {/* <Image
+            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+            height={160}
+            alt="Norway"
+          /> */}
+        </Card.Section>
+
+        <Group position="apart" mt="md" mb="xs">
+          <Text style={firstParagraphStyle} weight={500}>Most Stocks</Text>
+          <Badge color="pink" variant="light">
+            Average
+          </Badge>
+        </Group>
+
+        <Text size="sm">
+          {product_name} has the most stocks remaining with: {most_stocks_left} stocks remaining.
+        </Text>
+
+        <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+          See Details?
+        </Button>
+      </Card>
+
+      <Card shadow="sm" padding="lg" radius="md" withBorder
+      style={{ ...textBoxStyle, backgroundColor: needs_restocking >= '20' ? 'crimson' : (needs_restocking <= 5 ? 'mediumseagreen' : 'deepskyblue'), padding: '0.5em', boxShadow: isInsight2Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+      onMouseEnter={handleInsight2MouseEnter}
+      onMouseLeave={handleInsight2MouseLeave}
+      >
+        <Card.Section>
+          {/* <Image
+            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+            height={160}
+            alt="Norway"
+          /> */}
+        </Card.Section>
+
+        <Group position="apart" mt="md" mb="xs">
+          <Text style={firstParagraphStyle} weight={500}>Products Restocking</Text>
+          <Badge color="pink" variant="light">
+            Average
+          </Badge>
+        </Group>
+
+        <Text size="sm">
+          {needs_restocking} products needs restocking.
+        </Text>
+
+        <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+          See Details?
+        </Button>
+      </Card>
+
+      {/* <div
         className="textBox"
         style={{ ...textBoxStyle, backgroundColor: 'deepskyblue', padding: '0.5em', boxShadow: isInsight1Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight1MouseEnter}
@@ -125,9 +184,9 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         <div className='merchInsights_popularProducts'>
           <span>{product_name} has the most stocks remaining with: {most_stocks_left} stocks remaining.</span>
         </div>
-      </div>
+      </div> */}
 
-      <div
+      {/* <div
         className="textBox"
         style={{ ...textBoxStyle, backgroundColor: needs_restocking >= '20' ? 'crimson' : (needs_restocking <= 5 ? 'mediumseagreen' : 'deepskyblue'), padding: '0.5em', boxShadow: isInsight2Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight2MouseEnter}
@@ -136,15 +195,73 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         <p style={firstParagraphStyle}>Products Restocking</p>
         <br />
         <span className='merchInsights_restock'>{needs_restocking} products needs restocking.</span>
-      </div>
+      </div> */}
     </Flex>
 
     <Flex
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'center' }}
-        >
-      <div
+    >
+      <Card shadow="sm" padding="lg" radius="md" withBorder
+      style={{ ...textBoxStyle, backgroundColor: above_100_sold >= '10' ? 'mediumseagreen' : 'deepskyblue', padding: '0.5em', boxShadow: isInsight3Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+      onMouseEnter={handleInsight3MouseEnter}
+      onMouseLeave={handleInsight3MouseLeave}
+      >
+        <Card.Section>
+          {/* <Image
+            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+            height={160}
+            alt="Norway"
+          /> */}
+        </Card.Section>
+
+        <Group position="apart" mt="md" mb="xs">
+          <Text style={firstParagraphStyle} weight={500}>Products that are doing well</Text>
+          <Badge color="pink" variant="light">
+            Good
+          </Badge>
+        </Group>
+
+        <Text size="sm">
+          {above_100_sold} products are doing well with 100 or more units sold within the last month.
+        </Text>
+
+        <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+          See Details?
+        </Button>
+      </Card>
+
+      <Card shadow="sm" padding="lg" radius="md" withBorder
+      style={{ ...textBoxStyle, backgroundColor: restock_above_100_sold >= '5' ? 'red' : 'deepskyblue', padding: '0.5em', boxShadow: isInsight4Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
+      onMouseEnter={handleInsight4MouseEnter}
+      onMouseLeave={handleInsight4MouseLeave}
+      >
+        <Card.Section>
+          {/* <Image
+            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+            height={160}
+            alt="Norway"
+          /> */}
+        </Card.Section>
+
+        <Group position="apart" mt="md" mb="xs">
+          <Text style={firstParagraphStyle} weight={500}>Restock: <br/> Products that are doing well</Text>
+          <Badge color="pink" variant="light">
+            Critical
+          </Badge>
+        </Group>
+
+        <Text size="sm">
+          {restock_above_100_sold} products who are doing well needs restocking.
+        </Text>
+
+        <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+          See Details?
+        </Button>
+      </Card>
+
+      {/* <div
         className="textBox"
         style={{ ...textBoxStyle, backgroundColor: above_100_sold >= '10' ? 'mediumseagreen' : 'deepskyblue', padding: '0.5em', boxShadow: isInsight3Hovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleInsight3MouseEnter}
@@ -164,7 +281,7 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         <p style={firstParagraphStyle}>Restock: Products that are doing well</p>
         <br />
         <span className='merchInsights_above_100_sold'>{restock_above_100_sold} products who are doing well needs restocking.</span>
-      </div>
+      </div> */}
       </Flex>
 
     </div>
