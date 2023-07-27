@@ -43,7 +43,7 @@ function Logistics() {
 
   useEffect(() => {
     getMerchData();
-  }, [isMounted]);
+  }, [isMounted.current]);
   
   return (
     <>
