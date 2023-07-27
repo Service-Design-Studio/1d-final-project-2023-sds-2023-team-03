@@ -22,7 +22,7 @@ function Logistics() {
 
   function getMerchData() {
     setApiLoad(true)
-    axios.get("http://127.0.0.1:3000/api/v1/products/all", {timeout: 10000})
+    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products/all", {timeout: 10000})
     .then((res) => {
       if (res && res.data.length > 0) {
         setData(res.data);

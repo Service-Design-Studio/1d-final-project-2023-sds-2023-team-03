@@ -1,5 +1,6 @@
 import { Carousel } from '@mantine/carousel';
 import { Text, Container, useMantineTheme, Title } from '@mantine/core';
+import { Link } from 'react-router-dom';
 
 const CarouselCard = ({ topProducts }) => {
     const theme = useMantineTheme();
@@ -14,14 +15,15 @@ const CarouselCard = ({ topProducts }) => {
         borderRadius: 15,
         gap: 15
     };
+
     return (
         <section id="section-one">
             <Container>
                 <Text color="black" align="center" mb="15px">
                     <Title order={1}>Top 5 Performing Products</Title>
                 </Text>
-                <Text color="black" align="center" mb="15px">
-                    Keyword
+                <Text color="black" align="center" mb="15px" className="compKeywords">
+                Breathable Shoes, Running Shoes, Lightweight, Moisture Wicking
                 </Text>
 
                 <Carousel
@@ -40,13 +42,15 @@ const CarouselCard = ({ topProducts }) => {
                 >
                     {topProducts.map((product, index) => (
                         <Carousel.Slide key={product.id}>
-                        <div style={carouselContent}>
-                            <Title order={2} color="black">{index + 1}</Title>
-                            <Text color="black">{product.product_name}</Text>
-                            <Text color="black">Number Sold: {product.sales}</Text>
-                            <Text color="black">Price: ${product.price}</Text>
-                            <Text color="black">{product.competitor_name}</Text>
-                        </div>
+                            {/* TODO: Replace with link */}
+                            <a href={`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${product.competitorName}`} target='_blank' rel='noreferrer'>
+                                <div style={carouselContent}>
+                                    <Text order={2} color="black">Rank: {index + 1}</Text>
+                                    <Text color="black">Product Name: {product.product_name}</Text>
+                                    <Text color="black">Number Sold: {product.sales}</Text>
+                                    <Text color="black">Price: ${product.price}</Text>
+                                </div>
+                            </a>
                     </Carousel.Slide>
                     ))}
                 </Carousel>

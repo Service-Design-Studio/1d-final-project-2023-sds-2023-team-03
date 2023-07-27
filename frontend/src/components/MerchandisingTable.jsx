@@ -26,7 +26,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     const [selectedCategories, setSelectedCategories] = useState(categories);
     
 
-    const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'desc'});
+    const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'asc'});
 
     useEffect(() => {
         if (data && apiLoad==false) {
@@ -49,8 +49,8 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                 var keyB = b.units_sold;
             }
 
-            if (keyA < keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
-            if (keyA > keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            if (keyA < keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            if (keyA > keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
             return 0;
         })
         .filter(( item ) => {
@@ -66,7 +66,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     }, [selectedCategories, sortStatus, page, data]);
 
     return (
-        <div className='table'>
+        <div className='merch-table'>
             <DataTable    // low products
               height={'79vh'}
               withBorder
