@@ -18,7 +18,7 @@ const Competitors = () => {
 
   const getCompetitorsData = useCallback(() => {
     setApiLoad(true)
-    axios.get(`http://127.0.0.1:3000/api/v1/competitors/${competitorName}`)
+    axios.get(`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName}`)
     .then((res) => {
       if (res && res.data) {
         setCompetitorProducts(res.data.all_data);

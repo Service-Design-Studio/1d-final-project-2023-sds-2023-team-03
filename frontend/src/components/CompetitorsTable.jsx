@@ -27,8 +27,13 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             var keyA = a.sales;
             var keyB = b.sales;
 
-            if (keyA < keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
-            if (keyA > keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            if (sortStatus.columnAccessor === 'price') {
+                keyA = a.price;
+                keyB = b.price;
+            }
+
+            if (keyA < keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            if (keyA > keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
             return 0;
         })
         .slice(first, last)
@@ -38,7 +43,8 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
 
     const handleRowClick = (row) => {
         // TODO: Replace with link
-        window.location.href='/';
+        const url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${row.competitorName}`
+        window.open(url, '_blank');
     }
 
     const columns = [
@@ -78,6 +84,10 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             accessor: 'price',
             textAlignment: 'center',
             width: 100,
+            render: (record) => (
+                "S$" + record.price.toFixed(2)
+            ),
+            sortable: true
         }
     ]
 
