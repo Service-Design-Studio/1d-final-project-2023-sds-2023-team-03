@@ -3,7 +3,7 @@ const { Builder, By, until, Key } = require('selenium-webdriver');
 const assert = require('assert');
 
 const driver = new Builder().forBrowser('chrome').build();
-const websiteUrl = 'http://localhost:5173/';
+const websiteUrl = 'https://sds-team-3-ecommerce-analysis-tool-jvfpcfcafa-as.a.run.app/';
 
 
 Given('I visit the Competitors page of {string}', async function (competitor) {
@@ -67,12 +67,14 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
 
   
   Given('the competitors table has successfully loaded data', async function () {
+    const button = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-Button-inner')]"))
+    await driver.actions().click(button).perform();
     const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 4500); // Wait for 10 seconds
     const compTable = await driver.findElement(By.xpath('//div[@class="table mantine-v3audr"]'));
 });
   
   When('I click on a particular row on the competitors table', async function () {
-    const compTable =  await driver.findElement(By.xpath('//table[@class="mantine-Table-root mantine-namr8g"]'));
+    const compTable =  await driver.findElement(By.xpath('//table[contains(@class, "mantine-Table-root")]'));
     const rows = await driver.wait(until.elementsLocated(By.xpath('//tr[@class="mantine-1mj2j8y"]')), 4500); // Wait for 10 seconds
     const rowsToClick = rows.slice(0, 5);
   for (const row of rowsToClick) {

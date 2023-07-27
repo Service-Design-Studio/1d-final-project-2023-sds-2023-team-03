@@ -3,7 +3,7 @@ const { Builder, By, until, Key } = require('selenium-webdriver');
 const assert = require('assert');
 
 const driver = new Builder().forBrowser('chrome').build();
-const websiteUrl = 'http://127.0.0.1:5173/';
+const websiteUrl = 'https://sds-team-3-ecommerce-analysis-tool-jvfpcfcafa-as.a.run.app/';
 
 When('I visit the merchandising page', async function() {
     const targetUrl = websiteUrl + 'merchandising';
@@ -31,6 +31,8 @@ Then('I should see the product actions table', async function() {
 })
 
 Given('the product actions table has successfully loaded data', async function() {
+    const button = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-Button-inner')]"));
+    await driver.actions().click(button).perform();
     const table = await driver.findElement(By.xpath("//table[contains(@class, 'mantine-Table-root')]"))
     const tableRow = await table.findElement(By.xpath("//tbody/tr[1]"));
     assert(tableRow)
