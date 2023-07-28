@@ -7,7 +7,7 @@ require 'csv'
 
 
 ############### CHANGE SEARCH TERM FOR DIFFERENT CATEGORIES ###############
-search_term = 'Running'
+search_term = 'U_A(M)'
 ###########################################################################
 
 
@@ -59,7 +59,8 @@ def send_request(all_p_urls,page_count,search_term)
     {"wait": 2735},
     {"scroll_y": 2000},
     {"wait": 1956},
-    {"scroll_y": 3000}
+    {"scroll_y": 3000},
+    {"wait": 10232}
     ]}
   JS
   
@@ -127,10 +128,17 @@ def send_request(all_p_urls,page_count,search_term)
 
     puts 'getting links, locations and qty sold/mth'
     link = soup_container.css('a > @href')
+
     location = soup_container.css("div.zGGwiV")
     sold = soup_container.css("div.r6HknA")
+    final_link =[]
+
+    link_data = link.map(&:text)
+
+    sold_data_raw = sold.map(&:text)
     # img_perlisting = soup_container.css("div.yvbeD6\\ KUUypF")
     # img = img_perlisting.css("img > @src")
+    location_data = location.map(&:text)
   else
     puts 'Scraping by Brands...'
     soup_container = soup.at_css('div.shop\\-search\\-result\\-view')
@@ -138,19 +146,16 @@ def send_request(all_p_urls,page_count,search_term)
     puts 'getting links, locations and qty sold'
     link = soup_container.css('a > @href')
     sold = soup_container.css("div.sPnnFI")
+    final_link =[]
+
+    link_data = link.map(&:text)
+
+    sold_data_raw = sold.map(&:text)
+    location_data = Array.new(link_data.length, 'SG')
     # img_perlisting = soup_container.css("div.ExVKL4.Gqf95F")
     # img = img_perlisting.css("img > @src")
   end
-  
 
-
-  final_link =[]
-
-  link_data = link.map(&:text)
-
-  location_data = Array.new(link_data.length, 'SG')
-
-  sold_data_raw = sold.map(&:text)
 
   sold_data = []
 
@@ -217,7 +222,10 @@ rescue EOFError => e
   sleep(20)
   send_request(all_p_urls, page_count, search_term)
 rescue StandardError => e
-  puts "HTTP Request failed (#{e.message})"
+  puts "HTTP Request failed (end of file reached)"
+  puts "Retrying in 20 seconds..."
+  sleep(20)
+  send_request(all_p_urls, page_count, search_term)
 end
 
 send_request(all_products_urls,page_count,search_term)
@@ -271,7 +279,14 @@ else
 end
 
 
-def send_request_url(final_l,prod_listing,error_urls,cat_label)
+def send_request_url(final_l,prod_listing,cat_label,retry_number)
+
+
+  if retry_number == 5
+    puts 'Product cannot be scraped (Max retries of 5 has been reached)'
+    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    return
+  end
 
   puts prod_listing[0]
 
@@ -336,49 +351,38 @@ def send_request_url(final_l,prod_listing,error_urls,cat_label)
 
   # Parse the HTML data
   soupy = Nokogiri::HTML(body_data)
-  begin
-    soup = soupy.at_css('div.flex-auto.flex-column.swTqJe')
 
-    soupz = soupy.at_css('div.oAVg4E')
+  soup = soupy.at_css('div.flex-auto.flex-column.swTqJe')
 
-    competitor_name = soupz.at_css('div.VlDReK')
+  soupz = soupy.at_css('div.oAVg4E')
 
-    product_name = soup.at_css('div._44qnta')
-    
-    product_initial_price = soup.at_css('div.Y3DvsN')
+  competitor_name = soupz.at_css('div.VlDReK')
 
-    product_final_price = soup.at_css('div.pqTWkA')
+  product_name = soup.at_css('div._44qnta')
+  
+  product_initial_price = soup.at_css('div.Y3DvsN')
 
-    img_perlisting = soupy.at_css("div.cxDtMn")
-    product_img = img_perlisting.css("div > @style")
+  product_final_price = soup.at_css('div.pqTWkA')
 
-    competitor_name_data = competitor_name.text
+  img_perlisting = soupy.at_css("div.cxDtMn")
+  product_img = img_perlisting.css("div > @style")
 
-    puts "compet name data: #{competitor_name_data}"
+  competitor_name_data = competitor_name.text
 
-    unless Impt_brands.include?(competitor_name_data)
-      puts 'Product is not sold by official seller! Skipping...'
-      puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-      return
-    end
+  puts "compet name data: #{competitor_name_data}"
 
-
-    product_name_data = product_name.text
-    product_final_price_data = product_final_price.text
-    product_initial_price_data = product_initial_price.nil? || product_initial_price.text.empty? ? 'NA' : product_initial_price.text
-    product_img_data = product_img.to_s
-    product_img_data_f = product_img_data.match(/url\(["']([^"']+)["']\)/)[1]
-
-  rescue NoMethodError => e
-    # Handle the error when 'at_css' method fails due to nil value
-    puts "Skipping URL: #{prod_listing[0]} - Error: #{e.message}"
-
-    # Add the URL that encountered the error to the error_urls list
-    error_urls << prod_listing
-
+  unless Impt_brands.include?(competitor_name_data)
+    puts 'Product is not sold by official seller! Skipping...'
     puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     return
   end
+
+
+  product_name_data = product_name.text
+  product_final_price_data = product_final_price.text
+  product_initial_price_data = product_initial_price.nil? || product_initial_price.text.empty? ? 'NA' : product_initial_price.text
+  product_img_data = product_img.to_s
+  product_img_data_f = product_img_data.match(/url\(["']([^"']+)["']\)/)[1]
 
 
   puts "Competitor name: #{Brand_dict.fetch(competitor_name_data)}"
@@ -420,14 +424,27 @@ def send_request_url(final_l,prod_listing,error_urls,cat_label)
 
   puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 
+rescue NoMethodError => e
+  # Handle the error when 'at_css' method fails due to nil value
+  puts "Retrying product URL: #{prod_listing[0]} - Error: #{e.message}"
+  retry_number = retry_number + 1
+
+  send_request_url(final_l,prod_listing,cat_label,retry_number)
 rescue StandardError => e
   puts "HTTP Request failed (#{e.message})"
-  error_urls << prod_listing
+  retry_number = retry_number + 1
+
+  send_request_url(final_l,prod_listing,cat_label,retry_number)
 end
 
+
+
+
+
 all_products_urls.each do |entry|
+  retry_no = 0
   puts "PRODUCT NUMBER: #{all_products_urls.index(entry)+1} out of #{all_products_urls.length}"
-  send_request_url(final_list,entry,error_urls,prod_label)
+  send_request_url(final_list,entry,prod_label,retry_no)
 end
 
 puts '---------------------------------------------------------'
@@ -439,16 +456,16 @@ puts "Length of products: #{final_list.length}"
 puts '---------------------------------------------------------'
 
 
-puts "error_urls: #{error_urls}"
+# puts "error_urls: #{error_urls}"
 
-retry_list = error_urls
-error_urls = []
-puts 'retrying error_urls'
+# retry_list = error_urls
+# error_urls = []
+# puts 'retrying error_urls'
   
-retry_list.each do |entry|
-  puts "RETRYING PRODUCT NUMBER: #{retry_list.index(entry)+1} out of #{retry_list.length}"
-  send_request_url(final_list,entry,error_urls,prod_label)
-end
+# retry_list.each do |entry|
+#   puts "RETRYING PRODUCT NUMBER: #{retry_list.index(entry)+1} out of #{retry_list.length}"
+#   send_request_url(final_list,entry,error_urls,prod_label)
+# end
 
 # puts "final error_urls: #{error_urls}"
 
