@@ -160,7 +160,7 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         <Group position="apart" mt="md" mb="xs">
           <Text style={firstParagraphStyle} weight={500}>Products Restocking</Text>
           <Badge color="pink" variant="light">
-            Average
+            Good
           </Badge>
         </Group>
 
