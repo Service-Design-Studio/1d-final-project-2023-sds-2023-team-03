@@ -17,61 +17,70 @@ USER_AGENTS = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36 Edg/80.0.361.69',
   # Add more user agents here
 ]
-page_count = 4
+
+page_count = 1
 all_products_urls = []
+it = 0
 
 
-# Classic (GET)
-def send_request(all_p_urls,page_count,search_term)
+Url_len = {
+  'Running'=> 2,
+  'Comfortwear' => 1, 
+  'Nike(M)' => 1,
+  'Nike(W)' => 1,
+  'Adidas(M)' => 1,
+  'Adidas(W)' => 1,
+  'Skechers(M)' => 2,
+  'Skechers(W)' => 3,
+  'U_A(M)' => 2,
+  'U_A(W)' => 2
+}
 
-  # Input search term
 
+
+def get_url(s_term,its,page_c)
   url_dict = {
-    'Running'=> "https://shopee.sg/mall/search?facet=11012070%2C11012195&keyword=running%20shoes&noCorrection=true&page=#{page_count}&sortBy=sales",
-    'Comfortwear' => "https://shopee.sg/mall/search?keyword=sneakers&locations=Singapore&noCorrection=true&page=#{page_count}&sortBy=sales",
-    'Adidas(M)' => "https://shopee.sg/adidassg?page=#{page_count}&shopCollection=244592522&sortBy=sales",
-    'Adidas(W)' => "https://shopee.sg/adidassg?page=#{page_count}&shopCollection=244349361&sortBy=sales",
-    'Skechers(M)' => "https://shopee.sg/skecherssg?page=#{page_count}&shopCollection=244289712&sortBy=sales",
-    'Skechers(W)' => "https://shopee.sg/skecherssg?page=#{page_count}&shopCollection=244289273&sortBy=sales",
-    'U_A(M)' => "https://shopee.sg/under_armour_official?page=#{page_count}&shopCollection=102499998&sortBy=sales",
-    'U_A(W)' => "https://shopee.sg/under_armour_official?page=#{page_count}&shopCollection=102500265&sortBy=sales"
+    'Running'=> ["https://www.lazada.sg/men-sports-running-shoes/?location=local&page=#{page_c}&service=official","https://www.lazada.sg/women-sport-shoes-running-shoes/?location=local&service=official&page=#{page_c}"],
+    'Comfortwear' => ["https://www.lazada.sg/catalog/?location=local&page=#{page_c}&q=Comfort%20Shoes&service=official"], 
+    'Nike(M)' => ["https://www.lazada.sg/shop-mens-sneakers/nike/?from=wangpu&location=local&nike&q=Men%27s%20Shoes&service=official&page=#{page_c}"],
+    'Nike(W)' => ["https://www.lazada.sg/women-sneakers/nike/?from=wangpu&location=local&nike&page=#{page_c}&q=women%27s%20shoes&service=official"],
+    'Adidas(M)' => ["https://www.lazada.sg/adidas/?spm=a2o42.10453684.0.0.39e2e489Fd87X0&q=All-Products&shop_category_ids=669002&from=wangpu&sc=KVUG&page=#{page_c}"],
+    'Adidas(W)' => ["https://www.lazada.sg/adidas/?from=wangpu&q=All-Products&sc=KVUG&shop_category_ids=669010&spm=a2o42.10453684.0.0.39e2e489bG47O5&page=#{page_c}"],
+    'Skechers(M)' => ["https://www.lazada.sg/men-sports-running-shoes/skechers/?skechers&from=wangpu&q=All-Products&service=official&location=local&page=#{page_c}","https://www.lazada.sg/shop-mens-sport-sneakers/skechers/?skechers&from=wangpu&service=official&location=local&page=#{page_c}"],
+    'Skechers(W)' => ["https://www.lazada.sg/shop-womens-sport-sneakers/skechers/?skechers&from=wangpu&q=All-Products&service=official&location=local&page=#{page_c}","https://www.lazada.sg/shop-women-walking-shoes/?skechers&from=wangpu&q=All-Products&service=official&location=local&page=#{page_c}","https://www.lazada.sg/women-sport-shoes-running-shoes/skechers/?skechers&from=wangpu&q=All-Products&service=official&location=local&page=#{page_c}"],
+    'U_A(M)' => ["https://www.lazada.sg/men-sports-running-shoes/?from=wangpu&location=local&page=#{page_c}&service=official&under-armour","https://www.lazada.sg/shop-men-fitness-cross-training-shoes/?under-armour&from=wangpu&page=#{page_c}&service=official&location=local"],
+    'U_A(W)' => ["https://www.lazada.sg/shop-women-fitness-cross-training-shoes/under-armour/?under-armour&from=wangpu&page=#{page_c}&service=official&location=local","https://www.lazada.sg/women-sport-shoes-running-shoes/under-armour/?from=wangpu&location=local&page=#{page_c}&service=official&under-armour"]
   }
 
-  puts "page count is #{page_count+1}"
+  return url_dict[s_term][its]
 
-  if page_count == 5
-    return
-  end
+end
 
+# Classic (GET)
+def send_request(all_p_urls,page_count,search_term,it)
 
-  puts url_dict[search_term]
+  puts "page count is #{page_count}"
 
-  url = URI.encode_www_form_component(url_dict[search_term])
+  url_to_call = get_url(search_term,it,page_count).to_s
+
+  puts "url: #{url_to_call}"
+
+  url = URI.encode_www_form_component(url_to_call)
+
 
   js_scenario = <<~JS
   {
     "instructions": [
     {"wait": 5000},
-    {"scroll_y": 3000},
-    {"wait": 2300},
     {"scroll_y": 2250},
     {"wait": 1700},
-    {"scroll_y": 1000},
-    {"wait": 2000},
-    {"scroll_y": 2000},
-    {"wait": 2053},
-    {"scroll_y": 3000},
-    {"wait": 2735},
-    {"scroll_y": 2000},
-    {"wait": 1956},
-    {"scroll_y": 3000},
-    {"wait": 10232}
+    {"scroll_y": 2616},
+    {"wait": 3232}
     ]}
   JS
   
-  # Response_iteration = Response_iteration + 1
 
-  uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&wait_browser=load&json_response=True&block_resources=True&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
+  uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&wait_browser=networkidle2&json_response=True&block_resources=True&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
 
   # Randomly select a user agent
   user_agent = USER_AGENTS.sample
@@ -113,7 +122,12 @@ def send_request(all_p_urls,page_count,search_term)
 
   body_data = data['body']
 
-  # puts body_data
+  # Print body_data keys
+  puts '----------------------------------'
+  puts 'BODY'
+  puts '----------------------------------'
+  puts body_data
+
 
   puts '--------------------- Extracting! ---------------------'
 
@@ -124,82 +138,77 @@ def send_request(all_p_urls,page_count,search_term)
   #Set containers
   if search_term == 'Comfortwear' || search_term == 'Running'
     puts 'Scraping by Categories...'
-    soup_container = soup.at_css('div.row\\ shopee-search-item-result__items')
+    soup_container = soup.at_css('div._17mcb')
+    link_container = soup.css('div._95X4G')
 
-    puts 'getting links, locations and qty sold/mth'
-    link = soup_container.css('a > @href')
-
-    location = soup_container.css("div.zGGwiV")
-    sold = soup_container.css("div.r6HknA")
-    final_link =[]
-
-    puts "location: #{location}"
-    puts "sold :#{sold}"
-
+    puts 'getting links, qty sold/mth'
+    
+    link = link_container.css('a > @href')
+    sold_checker = soup_container.css("div._6uN7R")
     link_data = link.map(&:text)
+    sold_checker_data = sold_checker.map(&:text)
 
-    sold_data_raw = sold.map(&:text)
-    # img_perlisting = soup_container.css("div.yvbeD6\\ KUUypF")
-    # img = img_perlisting.css("img > @src")
-    location_data = location.map(&:text)
   else
     puts 'Scraping by Brands...'
-    soup_container = soup.at_css('div.shop\\-search\\-result\\-view')
 
-    puts 'getting links, locations and qty sold'
-    link = soup_container.css('a > @href')
-    sold = soup_container.css("div.sPnnFI")
-    final_link =[]
+    soup_container = soup.at_css('div._17mcb')
+    link_container = soup.css('div._95X4G')
 
+    puts 'getting links, qty sold/mth'
+    
+    link = link_container.css('a > @href')
+    sold_checker = soup_container.css("div._6uN7R")
     link_data = link.map(&:text)
+    sold_checker_data = sold_checker.map(&:text)
 
-    sold_data_raw = sold.map(&:text)
-    location_data = Array.new(link_data.length, 'SG')
-    # img_perlisting = soup_container.css("div.ExVKL4.Gqf95F")
-    # img = img_perlisting.css("img > @src")
   end
 
-
   sold_data = []
+  final_link = []
 
-  sold_data_raw.each do |cleaned|
-    if cleaned.include?('month')
-      sold_data << cleaned.gsub(' sold/month','').to_i
-    elsif cleaned != ''
-      sold_data << cleaned.gsub(' sold','').to_i
-    else
+  # puts "This is sold_checker_data: #{sold_checker_data}"
+
+  sold_checker_data.each do |cleaned|
+    if cleaned == ''
       sold_data << 0
+    else
+      sold_data << cleaned.split(' ').first.to_i
     end
   end
 
-
   link_data.each do |data|
-    final_link << "https://shopee.sg" + data
+    final_link << "https:" + data
   end
 
+  puts "Pre-append: #{final_link}"
 
   puts "len of urls: #{final_link.length}"
 
-  puts "len of locations: #{location_data.length}"
-
   puts "len of sold_data: #{sold_data.length}"
 
-  # puts "len of img_urls: #{img_data.length}"
 
-  
-  # zipped_list = final_link.zip(location_data,sold_data,img_data) ## w img
-  zipped_list = final_link.zip(location_data,sold_data)
+  zipped_list = final_link.zip(sold_data)
   zipped_list.each do |url_location_entry| 
     all_p_urls << url_location_entry
   end
-
   
-  page_bool = soup.at_css("div.shopee-mini-page-controller")
+  page_bool = soup.at_css("li.ant\\-pagination\\-next")
 
   # puts page_bool
-  if page_bool.to_s.include?("shopee-button-outline shopee-mini-page-controller__next-btn shopee-button-outline--disabled")
+  if page_bool.to_s.include?("aria-disabled=\"true\"")
+
     puts 'next page does not exist, terminating'
-    return
+    if it == Url_len[search_term]-1
+      ### checks if the last url is reached, if is, break loop
+      return
+    else
+      ###moves to next element url
+      it += 1
+      page_count = 1
+      puts "Moving to next URL..."
+      send_request(all_p_urls,page_count,search_term,it)
+    end
+
   else 
     puts 'moving to next page...'
   end
@@ -207,45 +216,75 @@ def send_request(all_p_urls,page_count,search_term)
 
   page_count += 1
 
-
-  send_request(all_p_urls,page_count,search_term)
+  send_request(all_p_urls,page_count,search_term,it)
 
 rescue NoMethodError => e
   if e.message.include?("undefined method `css' for nil:NilClass")
     puts "HTTP Request succeeded, but the required element was not found in the HTML."
     puts "Retrying in 20 seconds..."
     sleep(20)
-    send_request(all_p_urls, page_count, search_term)
+    send_request(all_p_urls, page_count,search_term,it)
   else
-    puts "HTTP Request failed (#{e.message})"
+    puts "HTTP Request failed (#{e.message}), retrying..."
+    sleep(20)
+    send_request(all_p_urls, page_count,search_term,it)
   end
 rescue EOFError => e
   puts "HTTP Request failed (end of file reached)"
   puts "Retrying in 20 seconds..."
   sleep(20)
-  send_request(all_p_urls, page_count, search_term)
+  send_request(all_p_urls, page_count,search_term,it)
 rescue StandardError => e
   puts "HTTP Request failed (end of file reached)"
   puts "Retrying in 20 seconds..."
   sleep(20)
-  send_request(all_p_urls, page_count, search_term)
+  send_request(all_p_urls, page_count,search_term,it)
 end
 
-send_request(all_products_urls,page_count,search_term)
+
+
+
+send_request(all_products_urls,page_count,search_term,it)
+
+
+
+# puts "all product details: #{all_products_urls}"
+
+
 
 puts "len of all listings_data: #{all_products_urls.length}"
-# puts "All urls n loc: #{all_products_urls}"
 
 
-###cleans out non-sg merchants
+
+###cleans out non shoes
 all_products_urls.reject! do |url_loc|
-  !url_loc[1].include?('SG') ||
   !['Shoes', 'shoes', 'shoe', 'Shoe'].any? { |substring| url_loc[0].include?(substring) }
 end
 
 
 puts "len of all listings_data(cleaned): #{all_products_urls.length}"
 
+puts "ALL P URLS:"
+all_products_urls.each do |testery|
+  puts testery[0]
+
+end
+
+
+current_time = Time.now
+date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
+time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
+
+csv_filename = "./data/lazada_#{search_term}_product_list_#{date_str}_#{time_str}.csv"
+
+CSV.open(csv_filename, 'w') do |csv|
+  all_products_urls.each do |row|
+    row << date_str
+    csv << row
+  end
+end
+
+puts "CSV file '#{csv_filename}' created successfully."
 
 ##################################################################
 ## ENTERING INTO EACH URL
@@ -260,16 +299,24 @@ puts "............................................"
 Brand_dict = {
   'adidassg' => "Adidas",
   'asicsofficial'=> "Asics",
+  'ASICS'=> 'Asics',
   'skecherssg'=> "Skechers",
   'skechersglobal.sg'=> "Skechers",
+  'sauconyofficial'=> "Saucony",
   'under_armour_official'=> "Under Armour",
+  'Under Armour' => 'Under Armour',
   'puma_singapore'=> "Puma",
+  'PUMA' => 'Puma',
+  'salomon.sg'=> "Salomon",
+  'Skechers' => 'Skechers',
+  'adidas' => "Adidas",
+  'Nike'=>'Nike'
 }
 
-Impt_brands = ['adidassg','asicsofficial','skecherssg','under_armour_official','puma_singapore']
+Impt_brands = ['adidassg','asicsofficial','skecherssg','sauconyofficial','under_armour_official','puma_singapore','salomon.sg', "ASICS",'PUMA','Skechers','adidas','Nike']
 
 final_list = []
-error_urls = []
+# error_urls = []
 
 if search_term == 'Running'
   prod_label = 'Running'
@@ -289,7 +336,7 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
     return
   end
 
-  puts "url: #{prod_listing[0]}"
+  puts prod_listing[0]
 
   url = URI.encode_www_form_component(prod_listing[0])
 
@@ -345,7 +392,6 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   # body_data = data['resolved-url']
   puts 'resolved-url'
   puts data['resolved-url']
-  # puts data['body']
 
   body_data = data['body']
 
@@ -354,32 +400,29 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   # Parse the HTML data
   soupy = Nokogiri::HTML(body_data)
 
-  soup = soupy.at_css('div.flex-auto.flex-column.swTqJe')
-
-  # voucher = soupy.at_css('div.shopee\\-popover\\ shopee\\-popover\\-\\-dropdown')
-  # puts "voucher: #{voucher}"
-  # #shopee-popover shopee-popover--dropdown
-  # voucher_text = voucher.text
-
-  # puts "voucher_text: #{voucher_text}"
+  soup = soupy.at_css('div.pdp\\-block\\ pdp\\-block__product\\-detail')
 
 
-  soupz = soupy.at_css('div.oAVg4E')
+  soupz = soupy.at_css('div.seller\\-name\\-retail')
 
-  competitor_name = soupz.at_css('div.VlDReK')
 
-  prod_voucher = soupz.at_css('div.mini\\-vouchers__vouchers\\ flex\\ flex\\-auto\\ flex\\-no\\-overflow')
+  competitor_name = soupz.at_css('div.seller\\-name__detail')
 
-  # product_qty = soup.at_css('div.e9sAa2')
 
-  product_name = soup.at_css('div._44qnta')
+  product_name = soup.at_css('h1.pdp\\-mod\\-product\\-badge\\-title')
   
-  product_initial_price = soup.at_css('div.Y3DvsN')
 
-  product_final_price = soup.at_css('div.pqTWkA')
+  product_initial_price = soup.at_css('span.pdp\\-price\\ pdp\\-price_type_deleted\\ pdp\\-price_color_lightgray\\ pdp\\-price_size_xs')
 
-  img_perlisting = soupy.at_css("div.cxDtMn")
-  product_img = img_perlisting.css("div > @style")
+
+  product_final_price = soup.at_css('span.pdp\\-price\\ pdp\\-price_type_normal\\ pdp\\-price_color_orange\\ pdp\\-price_size_xl')
+
+
+  img_perlisting = soupy.at_css("div.gallery\\-preview\\-panel__content")
+
+
+  product_img = img_perlisting.css("img > @src")
+
 
   competitor_name_data = competitor_name.text
 
@@ -391,51 +434,39 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
     return
   end
 
-  # product_qty_data = product_qty.text
+  puts 'prod name text'
   product_name_data = product_name.text
+  puts 'prod final'
   product_final_price_data = product_final_price.text
-  product_voucher_data = prod_voucher.nil? || prod_voucher.text.empty? ? 'NA' : prod_voucher.text
+  puts 'prod init'
   product_initial_price_data = product_initial_price.nil? || product_initial_price.text.empty? ? 'NA' : product_initial_price.text
+  puts 'prod img'
   product_img_data = product_img.to_s
-  product_img_data_f = product_img_data.match(/url\(["']([^"']+)["']\)/)[1]
 
 
   puts "Competitor name: #{Brand_dict.fetch(competitor_name_data)}"
 
   puts "Product Name: #{product_name_data}"
 
-  puts "Product Vouchers: #{product_voucher_data}"
-
   puts "Initial Price: #{product_initial_price_data}"
 
   puts "Final Price: #{product_final_price_data}"
   
-  puts "Qty sold per month: #{prod_listing[2]}"
+  puts "Qty sold total: #{prod_listing[1]} sold total"
 
   puts "Product URL: #{prod_listing[0]}"
 
-  puts "Image Url: #{product_img_data_f}"
+  puts "Image Url: #{product_img_data}"
   
   final_entry = []
   final_entry << cat_label
   final_entry << Brand_dict.fetch(competitor_name_data)
   final_entry << product_name_data
-  final_entry << product_voucher_data
   final_entry << product_initial_price_data
   final_entry << product_final_price_data
-  final_entry << prod_listing[2].to_i ### sold data
+  final_entry << prod_listing[1].to_i ### sold data
   final_entry << prod_listing[0] ## product url
-  final_entry << product_img_data_f
-
-  # final_entry is in the following order:
-  # 1. Brand name
-  # 2. Product name
-  # voucher dat
-  # 3. Retail Price
-  # 4. Current Price
-  # 5. Qty sold/mth
-  # 6. Product URL
-  # 7. Product image URL
+  final_entry << product_img_data
 
 
   final_l << final_entry
@@ -445,8 +476,9 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
 
 rescue NoMethodError => e
   # Handle the error when 'at_css' method fails due to nil value
-  puts "Retrying product URL: #{prod_listing[0]} - Error: #{e.message}"
   retry_number = retry_number + 1
+  puts "Retrying product URL(#{retry_number}/5): #{prod_listing[0]} - Error: #{e.message}"
+
 
   send_request_url(final_l,prod_listing,cat_label,retry_number)
 rescue StandardError => e
@@ -457,7 +489,6 @@ rescue StandardError => e
 end
 
 
-# all_products_urls1 = [["https://shopee.sg/Skechers-Online-Exclusive-Women-Sport-Skech-Lite-Pro-High-Journey-Shoes-149993-BKW-Air-Cooled-Memory-Foam-i.84710867.18230378072?sp_atk=c1d5d20b-ac8c-473e-903f-414648bfe56b&xptdk=c1d5d20b-ac8c-473e-903f-414648bfe56b","SG",23]]
 
 
 all_products_urls.each do |entry|
@@ -475,34 +506,11 @@ puts "Length of products: #{final_list.length}"
 puts '---------------------------------------------------------'
 
 
-# puts "error_urls: #{error_urls}"
-
-# retry_list = error_urls
-# error_urls = []
-# puts 'retrying error_urls'
-  
-# retry_list.each do |entry|
-#   puts "RETRYING PRODUCT NUMBER: #{retry_list.index(entry)+1} out of #{retry_list.length}"
-#   send_request_url(final_list,entry,error_urls,prod_label)
-# end
-
-# puts "final error_urls: #{error_urls}"
-
-# count = 0
-
-# final_list.each do |product_data|
-#   count = count + 1
-#   puts "---------------------"
-#   puts "Product #{count}:"
-#   puts "---------------------"
-#   puts product_data
-# end
-
 current_time = Time.now
 date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
 time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
 
-csv_filename = "./data/shopee_#{search_term}_product_list_#{date_str}_#{time_str}.csv"
+csv_filename = "./data/lazada_#{search_term}_product_list_#{date_str}_#{time_str}.csv"
 
 CSV.open(csv_filename, 'w') do |csv|
   final_list.each do |row|
