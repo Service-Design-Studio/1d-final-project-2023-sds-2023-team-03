@@ -26,6 +26,8 @@ Rails.application.routes.draw do
         end
       end
       # get '/competitors/:competitor_name', to: 'competitors#show'
+
+      post 'analyze-sentiment', to: 'sentiment_analysis#analyze_sentiment'
     end
   end
 

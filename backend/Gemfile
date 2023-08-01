@@ -45,6 +45,8 @@ gem "faker"
 
 gem "fast_jsonapi"
 
+gem 'googleauth'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
