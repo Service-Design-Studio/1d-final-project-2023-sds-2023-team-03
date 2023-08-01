@@ -2,22 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Flex, Card, Image, Text, Group, Badge, Button } from '@mantine/core';
 import axios from 'axios';
 
-// function sendInsightsForSentimentAnalysis(insightsText) {
-//     const backendUri = '';
-//     const insightsToSend = {
-//         insight: insight,
-//     };
-
-//     axios.post(backendUri, insightsToSend)
-//     .then((res) => {
-//         console.log("Sentiment Analysis result: ", res.data);
-//     })
-//     .catch((error) => {
-//         // Handle errors, if any
-//         console.error('Error occurred during sentiment analysis:', error);
-//       });
-//   }
-
 const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restocking, above_100_sold, restock_above_100_sold }) => {
   const [isInsight1Hovered, setIsInsight1Hovered] = useState(false);
   const [isInsight2Hovered, setIsInsight2Hovered] = useState(false);
@@ -94,6 +78,22 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
 //     sendInsightsForSentimentAnalysis(insight4Text);
 //   }, [product_name, most_stocks_left, needs_restocking, above_100_sold, restock_above_100_sold]);
 
+const [sentiment, setSentiment] = useState(null);
+
+useEffect(() => {
+  const insightText = `${product_name} has 30% less sales than Nike Shoes.`;
+
+  axios.post('http://127.0.0.1:3000/api/v1/analyze-sentiment', { text: insightText })
+    .then((response) => {
+      const data = response.data;
+      setSentiment(data.sentiment);
+    })
+    .catch((error) => {
+      // Handle API error
+      console.error('Error occurred during sentiment analysis:', error);
+    });
+}, [product_name]);
+
   return (
     <div className="merchInsights" style={containerStyle}>
       <h2
@@ -130,9 +130,9 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
 
         <Group position="apart" mt="md" mb="xs">
           <Text style={firstParagraphStyle} weight={500}>Most Stocks</Text>
-          <Badge color="pink" variant="light">
-            Average
-          </Badge>
+          
+          <Badge color="pink" variant="light">Average</Badge>
+          
         </Group>
 
         <Text size="sm">
@@ -165,7 +165,7 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         </Group>
 
         <Text size="sm">
-          {needs_restocking} products needs restocking.
+          {needs_restocking} products need restocking.
         </Text>
 
         <Button variant="light" color="blue" fullWidth mt="md" radius="md">
@@ -248,7 +248,7 @@ const MerchandisingInsights = ({ product_name, most_stocks_left, needs_restockin
         <Group position="apart" mt="md" mb="xs">
           <Text style={firstParagraphStyle} weight={500}>Restock: <br/> Products that are doing well</Text>
           <Badge color="pink" variant="light">
-            Critical
+            {sentiment}
           </Badge>
         </Group>
 
