@@ -21,12 +21,10 @@ const Competitors = () => {
     setApiLoad(true)
     let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase() === 'overall' ? 'all' : competitorName}`;
 
-    axios.get(url)
+    axios.get(url, {timeout: 10000})
     .then((res) => {
-      if (res && res.data) {
-        setCompetitorProducts(res.data.all_data);
-        setTopCompetitorSales(res.data.top_sales);
-      }
+      if (res.data.all_data) setCompetitorProducts(res.data.all_data);
+      if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
       setApiLoad(false);
     })
     .catch((err) => {
