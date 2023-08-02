@@ -15,22 +15,17 @@ class Sale < ApplicationRecord
     def self.sales_frequency(sales)
         hash = {}
         sales.each do |p|
-            if hash[p.product_name] then
-                hash[p.product_name] += p.sales
-            else
-                hash[p.product_name] = p.sales
-            end
+          if hash[p.product_name]
+            hash[p.product_name] += p.sales
+          else
+            hash[p.product_name] = p.sales
+          end
         end
-
-        # sort the hash before stripping keys/values
+      
         hash = hash.sort_by {|k, v| v}.reverse.to_h
-
-        # output
-        {
-            "x_axis" => hash.keys,
-            "y_axis" => hash.values
-        }
-    end
+      
+        {x_axis: hash.keys, y_axis: hash.values}
+      end
 
 
     # turns the query into a hash containing 2 fields:
