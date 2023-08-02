@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Stack, Modal, SegmentedControl, Button, Flex } from '@mantine/core'
@@ -7,7 +7,7 @@ import CompetitorsTable from '../components/CompetitorsTable';
 import './Competitors.css'
 
 const Competitors = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useRef(false);
   const [apiLoad, setApiLoad] = useState(true);
   const [errorOpen, setErrorOpen] = useState(false);
   const [segmentValue, setSegmentValue] = useState('pa')
