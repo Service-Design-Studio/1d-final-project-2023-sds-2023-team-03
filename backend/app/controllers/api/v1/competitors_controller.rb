@@ -21,12 +21,12 @@ module Api
       end
 
       def show
-        competitor = Competitor.find(params[:product_id])
+        competitor = Competitor.find(params[:id])
         render json: { status: 'SUCCESS', message: 'Loaded competitor product', data: competitor }
       end
 
       def update
-        competitor = Competitor.find(params[:product_id])
+        competitor = Competitor.find(params[:id])
 
         begin
           competitor.update!(competitor_params)
@@ -37,7 +37,7 @@ module Api
       end
 
       def destroy
-        competitor = Competitor.find params[:product_id]
+        competitor = Competitor.find params[:id]
         competitor.destroy
         flash[:notice] = "Competitor Product '#{competitor.product_name}' entry deleted."
       end
