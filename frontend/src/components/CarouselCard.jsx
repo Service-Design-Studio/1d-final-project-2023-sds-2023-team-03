@@ -35,14 +35,12 @@ const CarouselCard = ({ topProducts }) => {
                         { maxWidth: 'md', slideSize: '50%' },
                         { maxWidth: 'sm', slideSize: '100%', slideGap: 15 },
                     ]}
-                    loop
                     align="start"
                     pr="10px"
                     pl="10px"
                 >
                     {topProducts.map((product, index) => (
                         <Carousel.Slide key={product.id}>
-                            {/* TODO: Replace with link */}
                             <a href={`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${product.competitorName}`} target='_blank' rel='noreferrer'>
                                 <div style={carouselContent}>
                                     <Text order={2} color="black">Rank: {index + 1}</Text>

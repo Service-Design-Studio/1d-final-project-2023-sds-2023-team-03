@@ -19,7 +19,9 @@ const Competitors = () => {
 
   const getCompetitorsData = useCallback(() => {
     setApiLoad(true)
-    axios.get(`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName}`)
+    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase() === 'overall' ? 'all' : competitorName}`;
+
+    axios.get(url)
     .then((res) => {
       if (res && res.data) {
         setCompetitorProducts(res.data.all_data);
@@ -80,7 +82,7 @@ const Competitors = () => {
             onClose={() => setErrorOpen(false)}
             title="Error"
             >
-              There was a problem with loading the data. Please rety from the Competitors page.
+              There was a problem with loading the data. Please retry from the Competitors page.
             </Modal>
           </Stack>
       </>
