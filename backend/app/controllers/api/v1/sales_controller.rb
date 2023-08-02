@@ -4,6 +4,15 @@ module Api
   module V1
     class SalesController < ApplicationController
       def index
+        if params.has_key?(:category) || params.has_key?(:start) || params.has_key?(:end)
+          query and return
+        end
+
+        all_sales = Sale.all
+        render :json => all_sales
+      end
+
+      def query
         # set output as empty by default
         out = {}
 
@@ -58,11 +67,6 @@ module Api
         sale = Sale.find params[:id]
         sale.destroy
         flash[:notice] = "Product '#{sale.product_name}' deleted from Sales record."
-      end
-
-      def all
-        sales = Sale.all
-        render :json => sales
       end
 
       def top_categories
