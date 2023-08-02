@@ -8,12 +8,13 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
     backgroundColor: '#323145',
     color: 'white',
     border: '2px gray',
-    padding: '0.5em 1.5em',
+    padding: '0.5em 2.5em',
     fontWeight: 500,
     boxShadow: 'none',
     borderRadius: 5,
   };
 
+  
   const buttonHoverStyles = {
     backgroundColor: 'white',
     color: 'blue',
@@ -21,7 +22,7 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
   };
   const cardStyles = {
     boxShadow: '0 5px 15px rgba(0, 0, 0, 0.4)',
-    backgroundColor: '#509066', // Use different background color on hover
+    backgroundColor: '#5C8984', // Use different background color on hover
     position: 'relative',
     overflow: 'hidden',
     transition: 'box-shadow 0.3s ease, background-color 0.3s ease', // Add background-color transition
@@ -48,15 +49,15 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
       </Card.Section>
 
       <Card.Section style={{ textAlign: 'center' }}>
-        <Text weight={600} size="m" noWrap style={{ marginBottom: 8 }}>
+        <Text weight={600} size="L" noWrap style={{ marginBottom: 8 }}>
           {title}
         </Text>
 
-        <Text size="sm">{category}</Text>
-        <Text size="sm">Price: {price}</Text>
-        <Text size="sm">Sales: {sales}</Text>
-        <Text size="sm">Monthly revenue: {mthrev}</Text>
-        <Text size="sm">Annual Revenue: {yearrev}</Text>
+        <Text size="m">{category}</Text>
+        <Text size="m">Price: {price}</Text>
+        <Text size="m">Sales: {sales}</Text>
+        <Text size="m">Monthly revenue: {mthrev}</Text>
+        <Text size="m">Annual Revenue: {yearrev}</Text>
 
         <div style={{ marginTop: 16 }}>
           <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>

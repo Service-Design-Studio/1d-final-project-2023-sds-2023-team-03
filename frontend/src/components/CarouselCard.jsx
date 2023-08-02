@@ -53,7 +53,6 @@ const CarouselCard = ({ topProducts }) => {
                         { maxWidth: 'md', slideSize: '50%' },
                         { maxWidth: 'sm', slideSize: '100%', slideGap: 15 },
                     ]}
-                    loop
                     align="start"
                     pr="10px"
                     pl="10px"
