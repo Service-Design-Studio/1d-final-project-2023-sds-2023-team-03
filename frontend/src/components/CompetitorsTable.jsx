@@ -2,7 +2,7 @@ import { DataTable } from 'mantine-datatable';
 import { Flex } from '@mantine/core';
 import { useState, useEffect } from 'react'
 
-function CompetitorsTable({ data, pageSize }) {
+function CompetitorsTable({ data, pageSize, apiLoad }) {
     const [fetching, setFetching] = useState(true)
     const [savedData, setSavedData] = useState([]);
     const [page, setPage] = useState(1);
