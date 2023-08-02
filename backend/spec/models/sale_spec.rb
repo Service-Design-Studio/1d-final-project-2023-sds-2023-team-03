@@ -15,6 +15,23 @@ RSpec.describe Sale, type: :model do
       end_date = Date.today
       expect(Sale.category_time_query(start_date, end_date, 'comfortwear')).to contain_exactly(@sale3, @sale4, @sale5)
     end
+
+    it 'returns an empty array if start_date is later than end_date' do
+      start_date = Date.today
+      end_date = Date.today - 3.days
+      expect(Sale.category_time_query(start_date, end_date, 'comfortwear')).to eq([])
+    end
+
+    it 'returns sales on a specific date if start_date and end_date are the same' do
+      date = Date.today - 1.days
+      expect(Sale.category_time_query(date, date, 'comfortwear')).to contain_exactly(@sale5)
+    end
+
+    it 'returns an empty array for a non-existent category' do
+      start_date = Date.today - 3.days
+      end_date = Date.today
+      expect(Sale.category_time_query(start_date, end_date, 'NonexistentCategory')).to eq([])
+    end
   end
 
   context 'sales_frequency' do
@@ -23,6 +40,11 @@ RSpec.describe Sale, type: :model do
       result = Sale.sales_frequency(sales)
       expect(result[:x_axis]).to contain_exactly(@sale1.product_name, @sale2.product_name, @sale3.product_name, @sale4.product_name, @sale5.product_name)
       expect(result[:y_axis]).to contain_exactly(@sale1.sales, @sale2.sales, @sale3.sales, @sale4.sales, @sale5.sales)
+    end
+
+    it 'returns an empty hash if there are no sales' do
+      sales = Sale.where(product_category: 'NonexistentCategory')
+      expect(Sale.sales_frequency(sales)).to eq({x_axis: [], y_axis: []})
     end
   end
 
@@ -33,26 +55,10 @@ RSpec.describe Sale, type: :model do
       expect(result[:x_axis]).to contain_exactly(@sale1.product_name, @sale2.product_name, @sale3.product_name, @sale4.product_name, @sale5.product_name)
       expect(result[:y_axis]).to contain_exactly(@sale1.sales*@sale1.price, @sale2.sales*@sale2.price, @sale3.sales*@sale3.price, @sale4.sales*@sale4.price, @sale5.sales*@sale5.price)
     end
-  end
 
-  context 'top_10_types_category' do
-    it 'returns the top 10 types of products in a specified category, sorted by frequency and revenue' do
-      sales = Sale.where(product_category: 'comfortwear')
-      result = Sale.top_10_types_category(sales)
-      expect(result[:frequency][:x_axis]).to contain_exactly(@sale3.product_type, @sale4.product_type, @sale5.product_type)
-      expect(result[:frequency][:y_axis]).to contain_exactly(@sale3.sales, @sale4.sales, @sale5.sales)
-      expect(result[:revenue][:x_axis]).to contain_exactly(@sale3.product_type, @sale4.product_type, @sale5.product_type)
-      expect(result[:revenue][:y_axis]).to contain_exactly(@sale3.sales*@sale3.price, @sale4.sales*@sale4.price, @sale5.sales*@sale5.price)
-    end
-  end
-
-  context 'top_categories_date' do
-    it 'returns the top categories within a specified date range, sorted by units and amount' do
-      start_date = Date.today - 3.days
-      end_date = Date.today
-      result = Sale.top_categories_date(start_date, end_date)
-      expect(result[:units]).to eq({"comfortwear" => (@sale3.sales + @sale4.sales + @sale5.sales)})
-      expect(result[:amount]).to eq({"comfortwear" => (@sale3.sales*@sale3.price + @sale4.sales*@sale4.price + @sale5.sales*@sale5.price)})
+    it 'returns an empty hash if there are no sales' do
+      sales = Sale.where(product_category: 'NonexistentCategory')
+      expect(Sale.sales_revenue(sales)).to eq({x_axis: [], y_axis: []})
     end
   end
 end

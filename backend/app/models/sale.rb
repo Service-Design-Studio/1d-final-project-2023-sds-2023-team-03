@@ -13,19 +13,19 @@ class Sale < ApplicationRecord
     #   y_axis: number of sales of sales (array)
     # the two fields have 1:1 mapping
     def self.sales_frequency(sales)
-        hash = {}
-        sales.each do |p|
-          if hash[p.product_name]
-            hash[p.product_name] += p.sales
-          else
-            hash[p.product_name] = p.sales
-          end
-        end
-      
-        hash = hash.sort_by {|k, v| v}.reverse.to_h
-      
-        {x_axis: hash.keys, y_axis: hash.values}
-      end
+  hash = {}
+  sales.each do |p|
+    if hash[p.product_name]
+      hash[p.product_name] += p.sales
+    else
+      hash[p.product_name] = p.sales
+    end
+  end
+
+  hash = hash.sort_by {|k, v| v}.reverse.to_h
+
+  {x_axis: hash.keys, y_axis: hash.values}
+end
 
 
     # turns the query into a hash containing 2 fields:
