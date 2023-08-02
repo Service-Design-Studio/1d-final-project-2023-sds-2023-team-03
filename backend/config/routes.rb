@@ -21,10 +21,11 @@ Rails.application.routes.draw do
 
       resources :users, only: [:create, :show, :index]
 
-      get 'competitors/all', to: 'competitors#all'
       resources :competitors, only: [:index, :show] do
         collection do
           get 'competitor_sales_data'
+          get 'competitors/all', to: 'competitors#all'
+          get 'competitors/overall,' to: 'competitors#all'
         end
       end
       # get '/competitors/:competitor_name', to: 'competitors#show'
