@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::SalesController, type: :controller do
-  let(:valid_attributes) { { product_id: 2, product_category: "Comfortwear", product_type: "Shorts", product_name: "Small Granite Car", date: "2023-01-01", price: 80.14, sales: 15 } }
+  let(:valid_attributes) { { product_id: 2, product_category: 'Comfortwear', product_type: 'Shorts', product_name: 'Small Granite Car', date: '2023-01-01', price: 80.14, sales: 15 } }
+  let(:valid_attributes1) { { product_id: 2, product_category: 'Comfortwear', product_type: 'Shorts', product_name: 'Small Granite Car', date: '2023-01-01', price: 90.14, sales: 15 } }
   let(:invalid_attributes) { { product_id: nil, product_category: nil, product_type: nil, product_name: nil, date: nil, price: nil, sales: nil } }
   let(:sale_params) {
           {
@@ -54,13 +55,14 @@ RSpec.describe Api::V1::SalesController, type: :controller do
 
     context 'with valid params' do
       it 'updates the requested sale' do
-        put :update, params: { id: sale.id, sale: valid_attributes }
+        put :update, params: { id: sale.id, sale: valid_attributes1 }
         sale.reload
+        expect(sale.price).to eq(valid_attributes1[:price])
         expect(sale.product_id).to eq(valid_attributes[:product_id])
       end
 
       it 'renders a JSON response with the sale' do
-        put :update, params: { id: sale.id, sale: valid_attributes }
+        put :update, params: { id: sale.id, sale: valid_attributes1 }
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
