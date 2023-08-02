@@ -80,7 +80,7 @@ def send_request(all_p_urls,page_count,search_term,it)
   JS
   
 
-  uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&wait_browser=networkidle2&json_response=True&block_resources=True&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
+  uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&country_code=sg&wait_browser=load&json_response=True&block_resources=False&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
 
   # Randomly select a user agent
   user_agent = USER_AGENTS.sample
@@ -126,7 +126,7 @@ def send_request(all_p_urls,page_count,search_term,it)
   puts '----------------------------------'
   puts 'BODY'
   puts '----------------------------------'
-  puts body_data
+  # puts body_data
 
 
   puts '--------------------- Extracting! ---------------------'
@@ -180,7 +180,7 @@ def send_request(all_p_urls,page_count,search_term,it)
     final_link << "https:" + data
   end
 
-  puts "Pre-append: #{final_link}"
+  # puts "Pre-append: #{final_link}"
 
   puts "len of urls: #{final_link.length}"
 
@@ -195,7 +195,7 @@ def send_request(all_p_urls,page_count,search_term,it)
   page_bool = soup.at_css("li.ant\\-pagination\\-next")
 
   # puts page_bool
-  if page_bool.to_s.include?("aria-disabled=\"true\"")
+  if page_bool.to_s.include?("aria-disabled=\"true\"") || page_count == 2
 
     puts 'next page does not exist, terminating'
     if it == Url_len[search_term]-1
@@ -205,9 +205,11 @@ def send_request(all_p_urls,page_count,search_term,it)
       ###moves to next element url
       it += 1
       page_count = 1
-      puts "Moving to next URL..."
+      puts "Moving to next URL in category..."
       send_request(all_p_urls,page_count,search_term,it)
     end
+
+    return
 
   else 
     puts 'moving to next page...'
@@ -264,27 +266,6 @@ end
 
 puts "len of all listings_data(cleaned): #{all_products_urls.length}"
 
-puts "ALL P URLS:"
-all_products_urls.each do |testery|
-  puts testery[0]
-
-end
-
-
-current_time = Time.now
-date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
-time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
-
-csv_filename = "./data/lazada_#{search_term}_product_list_#{date_str}_#{time_str}.csv"
-
-CSV.open(csv_filename, 'w') do |csv|
-  all_products_urls.each do |row|
-    row << date_str
-    csv << row
-  end
-end
-
-puts "CSV file '#{csv_filename}' created successfully."
 
 ##################################################################
 ## ENTERING INTO EACH URL

@@ -17,7 +17,7 @@ USER_AGENTS = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36 Edg/80.0.361.69',
   # Add more user agents here
 ]
-page_count = 4
+page_count = 0
 all_products_urls = []
 
 
@@ -38,10 +38,6 @@ def send_request(all_p_urls,page_count,search_term)
   }
 
   puts "page count is #{page_count+1}"
-
-  if page_count == 5
-    return
-  end
 
 
   puts url_dict[search_term]
@@ -71,7 +67,7 @@ def send_request(all_p_urls,page_count,search_term)
   
   # Response_iteration = Response_iteration + 1
 
-  uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&wait_browser=load&json_response=True&block_resources=True&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
+  uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&country_code=sg&wait_browser=networkidle2&json_response=True&block_resources=False&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
 
   # Randomly select a user agent
   user_agent = USER_AGENTS.sample
@@ -113,7 +109,7 @@ def send_request(all_p_urls,page_count,search_term)
 
   body_data = data['body']
 
-  # puts body_data
+  puts body_data
 
   puts '--------------------- Extracting! ---------------------'
 
@@ -139,8 +135,6 @@ def send_request(all_p_urls,page_count,search_term)
     link_data = link.map(&:text)
 
     sold_data_raw = sold.map(&:text)
-    # img_perlisting = soup_container.css("div.yvbeD6\\ KUUypF")
-    # img = img_perlisting.css("img > @src")
     location_data = location.map(&:text)
   else
     puts 'Scraping by Brands...'
@@ -155,8 +149,6 @@ def send_request(all_p_urls,page_count,search_term)
 
     sold_data_raw = sold.map(&:text)
     location_data = Array.new(link_data.length, 'SG')
-    # img_perlisting = soup_container.css("div.ExVKL4.Gqf95F")
-    # img = img_perlisting.css("img > @src")
   end
 
 
@@ -356,19 +348,13 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
 
   soup = soupy.at_css('div.flex-auto.flex-column.swTqJe')
 
-  # voucher = soupy.at_css('div.shopee\\-popover\\ shopee\\-popover\\-\\-dropdown')
-  # puts "voucher: #{voucher}"
-  # #shopee-popover shopee-popover--dropdown
-  # voucher_text = voucher.text
-
-  # puts "voucher_text: #{voucher_text}"
 
 
   soupz = soupy.at_css('div.oAVg4E')
 
   competitor_name = soupz.at_css('div.VlDReK')
 
-  prod_voucher = soupz.at_css('div.mini\\-vouchers__vouchers\\ flex\\ flex\\-auto\\ flex\\-no\\-overflow')
+  prod_voucher = soup.css('div.voucher\\-ticket\\ voucher\\-ticket\\-\\-SG\\ voucher\\-ticket\\-\\-seller\\-mini\\-solid\\ mini\\-voucher\\-with\\-popover')
 
   # product_qty = soup.at_css('div.e9sAa2')
 
@@ -391,14 +377,24 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
     return
   end
 
+  if prod_voucher.nil? || prod_voucher.text.empty?
+    product_voucher_data = 'NA'
+  elsif prod_voucher.map(&:text).length == 1
+    product_voucher_data = prod_voucher.text
+  else
+    product_voucher_data = prod_voucher.map(&:text)
+    product_voucher_data = product_voucher_data.join(", ")
+  end
+
+
   # product_qty_data = product_qty.text
   product_name_data = product_name.text
   product_final_price_data = product_final_price.text
-  product_voucher_data = prod_voucher.nil? || prod_voucher.text.empty? ? 'NA' : prod_voucher.text
-  product_initial_price_data = product_initial_price.nil? || product_initial_price.text.empty? ? 'NA' : product_initial_price.text
+  # product_voucher_data = prod_voucher.nil? || prod_voucher.text.empty? ? 'NA' : prod_voucher.text
+  product_initial_price_data = product_initial_price.nil? || product_initial_price.text.empty? ? 'No Price Reduction' : product_initial_price.text
   product_img_data = product_img.to_s
   product_img_data_f = product_img_data.match(/url\(["']([^"']+)["']\)/)[1]
-
+  
 
   puts "Competitor name: #{Brand_dict.fetch(competitor_name_data)}"
 
@@ -427,15 +423,6 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   final_entry << prod_listing[0] ## product url
   final_entry << product_img_data_f
 
-  # final_entry is in the following order:
-  # 1. Brand name
-  # 2. Product name
-  # voucher dat
-  # 3. Retail Price
-  # 4. Current Price
-  # 5. Qty sold/mth
-  # 6. Product URL
-  # 7. Product image URL
 
 
   final_l << final_entry
@@ -450,14 +437,11 @@ rescue NoMethodError => e
 
   send_request_url(final_l,prod_listing,cat_label,retry_number)
 rescue StandardError => e
-  puts "HTTP Request failed (#{e.message})"
+  puts "HTTP Request failed (#{e.message}), retrying URL"
   retry_number = retry_number + 1
 
   send_request_url(final_l,prod_listing,cat_label,retry_number)
 end
-
-
-# all_products_urls1 = [["https://shopee.sg/Skechers-Online-Exclusive-Women-Sport-Skech-Lite-Pro-High-Journey-Shoes-149993-BKW-Air-Cooled-Memory-Foam-i.84710867.18230378072?sp_atk=c1d5d20b-ac8c-473e-903f-414648bfe56b&xptdk=c1d5d20b-ac8c-473e-903f-414648bfe56b","SG",23]]
 
 
 all_products_urls.each do |entry|
@@ -474,29 +458,6 @@ puts '---------------------------------------------------------'
 puts "Length of products: #{final_list.length}"
 puts '---------------------------------------------------------'
 
-
-# puts "error_urls: #{error_urls}"
-
-# retry_list = error_urls
-# error_urls = []
-# puts 'retrying error_urls'
-  
-# retry_list.each do |entry|
-#   puts "RETRYING PRODUCT NUMBER: #{retry_list.index(entry)+1} out of #{retry_list.length}"
-#   send_request_url(final_list,entry,error_urls,prod_label)
-# end
-
-# puts "final error_urls: #{error_urls}"
-
-# count = 0
-
-# final_list.each do |product_data|
-#   count = count + 1
-#   puts "---------------------"
-#   puts "Product #{count}:"
-#   puts "---------------------"
-#   puts product_data
-# end
 
 current_time = Time.now
 date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD

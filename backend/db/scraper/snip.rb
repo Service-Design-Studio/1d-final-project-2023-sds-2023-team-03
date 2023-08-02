@@ -41,14 +41,14 @@ def get_url(search_term,it,page_c)
 
 end
 
-# https://shopee.sg/adidassg?page=#{page_count}&shopCollection=244592522&sortBy=sales
+# "https://shopee.sg/mall/search?facet=11012070%2C11012195&keyword=running%20shoes&noCorrection=true&page=1&sortBy=sales"
 
 # Classic (GET)
 def send_request(all_p_urls,page_count,search_term,it)
 
   puts "page count is #{page_count}"
 
-  url_to_call = get_url(search_term,it,page_count)
+  url_to_call = "https://shopee.sg/mall/search?facet=11012070%2C11012195&keyword=running%20shoes&noCorrection=true&page=1&sortBy=sales"
 
   puts "url: #{url_to_call}"
 
@@ -66,7 +66,7 @@ def send_request(all_p_urls,page_count,search_term,it)
     ]}
   JS
   
-  uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&wait_browser=networkidle2&json_response=True&block_resources=True&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
+  uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&country_code=sg&wait_browser=networkidle2&json_response=True&block_resources=False&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
 
   # Randomly select a user agent
   user_agent = USER_AGENTS.sample
