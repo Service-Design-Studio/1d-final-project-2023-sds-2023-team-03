@@ -7,6 +7,7 @@ import CompetitorsTable from '../components/CompetitorsTable';
 import './Competitors.css'
 
 const Competitors = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const [apiLoad, setApiLoad] = useState(true);
   const [errorOpen, setErrorOpen] = useState(false);
   const [segmentValue, setSegmentValue] = useState('pa')
@@ -40,6 +41,15 @@ const Competitors = () => {
     }
 
   }, [segmentValue, competitorName, getCompetitorsData]);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false };
+  })
+
+  useEffect(() => {
+    getCompetitorsData();
+  }, [isMounted.current]);
 
   return(
       <>
