@@ -18,7 +18,7 @@ Rails.application.routes.draw do
         end
       end
       resources :users, only: [:create, :show, :index]
-      resources :competitors, only: [:index, :show, :create, :destroy, :update] do
+      resources :competitors, only: [:all, :index, :show, :create, :destroy, :update] do
       # get '/competitors/all', to: 'competitors#all'
         collection do
           get 'competitor_sales_data'
