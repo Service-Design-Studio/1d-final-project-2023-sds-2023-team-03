@@ -45,7 +45,7 @@ const Competitors = () => {
   useEffect(() => {
     isMounted.current = true;
     return () => { isMounted.current = false };
-  })
+  });
 
   useEffect(() => {
     getCompetitorsData();
