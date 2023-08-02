@@ -51,10 +51,6 @@ const Competitors = () => {
     getCompetitorsData();
   }, [isMounted.current]);
 
-  useEffect(() => {
-    getCompetitorsData();
-  }, [])
-
   return(
       <>
           <Stack>
@@ -75,7 +71,7 @@ const Competitors = () => {
               />
               <Button onClick={getCompetitorsData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
             </Flex>
-            {segmentValue === 'pa' ? <CompetitorsTable data={competitorProducts} pageSize={pageSize} /> : null}
+            {segmentValue === 'pa' ? <CompetitorsTable data={competitorProducts} pageSize={pageSize} apiLoad={apiLoad} /> : null}
           </div>
 
           <Modal
