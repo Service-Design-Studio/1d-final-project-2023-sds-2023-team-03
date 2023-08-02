@@ -19,12 +19,10 @@ const Competitors = () => {
 
   const getCompetitorsData = useCallback(() => {
     setApiLoad(true)
-    axios.get(`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName}`)
+    axios.get(`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitorss/${competitorName}`, {timeout: 10000})
     .then((res) => {
-      if (res && res.data) {
-        setCompetitorProducts(res.data.all_data);
-        setTopCompetitorSales(res.data.top_sales);
-      }
+      if (res.data.all_data) setCompetitorProducts(res.data.all_data);
+      if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
       setApiLoad(false);
     })
     .catch((err) => {
