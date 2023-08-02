@@ -2,21 +2,26 @@ import { DataTable } from 'mantine-datatable';
 import { Flex } from '@mantine/core';
 import { useState, useEffect } from 'react'
 
-function CompetitorsTable({ data, pageSize }) {
+function CompetitorsTable({ data, pageSize, apiLoad }) {
     const [fetching, setFetching] = useState(true)
     const [savedData, setSavedData] = useState([]);
     const [page, setPage] = useState(1);
-    const [pageData, setPageData] = useState(data.slice(0, pageSize));
+    const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
 
     const [sortStatus, setSortStatus] = useState({ columnAccessor: 'sales', direction: 'desc'});
 
     useEffect(() => {
         setFetching(true);
-        setSavedData(data);
-    }, [data]);
+        if (data.length) setSavedData(data);
+    }, [data, apiLoad]);
 
 
     useEffect(() => {
+        if (savedData.length == 0) {
+            setFetching(false);
+            return;
+        }
+
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
         const dataToLoad = savedData.sort((a, b) => {
@@ -35,7 +40,7 @@ function CompetitorsTable({ data, pageSize }) {
         .slice(first, last)
         setPageData(dataToLoad);
         setFetching(false);
-    }, [sortStatus, page, fetching]);
+    }, [sortStatus, page, savedData]);
 
     const handleRowClick = (row) => {
         // TODO: Replace with link

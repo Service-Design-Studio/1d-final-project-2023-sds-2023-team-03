@@ -16,9 +16,9 @@ function Logistics() {
 
   function getMerchData() {
     setApiLoad(true)
-    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products/all", {timeout: 10000})
+    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products", {timeout: 10000})
     .then((res) => {
-      if (res && res.data.length > 0) {
+      if (res.data) {
         setData(res.data);
       }
       setApiLoad(false);
