@@ -75,6 +75,11 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             )
         },
         {
+            accessor: 'product_category',
+            textAlignment: 'center',
+            width: 150
+        },
+        {
             accessor: 'sales',
             textAlignment: 'center',
             width: 100,
