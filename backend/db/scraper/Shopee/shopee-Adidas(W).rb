@@ -7,7 +7,7 @@ require 'csv'
 
 
 ############### CHANGE SEARCH TERM FOR DIFFERENT CATEGORIES ###############
-search_term = 'Running'
+search_term = 'Adidas(W)'
 ###########################################################################
 
 
@@ -108,8 +108,6 @@ def send_request(all_p_urls,page_count,search_term)
 
 
   body_data = data['body']
-
-  puts body_data
 
   puts '--------------------- Extracting! ---------------------'
 
