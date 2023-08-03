@@ -24,7 +24,7 @@ namespace :bigquery do
     BigQueryModule.create_table
   end
 
-  desc "Load seeded data into BigQuery table"
+  desc "Load data into BigQuery table"
   task load_data: :environment do
     data = final_list # Call the method from the included module
     BigQueryModule.load_data_into_table(data) # Use the method from the module to load data into BigQuery

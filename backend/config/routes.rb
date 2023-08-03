@@ -21,17 +21,11 @@ Rails.application.routes.draw do
         end
       end
 
-      # RESTful routes for ScraperController
-      resources :scraper, only: [] do
+      resources :anomalies, only: [] do
         collection do
-          get 'all_products', to: 'scraper#fetch_all_products'
-          get 'products_by_category', to: 'scraper#fetch_products_by_category'
-          get 'products_by_brand', to: 'scraper#fetch_products_by_brand'
-          get 'products_by_date', to: 'scraper#fetch_products_by_date'
-          get 'products_by_quantity_sold', to: 'scraper#sort_by_quantity_sold'
-          post 'train_kmeans_model', to: 'scraper#train_kmeans_model'
-          post 'anomalies', to: 'scraper#detect_anomalies'
-          
+          get 'create_temp_anomalies_table'
+          get 'create_quantity_stats_table'
+          get 'join_anomalies_with_stats'
         end
       end
     end

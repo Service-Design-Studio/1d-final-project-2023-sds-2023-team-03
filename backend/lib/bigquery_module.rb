@@ -285,7 +285,7 @@ module BigQueryModule
         NUM_CLUSTERS = #{num_clusters},
         KMEANS_INIT_METHOD = 'kmeans++'
       ) AS
-      SELECT * 
+      SELECT quantity_sold 
       FROM `#{project_id}.#{dataset_id}.#{table_id}`
     SQL
 
@@ -303,24 +303,69 @@ module BigQueryModule
     project_id = "sds-group3"
     dataset_id = "ecommerce_data"
     model_name = "my_kmeans_model"
-
+  
     # Initialize the BigQuery client
     bigquery = Google::Cloud::Bigquery.new(project: project_id)
-
-    # Construct the BigQuery query to detect anomalies
+  
+    # 1. Run the anomaly detection and store the results in a temporary table
+    create_temp_anomalies_table(bigquery, contamination, project_id, dataset_id, model_name)
+  
+    # 2. Calculate the mean and standard deviation of quantity_sold and store the results in a separate table
+    calculate_quantity_stats(bigquery, project_id, dataset_id)
+  
+    # 3. Join the anomalies with the statistics and classify each anomaly based on its quantity_sold value
+    products = join_anomalies_with_stats(bigquery, project_id, dataset_id)
+  
+    products
+  end
+  
+  def self.create_temp_anomalies_table(bigquery, contamination, project_id, dataset_id, model_name)
     query = <<~SQL
+      CREATE OR REPLACE TABLE `#{project_id}.#{dataset_id}.temp_anomalies` AS
       SELECT
         *
       FROM
-        ML.DETECT_ANOMALIES(MODEL `#{project_id}.#{dataset_id}.#{model_name}`,
+        ML.DETECT_ANOMALIES(MODEL `#{dataset_id}.#{model_name}`,
                             STRUCT(#{contamination} AS contamination),
                             TABLE `#{project_id}.#{dataset_id}.running_category`)
     SQL
-
+    bigquery.query_job(query)
+  end
+  
+  def self.calculate_quantity_stats(bigquery, project_id, dataset_id)
+    query = <<~SQL
+      CREATE OR REPLACE TABLE `#{project_id}.#{dataset_id}.quantity_stats` AS
+      SELECT
+        AVG(quantity_sold) as mean_quantity,
+        STDDEV(quantity_sold) as stddev_quantity
+      FROM
+        `#{project_id}.#{dataset_id}.running_category`
+    SQL
+    bigquery.query_job(query)
+  end
+  
+  def self.join_anomalies_with_stats(bigquery, project_id, dataset_id)
+    query = <<~SQL
+      SELECT
+        anomalies.*,
+        quantity_stats.mean_quantity,
+        CASE
+          WHEN anomalies.is_anomaly = TRUE THEN
+            CASE
+              WHEN anomalies.quantity_sold > quantity_stats.mean_quantity THEN 'High'
+              ELSE 'Low'
+            END 
+          ELSE 'Not Anomaly'
+        END AS anomaly_type
+      FROM
+        `#{project_id}.#{dataset_id}.temp_anomalies` anomalies,
+        `#{project_id}.#{dataset_id}.quantity_stats` quantity_stats
+    SQL
+  
     # Execute the query and get the results
     job = bigquery.query_job(query)
     results = job.data
-
+  
     # Process the results and return the data as an array of hashes
     products = results.map do |row|
       {
@@ -332,9 +377,12 @@ module BigQueryModule
         quantity_sold: row["quantity_sold"],
         product_url: row["product_url"],
         image_url: row["image_url"],
-        date_api_called: row["date_api_called"]
+        date_api_called: row["date_api_called"],
+        is_anomaly: row["is_anomaly"],
+        anomaly_type: row["anomaly_type"],
+        mean_quantity: row["mean_quantity"]
       }
     end
     products
-  end
+  end  
 end

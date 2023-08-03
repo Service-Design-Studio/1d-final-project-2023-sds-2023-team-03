@@ -1,8 +1,8 @@
-# app/controllers/api/v1/scraper_controller.rb
+# app/controllers/api/v1/anomalies_controller.rb
 
 module Api
     module V1
-      class ScraperController < ApplicationController
+      class AnomaliesController < ApplicationController
         def fetch_all_products
           products = BigQueryModule.fetch_all_products
           render json: products
@@ -40,13 +40,27 @@ module Api
           render json: { message: "K-means model with #{num_clusters} clusters is being trained." }
         end
 
-        def detect_anomalies
-            contamination = params[:contamination].to_f
-    
-            # Call the detect_anomalies method from BigQueryModule
-            anomalies = BigQueryModule.detect_anomalies(contamination)
-    
-            render json: anomalies
+        def create_temp_anomalies_table
+          contamination = params[:contamination].to_f
+  
+          # Call the create_temp_anomalies_table method from BigQueryModule
+          BigQueryModule.create_temp_anomalies_table(contamination)
+  
+          render json: { message: "Temp anomalies table created with contamination: #{contamination}" }
+        end
+  
+        def create_quantity_stats_table
+          # Call the create_quantity_stats_table method from BigQueryModule
+          BigQueryModule.create_quantity_stats_table
+  
+          render json: { message: "Quantity stats table created." }
+        end
+  
+        def join_anomalies_with_stats
+          # Call the join_anomalies_with_stats method from BigQueryModule
+          anomalies = BigQueryModule.join_anomalies_with_stats
+  
+          render json: anomalies
         end
       end
     end
