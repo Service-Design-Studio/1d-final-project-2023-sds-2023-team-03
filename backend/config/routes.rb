@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show, :create, :update, :destroy] do
       end
-      resources :sales, only: [:index, :show, :create, :update, :destroy, :all] do
+      resources :sales, only: [:index, :show, :create, :update, :destroy] do
         collection do
           get 'all', to: 'sales#all'
           get 'top_categories', to: 'sales#top_categories'
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         collection do
           get 'competitor_sales_data'
           get 'competitors/all', to: 'competitors#all'
-          get 'competitors/overall,' to: 'competitors#all'
+          get 'competitors/overall', to: 'competitors#all'
         end
       end
       # get '/competitors/:competitor_name', to: 'competitors#show'

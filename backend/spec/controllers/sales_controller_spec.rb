@@ -15,6 +15,31 @@ RSpec.describe Api::V1::SalesController, type: :controller do
               sales: 8
           }
   }
+  let(:sale_params2) {
+    {
+        product_id: 3,
+        product_category: 'Running',
+        product_type: 'Tshirts',
+        product_name: 'TestCreate Shirt',
+        date: '2023-07-20',
+        price: 100,
+        sales: 9
+    }
+}
+let(:sale_params3) {
+  {
+      product_id: 4,
+      product_category: 'Running',
+      product_type: 'Shorts',
+      product_name: 'TestCreate Shorts',
+      date: '2023-07-29',
+      price: 100,
+      sales: 10
+  }
+}
+let(:new_sale4) { Sale.create! sale_params }
+let(:new_sale5) { Sale.create! sale_params2 }
+let(:new_sale6) { Sale.create! sale_params3 }
 
   # Create
   describe 'POST #create' do
@@ -88,5 +113,67 @@ RSpec.describe Api::V1::SalesController, type: :controller do
         expect(response).to have_http_status(:success)
         expect(parsed_response.length).to eq(3)
     end
-end
+  end
+
+  # Query
+  describe "GET #index" do
+    before do
+      new_sale4
+      new_sale5
+      new_sale6
+    end
+
+    it "returns a successful response" do
+    get :index, params: { category: new_sale4.product_category, start:'2023-06-01', end: '2023-08-01' }
+    expect(response).to have_http_status(:success)
+    end
+
+    it "returns the correct JSON response" do
+    get :index, params: { category: new_sale4.product_category, start:'2023-06-01', end: '2023-08-01' }
+    parsed_response = JSON.parse(response.body)
+
+    expect(parsed_response).to have_key('frequencies')
+    expect(parsed_response).to have_key('revenues')
+    expect(parsed_response).to have_key('types')
+    end
+
+    it "returns the correct frequencies data in descending order" do
+    get :index, params: { category: new_sale4.product_category, start:'2023-06-01', end: '2023-08-01' }
+    parsed_response = JSON.parse(response.body)
+
+
+    expect(parsed_response['frequencies']['x_axis'].length).to eq(3)
+    expect(parsed_response['frequencies']['x_axis'][0]).to eq(new_sale6.product_name)
+    expect(parsed_response['frequencies']['x_axis'][1]).to eq(new_sale5.product_name)
+    expect(parsed_response['frequencies']['x_axis'][2]).to eq(new_sale4.product_name)
+    end
+
+    it "returns the correct revenues data in descending order" do
+    get :index, params: { category: new_sale4.product_category, start:'2023-06-01', end: '2023-08-01' }
+    parsed_response = JSON.parse(response.body)
+
+    expect(parsed_response['revenues']['x_axis'].length).to eq(3)
+    expect(parsed_response['revenues']['x_axis'][0]).to eq(new_sale6.product_name)
+    expect(parsed_response['revenues']['x_axis'][1]).to eq(new_sale5.product_name)
+    expect(parsed_response['revenues']['x_axis'][2]).to eq(new_sale4.product_name)
+    end
+
+    it "returns the correct types data in frequencies descending order" do
+      get :index, params: { category: new_sale4.product_category, start:'2023-06-01', end: '2023-08-01' }
+      parsed_response = JSON.parse(response.body)
+  
+      expect(parsed_response['types']['frequency']['x_axis'].length).to eq(3)
+      expect(parsed_response['types']['frequency']['x_axis'][0]).to eq(new_sale6.product_type)
+      expect(parsed_response['types']['frequency']['x_axis'][1]).to eq(new_sale5.product_type)
+      expect(parsed_response['types']['frequency']['x_axis'][2]).to eq(new_sale4.product_type)
+      end
+
+    it "returns the an error for future dates" do
+      get :index, params: { category: new_sale4.product_category, start:'2023-09-01', end: '2022-11-01' }
+      parsed_response = JSON.parse(response.body)
+
+      expect(parsed_response['frequencies']['x_axis'].length).to eq(0)
+      expect(parsed_response['revenues']['x_axis'].length).to eq(0)
+    end
+  end
 end

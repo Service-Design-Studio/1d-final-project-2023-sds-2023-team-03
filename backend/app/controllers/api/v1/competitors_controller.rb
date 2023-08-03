@@ -56,11 +56,6 @@ module Api
         flash[:notice] = "Competitor Product '#{competitor.product_name}' entry deleted."
       end
 
-      def all
-        competitors = Competitor.all
-        render :json => competitors
-      end
-
       private
       def competitor_params
         params.require(:competitor).permit(:competitor_name, :product_id, :product_category, :product_type, :product_name, :price, :stock, :sales, :date)
