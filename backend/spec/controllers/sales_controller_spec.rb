@@ -159,8 +159,6 @@ let(:new_sale6) { Sale.create! sale_params3 }
     end
 
     it "returns the correct types data in frequencies descending order" do
-      thirty_days_later = (Date.today + 30).strftime('%Y-%m-%d')
-      thirty_days_ago = (Date.today - 30).strftime('%Y-%m-%d')
       get :index, params: { category: new_sale4.product_category, start:'2023-06-01', end: '2023-08-01' }
       parsed_response = JSON.parse(response.body)
   
