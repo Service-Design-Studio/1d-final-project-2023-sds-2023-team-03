@@ -23,7 +23,8 @@ Rails.application.routes.draw do
       # get '/competitors/all', to: 'competitors#all'
         collection do
           get 'competitor_sales_data'
-          get 'all'
+          get 'competitors/all', to: 'competitors#all'
+          get 'competitors/overall,' to: 'competitors#all'
         end
       end
       # get '/competitors/:competitor_name', to: 'competitors#show'
