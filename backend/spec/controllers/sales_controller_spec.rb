@@ -74,4 +74,19 @@ RSpec.describe Api::V1::SalesController, type: :controller do
       end
     end
   end
+
+  # Index
+  describe 'GET #index' do
+    it 'returns a list of all sales' do
+        new_sale1 = Sale.create! valid_attributes
+        new_sale2 = Sale.create! valid_attributes1
+        new_sale3 = Sale.create! sale_params
+        get :index
+
+        parsed_response = JSON.parse(response.body)
+        
+        expect(response).to have_http_status(:success)
+        expect(parsed_response.length).to eq(3)
+    end
+end
 end
