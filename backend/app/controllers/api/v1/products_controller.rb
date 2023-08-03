@@ -48,29 +48,12 @@ module Api
         render :json => new_product
       end
 
-      def destroy
+      def delete
         id = params[:id]
         to_delete = Product.find(id)
         to_delete.destroy!
 
         flash[:notice] = "Product \"#{to_delete.product_name}\" successfully deleted from the Product database."
-      end
-
-      def update
-        id = params[:id]
-        prod = Product.find(id)
-
-        begin
-          prod.update!(product_params)
-          render json: { status: 'SUCCESS', message: 'Updated product', data: prod }
-        rescue ActiveRecord::RecordInvalid
-          render json: { status: 'ERROR', message: 'Product not updated', data: prod.errors }, status: :unprocessable_entity
-        end
-      end
-
-      private
-      def product_params
-        params.require(:product).permit(:product_id, :product_category, :product_type, :product_name, :price, :stock, :units_sold)
       end
     end
   end
