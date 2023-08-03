@@ -165,7 +165,10 @@ RSpec.describe Api::V1::CompetitorsController, type: :controller do
             parsed_response = JSON.parse(response.body)
             
             expect(response).to have_http_status(:success)
-            expect(parsed_response.length).to eq(6)
+            expect(parsed_response['all_data'].length).to eq(6)
+            expect(parsed_response).to have_key('all_data')
+            expect(parsed_response).to have_key('top_sales')
+            expect(parsed_response).to have_key('highest_selling_product')
         end
     end
 end
