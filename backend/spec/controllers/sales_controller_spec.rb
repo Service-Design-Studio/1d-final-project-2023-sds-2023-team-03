@@ -169,7 +169,9 @@ let(:new_sale6) { Sale.create! sale_params3 }
       end
 
     it "returns the an error for future dates" do
-      get :index, params: { category: new_sale4.product_category, start:'2023-09-01', end: '2022-11-01' }
+      thirty_days_later = (Date.today + 30).strftime('%Y-%m-%d')
+      thirty_days_ago = (Date.today - 30).strftime('%Y-%m-%d')
+      get :index, params: { category: new_sale4.product_category, start: thirty_days_later, end: thirty_days_ago }
       parsed_response = JSON.parse(response.body)
 
       expect(parsed_response['frequencies']['x_axis'].length).to eq(0)

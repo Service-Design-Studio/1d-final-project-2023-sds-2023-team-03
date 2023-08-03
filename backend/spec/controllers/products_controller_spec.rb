@@ -88,5 +88,5 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
         expect(response).to have_http_status(:success)
         expect(parsed_response.length).to eq(3)
     end
-  end
+  end++++++++
 end
