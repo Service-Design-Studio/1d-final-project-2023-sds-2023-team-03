@@ -14,7 +14,6 @@ Rails.application.routes.draw do
         collection do
           get 'all', to: 'sales#all'
           get 'top_categories', to: 'sales#top_categories'
-          get 'integrity', to: 'sales#integrity'
           get 'sales_data'
         end
       end
