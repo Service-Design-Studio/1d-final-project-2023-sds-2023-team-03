@@ -28,7 +28,7 @@ require 'faker'
 end
 
 # Generate 200 sales
-existing_product_ids = Product.pluck(:product_id)
+existing_product_ids = Product.all.pluck(:product_id)
 200.times do
   product_id = existing_product_ids.sample
 
