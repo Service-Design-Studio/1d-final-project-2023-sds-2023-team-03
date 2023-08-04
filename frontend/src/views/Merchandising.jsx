@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDisclosure } from '@mantine/hooks'
 import { Modal, SegmentedControl, Flex, Button } from '@mantine/core'
 import './Merchandising.css';
-import MerchandisingTable from '../components/MerchandisingTable.jsx';
+import MerchandisingTable from '../components/merchandising_components/MerchandisingTable.jsx';
 import axios from 'axios';
 
 function Logistics() {
@@ -46,7 +46,7 @@ function Logistics() {
   }, [isMounted.current]);
   
   return (
-    <>
+    <>f
       <h1 id="sales-title">Merchandising</h1> 
       <Flex gap="sm" align="center">
         <SegmentedControl 
