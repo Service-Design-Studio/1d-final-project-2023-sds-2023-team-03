@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Stack, Modal, SegmentedControl, Button, Flex } from '@mantine/core'
@@ -7,6 +7,7 @@ import CompetitorsTable from '../components/CompetitorsTable';
 import './Competitors.css'
 
 const Competitors = () => {
+  const isMounted = useRef(false);
   const [apiLoad, setApiLoad] = useState(true);
   const [errorOpen, setErrorOpen] = useState(false);
   const [segmentValue, setSegmentValue] = useState('pa')
@@ -18,12 +19,12 @@ const Competitors = () => {
 
   const getCompetitorsData = useCallback(() => {
     setApiLoad(true)
-    axios.get(`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName}`)
+    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase() === 'overall' ? 'all' : competitorName}`;
+
+    axios.get(url, {timeout: 10000})
     .then((res) => {
-      if (res && res.data) {
-        setCompetitorProducts(res.data.all_data);
-        setTopCompetitorSales(res.data.top_sales);
-      }
+      if (res.data.all_data) setCompetitorProducts(res.data.all_data);
+      if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
       setApiLoad(false);
     })
     .catch((err) => {
@@ -40,6 +41,15 @@ const Competitors = () => {
     }
 
   }, [segmentValue, competitorName, getCompetitorsData]);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false };
+  });
+
+  useEffect(() => {
+    getCompetitorsData();
+  }, [isMounted.current]);
 
   return(
       <>
@@ -61,7 +71,7 @@ const Competitors = () => {
               />
               <Button onClick={getCompetitorsData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
             </Flex>
-            {segmentValue === 'pa' ? competitorProducts && <CompetitorsTable data={competitorProducts} pageSize={pageSize} apiLoad={apiLoad} /> : null}
+            {segmentValue === 'pa' ? <CompetitorsTable data={competitorProducts} pageSize={pageSize} apiLoad={apiLoad} /> : null}
           </div>
 
           <Modal
@@ -70,7 +80,7 @@ const Competitors = () => {
             onClose={() => setErrorOpen(false)}
             title="Error"
             >
-              There was a problem with loading the data. Please rety from the Competitors page.
+              There was a problem with loading the data. Please retry from the Competitors page.
             </Modal>
           </Stack>
       </>

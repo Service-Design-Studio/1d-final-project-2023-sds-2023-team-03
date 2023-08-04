@@ -6,21 +6,22 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
     const [fetching, setFetching] = useState(true)
     const [savedData, setSavedData] = useState([]);
     const [page, setPage] = useState(1);
-    const [pageData, setPageData] = useState(data.slice(0, pageSize));
+    const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
 
     const [sortStatus, setSortStatus] = useState({ columnAccessor: 'sales', direction: 'desc'});
 
     useEffect(() => {
-        if (data && apiLoad==false) {
-            setFetching(false);
-            setSavedData(data);
-        } else if (apiLoad) {
-            setFetching(true)
-        }
+        setFetching(true);
+        if (data.length) setSavedData(data);
     }, [data, apiLoad]);
 
 
     useEffect(() => {
+        if (savedData.length == 0) {
+            setFetching(false);
+            return;
+        }
+
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
         const dataToLoad = savedData.sort((a, b) => {
@@ -39,10 +40,9 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
         .slice(first, last)
         setPageData(dataToLoad);
         setFetching(false);
-    }, [sortStatus, page, data]);
+    }, [sortStatus, page, savedData]);
 
     const handleRowClick = (row) => {
-        // TODO: Replace with link
         const url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${row.competitorName}`
         window.open(url, '_blank');
     }
@@ -73,6 +73,11 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
                     {record.product_name}
                 </Flex>
             )
+        },
+        {
+            accessor: 'product_category',
+            textAlignment: 'center',
+            width: 150
         },
         {
             accessor: 'sales',

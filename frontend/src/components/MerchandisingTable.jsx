@@ -18,10 +18,11 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     const [savedData, setSavedData] = useState([]);
     const [pageLength, setPageLength] = useState(0);
     const [page, setPage] = useState(1);
-    const [pageData, setPageData] = useState(data.slice(0, pageSize));
+    const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
     const categories = useMemo(() => {
-        const categories = new Set(data.map((e) => e.product_category));
-        return [...categories]
+        var categories = [];
+        if (data.length) categories = new Set(data.map((e) => e.product_category));
+        return [...categories];
     });
     const [selectedCategories, setSelectedCategories] = useState(categories);
     
@@ -29,15 +30,16 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'asc'});
 
     useEffect(() => {
-        if (data && apiLoad==false) {
-            setFetching(false);
-            setSavedData(data);
-        } else if (apiLoad) {
-            setFetching(true)
-        }
+        setFetching(true);
+        if (data.length) setSavedData(data);
     }, [data, apiLoad]);
 
     useEffect(() => {
+        if (savedData.length == 0) {
+            setFetching(false);
+            return;
+        }
+
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
         const filteredData = savedData.sort((a, b) => {
@@ -63,7 +65,8 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
 
         const dataToLoad = filteredData.slice(first, last);
         setPageData(dataToLoad);
-    }, [selectedCategories, sortStatus, page, data]);
+        setFetching(false);
+    }, [selectedCategories, sortStatus, page, data, savedData]);
 
     return (
         <div className='merch-table'>

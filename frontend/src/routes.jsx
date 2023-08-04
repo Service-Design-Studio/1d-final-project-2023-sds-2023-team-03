@@ -20,7 +20,7 @@ function Router({isLoggedIn, handleLogin}) {
                     <Route key={index} path={`/competitors/:competitorName`} element={isLoggedIn ? <Competitors/> : <Navigate to="/login"/>} />
                 ))}
             </Routes>
-        </>
+        </> 
       );
     }
 
