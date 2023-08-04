@@ -230,7 +230,7 @@ puts "len of all listings_data: #{all_products_urls.length}"
 ###cleans out non-sg merchants
 all_products_urls.reject! do |url_loc|
   !url_loc[1].include?('SG') ||
-  !['Shoes', 'shoes', 'shoe', 'Shoe'].any? { |substring| url_loc[0].include?(substring) }
+  !['Shoes', 'shoes', 'shoe', 'Shoe','slides','Slides','slippers','Slippers','Sandals','sandals','boots','Boots'].any? { |substring| url_loc[0].include?(substring) }
 end
 
 
