@@ -1,6 +1,6 @@
 import './Categories.css'
 import { Stack, Space } from '@mantine/core'
-import CategorySearch from '../components/CategorySearch';
+import CategorySearch from '../components/sales_components/CategorySearch';
 import SalesBar from '../components/SalesBar'
 import { useState } from 'react'
 import SalesSegment from '../components/SalesSegment'
