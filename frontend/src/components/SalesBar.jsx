@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Chart from "react-apexcharts"
-function SalesBar({salesData, used}) {  
+function SalesBar({ data, label, colour, enableCurrency=false }) {  
+    const isUsed = useRef(false);
 
-    if (!salesData.x) {
-        salesData = {
+    useEffect(() => {
+        isUsed.current = true;
+    }, [data])
+
+
+    if (!data.x) {
+        data = {
             x: [],
             y: [],
-            category: salesData.category,
-            start: salesData.start,
-            end: salesData.end
+            category: data.category,
+            start: data.start,
+            end: data.end
         }
+    } else {
+        data.y = data.y.map((n) => {
+            return Number(n.toFixed(0));
+        })
     }
 
-    var title = "Use the selectors above to search for sales data!"
+    var title = `Use the selectors above to search for ${title} data!`
 
-    if (salesData.x.length > 0) {
-        title = `Product units data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
-    } else if (salesData && used) {
-        title = `No product units data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
+    if (data.x.length > 0) {
+        title = `${label} data for "${data.category}" from ${data.start} to ${data.end}:`
+    } else if (data && isUsed) {
+        title = `No ${label.toLowerCase()} data found for "${data.category}" from ${data.start} to ${data.end}.`
     }
 
     var chart = {
@@ -26,8 +36,11 @@ function SalesBar({salesData, used}) {
               type: "bar",
               stacked: true
             },
+            colors: [
+                colour
+            ],
             xaxis: {
-                categories: salesData.x,
+                categories: data.x,
                 labels: {
                     show: true,
                     style: {
@@ -50,20 +63,45 @@ function SalesBar({salesData, used}) {
                     fontSize: '30px',
                     fontFamily: "puma-regular"
                 }
+            },
+            tooltip: {
+                y: {
+                    formatter: (val) => {
+                        return enableCurrency ?
+                        `${new Intl.NumberFormat('en-SG', {
+                            style: 'currency',
+                            currency: 'SGD'
+                        }).format(val)}`
+                        : val;
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                textAnchor: 'start',
+                offsetX: 0,
+                formatter: (val, opt) => {
+                    return enableCurrency ? 
+                    `${new Intl.NumberFormat('en-SG', {
+                        style: 'currency',
+                        currency: 'SGD'
+                    }).format(val)}`
+                    : val;
+                } 
             }
         },
         series: [
             {
-                name: "Number of sales",
-                data: salesData.y
+                name: enableCurrency ? "Revenue" : "Units sold",
+                data: data.y
             }
         ]
     }
 
     var height = "500";
-    if (salesData.x.length >= 50) {
+    if (data.x.length >= 50) {
         height = "1500"
-    } else if (salesData.x.length >= 10) {
+    } else if (data.x.length >= 10) {
         height = "1000"
     }
     return <Chart options={chart.options} series={chart.series} type="bar" width="1200" height = {height}/>;
