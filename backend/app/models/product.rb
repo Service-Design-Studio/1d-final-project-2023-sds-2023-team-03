@@ -1,4 +1,9 @@
 class Product < ApplicationRecord
+    # Acess sales from a product with product.sales
+    def sales
+        Sale.where(product_id: self.product_id)
+    end
+
     # Queries for FOUR lowest stock, descending order
     def self.bottom_four
         products = Product.all

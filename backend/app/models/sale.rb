@@ -1,4 +1,8 @@
 class Sale < ApplicationRecord
+    # Access product from a sale with sale.product
+    def product
+        Product.find_by(product_id: self.product_id)
+    end
 
     # queries for sales that match the category, whose dates are in between start/end
     def self.category_time_query(start_date, end_date, category)
@@ -101,7 +105,7 @@ class Sale < ApplicationRecord
             sales_num = sale.sales
             price = sale.price
             total = sales_num * price
-            
+
             if sales_out[category] then
                 sales_out[category] += total
             else
@@ -123,5 +127,5 @@ class Sale < ApplicationRecord
             :amount => sales_out
         }
     end
-            
+
 end
