@@ -1,9 +1,9 @@
 import './Categories.css'
 import { Stack, Space } from '@mantine/core'
-import CategorySearch from '../components/CategorySearch';
-import SalesBar from '../components/SalesBar'
+import CategorySearch from '../components/sales_components/CategorySearch';
+import SalesBar from '../components/sales_components/SalesBar'
 import { useState } from 'react'
-import SalesSegment from '../components/SalesSegment'
+import SalesSegment from '../components/sales_components/SalesSegment'
 
 const Categories = () => {
     const [render, setRender] = useState("frequencies")
