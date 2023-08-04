@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Tabs from './OverviewTabsInsight'
+
 
 const OverviewInsights = ({ category, percentage, percent, averagePrice,compareCategory }) => {
   const [isCompetitionHovered, setIsCompetitionHovered] = useState(false);
@@ -107,6 +109,8 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice,compareC
 {/* <span style={{ display: 'block' }}>Sales have [dropped/risen] by [percent] since [date]</span> */}
 
 </div>
+<Tabs>
+</Tabs>  
 
       </div>
     </div>
