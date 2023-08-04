@@ -1,14 +1,17 @@
 import { Card, Image, Text, Button } from '@mantine/core';
 import React, { useState } from 'react';
+import {BsLink45Deg} from 'react-icons/bs'
+
+
 
 function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, category }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const buttonStyles = {
-    backgroundColor: '#323145',
-    color: 'white',
+    backgroundColor: '#272829',
+    color: '#8BE8E5',
     border: '2px gray',
-    padding: '0.5em 2.5em',
+    padding: '0.4em 1.3em',
     fontWeight: 500,
     boxShadow: 'none',
     borderRadius: 5,
@@ -61,7 +64,7 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
 
         <div style={{ marginTop: 16 }}>
           <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>
-            Link
+            <BsLink45Deg fontSize='2em' ></BsLink45Deg>
           </Button>
         </div>
       </Card.Section>
