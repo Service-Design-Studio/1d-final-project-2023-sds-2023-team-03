@@ -77,6 +77,24 @@ module Api
         render :json => out
       end
 
+      def integrity
+        out_arr = []
+        sales = Sale.all
+        products = Product.pluck(:product_id)
+        sales.each do |sale|
+          if !products.include?(sale.product_id)
+            out_arr.append(sale)
+          end
+        end
+
+        out = {
+          :status => !(out_arr.length > 0),
+          :items => out_arr
+        }
+
+        render :json => out
+      end
+
       private
       def sale_params
         params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales)
