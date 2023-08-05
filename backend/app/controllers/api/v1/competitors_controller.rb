@@ -4,8 +4,18 @@ module Api
   module V1
     class CompetitorsController < ApplicationController
        def index
+        if params.has_key?(:competitor_name)
+          query and return
+        end
+
+        all_competitors = Competitor.all
+        render :json => all_competitors
+      end
+
+      def query
         # Query to get data for a specific competitor
-        competitor = Competitor.where(competitor_name: params[:id])
+        queried_name = params[:competitor_name]
+        competitor = Competitor.where("LOWER(competitor_name) LIKE ?", queried_name)
 
         # Query to get top 5 sales for the specific competitor
         top_sales = competitor.order(sales: :desc).limit(5)
