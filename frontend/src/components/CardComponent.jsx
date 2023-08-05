@@ -1,4 +1,4 @@
-import { Card, Image, Text, Button } from '@mantine/core';
+import { Card, Image, Text, Button,HoverCard,Group } from '@mantine/core';
 import React, { useState } from 'react';
 import {BsLink45Deg} from 'react-icons/bs'
 
@@ -63,10 +63,21 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
         <Text size="m">Annual Revenue: {yearrev}</Text>
 
         <div style={{ marginTop: 16 }}>
-          <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>
-            <BsLink45Deg fontSize='2em' ></BsLink45Deg>
-          </Button>
+          
+        <HoverCard width={280} shadow="md">
+          <HoverCard.Target>
+              <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>
+              <BsLink45Deg fontSize='2em' ></BsLink45Deg>
+              </Button>        
+            </HoverCard.Target>
+          <HoverCard.Dropdown>
+          <Text size="s">
+            Brings you to product listing
+          </Text>
+          </HoverCard.Dropdown>
+      </HoverCard>
         </div>
+      
       </Card.Section>
     </Card>
   );
