@@ -1,5 +1,3 @@
-# lib/bigquery_module.rb
-
 require "google/cloud/bigquery"
 #Remember to update project_id, dataset_id, table_id accordingly!!!
 

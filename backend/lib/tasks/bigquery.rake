@@ -1,5 +1,3 @@
-# lib/tasks/bigquery.rake
-
 #For Windows (Command Prompt):
 # set GOOGLE_APPLICATION_CREDENTIALS="../../sds-group3-cafedc04bd19.json"
 
@@ -13,7 +11,6 @@ require "google/cloud/bigquery"
 
 # Load BigQuery module and seed data generator
 require_relative '../bigquery_module.rb'
-require_relative '../../db/bq_seed.rb'
 
 namespace :bigquery do
   desc "Create BigQuery dataset"
@@ -26,10 +23,23 @@ namespace :bigquery do
     BigQueryModule.create_table
   end
 
-  desc "Load data into BigQuery table"
-  task load_data: :environment do
-    data = generate_products
-    BigQueryModule.load_data_into_table(data)
+  desc "Export products to BigQuery"
+  task export_products: :environment do
+    # Access the data from the products table
+    products = Product.all
+
+    # Format the data for BigQuery
+    formatted_data = products.map do |product|
+      product.attributes
+    end
+
+    # Upload to BigQuery
+    bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
+    dataset = bigquery.dataset "ecommerce_data"
+    table = dataset.table "product_data"
+
+    # Insert rows directly
+    table.insert formatted_data
   end
 
   desc "Train the K-means clustering model"
