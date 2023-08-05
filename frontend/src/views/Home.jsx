@@ -236,7 +236,7 @@ useEffect(() => {
       className="top-right-button"
       onClick={handleClick}
       disabled={isRefreshing} // Disable the button when refreshing is in progress
-      style={{ backgroundColor: 'rgb(8 51 68)', color: 'white', marginBottom: '1em' }}
+      style={{ backgroundColor: '#374259', color: 'white', marginBottom: '1em' }}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
       <IoIosRefresh
@@ -272,8 +272,11 @@ useEffect(() => {
         price: getFilteredProductPrices(topProductData.frequencies.x_axis)
         
       }} />}
-      
+    <div style={{ padding: '4em 0', borderBottom: '3px solid #ccc' }}>
+    </div>
+
     {isDataLoaded && !isLoading &&
+      
       <Insights
         category="Running Shoe" // Replace with the actual category value
         percentage={42} // Replace with the actual percentage value

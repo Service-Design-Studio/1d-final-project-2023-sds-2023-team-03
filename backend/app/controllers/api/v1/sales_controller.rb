@@ -4,6 +4,15 @@ module Api
   module V1
     class SalesController < ApplicationController
       def index
+        if params.has_key?(:category) || params.has_key?(:start) || params.has_key?(:end)
+          query and return
+        end
+
+        all_sales = Sale.all
+        render :json => all_sales
+      end
+
+      def query
         # set output as empty by default
         out = {}
 
@@ -60,15 +69,28 @@ module Api
         flash[:notice] = "Product '#{sale.product_name}' deleted from Sales record."
       end
 
-      def all
-        sales = Sale.all
-        render :json => sales
-      end
-
       def top_categories
         start_date = params[:start]
         end_date = params[:end]
         out = Sale.top_categories_date(start_date, end_date)
+
+        render :json => out
+      end
+
+      def integrity
+        out_arr = []
+        sales = Sale.all
+        products = Product.pluck(:product_id)
+        sales.each do |sale|
+          if !products.include?(sale.product_id)
+            out_arr.append(sale)
+          end
+        end
+
+        out = {
+          :status => !(out_arr.length > 0),
+          :items => out_arr
+        }
 
         render :json => out
       end

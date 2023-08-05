@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDisclosure } from '@mantine/hooks'
 import { Modal, SegmentedControl, Flex, Button } from '@mantine/core'
 import './Merchandising.css';
-import MerchandisingTable from '../components/MerchandisingTable.jsx';
+import MerchandisingTable from '../components/merchandising_components/MerchandisingTable.jsx';
 import axios from 'axios';
 
 function Logistics() {
@@ -16,9 +16,9 @@ function Logistics() {
 
   function getMerchData() {
     setApiLoad(true)
-    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products/all", {timeout: 10000})
+    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/products", {timeout: 10000})
     .then((res) => {
-      if (res && res.data.length > 0) {
+      if (res.data) {
         setData(res.data);
       }
       setApiLoad(false);
@@ -43,10 +43,10 @@ function Logistics() {
 
   useEffect(() => {
     getMerchData();
-  }, [isMounted]);
+  }, [isMounted.current]);
   
   return (
-    <>
+    <>f
       <h1 id="sales-title">Merchandising</h1> 
       <Flex gap="sm" align="center">
         <SegmentedControl 
