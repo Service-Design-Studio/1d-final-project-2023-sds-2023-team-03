@@ -223,8 +223,6 @@ module BigQueryModule
     # Execute the query and get the results
     job = bigquery.query_job(query)
     results = job.data.to_a
-
-    puts results.inspect
   
     # Process the results and return the data as an array of hashes
     products = results.map do |row|
