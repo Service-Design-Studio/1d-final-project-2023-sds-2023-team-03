@@ -261,7 +261,7 @@ puts "len of all listings_data: #{all_products_urls.length}"
 
 ###cleans out non shoes
 all_products_urls.reject! do |url_loc|
-  !['Shoes', 'shoes', 'shoe', 'Shoe','slides','Slides','slippers','Slippers','Sandals','sandals'].any? { |substring| url_loc[0].include?(substring) }
+  !['Shoes', 'shoes', 'shoe', 'Shoe','slides','Slides','slippers','Slippers','Sandals','sandals','boots','Boots'].any? { |substring| url_loc[0].include?(substring) }
 end
 
 
@@ -297,7 +297,10 @@ Brand_dict = {
   'Nike'=>'Nike'
 }
 
-Impt_brands = ['adidassg','asicsofficial','skecherssg','sauconyofficial','under_armour_official','puma_singapore','salomon.sg', "ASICS",'PUMA','Skechers','adidas','Nike']
+Impt_brands = ['adidassg','asicsofficial','skecherssg','sauconyofficial',
+              'under_armour_official','puma_singapore','salomon.sg', "ASICS",
+              'PUMA','Skechers','adidas','Nike','Under Armour','skecherssg'
+              ]
 
 final_list = []
 # error_urls = []

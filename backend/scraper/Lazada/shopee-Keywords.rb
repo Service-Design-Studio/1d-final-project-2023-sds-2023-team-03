@@ -16,28 +16,28 @@ USER_AGENTS = [
 error_urls = []
 
 keywords = [
-  # 'sneakers',
-  # 'shoes',
-  # 'sandals',
-  # 'flip%20flops',
-  # 'sneakers%20shoes',
-  # 'sports%20shoes',
-  # 'football%20boots',
-  # 'hiking%20shoes',
-  # 'basketball%20shoes',
-  # 'futsal%20shoes',
-  # 'mules',
-  # 'running%20shoes',
-  # 'white%20shoes',
-  # 'sandals%20for%20men',
-  # 'shoes%20for%20men',
-  # 'slippers',
-  # 'flat%20shoes',
-  # 'football%20shoes',
-  # 'sandals%20for%20women',
-  # 'wedges%20shoes',
-  # 'shoes%20for%20women', DONE TILL HERE
-  #'best%20running%20shoes',## no search results
+  'sneakers',
+  'shoes',
+  'sandals',
+  'flip%20flops',
+  'sneakers%20shoes',
+  'sports%20shoes',
+  'football%20boots',
+  'hiking%20shoes',
+  'basketball%20shoes',
+  'futsal%20shoes',
+  'mules',
+  'running%20shoes',
+  'white%20shoes',
+  'sandals%20for%20men',
+  'shoes%20for%20men',
+  'slippers',
+  'flat%20shoes',
+  'football%20shoes',
+  'sandals%20for%20women',
+  'wedges%20shoes',
+  'shoes%20for%20women',
+  'best%20running%20shoes',
   'slip%20on%20shoes',
   'sneakers%20for%20women',
   'white%20sneakers',
@@ -76,16 +76,15 @@ keywords = [
   'walking%20shoes%20for%20women'
 ]
 
-
-
+# https://www.lazada.sg/catalog/?q=sneakers&location=local&page=2&service=official
 
 # Classic (GET)
 def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_urls)
 
   # Input search term
-  scrape_link = "https://shopee.sg/mall/search?&keyword=#{url_keywords}&locations=Singapore&noCorrection=true&page=#{page_count}&sortBy=relevancy"
+  scrape_link = "https://www.lazada.sg/catalog/?q=#{url_keywords}&location=local&page=#{page_count}&service=official"
 
-  puts "Scraping page #{page_count+1} of #{actual} search term."
+  puts "Scraping page #{page_count} of #{actual} search term."
 
   url = URI.encode_www_form_component(scrape_link)
 
@@ -95,17 +94,7 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
     {"wait": 5000},
     {"scroll_y": 3000},
     {"wait": 2300},
-    {"scroll_y": 2250},
-    {"wait": 1700},
-    {"scroll_y": 1000},
-    {"wait": 2000},
-    {"scroll_y": 2000},
-    {"wait": 2053},
-    {"scroll_y": 3000},
-    {"wait": 2735},
-    {"scroll_y": 2000},
-    {"wait": 1956},
-    {"scroll_y": 3000}
+    {"scroll_y": 2250}
     ]}
   JS
 
@@ -160,54 +149,62 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
 
   puts "Starting keyword scrape for page #{page_count+1} of #{actual}"
 
-  soup_container = soup.at_css('div.row\\ shopee-search-item-result__items')
 
   puts 'getting names and product links'
-  prod_link = soup_container.css('a > @href')
-  prod_name = soup_container.css("div.FDn\\-\\-\\+")
+  soup_container = soup.at_css('div._17mcb')
+  link_container = soup.css('div._95X4G')
 
-  final_link =[]
+
+  link = link_container.css('a > @href')
+  name_checker = soup_container.css("div.RfADt")
+
+
+  # link_data = link.map(&:text)
+  name_data = name_checker.map(&:text)
+
+  link_data =[]
 
   # puts "product name: #{prod_name}"
   # puts "product link :#{prod_link}"
 
-  link_data = prod_link.map(&:text)
-
-  name_data = prod_name.map(&:text)
 
 
-
-  link_data.each do |data|
-    final_link << "https://shopee.sg" + data
-  end
+  puts "len of urls: #{link.length}"
 
 
-  puts "len of urls: #{final_link.length}"
+  puts "len of names: #{name_data.length}"\
 
 
-  puts "len of names: #{name_data.length}"
 
-  page_count_array = Array.new(name_data.length, page_count+1 )
+  page_count_array = Array.new(name_data.length, page_count )
 
 
-  zipped_list = final_link.zip(name_data,page_count_array)
+  zipped_list = link.zip(name_data,page_count_array)
   zipped_list.each do |url_location_entry| 
     all_p_urls << url_location_entry
   end
 
-  
-  page_bool = soup.at_css("div.shopee-mini-page-controller")
+
+
+
+
+
+  page_bool = soup.at_css("li.ant\\-pagination\\-next")
 
   # puts page_bool
-  if page_bool.to_s.include?("shopee-button-outline shopee-mini-page-controller__next-btn shopee-button-outline--disabled") || page_count == 5
-    puts 'next page does not exist, terminating. Moving onto next keyword...'
+  if page_bool.to_s.include?("aria-disabled=\"true\"") || page_count == 5
+
+    puts 'next page does not exist, terminating and changing to new keyword...'
+
     return
+
   else 
     puts 'moving to next page...'
   end
   puts '-------------------------------------------------------------------------------'
 
   page_count += 1
+
 
 
   send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_urls)
@@ -262,7 +259,7 @@ keywords.each do |keyword_snippet|
 
   ## for each keyword
   all_products_urls = []
-  page_count = 0
+  page_count = 1
   retry_count = 0
 
   keyword_actual = keyword_snippet.gsub("%20", "_")
