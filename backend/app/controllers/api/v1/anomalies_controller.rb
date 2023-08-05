@@ -13,8 +13,8 @@ module Api
 
         # Set up BigQuery client
         bigquery = Google::Cloud::Bigquery.new
-        dataset = bigquery.dataset "your_dataset_id" # replace with your dataset ID
-        table = dataset.table "your_table_name" # replace with your table name
+        dataset = bigquery.dataset "ecommerce_data" # replace with your dataset ID
+        table = dataset.table "product_data" # replace with your table name
 
         # Load data
         load_job = table.load_job ndjson_data, format: "json"
