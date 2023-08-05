@@ -12,7 +12,7 @@ const MyHeader = () => {
   };
 
   const headerStyle = {
-    backgroundColor: '#006341',
+    backgroundColor: '#17594A',
     borderBottom: '1px solid #e5e5e5',
     padding: '1rem', // Use relative units like 'rem'
   };

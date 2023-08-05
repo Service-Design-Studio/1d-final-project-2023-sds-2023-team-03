@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import DateSegment from './DateSegment.jsx'
+import DateSegment from '../DateSegment.jsx'
 import CategorySelect from './CategorySelect.jsx'
 import { Box, LoadingOverlay, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
 import { AiOutlineCalendar } from 'react-icons/ai'
@@ -7,7 +7,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { DatePickerInput } from '@mantine/dates'
 import axios from "axios"
 import './CategorySearch.css'
-import ErrorModal from './ErrorModal.jsx'
+import ErrorModal from '../ErrorModal.jsx'
 import { useDisclosure } from '@mantine/hooks'
 
 const CategorySearch = ({handleSalesData}) => {
@@ -50,7 +50,7 @@ const CategorySearch = ({handleSalesData}) => {
         const end = `${date[1].getDate()}-${date[1].getMonth()+1}-${date[1].getFullYear()}`;
         return {
             query: await axios.get(
-                `http://127.0.0.1:3000/api/v1/sales?category=${category}&start=${start}&end=${end}`,
+                `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/sales?category=${category}&start=${start}&end=${end}`,
                 {timeout: 10000}
                 ),
             start: start,

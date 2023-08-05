@@ -1,5 +1,5 @@
 import { DataTable } from 'mantine-datatable';
-import { createStyles, MultiSelect } from '@mantine/core';
+import { createStyles, MultiSelect, Badge, Flex, Image, Title, Text, Divider } from '@mantine/core';
 import { useState, useEffect, useMemo } from 'react'
 import dayjs from 'dayjs'
 
@@ -14,47 +14,60 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     const { classes, cx } = useStyles();
     const [fetching, setFetching] = useState(true)
     const [savedData, setSavedData] = useState([]);
+    const [pageLength, setPageLength] = useState(0);
     const [page, setPage] = useState(1);
-    const [pageData, setPageData] = useState(data.slice(0, pageSize));
+    const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
     const categories = useMemo(() => {
-        const categories = new Set(data.map((e) => e.product_category));
-        return [...categories]
+        var categories = [];
+        if (data.length) categories = new Set(data.map((e) => e.product_category));
+        return [...categories];
     });
     const [selectedCategories, setSelectedCategories] = useState(categories);
     
 
-    const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'desc'});
+    const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'asc'});
 
     useEffect(() => {
-        if (data && !apiLoad) {
-            setFetching(false);
-            setSavedData(data);
-        }
+        setFetching(true);
+        if (data.length) setSavedData(data);
     }, [data, apiLoad]);
 
     useEffect(() => {
+        if (savedData.length == 0) {
+            setFetching(false);
+            return;
+        }
+
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
-        const dataToLoad = savedData.sort((a, b) => {
-            var keyA = a.stock;
-            var keyB = b.stock;
+        const filteredData = savedData.sort((a, b) => {
+            if (sortStatus.columnAccessor === 'stock') {
+                var keyA = a.stock;
+                var keyB = b.stock;    
+            } else {
+                var keyA = a.units_sold;
+                var keyB = b.units_sold;
+            }
 
-            if (keyA < keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
-            if (keyA > keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            if (keyA < keyB) return (sortStatus.direction === 'desc' ? 1 : -1);
+            if (keyA > keyB) return (sortStatus.direction === 'desc' ? -1 : 1);
             return 0;
         })
-        .slice(first, last)
         .filter(( item ) => {
             if (selectedCategories.length && !selectedCategories.some((c) => c === item.product_category)) {
                 return false;
             }
             return true;
         });
+        setPageLength(filteredData.length)
+
+        const dataToLoad = filteredData.slice(first, last);
         setPageData(dataToLoad);
-    }, [selectedCategories, sortStatus, page, data]);
+        setFetching(false);
+    }, [selectedCategories, sortStatus, page, data, savedData]);
 
     return (
-        <div className='table'>
+        <div className='merch-table'>
             <DataTable    // low products
               height={'79vh'}
               withBorder
@@ -64,11 +77,30 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
               columns={[
                 { 
                     accessor: 'product_name', 
-                    textAlignment: 'center',
+                    textAlignment: 'left',
                     cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    render: (record) => (
+                        <Flex
+                          gap="md"
+                          justify="flex-start"
+                          align ="flex-start"
+                          direction="row"
+                          wrap="wrap"
+                        >
+                            {record.stock < 50 ? (<Badge color="red">Restock</Badge>) : null}
+                            {record.product_name}
+                        </Flex>
+                    )
                 },
                 { 
                     accessor: 'stock',
+                    textAlignment: 'center',
+                    width: 100,
+                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    sortable: true
+                },
+                {
+                    accessor: 'units_sold',
                     textAlignment: 'center',
                     width: 100,
                     cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
@@ -102,7 +134,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                     render: ( { updated_at } ) => dayjs(updated_at).format('DD/MM/YYYY')
                 }
               ]}
-              totalRecords={data.length}
+              totalRecords={pageLength}
               records={pageData}
               recordsPerPage={pageSize}
               page={page}
@@ -110,6 +142,23 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
               fetching={fetching}
               sortStatus={sortStatus}
               onSortStatusChange={setSortStatus}
+
+              rowExpansion={{
+                content:({ record })=> (
+                    <div className="rowExpansionText">
+                        <Divider my="sm" variant="dashed"/>
+                        <Flex align="top" gap="xs">
+                            <Image src={record.image_link} width={150} height={150} radius="lg"/>
+                            <div className="rowExpansionDesc">
+                                <Text>
+                                    {record.description}
+                                </Text>
+                            </div>
+                        </Flex>
+                        <Divider my="sm"/>
+                    </div>
+                )
+              }}
             />
         </div>
     )

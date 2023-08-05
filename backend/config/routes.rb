@@ -8,16 +8,23 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :products, only: [:index, :show, :create, :update, :destroy] do
+      end
       resources :sales, only: [:index, :show, :create, :update, :destroy] do
         collection do
+          get 'all', to: 'sales#all'
+          get 'top_categories', to: 'sales#top_categories'
+          get 'integrity', to: 'sales#integrity'
           get 'sales_data'
         end
       end
+
       resources :users, only: [:create, :show, :index]
       resources :competitors, only: [:index, :show] do
         collection do
           get 'competitor_sales_data'
-          get 'all'
+          get 'competitors/all', to: 'competitors#all'
+          get 'competitors/overall', to: 'competitors#all'
         end
       end
 

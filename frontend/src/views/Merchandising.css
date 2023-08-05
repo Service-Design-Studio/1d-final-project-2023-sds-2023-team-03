@@ -1,4 +1,14 @@
-.table {
+.merch-table {
     width: calc(100vw - 50px);
     flex-grow: 1;
+    align-self: center;
+}
+
+.rowExpansionText {
+    text-align: left;
+}
+
+.rowExpansionDesc {
+    inline-size: 400px;
+    overflow-wrap: break-word;
 }
