@@ -19,7 +19,7 @@ const Competitors = () => {
 
   const getCompetitorsData = useCallback(() => {
     setApiLoad(true)
-    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase() === 'overall' ? 'all' : competitorName}`;
+    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase() === 'overall' ? '' : competitorName}`;
 
     axios.get(url, {timeout: 10000})
     .then((res) => {
@@ -54,7 +54,7 @@ const Competitors = () => {
   return(
       <>
           <Stack>
-          <h1 id="competitors-title">{competitorName}'s Analytics</h1>
+          {competitorName.toLowerCase() === 'overall' ? <h1 id="competitors-title">{competitorName} Analytics</h1> : <h1 id="competitors-title">{competitorName}'s Analytics</h1> }
           <CarouselCard topProducts={topCompetitorSales} />
 
           <div className="table-container">
