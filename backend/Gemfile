@@ -86,3 +86,4 @@ group :test do
 end
 
 gem "google-cloud-bigquery"
+gem "google-cloud-storage"

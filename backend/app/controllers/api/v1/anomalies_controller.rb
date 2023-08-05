@@ -3,30 +3,39 @@ module Api
     class AnomaliesController < ApplicationController
 
       require 'google/cloud/bigquery'
+      require 'google/cloud/storage'
 
       def load_data_into_bigquery
-        # Fetch products
+        # Fetch products from database
         products = Product.all
 
         # Convert products to newline-delimited JSON format
         ndjson_data = products_to_ndjson(products)
 
-        # Set up BigQuery client
-        bigquery = Google::Cloud::Bigquery.new
-        dataset = bigquery.dataset "your_dataset_id" # replace with your dataset ID
-        table = dataset.table "your_table_name" # replace with your table name
+        # Step 1: Upload to Google Cloud Storage
+        storage = Google::Cloud::Storage.new
+        bucket = storage.bucket "puma-products"
+        file = bucket.create_file StringIO.new(ndjson_data), "product_data.ndjson"
 
-        # Load data
-        load_job = table.load_job ndjson_data, format: "json"
-        load_job.wait_until_done! 
+        # Step 2: Load data from GCS to BigQuery
+        bigquery = Google::Cloud::Bigquery.new
+        dataset = bigquery.dataset "ecommerce_data"
+        table = dataset.table "product_data"
+
+        load_job = table.load_job "gs://puma-products/product_data.ndjson", format: "json"
+        load_job.wait_until_done!
 
         # Render success/failure message
         if load_job.failed?
-          render json: { error: load_job.error.message }
+          # Log the errors to the Rails log
+          Rails.logger.error("BigQuery Load Job Errors: #{load_job.errors.inspect}")
+          
+          render json: { error: load_job.error }
         else
           render json: { message: "Data loaded successfully into BigQuery" }
         end
       end
+
 
       # Added the fetch_products action
       def fetch_products
@@ -69,7 +78,9 @@ module Api
       private
 
       def products_to_ndjson(products)
-        products.map(&:to_json).join("\n")
+        products.map do |product|
+          product.attributes.except("id").to_json
+        end.join("\n")
       end
     end
   end
