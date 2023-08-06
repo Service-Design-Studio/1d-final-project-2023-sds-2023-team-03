@@ -77,6 +77,30 @@ module Api
         render :json => out
       end
 
+      def top
+        if !params.has_key?(:place) || params[:place].to_i < 1
+          place = 5
+        else
+          place = params[:place].to_i
+        end
+        
+        if !params.has_key?(:start)
+          start_date = 30.days.ago.to_date
+        else
+          start_date = params[:start]
+        end
+        
+        if !params.has_key?(:end)
+          end_date = Time.now.to_date
+        else
+          end_date = params[:end]
+        end
+        
+
+        out = Sale.top_sales_time_range(place, start_date, end_date)
+        render :json => out
+      end
+
       def integrity
         out_arr = []
         sales = Sale.all
@@ -97,7 +121,7 @@ module Api
 
       private
       def sale_params
-        params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales)
+        params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales, :place, :start, :end)
       end
     end
   end
