@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show, :create, :update, :destroy] do
       end
+
       resources :sales, only: [:index, :show, :create, :update, :destroy] do
         collection do
           get 'all', to: 'sales#all'
@@ -35,6 +36,11 @@ Rails.application.routes.draw do
           get 'join_anomalies_with_stats'
           get 'fetch_products'  
           get 'load_data_into_bigquery'
+        end
+      end
+
+      resources :insights do
+        collection do
         end
       end
     end
