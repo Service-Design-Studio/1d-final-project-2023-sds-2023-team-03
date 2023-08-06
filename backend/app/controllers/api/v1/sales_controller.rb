@@ -43,8 +43,8 @@ module Api
       end
 
       def show
-        sale = Sale.find(params[:id])
-        render json: { status: 'SUCCESS', message: 'Loaded sale', data: sale }
+        product_id = params[:id]
+        render :json => Sale.where('product_id = ?', product_id)
       end
 
       def update

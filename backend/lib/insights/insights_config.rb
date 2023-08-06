@@ -15,7 +15,8 @@ module InsightsConfig
     ]
 
     @@global_insights = [
-        :apply_global_popular_low_stock
+        :apply_global_popular_low_stock,
+        :apply_global_low_stock
     ]
 
     def InsightsConfig.severity
