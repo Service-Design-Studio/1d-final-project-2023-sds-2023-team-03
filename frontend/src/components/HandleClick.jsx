@@ -18,7 +18,7 @@ function HandleClick() {
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30); // Calculate the date 30 days ago
   
       const response = await axios.get(
-        `http://127.0.0.1:3000/api/v1/sales?category=${category}&start=${start}&end=${end}`,
+        `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/sales?category=${category}&start=${start}&end=${end}`,
         { timeout: 2000 }
       );
       

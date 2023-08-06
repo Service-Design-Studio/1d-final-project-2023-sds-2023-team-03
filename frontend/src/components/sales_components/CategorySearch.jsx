@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import DateSegment from './DateSegment.jsx'
+import DateSegment from '../DateSegment.jsx'
 import CategorySelect from './CategorySelect.jsx'
 import { Box, LoadingOverlay, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
 import { AiOutlineCalendar } from 'react-icons/ai'
@@ -7,7 +7,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { DatePickerInput } from '@mantine/dates'
 import axios from "axios"
 import './CategorySearch.css'
-import ErrorModal from './ErrorModal.jsx'
+import ErrorModal from '../ErrorModal.jsx'
 import { useDisclosure } from '@mantine/hooks'
 
 const CategorySearch = ({handleSalesData}) => {
@@ -29,14 +29,14 @@ const CategorySearch = ({handleSalesData}) => {
     const [loading, loadingHandler] = useDisclosure(false)              // loading modal
     const [nullCalendar, nullCalendarHandler] = useDisclosure(false);   // calendar input error modal
     const [timeout, timeoutHandler] = useDisclosure(false);             // search timeout error modal
-    
-    
+
+
     useEffect(() => {
         if (!(calendar && (calendarDate[0] == null || calendarDate[1] == null))) {
             requestData();
         }
     }, [calendarDate, presetDate, category, calendar])
-    
+
     // API call to backend
     async function getProductData() {
         var date;
@@ -50,10 +50,10 @@ const CategorySearch = ({handleSalesData}) => {
         const end = `${date[1].getDate()}-${date[1].getMonth()+1}-${date[1].getFullYear()}`;
         return {
             query: await axios.get(
-                `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/sales?category=${category}&start=${start}&end=${end}`, 
+                `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/sales?category=${category}&start=${start}&end=${end}`,
                 {timeout: 10000}
-                ), 
-            start: start, 
+                ),
+            start: start,
             end: end
         }
     }
@@ -121,7 +121,7 @@ const CategorySearch = ({handleSalesData}) => {
                                 <GiHamburgerMenu/>
                             </ActionIcon>
                         </Tooltip>
-                    </> 
+                    </>
                 )
 
             case false:
@@ -151,7 +151,7 @@ const CategorySearch = ({handleSalesData}) => {
                     <CategorySelect setCategory={setCategory}/>
                     {renderDatePick(calendar)}
                 </Group>
-            </Box> 
+            </Box>
             <ErrorModal opened={nullCalendar} open={nullCalendarHandler.open} close={nullCalendarHandler.close} title="Invalid date" content="Please input a valid date before searching!"/>
             <ErrorModal opened={timeout} open={timeoutHandler.open} close={timeoutHandler.close} title="Search error" content="The server may be down, or you may be having connection issues."/>
         </Stack>

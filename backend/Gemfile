@@ -98,3 +98,6 @@ group :test do
   gem "webdrivers"
   gem "database_cleaner"
 end
+
+gem "google-cloud-bigquery"
+gem "google-cloud-storage"

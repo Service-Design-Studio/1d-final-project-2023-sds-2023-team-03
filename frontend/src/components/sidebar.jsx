@@ -10,6 +10,7 @@ import Dropdown from './competitor';
 import { Link, useNavigate } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import './Sidebar.css';
+import { RefreshButton } from "@refinedev/mantine";
 import { Modal, Button } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { useSpring, animated,config } from 'react-spring';
@@ -73,7 +74,7 @@ function Sidebar({handleClearState}) {
 
   const handleHomeClick = () => {
     console.log('Home button clicked');
-    navigate('/');
+    navigate('/home');
   };
 
   const handleInternalClick = () => {

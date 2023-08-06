@@ -1,22 +1,22 @@
-Feature: Overview Navigation
-    
-    Scenario: Opening Overview (Happy)
-        Given that I am in the overview page (/overview),
-        Then I should see three columns of summarized statistics pertaining to the three categories
+@overview
+Feature: Overview Page 
 
+Scenario: Viewing summarized statistics on the overview page
+Given I am on the overview page
+Then I should see summarized statistics for sales, product actions, and competitor analysis
 
-    Scenario: Refreshing Overview (Happy)
-        Given that I am in the overview page, and the statistics of the three categories change after the overview page has loaded,
-        When I press the refresh button,
-        Then The three columns should refresh and reflect the updated statistics.
+Scenario: Refreshing the statistics on the overview page
+Given I am on the overview page
+And there is new data available
+When I press the refresh button
+Then the page should display the updated statistics
 
-    Scenario: Impatient Refreshing (Sad)
-        Given that I am on the overview page, and that I have pressed the refresh button, but the results have not returned yet,
-        When I press the refresh button again,
-        Then Nothing should happen
+Scenario: Pressing the refresh button while results are loading
+Given I am on the overview page
+When I press the refresh button
+Then the refresh button will be disabled
 
-    Scenario: Resfresh Button (Happy) 
-        Given that I am on the overview page,
-        When I press the refresh button,
-        Then It should turn a little transparent and gray,
-        And It should be unclickable.
+Scenario: Viewing product link of top product
+Given I am on the overview page
+When I click the top product links buttons
+Then I should see the product link on new tabs

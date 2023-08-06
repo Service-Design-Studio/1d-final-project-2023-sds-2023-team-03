@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Chart from "react-apexcharts"
-function ApparelRevBar({salesData, used}) {  
+function SalesBar({ data, label, colour, enableCurrency=false }) {  
+    const isUsed = useRef(false);
 
-    if (!salesData.x) {
-        salesData = {
+    useEffect(() => {
+        isUsed.current = true;
+    }, [data])
+
+
+    if (!data.x) {
+        data = {
             x: [],
             y: [],
-            category: salesData.category,
-            start: salesData.start,
-            end: salesData.end
+            category: data.category,
+            start: data.start,
+            end: data.end
         }
     } else {
-        salesData.y = salesData.y.map((n) => {
+        data.y = data.y.map((n) => {
             return Number(n.toFixed(0));
         })
     }
 
-    var title = "Use the selectors above to search for sales data!"
+    var title = `Use the selectors above to search for ${title} data!`
 
-    if (salesData.x.length > 0) {
-        title = `Apparel revenue data for "${salesData.category}" from ${salesData.start} to ${salesData.end}:`
-    } else if (salesData && used) {
-        title = `No apparel revenue data found for "${salesData.category}" from ${salesData.start} to ${salesData.end}.`
+    if (data.x.length > 0) {
+        title = `${label} data for "${data.category}" from ${data.start} to ${data.end}:`
+    } else if (data && isUsed) {
+        title = `No ${label.toLowerCase()} data found for "${data.category}" from ${data.start} to ${data.end}.`
     }
 
     var chart = {
@@ -31,10 +37,10 @@ function ApparelRevBar({salesData, used}) {
               stacked: true
             },
             colors: [
-                "#f1f"
+                colour
             ],
             xaxis: {
-                categories: salesData.x,
+                categories: data.x,
                 labels: {
                     show: true,
                     style: {
@@ -61,10 +67,12 @@ function ApparelRevBar({salesData, used}) {
             tooltip: {
                 y: {
                     formatter: (val) => {
-                        return `${new Intl.NumberFormat('en-SG', {
+                        return enableCurrency ?
+                        `${new Intl.NumberFormat('en-SG', {
                             style: 'currency',
                             currency: 'SGD'
-                        }).format(val)}`;
+                        }).format(val)}`
+                        : val;
                     }
                 }
             },
@@ -73,27 +81,29 @@ function ApparelRevBar({salesData, used}) {
                 textAnchor: 'start',
                 offsetX: 0,
                 formatter: (val, opt) => {
-                    return `${new Intl.NumberFormat('en-SG', {
+                    return enableCurrency ? 
+                    `${new Intl.NumberFormat('en-SG', {
                         style: 'currency',
                         currency: 'SGD'
-                    }).format(val)}`;
-                }
+                    }).format(val)}`
+                    : val;
+                } 
             }
         },
         series: [
             {
-                name: "Revenue",
-                data: salesData.y
+                name: enableCurrency ? "Revenue" : "Units sold",
+                data: data.y
             }
         ]
     }
 
     var height = "500";
-    if (salesData.x.length >= 50) {
+    if (data.x.length >= 50) {
         height = "1500"
-    } else if (salesData.x.length >= 10) {
+    } else if (data.x.length >= 10) {
         height = "1000"
     }
     return <Chart options={chart.options} series={chart.series} type="bar" width="1200" height = {height}/>;
 } 
-export default ApparelRevBar;
+export default SalesBar;

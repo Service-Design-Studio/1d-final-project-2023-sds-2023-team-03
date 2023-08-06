@@ -1,16 +1,11 @@
 import './Categories.css'
 import { Stack, Space } from '@mantine/core'
-import 'tailwindcss/tailwind.css';
-import CategorySearch from '../components/CategorySearch';
-import SalesBar from '../components/SalesBar'
+import CategorySearch from '../components/sales_components/CategorySearch';
+import SalesBar from '../components/sales_components/SalesBar'
 import { useState } from 'react'
-import SalesSegment from '../components/SalesSegment'
-import RevenueBar from '../components/RevenueBar';
-import ApparelFreqBar from '../components/ApparelFreqBar';
-import ApparelRevBar from '../components/ApparelRevBar'
+import SalesSegment from '../components/sales_components/SalesSegment'
 
 const Categories = () => {
-    const [used, setUsed] = useState(false)
     const [render, setRender] = useState("frequencies")
     const [salesData, setSalesData] = useState({
         frequencies: {},
@@ -23,7 +18,6 @@ const Categories = () => {
 
     function handleSalesData(data) {
         setSalesData(data)
-        setUsed(true)
     }
 
     function handleOnChange(data) {
@@ -35,7 +29,7 @@ const Categories = () => {
             case "frequencies":
                 return (
                     <SalesBar 
-                        salesData={
+                        data={
                             {
                                 x: salesData.frequencies.x_axis,
                                 y: salesData.frequencies.y_axis,
@@ -43,14 +37,15 @@ const Categories = () => {
                                 end: salesData.end,
                                 category: salesData.category
                             }
-                        } 
-                        used={used}
+                        }
+                        label="Product unit"
+                        colour="#92cad1"
                     />
                 )
             case "revenues":
                 return (
-                    <RevenueBar
-                        salesData={
+                    <SalesBar
+                        data={
                             {
                                 x: salesData.revenues.x_axis,
                                 y: salesData.revenues.y_axis,
@@ -59,52 +54,48 @@ const Categories = () => {
                                 category: salesData.category
                             }
                         }
+                        label="Product revenue"
+                        enableCurrency
+                        colour="#006341"
                     />
                 )
             
             case "types-frequencies":
-                var x; var y;
-                if (salesData.types.frequency) {
-                    x = salesData.types.frequency.x_axis;
-                    y = salesData.types.frequency.y_axis;
-                } else {
-                    x = [];
-                    y = [];
-                }
+                const freqs = salesData.types.frequency;
+
                 return (
-                    <ApparelFreqBar
-                        salesData={
+                    <SalesBar
+                        data={
                             {
-                                x: x,
-                                y: y,
+                                x: freqs ? salesData.types.frequency.x_axis : [],
+                                y: freqs ? salesData.types.frequency.y_axis : [],
                                 start: salesData.start,
                                 end: salesData.end,
                                 category: salesData.category
                             }
                         }
+                        label="Apparel unit"
+                        colour="#79ccb3"
                     />
                 )
 
             case "types-revenues":
-                var x; var y;
-                if (salesData.types.revenue) {
-                    x = salesData.types.revenue.x_axis;
-                    y = salesData.types.revenue.y_axis;
-                } else {
-                    x = [];
-                    y = [];
-                }
+                const revs = salesData.types.revenue;
+
                 return (
-                    <ApparelRevBar
-                        salesData={
+                    <SalesBar
+                        data={
                             {
-                                x: x,
-                                y: y,
+                                x: revs ? salesData.types.revenue.x_axis : [],
+                                y: revs ? salesData.types.revenue.y_axis : [],
                                 start: salesData.start,
                                 end: salesData.end,
                                 category: salesData.category
                             }
                         }
+                        label="Apparel revenue"
+                        enableCurrency
+                        colour="#e9724d"
                     />
                 )
             case "summary":

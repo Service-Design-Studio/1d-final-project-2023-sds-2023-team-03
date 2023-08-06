@@ -8,11 +8,37 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :products
-      resources :sales, only: [:index, :show, :create, :update, :destroy]
+      resources :products, only: [:index, :show, :create, :update, :destroy] do
+      end
+      resources :sales, only: [:index, :show, :create, :update, :destroy] do
+        collection do
+          get 'all', to: 'sales#all'
+          get 'top_categories', to: 'sales#top_categories'
+          get 'integrity', to: 'sales#integrity'
+          get 'sales_data'
+        end
+      end
+
       resources :users, only: [:create, :show, :index]
+      resources :competitors, only: [:index, :show] do
+        collection do
+          get 'competitor_sales_data'
+          get 'overall', to: 'competitors#all'
+          get '/:competitor_name', to: 'competitors#query'
+        end
+      end
+
+      resources :anomalies, only: [] do
+        collection do
+          get 'create_temp_anomalies_table'
+          get 'create_quantity_stats_table'
+          get 'join_anomalies_with_stats'
+          get 'fetch_products'  
+          get 'load_data_into_bigquery'
+        end
+      end
     end
-  end 
+  end
 
   # Route requests that are not for existing paths predefined in our API, back to our index path
   get '*path', to: 'pages#index', via: :all
