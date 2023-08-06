@@ -11,11 +11,11 @@ module InsightsConfig
     @@product_insights = [
         :apply_sales_change,
         :apply_declining_seven_days,
-        :apply_selling_fast
+        :apply_popular
     ]
 
     @@global_insights = [
-
+        :apply_global_popular_low_stock
     ]
 
     def InsightsConfig.severity
@@ -26,7 +26,7 @@ module InsightsConfig
         @@product_insights
     end
 
-    def InsightConfig.global_insights
+    def InsightsConfig.global_insights
         @@global_insights
     end
 end
