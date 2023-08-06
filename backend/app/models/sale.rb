@@ -11,6 +11,9 @@ class Sale < ApplicationRecord
         sales = sales.where(date: start_date..end_date)
     end
 
+    def self.product_time_query(product_id, start_date, end_date)
+        sales = Sale.where('product_id = ? AND date >= ? AND date <= ?', product_id, start_date, end_date)
+    end
 
     # turns the query into a hash containing 2 fields:
     #   x_axis: names of sales (array)
@@ -136,5 +139,20 @@ class Sale < ApplicationRecord
         end 
         
         Hash[out.sort_by {|k, v| v}.reverse[0...place]]
+    end
+
+    def self.bottom_sales_time_range(place, start_date, end_date)
+        sales = Sale.where('date >= ? AND date <= ?', start_date, end_date)
+        out = {}
+
+        sales.each do |sale|
+            if (out[sale.product_id])
+                out[sale.product_id] += sale.sales
+            else
+                out[sale.product_id] = sale.sales
+            end
+        end 
+        
+        Hash[out.sort_by {|k, v| v}[0...place]]
     end
 end

@@ -16,7 +16,9 @@ module InsightsConfig
 
     @@global_insights = [
         :apply_global_popular_low_stock,
-        :apply_global_low_stock
+        :apply_global_low_stock,
+        :apply_best_category,
+        :apply_worst_category
     ]
 
     def InsightsConfig.severity
