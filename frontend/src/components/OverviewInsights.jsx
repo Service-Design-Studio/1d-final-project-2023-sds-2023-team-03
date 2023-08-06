@@ -19,7 +19,7 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice,compareC
     marginBottom: '3em',
     boxShadow: '0 5px 15px rgba(0, 0, 0, 0.4)',
     borderRadius: '1em',
-    backgroundColor: '#9BABB8',
+    backgroundColor: 'transparent',
     position: 'relative',
     overflow: 'hidden',
     transition: 'box-shadow 0.3s ease, background-color 0.3s ease',
