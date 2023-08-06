@@ -17,6 +17,7 @@ Rails.application.routes.draw do
           get 'top_categories', to: 'sales#top_categories'
           get 'integrity', to: 'sales#integrity'
           get 'sales_data'
+          get 'top', to: 'sales#top'
         end
       end
 
