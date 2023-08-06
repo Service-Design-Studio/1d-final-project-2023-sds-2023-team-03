@@ -31,7 +31,10 @@ module ProductInsights
             insight = {
                 :name => :declining_seven_days,
                 :text => "This product has been declining in sales in the past 7 days.",
-                :severity => ProductInsights.severity[3]
+                :severity => {
+                    :label => InsightsConfig.severity[3],
+                    :level => InsightsConfig.severity.key(InsightsConfig.severity[3])
+                }
             }
 
             product[:insights].append insight

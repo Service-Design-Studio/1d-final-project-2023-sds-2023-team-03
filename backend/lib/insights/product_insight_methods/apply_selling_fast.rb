@@ -17,14 +17,20 @@ module ProductInsights
             insight = {
                 :name => :selling_fast,
                 :text => "Product is in top 5 sales in the last 30 days with #{total_sales} sales!",
-                :severity => ProductInsights.severity[0]
+                :severity => {
+                    :label => InsightsConfig.severity[0],
+                    :level => InsightsConfig.severity.key(InsightsConfig.severity[0])
+                }
             }
             product[:insights].append insight
         elsif (total_sales >= 100)
             insight = {
                 :name => :selling_fast,
                 :text => "Product is very popular with #{total_sales} sales in the last 30 days!",
-                :severity => ProductInsights.severity[1]
+                :severity => {
+                    :label => InsightsConfig.severity[1],
+                    :level => InsightsConfig.severity.key(InsightsConfig.severity[1])
+                }
             }
             product[:insights].append insight
         end
@@ -35,7 +41,10 @@ module ProductInsights
             insight = {
                 :name => :selling_fast_low_stock,
                 :text => "Product has been very popular in the last 30 days, but has low stock left! (#{stock_left})",
-                :severity => ProductInsights.severity[3]
+                :severity => {
+                    :label => InsightsConfig.severity[3],
+                    :level => InsightsConfig.severity.key(InsightsConfig.severity[3])
+                }
             }
             product[:insights].append insight
         end
