@@ -1,14 +1,17 @@
-import { Card, Image, Text, Button } from '@mantine/core';
+import { Card, Image, Text, Button,HoverCard,Group } from '@mantine/core';
 import React, { useState } from 'react';
+import {BsLink45Deg} from 'react-icons/bs'
+
+
 
 function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, category }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const buttonStyles = {
-    backgroundColor: '#323145',
-    color: 'white',
+    backgroundColor: '#272829',
+    color: '#8BE8E5',
     border: '2px gray',
-    padding: '0.5em 2.5em',
+    padding: '0.4em 1.3em',
     fontWeight: 500,
     boxShadow: 'none',
     borderRadius: 5,
@@ -60,10 +63,21 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
         <Text size="m">Annual Revenue: {yearrev}</Text>
 
         <div style={{ marginTop: 16 }}>
-          <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>
-            Link
-          </Button>
+          
+        <HoverCard width={250} shadow="md">
+          <HoverCard.Target>
+              <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>
+              <BsLink45Deg fontSize='2em' ></BsLink45Deg>
+              </Button>        
+            </HoverCard.Target>
+          <HoverCard.Dropdown>
+          <Text size="s">
+            Brings you to product listing
+          </Text>
+          </HoverCard.Dropdown>
+      </HoverCard>
         </div>
+      
       </Card.Section>
     </Card>
   );
