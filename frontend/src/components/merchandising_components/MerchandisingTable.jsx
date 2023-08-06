@@ -68,14 +68,14 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
     }, [selectedCategories, sortStatus, page, data, savedData]);
 
     // TODO: need to modify inputs
-    const percent = 11;
+    const percent = 1;
     const above_100_or_more = 123;
     const decline_days = 7;
     const current_stock = 10;
     const stock_last_month = 67;
     const bad_sales = 3;
     const remaining_stock = 88;
-    const sold_per_day = 6;
+    const sold_per_day = 10;
     const currentStock = 40;
 
     return (
@@ -159,21 +159,23 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                 content:({ record })=> (
                     <div className="rowExpansionText">
                         <Divider my="sm" variant="dashed"/>
-                        <Flex align="top" gap="xs">
-                            <Image src={record.image_link} width={150} height={150} radius="lg"/>
-                            <div className="rowExpansionDesc">
-                                <Text>
-                                    {record.description}
-                                </Text>
-                                <br />
-                                <SalesText percent={percent} />
-                                <DeclineText decline_days={decline_days} />
-                                <SellingFastText above_100_or_more={above_100_or_more} />
-                                <RestockSellingFastText above_100_or_more={above_100_or_more} current_stock={current_stock} stock_last_month={stock_last_month} />
-                                <BadSalesText bad_sales={bad_sales} remaining_stock={remaining_stock} />
-                                <LiquidateText sold_per_day={sold_per_day} currentStock={currentStock} />
-                            </div>
-                        </Flex>
+                            <Flex align="top" gap="xs">
+                                <Image src={record.image_link} width={150} height={150} radius="lg"/>
+                                <div className="rowExpansionDesc">
+                                    <Text>
+                                        {record.description}
+                                    </Text>
+                                </div>
+                            </Flex>
+                            <br />
+                            <Text style={{ paddingLeft: '20px' }}>
+                            <SalesText percent={percent} />
+                            <DeclineText decline_days={decline_days} />
+                            <SellingFastText above_100_or_more={above_100_or_more} />
+                            <RestockSellingFastText above_100_or_more={above_100_or_more} current_stock={current_stock} stock_last_month={stock_last_month} />
+                            <BadSalesText bad_sales={bad_sales} remaining_stock={remaining_stock} />
+                            <LiquidateText sold_per_day={sold_per_day} currentStock={currentStock} />
+                            </Text>
                         <Divider my="sm"/>
                     </div>
                 )
