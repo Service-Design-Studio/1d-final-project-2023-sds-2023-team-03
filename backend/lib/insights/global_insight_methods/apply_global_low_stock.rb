@@ -1,9 +1,16 @@
 module GlobalInsights
     def GlobalInsights.apply_global_low_stock(input_hash)
         products = input_hash[:products]
-        consider_restock = products.where('stock < units_sold')
 
-        qty_restock = consider_restock.length
+        qty_restock = 0
+
+        products.each do |product|
+            product_id = product.product_id
+            sales_last_month = Sale.product_time_query(product_id, 30.days.ago.to_date, Time.now.to_date).sum(:sales)
+            if (product.stock < sales_last_month)
+                qty_restock += 1
+            end
+        end
 
         grade = InsightsConfig.severity[0]
         if (qty_restock > 0 && qty_restock <= 10)

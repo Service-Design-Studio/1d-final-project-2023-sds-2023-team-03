@@ -44,7 +44,25 @@ module Api
 
       def show
         product_id = params[:id]
-        render :json => Sale.where('product_id = ?', product_id)
+        if params.has_key?(:start) && params.has_key?(:end)
+          start_date = params[:start]
+          end_date = params[:end]
+          sales = Sale.product_time_query(product_id, start_date, end_date)
+        else
+          sales = Sale.where('product_id = ?', product_id)
+        end
+
+        if (sales.length > 0)
+          render :json => sales and return
+        end
+
+        if params.has_key?(:start) && params.has_key?(:end)
+          text = "Sales of product with product_id #{product_id} not found from #{start_date} to #{end_date}."
+        else
+          text = "Sales of product with product_id #{product_id} not found."
+        end
+
+        render :status => 404, :body => text
       end
 
       def update
