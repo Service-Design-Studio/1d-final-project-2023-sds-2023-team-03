@@ -1,5 +1,6 @@
 require 'json'
 require './lib/insights/product_insights_driver.rb'
+require './lib/insights/global_insights_driver.rb'
 
 module Api
     module V1
@@ -34,7 +35,7 @@ module Api
                     send(type) and return
                 end
 
-                render :body => "Insights for category \"#{type}\" do not exist!", 
+                render :body => "Insights do not exist for category \"#{type}\"!", 
                 :status => 404
             end
 
@@ -43,6 +44,24 @@ module Api
                 products = Product.all.as_json
 
                 render :json => ProductInsights.get_insights(products, sales)
+            end
+
+            def global
+                sales_live = Sale.all
+                products_live = Product.all
+                products = products_live.as_json
+                product_insights = ProductInsights.get_insights(products, sales_live)
+
+                input_params = {
+                    :products => products_live,
+                    :sales => sales_live,
+                    :insights => product_insights.map {|product| {
+                        "product_id" => product["product_id"],
+                        "insights" => product["insights"]
+                    }}
+                }
+
+                render :json => GlobalInsights.get_insights(input_params)
             end
         end
     end

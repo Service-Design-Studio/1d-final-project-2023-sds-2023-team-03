@@ -1,5 +1,5 @@
 module ProductInsights
-    def ProductInsights.apply_selling_fast(product, sls)
+    def ProductInsights.apply_popular(product, sls)
         product_id = product["product_id"]
         sales_last_month = sls.where("product_id = ? AND date >= ? AND date <= ?", product_id, 30.days.ago.to_date, Time.now.to_date)
 
@@ -15,7 +15,7 @@ module ProductInsights
         # first insight: popularity
         if (total_sales >= 100 && top_5.key?(product_id))
             insight = {
-                :name => :selling_fast,
+                :name => :popular,
                 :text => "Product is in top 5 sales in the last 30 days with #{total_sales} sales!",
                 :severity => {
                     :label => InsightsConfig.severity[0],
@@ -25,7 +25,7 @@ module ProductInsights
             product[:insights].append insight
         elsif (total_sales >= 100)
             insight = {
-                :name => :selling_fast,
+                :name => :popular,
                 :text => "Product is very popular with #{total_sales} sales in the last 30 days!",
                 :severity => {
                     :label => InsightsConfig.severity[1],
@@ -39,7 +39,7 @@ module ProductInsights
         stock_left = product["stock"]
         if (total_sales >= 100 && stock_left < total_sales)
             insight = {
-                :name => :selling_fast_low_stock,
+                :name => :popular_low_stock,
                 :text => "Product has been very popular in the last 30 days, but has low stock left! (#{stock_left})",
                 :severity => {
                     :label => InsightsConfig.severity[3],

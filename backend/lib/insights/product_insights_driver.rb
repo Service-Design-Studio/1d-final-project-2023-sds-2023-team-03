@@ -4,7 +4,7 @@ require_relative './insights_config.rb'
 module ProductInsights
     def ProductInsights.get_insights(prs, sls)
         products = prs
-        insight_labels = InsightConfig.product_insights
+        insight_labels = InsightsConfig.product_insights
 
         products.each do |product|
             product[:insights] = []
