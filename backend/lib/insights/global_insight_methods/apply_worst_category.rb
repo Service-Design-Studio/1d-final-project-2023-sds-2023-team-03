@@ -1,5 +1,5 @@
 module GlobalInsights
-    def GlobalInsights.apply_worst_category(input_hash)
+    def GlobalInsights.apply_worst_category(**input_hash)
         category_data = Sale.top_categories_date(30.days.ago.to_date, Time.now.to_date)
         revenues = category_data[:amount]
         units_labels = category_data[:units].keys
