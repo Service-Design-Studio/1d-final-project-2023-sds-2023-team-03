@@ -4,21 +4,21 @@ module GlobalInsights
 
         qty = 0
         insights_hash.each do |product|
-            if product["insights"].any?{|insight| insight[:name] == :selling_fast_low_stock}
+            if product["insights"].any?{|insight| insight[:name] == :popular_low_stock}
                 qty += 1
             end
         end
 
         grade = InsightsConfig.severity[0]
-        if (qty > 0 && <= 5)
-            InsightsConfig.severity[3]
+        if (qty > 0 && qty <= 5)
+            grade = InsightsConfig.severity[3]
         elsif (qty > 5)
-            InsightsConfig.severity[4]
+            grade = InsightsConfig.severity[4]
         end
 
         insight = {
             :name => :global_selling_fast_low_stock,
-            :text => "You have #{qty} products that have been popular in the last month with more than units sold, but have low stock!",
+            :text => "You have #{qty} products that have been popular in the last month that have low stock!",
             :severity => {
                 :label => grade,
                 :level => InsightsConfig.severity.key(grade)
