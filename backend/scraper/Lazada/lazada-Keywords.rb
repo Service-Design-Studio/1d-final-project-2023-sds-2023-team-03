@@ -277,7 +277,7 @@ keywords.each do |keyword_snippet|
   date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
   time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
 
-  csv_filename = "./keywords_data/shopee_products_by_#{keyword_actual}_#{date_str}_#{time_str}.csv"
+  csv_filename = "./keywords_data/lazada_products_by_#{keyword_actual}_#{date_str}_#{time_str}.csv"
 
   if all_products_urls.length != 0
 
