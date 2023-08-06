@@ -38,11 +38,10 @@ useEffect(() => {
     topCategoriesData: {}
   })
 
-  const [lowStocksData, setLowStocksData] = useState({
-    frequencies: {}
+  const [ProductData, setProductData] = useState({
+    productData: {}
   })
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [compareCategoryData, setCompareCategoryData] = useState(null);
 
   async function handleClick() {
     if (isRefreshing) {
@@ -60,8 +59,7 @@ useEffect(() => {
   
     // Wrap the asynchronous operations in Promises
     const topProductPromise = queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate);
-    const lowStocksPromise = queryLowStocks('Comfortwear', thirtyDaysAgoDate, currentDate);
-    const topCategoryPromise = queryTopCategory(thirtyDaysAgoDate, currentDate);
+    const productPromise = queryProducts();
     
     // Create a Promise that resolves after 2 seconds
     const minWaitPromise = new Promise((resolve) => setTimeout(resolve, 2000));
@@ -72,20 +70,19 @@ useEffect(() => {
     // Use Promise.race to set an upper bound of 20 seconds
     try {
       const [queryData] = await Promise.all([
-        Promise.all([topProductPromise, lowStocksPromise,topCategoryPromise]),
+        Promise.all([topProductPromise, productPromise]),
         Promise.race([minWaitPromise, maxWaitPromise]),
       ]);
     
   
       setTopProductData(queryData[0]);
-      setLowStocksData(queryData[1]);
-      settopCategoriesData(queryData[2])
+      setProductData(queryData[1]);
    
+      console.log("TopProductData",topProductData)
+      console.log("Check",ProductData[0])
 
       setIsDataLoaded(true);
       setIsLoading(false); // Set isLoading to false to indicate that data loading is complete
-      const resolvedCompareCategory = await extractCategoryData(queryData[2]);
-      setCompareCategoryData(resolvedCompareCategory);
 
     } catch (error) {
       // Handle the error if data retrieval fails within 20 seconds
@@ -96,30 +93,56 @@ useEffect(() => {
     setIsRefreshing(false);
   }
 
-  async function getFilteredProductPrices(productNames) {
+  function getFilteredProductPrices(productNames) {
     try {
-      // Fetch all products from the API
-      const allProductsResponse = await axios.get(`${API_BASE_URL}/products/all`, { timeout: 2000 });
-    
-      if (Array.isArray(allProductsResponse.data)) {
-        // Filter the products based on the product names in the input array
-        const filteredProducts = allProductsResponse.data.filter((product) =>
-          productNames.includes(product.product_name)
-        );
-
+      // Simulating asynchronous data retrieval
+      // Replace this with actual asynchronous data retrieval from an API or database
+      
   
-        // Extract and return the price data for the filtered products
-        const prices = filteredProducts.map((product) => product.price);
-        console.log('Filtered Products Price:', prices);
-
-        return prices;
-      } else {
-        // Handle the case where the API response is not an array
-        console.error('API response is not an array:', allProductsResponse.data);
-        return [];
-      }
+      // Filter and extract prices for the matching product names
+      const filteredPrices =  ProductData
+        .filter((product) => productNames.includes(product.product_name))
+        .map((product) => product.price);
+      console.log("Filtered Prices",filteredPrices)
+      return filteredPrices;
     } catch (error) {
-      console.error('Error occurred during API request:', error);
+      console.error("Error fetching data:", error);
+      return [];
+    }
+  }
+
+  function getFilteredProductImage(productNames) {
+    try {
+      // Simulating asynchronous data retrieval
+      // Replace this with actual asynchronous data retrieval from an API or database
+      
+  
+      // Filter and extract prices for the matching product names
+      const filteredPrices =  ProductData
+        .filter((product) => productNames.includes(product.product_name))
+        .map((product) => product.image_link);
+      console.log("Filtered Image Link",filteredPrices)
+      return filteredPrices;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return [];
+    }
+  }
+
+  function getFilteredProductCategory(productNames) {
+    try {
+      // Simulating asynchronous data retrieval
+      // Replace this with actual asynchronous data retrieval from an API or database
+      
+  
+      // Filter and extract prices for the matching product names
+      const filteredPrices =  ProductData
+        .filter((product) => productNames.includes(product.product_name))
+        .map((product) => product.product_type);
+      console.log("Filtered Cateogry",filteredPrices)
+      return filteredPrices;
+    } catch (error) {
+      console.error("Error fetching data:", error);
       return [];
     }
   }
@@ -166,10 +189,10 @@ useEffect(() => {
     }
   }
 
-  async function queryLowStocks(category, start, end) {
+  async function queryProducts() {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/products?low=true`,
+        `${API_BASE_URL}/products`,
         { timeout: 2000 }
       );
       if (response.data) {
@@ -184,45 +207,7 @@ useEffect(() => {
     }
   }
 
-  async function extractCategoryData(data) {
-    const categories = Object.keys(data.amount);
-    let highCategory = '';
-    let lowCategory = '';
-    let highCategoryRev = 0;
-    let lowCategoryRev = Number.MAX_VALUE;
-    let highCategoryUnit = 0;
-    let lowCategoryUnit = Number.MAX_VALUE;
   
-    categories.forEach((category) => {
-      const categoryRev = data.amount[category];
-      const categoryUnit = data.units[category];
-  
-      if (categoryRev > highCategoryRev) {
-        highCategory = category;
-        highCategoryRev = categoryRev;
-      }
-  
-      if (categoryRev < lowCategoryRev) {
-        lowCategory = category;
-        lowCategoryRev = categoryRev;
-      }
-  
-      highCategoryUnit = Math.max(highCategoryUnit, categoryUnit);
-      lowCategoryUnit = Math.min(lowCategoryUnit, categoryUnit);
-    });
-  
-    const result = {
-      highCategory,
-      lowCategory,
-      highCategoryRev,
-      lowCategoryRev,
-      highCategoryUnit,
-      lowCategoryUnit,
-    };
-  
-    console.log('Extracted Category Data:', result);
-    return result;
-  }
   
 
   return (
@@ -265,7 +250,8 @@ useEffect(() => {
       {isDataLoaded && !isLoading && <Grouping 
       topProductData=
       {{
-        category: topProductData.types.revenue.x_axis,
+        image: getFilteredProductImage(topProductData.frequencies.x_axis),
+        category: getFilteredProductCategory(topProductData.frequencies.x_axis),
         title:  topProductData.frequencies.x_axis,
         sales: topProductData.frequencies.y_axis,
         yearrev: topProductData.revenues.y_axis,
@@ -282,7 +268,6 @@ useEffect(() => {
         percentage={42} // Replace with the actual percentage value
         percent={15} // Replace with the actual percent value
         averagePrice="$100" // Replace with the actual average price value
-        compareCategory={compareCategoryData}
 
       />
     }
