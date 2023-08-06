@@ -29,7 +29,6 @@ module ProductInsights
         ]
 
         products.each do |product|
-            puts product
             product[:insights] = []
             insight_labels.each do |insight|
                 send(insight, product, sls)

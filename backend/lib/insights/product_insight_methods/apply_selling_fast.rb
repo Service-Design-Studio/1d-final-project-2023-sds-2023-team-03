@@ -11,6 +11,8 @@ module ProductInsights
 
         top_5 = Sale.top_sales_time_range(5, 30.days.ago.to_date, Time.now.to_date)
 
+
+        # first insight: popularity
         if (total_sales >= 100 && top_5.key?(product_id))
             insight = {
                 :name => :selling_fast,
@@ -23,6 +25,17 @@ module ProductInsights
                 :name => :selling_fast,
                 :text => "Product is very popular with #{total_sales} sales in the last 30 days!",
                 :severity => ProductInsights.severity[1]
+            }
+            product[:insights].append insight
+        end
+
+        # second insight: low stocks AND popular
+        stock_left = product["stock"]
+        if (total_sales >= 100 && stock_left < total_sales)
+            insight = {
+                :name => :selling_fast_low_stock,
+                :text => "Product has been very popular in the last 30 days, but has low stock left! (#{stock_left})",
+                :severity => ProductInsights.severity[3]
             }
             product[:insights].append insight
         end
