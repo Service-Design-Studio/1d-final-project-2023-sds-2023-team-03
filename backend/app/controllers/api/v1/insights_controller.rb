@@ -1,5 +1,5 @@
 require 'json'
-require './lib/insights/product_insights.rb'
+require './lib/insights/product_insights_driver.rb'
 
 module Api
     module V1
