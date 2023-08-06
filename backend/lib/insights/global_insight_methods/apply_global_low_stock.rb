@@ -1,5 +1,5 @@
 module GlobalInsights
-    def GlobalInsights.apply_global_low_stock(input_hash)
+    def GlobalInsights.apply_global_low_stock(**input_hash)
         products = input_hash[:products]
 
         qty_restock = 0

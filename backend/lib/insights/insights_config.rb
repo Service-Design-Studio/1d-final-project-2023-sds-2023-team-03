@@ -18,7 +18,9 @@ module InsightsConfig
         :apply_global_popular_low_stock,
         :apply_global_low_stock,
         :apply_best_category,
-        :apply_worst_category
+        :apply_worst_category,
+        :apply_top_bottom_sales,
+        :apply_global_declining_seven_days
     ]
 
     def InsightsConfig.severity
