@@ -1,6 +1,6 @@
 module ProductInsights
     def ProductInsights.apply_sales_change(product, sls)
-        severity = ProductInsights.severity
+        severity = InsightsConfig.severity
         product_id = product["product_id"]
         sale = sls
 
@@ -11,7 +11,10 @@ module ProductInsights
             insight = {
                 :name => :sales_change,
                 :text => "There were no sales for this product yesterday or today.",
-                :severity => severity[-1]
+                :severity => {
+                    :label => severity[1],
+                    :level => severity.key(severity[1])
+                }
             }
 
             product[:insights].append insight
@@ -33,7 +36,10 @@ module ProductInsights
             insight = {
                 :name => :sales_change,
                 :text => "Sales for this product has gone from 0 to #{sold_today} in the past 24 hours (#{1.day.ago.to_date}).",
-                :severity => ProductInsights.severity[0] 
+                :severity => {
+                    :label => InsightsConfig.severity[0],
+                    :level => InsightsConfig.severity.key(InsightsConfig.severity[0])
+                }
             }
 
             product[:insights].append insight
@@ -42,7 +48,10 @@ module ProductInsights
             insight = {
                 :name => :sales_change,
                 :text => "Sales for this product have not changed since 24 hours ago (#{1.day.ago.to_date}).",
-                :severity => ProductInsights.severity[2] 
+                :severity => {
+                    :label => InsightsConfig.severity[2],
+                    :level => InsightsConfig.severity.key(InsightsConfig.severity[2])
+                }
             }
             product[:insights].append insight
             return
@@ -82,7 +91,10 @@ module ProductInsights
         insight = {
             :name => :sales_change,
             :text => text,
-            :severity => grade
+            :severity => {
+                :label => grade,
+                :level => InsightsConfig.severity.key(grade)
+            }
         }
 
         product[:insights].append insight
