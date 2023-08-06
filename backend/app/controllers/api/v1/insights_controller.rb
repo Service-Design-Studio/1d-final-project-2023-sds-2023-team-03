@@ -57,7 +57,7 @@ module Api
                     :sales => sales_live,
                     :insights => product_insights.map {|product| {
                         "product_id" => product["product_id"],
-                        "insights" => product["insights"]
+                        "insights" => product[:insights]
                     }}
                 }
 
