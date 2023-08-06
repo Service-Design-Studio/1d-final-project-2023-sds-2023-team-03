@@ -64,7 +64,7 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
 
         <div style={{ marginTop: 16 }}>
           
-        <HoverCard width={280} shadow="md">
+        <HoverCard width={250} shadow="md">
           <HoverCard.Target>
               <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>
               <BsLink45Deg fontSize='2em' ></BsLink45Deg>
