@@ -17,7 +17,10 @@ function SalesBar({ data, label, colour, enableCurrency=false }) {
             end: data.end
         }
     } else {
-        data.y = data.y.map((n) => {
+        data.x = data.x.slice(0, 20)
+        data.y = data.y
+        .slice(0, 20)
+        .map((n) => {
             return Number(n.toFixed(0));
         })
     }

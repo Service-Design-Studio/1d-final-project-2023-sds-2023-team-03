@@ -21,6 +21,7 @@ module Backend
 
     # Autoload the BQmethods directory
     config.autoload_paths += %W(#{config.root}/BQmethods)
+    config.autoload_paths += %W(#{config.root}/lib/insights/**/)
   end
 end
 
