@@ -1,7 +1,7 @@
 module ProductInsights
     def ProductInsights.apply_sales_change(product, sls)
         severity = ProductInsights.severity
-        product_id = product[:product_id]
+        product_id = product["product_id"]
         sale = sls
 
         sales_yday = sls.where('product_id = ? AND date = ?', product_id, 1.day.ago.to_date)
@@ -9,7 +9,7 @@ module ProductInsights
 
         if (!sales_yday && !sales_today)
             insight = {
-                :name => :salesChange,
+                :name => :sales_change,
                 :text => "There were no sales for this product yesterday or today.",
                 :severity => severity[-1]
             }
@@ -22,16 +22,32 @@ module ProductInsights
         sold_today = 0
 
         if (sales_yday)
-            sales_yday.each do |sale|
-                sold_day += sale.sales
-            end
+            sold_yday = sales_yday.sum(:sales)
         end
 
         if (sales_today)
-            sales_today.each do |sale|
-                sold_day += sale.sales
-            end
+            sold_today = sales_today.sum(:sales)
         end
+
+        if (sold_yday == 0 && sold_today != 0)
+            insight = {
+                :name => :sales_change,
+                :text => "Sales for this product has gone from 0 to #{sold_today} in the past 24 hours (#{1.day.ago.to_date}).",
+                :severity => ProductInsights.severity[0] 
+            }
+
+            product[:insights].append insight
+            return
+        elsif (sold_yday == 0)
+            insight = {
+                :name => :sales_change,
+                :text => "Sales for this product have not changed since 24 hours ago (#{1.day.ago.to_date}).",
+                :severity => ProductInsights.severity[2] 
+            }
+            product[:insights].append insight
+            return
+        end
+
 
         # calculate change
         change = 0
@@ -56,11 +72,11 @@ module ProductInsights
         end
 
         if change > 0
-            text = "Sales for this product have risen by #{change*100}% since 24 hours ago #{1.day.ago.to_date}."
+            text = "Sales for this product have risen by #{change*100}% since 24 hours ago (#{1.day.ago.to_date})."
         elsif change < 0
-            text = "Sales for this product have dropped by #{-(change*100)}% since 24 hours ago #{1.day.ago.to_date}."
+            text = "Sales for this product have dropped by #{-(change*100)}% since 24 hours ago (#{1.day.ago.to_date})."
         else
-            text = "Sales for this product have not changed since 24 hours ago #{1.day.ago.to_date}."
+            text = "Sales for this product have not changed since 24 hours ago (#{1.day.ago.to_date})."
         end
 
         insight = {
