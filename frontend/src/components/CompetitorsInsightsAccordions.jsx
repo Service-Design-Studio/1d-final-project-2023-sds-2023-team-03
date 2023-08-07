@@ -4,10 +4,57 @@ import { FiThumbsDown,FiThumbsUp} from 'react-icons/fi'
 import {RiEmotionNormalLine} from 'react-icons/ri'
 import {LuPartyPopper} from "react-icons/lu"
 import AccordionList from './InsightAccordionList';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function CompetitorsInsightAccordions() {
+  const [category, setCategory] = useState(null);
+
+  useEffect(() => {
+    // It has to be in the form --> Product Name: ${product_name} and Product Description: ${product_description}
+    const ProdText = `Product Name: Skechers Men Transformers SKECHERS Street Stamina V3 Shoes - 802011-BKYL Air-Cooled Memory Foam Vegan
+    Product Description: Description:
+    
+    
+    
+    Boost your style with a striking look Skechers Stamina V3. This vegan design features a lace-up synthetic and mesh upper with a cushioned Skechers Air-Cooled Memory Foam® insole.
+    
+    
+    
+    Features:
+    
+    - Part of the Skechers x Transformers collection
+    
+    - Colorways and design details inspired by characters in the blockbuster such as Bumblebee, Optimus Prime, Mirage, Optimus Primal and Arcee
+    
+    - Skechers Air-Cooled Memory Foam® cushioned comfort insole
+    
+    - Crafted with 100% vegan materials
+    
+    - Lace-up synthetic and mesh upper
+    
+    - Shock-absorbing cushioned midsole
+    
+    - Flexible traction outsole
+    
+    - Skechers® logo detail
+    
+    `;
+  
+    axios.post('http://127.0.0.1:3000/api/v1/classify-category', { text: ProdText })
+      .then((response) => {
+        const data = response.data;
+        setCategory(data.category);
+      })
+      .catch((error) => {
+        // Handle API error
+        console.error('Error occurred during category classification:', error);
+      });
+  }, []);
+
   const listItems = [
-    { text: 'Item 1', hoverText: 'This is the hover text for Item 1' },
+    // Example output
+    { text: `You are doing better for the ${category} category.\n Your total sales: {sales}\n {competitor}’s total sales: {their_sales}` },
     { text: 'Item 2' },
     { text: 'Item 3', hoverText: 'This is the hover text for Item 3' }
   ];
