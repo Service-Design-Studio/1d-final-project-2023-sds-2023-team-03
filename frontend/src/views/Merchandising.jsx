@@ -42,9 +42,6 @@ function Logistics() {
     getMerchData();
   }, [isMounted.current]);
 
-  console.log(tagFilterData)
-
-  console.log(tagFilterData)
   return (
     <>
       <h1 id="sales-title">Merchandising</h1> 
@@ -67,8 +64,6 @@ function Logistics() {
           onChange={(e) => setTagFilterData({...tagFilterData, hideOthers: e.currentTarget.checked})}
         />
       </Flex>
-      <Space h='xs'/>
-      <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
       <Space h='xs'/>
       <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
       <Modal
