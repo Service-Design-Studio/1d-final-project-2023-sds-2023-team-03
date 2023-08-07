@@ -59,8 +59,8 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
         <Text size="m">{category}</Text>
         <Text size="m">Price: {price}</Text>
         <Text size="m">Sales: {sales}</Text>
-        <Text size="m">Monthly revenue: {mthrev}</Text>
-        <Text size="m">Annual Revenue: {yearrev}</Text>
+        <Text size="m">Monthly revenue: {mthrev.toFixed(2)}</Text>
+      <Text size="m">Annual Revenue: {yearrev.toFixed(2)}</Text>
 
         <div style={{ marginTop: 16 }}>
           

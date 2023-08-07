@@ -56,7 +56,7 @@ function AccordionList({ listItems }) {
             ) : (
               <List.Item
                 icon={
-                  <ThemeIcon color="teal" size={24} radius="xl">
+                  <ThemeIcon color="grey" size={24} radius="xl">
                     <IconInfoCircle size="1.2rem" />
                   </ThemeIcon>
                 }
