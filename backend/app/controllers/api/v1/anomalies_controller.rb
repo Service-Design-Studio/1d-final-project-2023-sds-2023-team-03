@@ -4,6 +4,7 @@ module Api
 
       require 'google/cloud/bigquery'
       require 'google/cloud/storage'
+      require_relative '../../../../lib/bigquery_module.rb'
 
       def load_data_into_bigquery
         # Fetch products from database
@@ -69,9 +70,13 @@ module Api
       end
 
       def join_anomalies_with_stats
+        bigquery = Google::Cloud::Bigquery.new
+        project_id = "sds-group3"  # replace with your actual project ID
+        dataset_id = "ecommerce_data"  # replace with your actual dataset ID
+        
         # Call the join_anomalies_with_stats method from BigQueryModule
-        anomalies = BigQueryModule.join_anomalies_with_stats
-
+        anomalies = BigQueryModule.join_anomalies_with_stats(bigquery, project_id, dataset_id)
+      
         render json: anomalies
       end
 
