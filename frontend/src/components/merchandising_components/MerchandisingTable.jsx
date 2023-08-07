@@ -12,6 +12,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfigs }) {
+function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfigs }) {
     const { classes, cx } = useStyles();
     const [nameFilter, setNameFilter] = useState('');
     const [fetching, setFetching] = useState(true);
@@ -36,16 +37,24 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
     useEffect(() => {
         setFetching(true);
         setTagFilterData(tagFilterConfigs)
+        setTagFilterData(tagFilterConfigs)
         if (data.length) setSavedData(data);
+    }, [data, apiLoad, tagFilterConfigs]);
     }, [data, apiLoad, tagFilterConfigs]);
 
     useEffect(() => {
+        if (savedData.length == 0 && !apiLoad) {
         if (savedData.length == 0 && !apiLoad) {
             setFetching(false);
             return;
         } else if (apiLoad) {
             return;
+        } else if (apiLoad) {
+            return;
         }
+
+        var finalData = []
+        var priorities = []
 
         var finalData = []
         var priorities = []
@@ -98,6 +107,16 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
             });
         };
 
+        if (priorities.length == 0) {
+            finalData = filteredData;
+        } else {
+            priorities.forEach((p) => {
+                finalData.unshift(p);
+            });
+        };
+
+        setPageLength(finalData.length);
+        const dataToLoad = finalData.slice(first, last);
         setPageLength(finalData.length);
         const dataToLoad = finalData.slice(first, last);
         setPageData(dataToLoad);
@@ -131,8 +150,10 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                     accessor: 'product_name', 
                     textAlignment: 'left',
                     cellsClassName: cellColorSetting,
+                    cellsClassName: cellColorSetting,
                     render: (record) => (
                         <Flex
+                          gap="sm"
                           gap="sm"
                           justify="flex-start"
                           align ="flex-start"
@@ -163,12 +184,14 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                     textAlignment: 'center',
                     width: 100,
                     cellsClassName: cellColorSetting,
+                    cellsClassName: cellColorSetting,
                     sortable: true
                 },
                 {
                     accessor: 'units_sold',
                     textAlignment: 'center',
                     width: 100,
+                    cellsClassName: cellColorSetting,
                     cellsClassName: cellColorSetting,
                     sortable: true
                 },
@@ -177,6 +200,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                     title: 'Category',
                     textAlignment: 'center',
                     width: 100,
+                    cellsClassName: cellColorSetting,
                     cellsClassName: cellColorSetting,
                     filter: (
                         <MultiSelect
@@ -197,6 +221,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                     textAlignment: 'center',
                     title: "Last restocked",
                     width: 100,
+                    cellsClassName: cellColorSetting,
                     cellsClassName: cellColorSetting,
                     render: ( { updated_at } ) => dayjs(updated_at).format('DD/MM/YYYY')
                 }

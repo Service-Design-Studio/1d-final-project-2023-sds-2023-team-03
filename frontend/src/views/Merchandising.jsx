@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDisclosure } from '@mantine/hooks'
 import { Modal, Badge, MultiSelect, Flex, Button, Space, Switch } from '@mantine/core'
+import { Modal, Badge, MultiSelect, Flex, Button, Space, Switch } from '@mantine/core'
 import './Merchandising.css';
 import MerchandisingTable from '../components/merchandising_components/MerchandisingTable.jsx';
 import axios from 'axios';
 
 function Logistics() {
   const [data, setData] = useState([]);
+  const [tagFilterData, setTagFilterData] = useState({
+    priorities: [],
+    hideOthers: false
+  })
   const [tagFilterData, setTagFilterData] = useState({
     priorities: [],
     hideOthers: false
@@ -43,6 +48,8 @@ function Logistics() {
   }, [isMounted.current]);
 
   console.log(tagFilterData)
+
+  console.log(tagFilterData)
   return (
     <>
       <h1 id="sales-title">Merchandising</h1> 
@@ -65,6 +72,8 @@ function Logistics() {
           onChange={(e) => setTagFilterData({...tagFilterData, hideOthers: e.currentTarget.checked})}
         />
       </Flex>
+      <Space h='xs'/>
+      <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
       <Space h='xs'/>
       <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
       <Modal
