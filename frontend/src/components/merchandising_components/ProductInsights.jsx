@@ -30,6 +30,7 @@ function ProductInsights({ insightData }) {
             }))
 
     }, [insightData])
+
     const classes = useStyles();
     return (
         <Stack spacing = "0">{data.map((ins) => {
