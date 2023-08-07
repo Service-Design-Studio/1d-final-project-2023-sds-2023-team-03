@@ -22,7 +22,6 @@ const Competitors = () => {
     setApiLoad(true)
     let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase()}`;
 
-    console.log(url)
     axios.get(url, {timeout: 10000})
     .then((res) => {
       if (res.data.all_data) setCompetitorProducts(res.data.all_data);
