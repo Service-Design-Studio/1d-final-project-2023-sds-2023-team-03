@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Tabs from './OverviewTabsInsight'
+import CompetitorsInsightAccordion from './CompetitorsInsightsAccordions'
 
 
-const OverviewInsights = ({ category, percentage, percent, averagePrice,compareCategory }) => {
+const CompetitorsInsights = ({ category, percentage, percent, averagePrice,compareCategory }) => {
   const [isCompetitionHovered, setIsCompetitionHovered] = useState(false);
   const [isProductSalesHovered, setIsProductSalesHovered] = useState(false);
   console.log('compareCategory:', compareCategory); // Add this line to check the content of compareCategory
@@ -16,8 +16,9 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice,compareC
   const textBoxStyle = {
     display: 'inline-block',
     width: '90%', // Set a width proportional to the screen
+    marginTop: '1em',
     marginBottom: '3em',
-    boxShadow: '0 5px 15px rgba(0, 0, 0, 0.4)',
+    boxShadow: '0 5px 5px rgba(0, 0, 0, 0)',
     borderRadius: '1em',
     backgroundColor: 'transparent',
     position: 'relative',
@@ -50,27 +51,14 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice,compareC
 
   return (
     <div style={containerStyle}>
-      <h2
-        className="insights-heading"
-        style={{
-          fontSize: '2em',
-          fontWeight: 'bold',
-          color: '#333',
-          textTransform: 'uppercase',
-          marginBottom: '1em',
-          paddingTop: '2em',
-        }}
-      >
-        Insights
-      </h2>
+      
       <div
         className="textBox salesInsights compInsights merchInsights"
         style={{ ...textBoxStyle, boxShadow: isProductSalesHovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
         onMouseEnter={handleProductSalesMouseEnter}
         onMouseLeave={handleProductSalesMouseLeave}
       >
-        <Tabs>
-      </Tabs> 
+        <CompetitorsInsightAccordion />
         <br />
   
  
@@ -80,4 +68,4 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice,compareC
   );
 };
 
-export default OverviewInsights;
+export default CompetitorsInsights;
