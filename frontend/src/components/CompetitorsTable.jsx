@@ -43,7 +43,7 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
     }, [sortStatus, page, savedData]);
 
     const handleRowClick = (row) => {
-        const url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${row.competitorName}`
+        const url = row.product_link
         window.open(url, '_blank');
     }
 
@@ -60,8 +60,15 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             ),
         },
         {
+            accessor: 'competitor_name',
+            textAlignment: 'left',
+            width: 80,
+            sortable: true
+        },
+        {
             accessor: 'product_name',
             textAlignment: 'left',
+            width: 200,
             render: (record) => (
                 <Flex
                     gap="md"
@@ -75,25 +82,51 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             )
         },
         {
-            accessor: 'product_category',
+            accessor: 'keyword',
             textAlignment: 'center',
-            width: 150
+            width: 100,
+            sortable: true
         },
         {
             accessor: 'sales',
             textAlignment: 'center',
-            width: 100,
+            width: 80,
             sortable: true
         },
         {
-            accessor: 'price',
+            accessor: 'initial_price',
             textAlignment: 'center',
             width: 100,
             render: (record) => (
-                "S$" + record.price.toFixed(2)
+                "S$" + record.initial_price.toFixed(2)
             ),
             sortable: true
+        },
+        {
+            accessor: 'final_price',
+            textAlignment: 'center',
+            width: 100,
+            render: (record) => (
+                "S$" + record.final_price.toFixed(2)
+            ),
+            sortable: true
+        },
+        {
+            accessor: 'discount',
+            textAlignment: 'center',
+            width: 80,
+            render: (record) => (
+                record.discount.toFixed() + "%"
+            ),
+            sortable: false
+        },
+        {
+            accessor: 'date_scraped',
+            textAlignment: 'center',
+            width: 100,
+            sortable: true
         }
+
     ]
 
     return (
