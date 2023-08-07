@@ -11,10 +11,14 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
+function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfigs }) {
     const { classes, cx } = useStyles();
     const [fetching, setFetching] = useState(true)
     const [savedData, setSavedData] = useState([]);
+    const [tagFilterData, setTagFilterData] = useState({
+        priorities: [],
+        hideOthers: false
+    })
     const [pageLength, setPageLength] = useState(0);
     const [page, setPage] = useState(1);
     const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
@@ -30,14 +34,18 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
 
     useEffect(() => {
         setFetching(true);
+        setTagFilterData(tagFilterConfigs)
         if (data.length) setSavedData(data);
-    }, [data, apiLoad]);
+    }, [data, apiLoad, tagFilterConfigs]);
 
     useEffect(() => {
         if (savedData.length == 0) {
             setFetching(false);
             return;
         }
+
+        var finalData = []
+        var priorities = []
 
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
@@ -59,13 +67,35 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                 return false;
             }
             return true;
-        });
-        setPageLength(filteredData.length)
+        })
+        
+        filteredData.forEach((r) => {
+            if (tagFilterData.priorities.length == 0) return;
+            var isPriority = false;
+            for (const priority of tagFilterData.priorities) {
+                if (containsInsight(r.insights, priority)) {
+                    priorities.push(r);
+                    isPriority = true;
+                    break;
+                }
+            }
 
-        const dataToLoad = filteredData.slice(first, last);
+            if (!isPriority && !tagFilterData.hideOthers) finalData.push(r);
+        });
+
+        if (priorities.length == 0) {
+            finalData = filteredData;
+        } else {
+            priorities.forEach((p) => {
+                finalData.unshift(p);
+            });
+        };
+
+        setPageLength(finalData.length);
+        const dataToLoad = finalData.slice(first, last);
         setPageData(dataToLoad);
         setFetching(false);
-    }, [selectedCategories, sortStatus, page, savedData]);
+    }, [selectedCategories, sortStatus, page, savedData, tagFilterData.priorities, tagFilterData.hideOthers]);
 
     function containsInsight(insights, label) {
         return insights.map((e) => {
