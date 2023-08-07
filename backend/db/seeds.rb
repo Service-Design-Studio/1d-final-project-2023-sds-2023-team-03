@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
+require 'csv'
+require 'uri'
 
 # Generate 200 products
 200.times do
@@ -59,4 +61,73 @@ end
     sales: rand(0..200),
     date: Faker::Date.between(from: '2021-01-01', to: Date.today).end_of_month
   )
+end
+
+Dir[Rails.root.join('scraper/Lazada/data/*')].each do |filename|
+  next if filename.include?("Comfortwear") || filename.include?("Running")
+
+  CSV.foreach(filename) do |row|
+    # initial_price = row[5] == "No Price Reduction" ? row[6].delete("$").to_f : row[5].delete("$").to_f
+    # final_price = row[6].delete("$").to_f
+    initial_price = (row[5] && row[5] != "No Price Reduction") ? row[5].delete("$").to_f : (row[6] ? row[6].delete("$").to_f : 0)
+    final_price = row[6] ? row[6].delete("$").to_f : 0
+    discount = initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
+
+    LazadaData.find_or_create_by(product_name: row[3]) do |data|
+      data.merchant_name = row[0],
+      data.keyword = row[1],
+      data.competitor_name = row[2],
+      data.product_name = row[3],
+      data.coupon = row[4],
+      data.initial_price = initial_price,
+      data.final_price = final_price,
+      data.sales = row[7].to_i,
+      data.product_link = row[8],
+      data.product_image_link = row[9],
+      data.date_scraped = Date.strptime(row[10], "%d-%m-%Y"),
+      data.discount = discount
+    end
+  end
+end
+
+Dir[Rails.root.join('scraper/Shopee/data/*')].each do |filename|
+  next if filename.include?("Comfortwear") || filename.include?("Running")
+
+  CSV.foreach(filename) do |row|
+    initial_price = (row[5] && row[5] != "No Price Reduction") ? row[5].delete("$").to_f : (row[6] ? row[6].delete("$").to_f : 0)
+    final_price = row[6] ? row[6].delete("$").to_f : 0
+
+    ShopeeData.create(
+      merchant_name: row[0],
+      keyword: row[1],
+      competitor_name: row[2],
+      product_name: row[3],
+      coupon: row[4],
+      initial_price: initial_price,
+      final_price: final_price,
+      sales: row[7].to_i,
+      product_link: row[8],
+      product_image_link: row[9],
+      date_scraped: Date.strptime(row[10], "%d-%m-%Y"),
+      discount: initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
+    )
+  end
+end
+
+Dir[Rails.root.join('scraper/Lazada/keywords_data/*')].each do |filename|
+  CSV.foreach(filename) do |row|
+    lazada_data = LazadaData.find_by(product_name: row[3])
+    if lazada_data
+      lazada_data.update(keyword: row[1])
+    end
+  end
+end
+
+Dir[Rails.root.join('scraper/Shopee/keywords_data/*')].each do |filename|
+  CSV.foreach(filename) do |row|
+    shopee_data = ShopeeData.find_by(product_name: row[3])
+    if shopee_data
+      shopee_data.update(keyword: row[1])
+    end
+  end
 end

@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { Text, Container, useMantineTheme, Title } from '@mantine/core';
+import { Text, Container, useMantineTheme, Title, Box } from '@mantine/core';
 import { Link } from 'react-router-dom';
 
 const CarouselCard = ({ topProducts }) => {
@@ -8,12 +8,27 @@ const CarouselCard = ({ topProducts }) => {
     const carouselContent = {
         height: '100%',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'column',
         backgroundColor: theme.colors.gray[0],
         borderRadius: 15,
-        gap: 15
+    };
+
+    const imageContainerStyle = {
+        width: '80%',
+        height: '50%',
+        overflow: 'hidden',
+        position: 'relative'
+    };
+
+    const imageStyle = {
+        position: 'absolute',
+        bottom: '0',
+        left: '50%',
+        transform: 'translate(-50%)',
+        width: '100%',
+        height: 'auto'
     };
 
     function renderCards() {
@@ -21,13 +36,15 @@ const CarouselCard = ({ topProducts }) => {
 
         return topProducts.map((product, index) => (
             <Carousel.Slide key={product.id}>
-                {/* TODO: Replace with link */}
-                <a href={`https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${product.competitorName}`} target='_blank' rel='noreferrer'>
+                <a href={product.product_link} target='_blank' rel='noreferrer'>
                     <div style={carouselContent}>
+                        <div style={imageContainerStyle}>
+                            <img src={product.product_image_link} style={imageStyle} />
+                        </div>
                         <Text order={2} color="black">Rank: {index + 1}</Text>
                         <Text color="black">Product Name: {product.product_name}</Text>
                         <Text color="black">Number Sold: {product.sales}</Text>
-                        <Text color="black">Price: ${product.price}</Text>
+                        <Text color="black">Final Price: ${product.final_price}</Text>
                     </div>
                 </a>
         </Carousel.Slide>
@@ -44,21 +61,23 @@ const CarouselCard = ({ topProducts }) => {
                 Breathable Shoes, Running Shoes, Lightweight, Moisture Wicking
                 </Text>
 
-                <Carousel
-                    withIndicators
-                    height={300}
-                    slideSize="33.333333%"
-                    slideGap="md"
-                    breakpoints={[
-                        { maxWidth: 'md', slideSize: '50%' },
-                        { maxWidth: 'sm', slideSize: '100%', slideGap: 15 },
-                    ]}
-                    align="start"
-                    pr="10px"
-                    pl="10px"
-                >
-                    {renderCards()}
-                </Carousel>
+                <Box mb="lg">
+                    <Carousel
+                        withIndicators
+                        height={500}
+                        slideSize="33.333333%"
+                        slideGap="md"
+                        breakpoints={[
+                            { maxWidth: 'md', slideSize: '50%' },
+                            { maxWidth: 'sm', slideSize: '100%', slideGap: 15 },
+                        ]}
+                        align="start"
+                        pr="10px"
+                        pl="10px"
+                    >
+                        {renderCards()}
+                    </Carousel>
+                </Box>
             </Container>
         </section>
     );
