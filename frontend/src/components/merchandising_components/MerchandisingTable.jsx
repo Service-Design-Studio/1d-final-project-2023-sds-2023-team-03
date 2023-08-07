@@ -1,5 +1,5 @@
 import { DataTable } from 'mantine-datatable';
-import { createStyles, MultiSelect, Badge, Flex, Image, Title, Text, Divider } from '@mantine/core';
+import { createStyles, MultiSelect, Badge, Flex, Image, Group, Text, Divider } from '@mantine/core';
 import { useState, useEffect, useMemo } from 'react'
 import dayjs from 'dayjs'
 import ProductInsights from './ProductInsights.jsx'
@@ -65,7 +65,15 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
         const dataToLoad = filteredData.slice(first, last);
         setPageData(dataToLoad);
         setFetching(false);
-    }, [selectedCategories, sortStatus, page, data, savedData]);
+    }, [selectedCategories, sortStatus, page, savedData]);
+
+    function containsInsight(insights, label) {
+        return insights.map((e) => {
+            return e.name;
+        }).includes(label)
+    }
+
+    const cellColorSetting = ({ insights }) => cx({ [classes.belowFifty]: containsInsight(insights, "popular_low_stock")})
 
     return (
         <div className='merch-table'>
@@ -79,17 +87,20 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                 { 
                     accessor: 'product_name', 
                     textAlignment: 'left',
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     render: (record) => (
                         <Flex
-                          gap="md"
+                          gap="sm"
                           justify="flex-start"
                           align ="flex-start"
                           direction="row"
                           wrap="wrap"
                         >
-                            {record.stock < 50 ? (<Badge color="red">Restock</Badge>) : null}
                             {record.product_name}
+                            <Group spacing="0">
+                                {containsInsight(record.insights, "popular") ? (<Badge color="green">Popular!</Badge>) : null}
+                                {containsInsight(record.insights, "popular_low_stock") ? (<Badge color="red">Restock?</Badge>) : null}
+                            </Group>
                         </Flex>
                     )
                 },
@@ -97,14 +108,14 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                     accessor: 'stock',
                     textAlignment: 'center',
                     width: 100,
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     sortable: true
                 },
                 {
                     accessor: 'units_sold',
                     textAlignment: 'center',
                     width: 100,
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     sortable: true
                 },
                 { 
@@ -112,7 +123,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                     title: 'Category',
                     textAlignment: 'center',
                     width: 100,
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     filter: (
                         <MultiSelect
                             label="Categories"
@@ -131,7 +142,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                     textAlignment: 'center',
                     title: "Last restocked",
                     width: 100,
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     render: ( { updated_at } ) => dayjs(updated_at).format('DD/MM/YYYY')
                 }
               ]}
