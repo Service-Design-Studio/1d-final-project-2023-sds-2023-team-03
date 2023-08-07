@@ -50,12 +50,12 @@ function Logistics() {
         <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
         <MultiSelect
           data = {[
-            { value: 'popular', label: (<Badge color='green'>Popular!</Badge>)},
-            { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>)}
+            { value: 'popular', label: (<Badge color='green'>Popular!</Badge>) },
+            { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>) },
+            { value: 4, label: (<Badge variant="gradient" gradient={{ from:"red", to: "red" }}>CRITICAL!</Badge>)}
           ]}
           clearable
           dropdownPosition='top'
-          defaultValue='popular'
           placeholder='Prioritize product tags'
           size='xs'
           onChange={(vals) => setTagFilterData({...tagFilterData, priorities: vals})}
