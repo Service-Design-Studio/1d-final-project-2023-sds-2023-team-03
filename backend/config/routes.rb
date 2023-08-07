@@ -35,9 +35,7 @@ Rails.application.routes.draw do
 
       resources :anomalies, only: [] do
         collection do
-          get 'create_temp_anomalies_table'
-          get 'create_quantity_stats_table'
-          get 'join_anomalies_with_stats'
+          get 'detect_anomalies'
           get 'fetch_products'  
           get 'load_data_into_bigquery'
         end

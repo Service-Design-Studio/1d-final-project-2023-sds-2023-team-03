@@ -225,6 +225,7 @@ module BigQueryModule
     # Process the results and return the data as an array of hashes
     products = results.map do |row|
       {
+        is_anomaly: row[:is_anomaly],
         product_id: row[:product_id],
         product_category: row[:product_category],
         product_type: row[:product_type],
