@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDisclosure } from '@mantine/hooks'
 import { Modal, Badge, MultiSelect, Flex, Button, Space, Switch } from '@mantine/core'
+import { Modal, Badge, MultiSelect, Flex, Button, Space, Switch } from '@mantine/core'
 import './Merchandising.css';
 import MerchandisingTable from '../components/merchandising_components/MerchandisingTable.jsx';
 import axios from 'axios';
 
 function Logistics() {
   const [data, setData] = useState([]);
+  const [tagFilterData, setTagFilterData] = useState({
+    priorities: [],
+    hideOthers: false
+  })
   const [tagFilterData, setTagFilterData] = useState({
     priorities: [],
     hideOthers: false
@@ -43,6 +48,8 @@ function Logistics() {
   }, [isMounted.current]);
 
   console.log(tagFilterData)
+
+  console.log(tagFilterData)
   return (
     <>
       <h1 id="sales-title">Merchandising</h1> 
@@ -50,12 +57,12 @@ function Logistics() {
         <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
         <MultiSelect
           data = {[
-            { value: 'popular', label: (<Badge color='green'>Popular!</Badge>)},
-            { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>)}
+            { value: 'popular', label: (<Badge color='green'>Popular!</Badge>) },
+            { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>) },
+            { value: 4, label: (<Badge variant="gradient" gradient={{ from:"red", to: "red" }}>CRITICAL!</Badge>)}
           ]}
           clearable
           dropdownPosition='top'
-          defaultValue='popular'
           placeholder='Prioritize product tags'
           size='xs'
           onChange={(vals) => setTagFilterData({...tagFilterData, priorities: vals})}
@@ -65,6 +72,8 @@ function Logistics() {
           onChange={(e) => setTagFilterData({...tagFilterData, hideOthers: e.currentTarget.checked})}
         />
       </Flex>
+      <Space h='xs'/>
+      <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
       <Space h='xs'/>
       <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
       <Modal

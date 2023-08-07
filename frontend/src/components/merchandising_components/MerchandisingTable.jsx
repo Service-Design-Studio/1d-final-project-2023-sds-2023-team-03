@@ -1,5 +1,5 @@
 import { DataTable } from 'mantine-datatable';
-import { createStyles, MultiSelect, Badge, Flex, Image, Group, Text, Divider } from '@mantine/core';
+import { createStyles, MultiSelect, Badge, Flex, Image, Group, Text, TextInput, Divider } from '@mantine/core';
 import { useState, useEffect, useMemo } from 'react'
 import dayjs from 'dayjs'
 import ProductInsights from './ProductInsights.jsx'
@@ -12,13 +12,15 @@ const useStyles = createStyles((theme) => ({
 }));
 
 function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfigs }) {
+function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfigs }) {
     const { classes, cx } = useStyles();
-    const [fetching, setFetching] = useState(true)
+    const [nameFilter, setNameFilter] = useState('');
+    const [fetching, setFetching] = useState(true);
     const [savedData, setSavedData] = useState([]);
     const [tagFilterData, setTagFilterData] = useState({
         priorities: [],
         hideOthers: false
-    })
+    });
     const [pageLength, setPageLength] = useState(0);
     const [page, setPage] = useState(1);
     const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
@@ -35,16 +37,24 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
     useEffect(() => {
         setFetching(true);
         setTagFilterData(tagFilterConfigs)
+        setTagFilterData(tagFilterConfigs)
         if (data.length) setSavedData(data);
+    }, [data, apiLoad, tagFilterConfigs]);
     }, [data, apiLoad, tagFilterConfigs]);
 
     useEffect(() => {
+        if (savedData.length == 0 && !apiLoad) {
         if (savedData.length == 0 && !apiLoad) {
             setFetching(false);
             return;
         } else if (apiLoad) {
             return;
+        } else if (apiLoad) {
+            return;
         }
+
+        var finalData = []
+        var priorities = []
 
         var finalData = []
         var priorities = []
@@ -68,6 +78,10 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
             if (selectedCategories.length && !selectedCategories.some((c) => c === item.product_category)) {
                 return false;
             }
+
+            if (nameFilter !== '' && !item.product_name.toLowerCase().includes(nameFilter.toLowerCase())) {
+                return false
+            }
             return true;
         })
         
@@ -75,7 +89,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
             if (tagFilterData.priorities.length == 0) return;
             var isPriority = false;
             for (const priority of tagFilterData.priorities) {
-                if (containsInsight(r.insights, priority)) {
+                if (containsInsight(r.insights, priority) || containsInsightSeverity(r.insights, priority)) {
                     priorities.push(r);
                     isPriority = true;
                     break;
@@ -93,11 +107,21 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
             });
         };
 
+        if (priorities.length == 0) {
+            finalData = filteredData;
+        } else {
+            priorities.forEach((p) => {
+                finalData.unshift(p);
+            });
+        };
+
+        setPageLength(finalData.length);
+        const dataToLoad = finalData.slice(first, last);
         setPageLength(finalData.length);
         const dataToLoad = finalData.slice(first, last);
         setPageData(dataToLoad);
         setFetching(false);
-    }, [selectedCategories, sortStatus, page, savedData, tagFilterData.priorities, tagFilterData.hideOthers]);
+    }, [selectedCategories, sortStatus, page, savedData, tagFilterData.priorities, tagFilterData.hideOthers, nameFilter]);
 
     function containsInsight(insights, label) {
         return insights.map((e) => {
@@ -105,7 +129,13 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
         }).includes(label)
     }
 
-    const cellColorSetting = ({ insights }) => cx({ [classes.belowFifty]: containsInsight(insights, "popular_low_stock")})
+    function containsInsightSeverity(insights, severity) {
+        return insights.map((e) => {
+            return e.severity.level
+        }).includes(severity)
+    }
+
+    const cellColorSetting = ({ insights }) => cx({ [classes.belowFifty]: containsInsightSeverity(insights, 3) || containsInsightSeverity(insights, 4)})
 
     return (
         <div className='merch-table'>
@@ -120,8 +150,10 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                     accessor: 'product_name', 
                     textAlignment: 'left',
                     cellsClassName: cellColorSetting,
+                    cellsClassName: cellColorSetting,
                     render: (record) => (
                         <Flex
+                          gap="sm"
                           gap="sm"
                           justify="flex-start"
                           align ="flex-start"
@@ -130,16 +162,28 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                         >
                             {record.product_name}
                             <Group spacing="0">
+                                {containsInsightSeverity(record.insights, 4) ? (<Badge variant="gradient" gradient={{ from: 'red', to: 'red'}}>CRITICAL!</Badge>) : null}
                                 {containsInsight(record.insights, "popular") ? (<Badge color="green">Popular!</Badge>) : null}
                                 {containsInsight(record.insights, "popular_low_stock") ? (<Badge color="red">Restock?</Badge>) : null}
                             </Group>
                         </Flex>
-                    )
+                    ),
+                    filter: (
+                        <TextInput
+                            label="Product name"
+                            description="Filter products whose names include the inputted text"
+                            placeholder="Search product name..."
+                            value={nameFilter}
+                            onChange={(e) => setNameFilter(e.currentTarget.value)}
+                        />
+                    ),
+                    filtering: nameFilter !== ''
                 },
                 { 
                     accessor: 'stock',
                     textAlignment: 'center',
                     width: 100,
+                    cellsClassName: cellColorSetting,
                     cellsClassName: cellColorSetting,
                     sortable: true
                 },
@@ -148,6 +192,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                     textAlignment: 'center',
                     width: 100,
                     cellsClassName: cellColorSetting,
+                    cellsClassName: cellColorSetting,
                     sortable: true
                 },
                 { 
@@ -155,6 +200,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                     title: 'Category',
                     textAlignment: 'center',
                     width: 100,
+                    cellsClassName: cellColorSetting,
                     cellsClassName: cellColorSetting,
                     filter: (
                         <MultiSelect
@@ -168,12 +214,14 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                             searchable
                         />
                     ),
+                    filtering: selectedCategories.length > 0
                 },
                 { 
                     accessor: 'updated_at' ,
                     textAlignment: 'center',
                     title: "Last restocked",
                     width: 100,
+                    cellsClassName: cellColorSetting,
                     cellsClassName: cellColorSetting,
                     render: ( { updated_at } ) => dayjs(updated_at).format('DD/MM/YYYY')
                 }
