@@ -1,8 +1,8 @@
 import { DataTable } from 'mantine-datatable';
-import { createStyles, MultiSelect, Badge, Flex, Image, Title, Text, Divider, rem } from '@mantine/core';
-import { useState, useEffect, useMemo } from 'react';
-import dayjs from 'dayjs';
-import {SalesText, DeclineText, SellingFastText, RestockSellingFastText, BadSalesText, LiquidateText} from './MerchandisingInsights';
+import { createStyles, MultiSelect, Badge, Flex, Image, Title, Text, Divider } from '@mantine/core';
+import { useState, useEffect, useMemo } from 'react'
+import dayjs from 'dayjs'
+import ProductInsights from './ProductInsights.jsx'
 
 const useStyles = createStyles((theme) => ({
     belowFifty: {
@@ -66,17 +66,6 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
         setPageData(dataToLoad);
         setFetching(false);
     }, [selectedCategories, sortStatus, page, data, savedData]);
-
-    // TODO: need to modify inputs
-    const percent = 1;
-    const above_100_or_more = 123;
-    const decline_days = 7;
-    const current_stock = 10;
-    const stock_last_month = 67;
-    const bad_sales = 3;
-    const remaining_stock = 88;
-    const sold_per_day = 10;
-    const currentStock = 40;
 
     return (
         <div className='merch-table'>
@@ -158,7 +147,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
               rowExpansion={{
                 content:({ record })=> (
                     <div className="rowExpansionText">
-                        <Divider my="sm" variant="dashed"/>
+                        <Divider my="sm"/>
                             <Flex align="top" gap="xs">
                                 <Image src={record.image_link} width={150} height={150} radius="lg"/>
                                 <div className="rowExpansionDesc">
@@ -167,15 +156,10 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                                     </Text>
                                 </div>
                             </Flex>
-                            <br />
-                            <Text style={{ paddingLeft: '20px' }}>
-                            <SalesText percent={percent} />
-                            <DeclineText decline_days={decline_days} />
-                            <SellingFastText above_100_or_more={above_100_or_more} />
-                            <RestockSellingFastText above_100_or_more={above_100_or_more} current_stock={current_stock} stock_last_month={stock_last_month} />
-                            <BadSalesText bad_sales={bad_sales} remaining_stock={remaining_stock} />
-                            <LiquidateText sold_per_day={sold_per_day} currentStock={currentStock} />
-                            </Text>
+                            <Divider my="sm" variant="dashed"/>
+                            <div>
+                                <ProductInsights insightData={record.insights}/>
+                            </div>
                         <Divider my="sm"/>
                     </div>
                 )
