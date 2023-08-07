@@ -46,7 +46,7 @@ function Logistics() {
   }, [isMounted.current]);
   
   return (
-    <>f
+    <>
       <h1 id="sales-title">Merchandising</h1> 
       <Flex gap="sm" align="center">
         <SegmentedControl 
