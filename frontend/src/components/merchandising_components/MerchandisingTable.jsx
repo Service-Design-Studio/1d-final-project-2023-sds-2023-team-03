@@ -67,17 +67,6 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
         setFetching(false);
     }, [selectedCategories, sortStatus, page, data, savedData]);
 
-    // TODO: need to modify inputs
-    const percent = 1;
-    const above_100_or_more = 123;
-    const decline_days = 7;
-    const current_stock = 10;
-    const stock_last_month = 67;
-    const bad_sales = 3;
-    const remaining_stock = 88;
-    const sold_per_day = 10;
-    const currentStock = 40;
-
     return (
         <div className='merch-table'>
             <DataTable    // low products
