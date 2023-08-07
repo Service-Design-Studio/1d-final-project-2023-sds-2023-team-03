@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :products, only: [:index, :show, :create, :update, :destroy] do
+        collection do
+          get 'update_units_sold', to: 'products#update_units_sold'
+        end
       end
 
       resources :sales, only: [:index, :show, :create, :update, :destroy] do

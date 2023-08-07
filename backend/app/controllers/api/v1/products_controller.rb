@@ -68,6 +68,31 @@ module Api
         end
       end
 
+      def update_units_sold
+        sales = Sale.all
+        products = Product.all
+        out = []
+        products.each do |product|
+          product_sales = sales.where('product_id = ?', product.product_id)
+          if (!product_sales)
+            next
+          end
+    
+          qty_sold = 0
+          product_sales.each do |sale|
+            qty_sold += sale.sales
+          end
+          
+          out.append ({
+            :product => product.product_name,
+            :sales => qty_sold
+          })
+          product.update(units_sold: qty_sold)
+        end
+
+        render :json => out
+      end
+
       private
       def product_params
         params.require(:product).permit(:product_id, :product_category, :product_type, :product_name, :price, :stock, :units_sold)
