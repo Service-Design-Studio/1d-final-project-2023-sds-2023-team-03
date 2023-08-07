@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDisclosure } from '@mantine/hooks'
 import { Modal, Badge, MultiSelect, Flex, Button, Space, Switch } from '@mantine/core'
-import { Modal, Badge, MultiSelect, Flex, Button, Space, Switch } from '@mantine/core'
 import './Merchandising.css';
 import MerchandisingTable from '../components/merchandising_components/MerchandisingTable.jsx';
 import axios from 'axios';
 
 function Logistics() {
   const [data, setData] = useState([]);
-  const [tagFilterData, setTagFilterData] = useState({
-    priorities: [],
-    hideOthers: false
-  })
   const [tagFilterData, setTagFilterData] = useState({
     priorities: [],
     hideOthers: false
