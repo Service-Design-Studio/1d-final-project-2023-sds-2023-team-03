@@ -52,9 +52,6 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
         var finalData = []
         var priorities = []
 
-        var finalData = []
-        var priorities = []
-
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
         const filteredData = savedData.sort((a, b) => {
