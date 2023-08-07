@@ -53,31 +53,13 @@ module Api
         render json: { message: "K-means model with #{num_clusters} clusters is being trained." }
       end
 
-      def create_temp_anomalies_table
+      def detect_anomalies
         contamination = params[:contamination].to_f
 
-        # Call the create_temp_anomalies_table method from BigQueryModule
-        BigQueryModule.create_temp_anomalies_table(contamination)
+        # Call the detect_anomalies method from BigQueryModule
+        products = BigQueryModule.detect_anomalies(contamination)
 
-        render json: { message: "Temp anomalies table created with contamination: #{contamination}" }
-      end
-
-      def create_quantity_stats_table
-        # Call the create_quantity_stats_table method from BigQueryModule
-        BigQueryModule.create_quantity_stats_table
-
-        render json: { message: "Quantity stats table created." }
-      end
-
-      def join_anomalies_with_stats
-        bigquery = Google::Cloud::Bigquery.new
-        project_id = "sds-group3"  # replace with your actual project ID
-        dataset_id = "ecommerce_data"  # replace with your actual dataset ID
-        
-        # Call the join_anomalies_with_stats method from BigQueryModule
-        anomalies = BigQueryModule.join_anomalies_with_stats(bigquery, project_id, dataset_id)
-      
-        render json: anomalies
+        render json: products
       end
 
       private
