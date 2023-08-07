@@ -34,10 +34,11 @@ useEffect(() => {
   const [topProductData, setTopProductData] = useState({
     topProductData: {}
   })
-  const [topCategoriesData, settopCategoriesData] = useState({
-    topCategoriesData: {}
+  
+  const [insightData, setInsightData] = useState({
+    insightData: {}
   })
-
+  
   const [ProductData, setProductData] = useState({
     productData: {}
   })
@@ -60,7 +61,8 @@ useEffect(() => {
     // Wrap the asynchronous operations in Promises
     const topProductPromise = queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate);
     const productPromise = queryProducts();
-    
+    const insightPromise = queryInsights();
+
     // Create a Promise that resolves after 2 seconds
     const minWaitPromise = new Promise((resolve) => setTimeout(resolve, 2000));
   
@@ -70,16 +72,17 @@ useEffect(() => {
     // Use Promise.race to set an upper bound of 20 seconds
     try {
       const [queryData] = await Promise.all([
-        Promise.all([topProductPromise, productPromise]),
+        Promise.all([topProductPromise, productPromise,insightPromise]),
         Promise.race([minWaitPromise, maxWaitPromise]),
       ]);
     
   
       setTopProductData(queryData[0]);
       setProductData(queryData[1]);
-   
-      console.log("TopProductData",topProductData)
-      console.log("Check",ProductData[0])
+      setInsightData(queryData[2]);
+
+      console.log("TopProductData",topProductData);
+      console.log("Inisghtdata",insightData);
 
       setIsDataLoaded(true);
       setIsLoading(false); // Set isLoading to false to indicate that data loading is complete
@@ -168,26 +171,27 @@ useEffect(() => {
     }
   }
 
-  async function queryTopCategory( start, end) {
+  async function queryInsights() {
     try {
-      const response = await axios.get(
-        `${API_BASE_URL}/sales/top_categories?start=${start}&end=${end}`,
-        { timeout: 2000 }
-      );
+      console.log(API_BASE_URL+"/insights/global")
+      const response = await axios.get(`${API_BASE_URL}/insights/global`, { timeout: 8000 });
       if (response.data) {
-        console.log('Top Cat:', response.data);
-        return response.data
+        console.log(response.data);
+        return response.data;
       } else {
         return {
           frequencies: {
             types: {}
           }
+        };
       }
-    }
     } catch (error) {
       console.error('Error occurred during API request:', error);
     }
   }
+
+
+  
 
   async function queryProducts() {
     try {
@@ -264,10 +268,7 @@ useEffect(() => {
     {isDataLoaded && !isLoading &&
       
       <Insights
-        category="Running Shoe" // Replace with the actual category value
-        percentage={42} // Replace with the actual percentage value
-        percent={15} // Replace with the actual percent value
-        averagePrice="$100" // Replace with the actual average price value
+        insights = {insightData}
 
       />
     }
