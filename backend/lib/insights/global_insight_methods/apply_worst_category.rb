@@ -10,6 +10,7 @@ module GlobalInsights
         insight = {
             :name => :worst_category,
             :text => "Your worst-performing category is #{units_labels.first} with #{units_values.first} units sold, generating a total of S$#{amount} in revenue.",
+            :type => :sales,
             :severity => {
                 :label => grade,
                 :level => InsightsConfig.severity.key(grade)

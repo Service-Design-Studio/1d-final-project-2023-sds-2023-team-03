@@ -22,6 +22,7 @@ module GlobalInsights
         insight = {
             :name => :global_low_stock,
             :text => "There are #{qty_restock} products you may want to consider restocking.",
+            :type => :products,
             :severity => {
                 :label => grade,
                 :level => InsightsConfig.severity.key(grade)
