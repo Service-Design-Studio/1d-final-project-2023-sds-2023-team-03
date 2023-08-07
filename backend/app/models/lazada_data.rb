@@ -1,0 +1,2 @@
+class LazadaData < ApplicationRecord
+end
