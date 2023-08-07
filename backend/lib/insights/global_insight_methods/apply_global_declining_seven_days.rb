@@ -22,7 +22,7 @@ module GlobalInsights
         insight = {
             :name => :global_declining_seven_days,
             :text => "#{qty} products have been declining in sales in the past 7 days.",
-            :type => :products
+            :type => :products,
             :severity => {
                 :label => grade,
                 :level => InsightsConfig.severity.key(grade)
