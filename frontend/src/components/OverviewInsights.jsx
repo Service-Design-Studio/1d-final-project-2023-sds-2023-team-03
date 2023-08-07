@@ -1,17 +1,59 @@
 import React, { useState } from 'react';
-import Tabs from './OverviewTabsInsight'
+import InsightAccordion from './InsightAccordions'
 
 
-const OverviewInsights = ({ category, percentage, percent, averagePrice,compareCategory }) => {
-  const [isCompetitionHovered, setIsCompetitionHovered] = useState(false);
+const OverviewInsights = ({ insights }) => {
   const [isProductSalesHovered, setIsProductSalesHovered] = useState(false);
-  console.log('compareCategory:', compareCategory); // Add this line to check the content of compareCategory
+  console.log("Insights",insights);
 
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   };
+  
+
+  function categorizeInsights(insights) {
+    const categorizedInsights = {
+      Critical_Insight: [],
+      Severe_Insight: [],
+      Moderate_Insight: [],
+      Positive_Insight: [],
+      Exceptional_Insight: [],
+    };
+  
+    insights.forEach((insight) => {
+      if (insight && insight.severity && insight.severity.label) {
+        const categorizedInsight = { text: insight.text }; // Create a new object with the 'text' property
+        switch (insight.severity.label) {
+          case 'Critical':
+            categorizedInsights.Critical_Insight.push(categorizedInsight);
+            break;
+          case 'Severe':
+            categorizedInsights.Severe_Insight.push(categorizedInsight);
+            break;
+          case 'Moderate':
+            categorizedInsights.Moderate_Insight.push(categorizedInsight);
+            break;
+          case 'Positive':
+            categorizedInsights.Positive_Insight.push(categorizedInsight);
+            break;
+          case 'Exceptional':
+            categorizedInsights.Exceptional_Insight.push(categorizedInsight);
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  
+    return categorizedInsights;
+  }
+  
+
+  const categorizedInsights = categorizeInsights(insights);
+  console.log("Categorised Insights", categorizedInsights)
+
 
   const textBoxStyle = {
     display: 'inline-block',
@@ -36,15 +78,13 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice,compareC
     setIsCompetitionHovered(true);
   };
 
-  const handleCompetitionMouseLeave = () => {
-    setIsCompetitionHovered(false);
-  };
 
-  const handleProductSalesMouseEnter = () => {
+
+  const handleInsightsMouseEnter = () => {
     setIsProductSalesHovered(true);
   };
 
-  const handleProductSalesMouseLeave = () => {
+  const handleInsightsMouseLeave = () => {
     setIsProductSalesHovered(false);
   };
 
@@ -66,11 +106,17 @@ const OverviewInsights = ({ category, percentage, percent, averagePrice,compareC
       <div
         className="textBox salesInsights compInsights merchInsights"
         style={{ ...textBoxStyle, boxShadow: isProductSalesHovered ? '0 10px 25px rgba(0, 0, 0, 0.3)' : textBoxStyle.boxShadow }}
-        onMouseEnter={handleProductSalesMouseEnter}
-        onMouseLeave={handleProductSalesMouseLeave}
+        onMouseEnter={handleInsightsMouseEnter}
+        onMouseLeave={handleInsightsMouseLeave}
       >
-        <Tabs>
-      </Tabs> 
+        <div style ={{paddingLeft :'2em', paddingRight:'2em'}}>
+          <InsightAccordion 
+          categorizedInsights = 
+          {categorizedInsights}
+          
+          />
+       </div>
+
         <br />
   
  
