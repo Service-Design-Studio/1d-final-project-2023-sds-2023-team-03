@@ -19,6 +19,7 @@ module GlobalInsights
         insight = {
             :name => :global_selling_fast_low_stock,
             :text => "You have #{qty} products that have been popular in the last month that have low stock!",
+            :type => :products,
             :severity => {
                 :label => grade,
                 :level => InsightsConfig.severity.key(grade)
