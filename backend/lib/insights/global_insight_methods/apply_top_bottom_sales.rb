@@ -16,6 +16,7 @@ module GlobalInsights
         insight = {
             :name => :top_bottom_sales,
             :text => "Your top-selling product this month is #{top_product_name} with #{top_units_sold} sales, while your bottom-selling product this month is #{bottom_product_name} with #{bottom_units_sold} sales.",
+            :type => :sales,
             :severity => {
                 :label => grade,
                 :level => InsightsConfig.severity.key(grade)
