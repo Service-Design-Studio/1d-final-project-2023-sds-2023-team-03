@@ -11,20 +11,21 @@ const Competitors = () => {
   const isMounted = useRef(false);
   const [apiLoad, setApiLoad] = useState(true);
   const [errorOpen, setErrorOpen] = useState(false);
-  const [segmentValue, setSegmentValue] = useState('pa')
-  const [competitorProducts, setCompetitorProducts] = useState([]);
+  const [segmentValue, setSegmentValue] = useState('lazada')
+  const [lazadaProducts, setLazadaProducts] = useState([]);
+  const [shopeeProducts, setShopeeProducts] = useState([]);
   const [topCompetitorSales, setTopCompetitorSales] = useState([]);
   const pageSize = 50;
 
   const { competitorName } = useParams();
 
-  const getCompetitorsData = useCallback(() => {
+  const getLazadaData = useCallback(() => {
     setApiLoad(true)
-    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase()}`;
+    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase() === 'overall' ? '' : competitorName}?merchant=lazada`;
 
     axios.get(url, {timeout: 10000})
     .then((res) => {
-      if (res.data.all_data) setCompetitorProducts(res.data.all_data);
+      if (res.data.all_data) setLazadaProducts(res.data.all_data);
       if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
       setApiLoad(false);
     })
@@ -33,49 +34,79 @@ const Competitors = () => {
       setErrorOpen(true);
       setApiLoad(false);
     })
+  }, [competitorName]);
 
+  const getShopeeData = useCallback(() => {
+    setApiLoad(true)
+    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase() === 'overall' ? '' : competitorName}?merchant=shopee`;
+
+    axios.get(url, {timeout: 10000})
+    .then((res) => {
+      if (res.data.all_data) setShopeeProducts(res.data.all_data);
+      if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
+      setApiLoad(false);
+    })
+    .catch((err) => {
+      console.log(err);
+      setErrorOpen(true);
+      setApiLoad(false);
+    })
   }, [competitorName]);
 
 
   useEffect(() => {
-    if (segmentValue === 'pa') {
-      getCompetitorsData()
+    if (segmentValue === 'lazada') {
+      getLazadaData()
+    } else if (segmentValue === 'shopee') {
+      getShopeeData()
     } else {
 
     }
-
-  }, [segmentValue, competitorName, getCompetitorsData]);
+  }, [segmentValue, competitorName, getLazadaData, getShopeeData]);
 
   useEffect(() => {
     isMounted.current = true;
     return () => { isMounted.current = false };
   });
 
+  // useEffect(() => {
+  //   getLazadaData();
+  // }, [isMounted.current]);
+
   useEffect(() => {
-    getCompetitorsData();
-  }, [isMounted.current]);
+    if (segmentValue === 'lazada') {
+      getLazadaData();
+    } else if (segmentValue === 'shopee') {
+      getShopeeData();
+    }
+  }, [isMounted.current, segmentValue, competitorName]);
 
   return(
       <>
           <Stack>
           {competitorName.toLowerCase() === 'overall' ? <h1 id="competitors-title">{competitorName} Analytics</h1> : <h1 id="competitors-title">{competitorName}'s Analytics</h1> }
-          <CarouselCard topProducts={topCompetitorSales} />
 
-          <div className="table-container">
-            <Flex gap="sm" align="center">
+            <Flex gap="sm" align="center" justify="center">
               <SegmentedControl
                 color="blue"
                 radius="lg"
                 value={segmentValue}
                 onChange={setSegmentValue}
                 data={[
-                  { label: 'Competitors', value: 'pa' },
-                  { label: 'Insights', value: 'i' }
+                  { label: 'Lazada', value: 'lazada' },
+                  { label: 'Shopee', value: 'shopee'},
+                  { label: 'Insights', value: 'insights' }
                 ]}
               />
-              <Button onClick={getCompetitorsData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
+              <Button onClick={segmentValue === 'lazada' ? getLazadaData : getShopeeData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
             </Flex>
-            {segmentValue === 'pa' ? <CompetitorsTable data={competitorProducts} pageSize={pageSize} apiLoad={apiLoad} /> : <CompetitorsInsights />}
+
+          <CarouselCard topProducts={topCompetitorSales} />
+
+          <div className="table-container">
+            {segmentValue === 'insights' ? <CompetitorsInsights /> :
+            <CompetitorsTable data={segmentValue === 'lazada' ? lazadaProducts : shopeeProducts} pageSize={pageSize} apiLoad={apiLoad} />}
+
           </div>
 
           <Modal
