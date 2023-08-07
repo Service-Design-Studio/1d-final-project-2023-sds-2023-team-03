@@ -39,8 +39,10 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
     }, [data, apiLoad, tagFilterConfigs]);
 
     useEffect(() => {
-        if (savedData.length == 0) {
+        if (savedData.length == 0 && !apiLoad) {
             setFetching(false);
+            return;
+        } else if (apiLoad) {
             return;
         }
 
