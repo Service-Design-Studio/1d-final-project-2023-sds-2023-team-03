@@ -1,41 +1,40 @@
-import { Accordion, Text,Group } from '@mantine/core';
+import { Accordion, Text, Group, Paper } from '@mantine/core';
 import { VscWarning } from 'react-icons/vsc';
 import { FiThumbsDown,FiThumbsUp} from 'react-icons/fi'
 import {RiEmotionNormalLine} from 'react-icons/ri'
 import {LuPartyPopper} from "react-icons/lu"
 import AccordionList from './InsightAccordionList';
 
-function InsightAccordions() {
+function CompetitorsInsightAccordions() {
   const listItems = [
     { text: 'Item 1', hoverText: 'This is the hover text for Item 1' },
     { text: 'Item 2' },
-    { text: 'Item 3', hoverText: 'This is the hover text for Item 3' },
-    { text: 'Item 4' },
-    { text: 'Item 5', hoverText: 'This is the hover text for Item 5' },
+    { text: 'Item 3', hoverText: 'This is the hover text for Item 3' }
   ];
 
   return (
-    <div style={{ paddingTop : '3em', paddingBottom: '2em' }}>
-      <Accordion variant="separated" chevronPosition="left" defaultValue="customization">
+    //<div style={{ paddingTop : '3em', paddingBottom: '2em', backgroundColor: 'inherit' }}>
+    //<Paper sx={{ backgroundColor: 'white' }}>
+      <Accordion variant="filled" chevronPosition="left" defaultValue="customization" >
         <Accordion.Item value="Critical">
-          <Accordion.Control>
-          <Group noWrap> 
-          <VscWarning fontSize= "2.5em" color ='red'></VscWarning>
+            <Accordion.Control>
+            <Group noWrap> 
+            <VscWarning fontSize= "2.5em" color ='red'></VscWarning>
 
-            <div>
-              <Text weight={600}>Critical</Text>
-              <Text size="sm" color = "red" weight={400}>
-                Urgent Attention Needed
-              </Text>
-            </div>
-            </Group>
-          </Accordion.Control>
+                <div>
+                <Text weight={600}>Critical</Text>
+                <Text size="sm" color = "red" weight={400}>
+                    Urgent Attention Needed
+                </Text>
+                </div>
+                </Group>
+            </Accordion.Control>
 
-          <Accordion.Panel >
-            <div style = {{alignItems : 'left', paddingLeft: '2em'}}>
-            <AccordionList listItems={listItems} />
-            </div>
-          </Accordion.Panel>
+            <Accordion.Panel >
+                <div style = {{alignItems : 'left', paddingLeft: '2em'}}>
+                    <AccordionList listItems={listItems} />
+                </div>
+            </Accordion.Panel>
         </Accordion.Item>
 
         <Accordion.Item value="Severe">
@@ -101,8 +100,9 @@ function InsightAccordions() {
           <Accordion.Panel>With new :focus-visible pseudo-class focus ring appears only when user navigates with keyboard</Accordion.Panel>
         </Accordion.Item>
       </Accordion>
-    </div>
+      //</Paper>
+    //</div>
   );
 }
 
-export default InsightAccordions;
+export default CompetitorsInsightAccordions;

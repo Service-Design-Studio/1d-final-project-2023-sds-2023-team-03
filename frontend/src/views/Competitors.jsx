@@ -5,6 +5,7 @@ import { Stack, Modal, SegmentedControl, Button, Flex } from '@mantine/core'
 import CarouselCard from '../components/CarouselCard';
 import CompetitorsTable from '../components/CompetitorsTable';
 import './Competitors.css'
+import CompetitorsInsights from '../components/CompetitorsInsights';
 
 const Competitors = () => {
   const isMounted = useRef(false);
@@ -38,6 +39,8 @@ const Competitors = () => {
   useEffect(() => {
     if (segmentValue === 'pa') {
       getCompetitorsData()
+    } else {
+
     }
 
   }, [segmentValue, competitorName, getCompetitorsData]);
@@ -71,7 +74,7 @@ const Competitors = () => {
               />
               <Button onClick={getCompetitorsData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
             </Flex>
-            {segmentValue === 'pa' ? <CompetitorsTable data={competitorProducts} pageSize={pageSize} apiLoad={apiLoad} /> : null}
+            {segmentValue === 'pa' ? <CompetitorsTable data={competitorProducts} pageSize={pageSize} apiLoad={apiLoad} /> : <CompetitorsInsights />}
           </div>
 
           <Modal
