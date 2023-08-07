@@ -13,6 +13,6 @@ module GlobalInsights
         insights = []
         insight_labels.each {|insight| insights.append(send(insight, input_hash))}
 
-        return insights
+        return insights.compact
     end
 end
