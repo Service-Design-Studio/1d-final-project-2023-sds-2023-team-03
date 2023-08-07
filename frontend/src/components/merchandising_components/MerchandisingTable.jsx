@@ -2,6 +2,7 @@ import { DataTable } from 'mantine-datatable';
 import { createStyles, MultiSelect, Badge, Flex, Image, Title, Text, Divider } from '@mantine/core';
 import { useState, useEffect, useMemo } from 'react'
 import dayjs from 'dayjs'
+import ProductInsights from './ProductInsights.jsx'
 
 const useStyles = createStyles((theme) => ({
     belowFifty: {
@@ -146,15 +147,19 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
               rowExpansion={{
                 content:({ record })=> (
                     <div className="rowExpansionText">
-                        <Divider my="sm" variant="dashed"/>
-                        <Flex align="top" gap="xs">
-                            <Image src={record.image_link} width={150} height={150} radius="lg"/>
-                            <div className="rowExpansionDesc">
-                                <Text>
-                                    {record.description}
-                                </Text>
+                        <Divider my="sm"/>
+                            <Flex align="top" gap="xs">
+                                <Image src={record.image_link} width={150} height={150} radius="lg"/>
+                                <div className="rowExpansionDesc">
+                                    <Text>
+                                        {record.description}
+                                    </Text>
+                                </div>
+                            </Flex>
+                            <Divider my="sm" variant="dashed"/>
+                            <div>
+                                <ProductInsights insightData={record.insights}/>
                             </div>
-                        </Flex>
                         <Divider my="sm"/>
                     </div>
                 )
