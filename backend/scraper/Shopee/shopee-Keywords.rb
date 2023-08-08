@@ -161,15 +161,21 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
   puts "Starting keyword scrape for page #{page_count+1} of #{actual}"
 
   soup_container = soup.at_css('div.row\\ shopee-search-item-result__items')
+  img_container1 = soup_container.css('div.yvbeD6\\ KUUypF')
+  # puts "img_container1: #{img_container1}"
+  img_container = img_container1.css('img[class=_7DTxhh\\ vc8g9F] > @src')
+  # puts "img_container: #{img_container}"
 
-  puts 'getting names and product links'
+  puts 'getting names and product n img links'
+
   prod_link = soup_container.css('a > @href')
   prod_name = soup_container.css("div.FDn\\-\\-\\+")
 
   final_link =[]
 
-  # puts "product name: #{prod_name}"
-  # puts "product link :#{prod_link}"
+  img_data = img_container.map(&:text)
+
+  # puts "img_data: #{img_data}"
 
   link_data = prod_link.map(&:text)
 
@@ -187,10 +193,17 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
 
   puts "len of names: #{name_data.length}"
 
+  puts "len of img urls: #{img_data.length}"
+
   page_count_array = Array.new(name_data.length, page_count+1 )
 
+  platform = Array.new(name_data.length, 'shopee')
+  prod_cat_sub = actual.gsub("_", " ")
+  prod_cat = Array.new(name_data.length, prod_cat_sub)
 
-  zipped_list = final_link.zip(name_data,page_count_array)
+
+
+  zipped_list = platform.zip(prod_cat,final_link,name_data,img_data,page_count_array)
   zipped_list.each do |url_location_entry| 
     all_p_urls << url_location_entry
   end
@@ -297,6 +310,7 @@ keywords.each do |keyword_snippet|
   end
 
   puts "Moving onto next keyword..."
+
   
 
 end
