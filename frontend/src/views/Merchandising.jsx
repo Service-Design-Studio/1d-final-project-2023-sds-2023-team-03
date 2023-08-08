@@ -65,7 +65,9 @@ function Logistics() {
         />
       </Flex>
       <Space h='xs'/>
-      {/*<MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>*/}
+      <div>
+        <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
+      </div>
       <Modal
         centered
         opened={errorOpen}
