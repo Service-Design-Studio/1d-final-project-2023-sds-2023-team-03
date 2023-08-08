@@ -85,7 +85,6 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             accessor: 'keyword',
             textAlignment: 'center',
             width: 100,
-            sortable: true
         },
         {
             accessor: 'sales',

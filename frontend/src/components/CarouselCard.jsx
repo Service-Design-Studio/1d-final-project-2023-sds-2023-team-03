@@ -42,7 +42,7 @@ const CarouselCard = ({ topProducts }) => {
                             <img src={product.product_image_link} style={imageStyle} />
                         </div>
                         <Text order={2} color="black">Rank: {index + 1}</Text>
-                        <Text color="black">Product Name: {product.product_name}</Text>
+                        <Text color="black">{product.product_name}</Text>
                         <Text color="black">Number Sold: {product.sales}</Text>
                         <Text color="black">Final Price: ${product.final_price}</Text>
                     </div>
