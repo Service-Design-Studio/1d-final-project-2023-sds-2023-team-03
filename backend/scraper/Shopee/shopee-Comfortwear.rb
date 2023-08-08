@@ -366,6 +366,12 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   img_perlisting = soupy.at_css("div.cxDtMn")
   product_img = img_perlisting.css("div > @style")
 
+  ## prod desc
+  product_desc = soupy.at_css('div.f7AU53')
+
+  product_desc_data = product_desc.nil? || product_desc.text.empty? ? 'No product description available.' : product_desc.text  
+  ###
+
   competitor_name_data = competitor_name.text
 
   puts "compet name data: #{competitor_name_data}"
@@ -410,8 +416,12 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   puts "Product URL: #{prod_listing[0]}"
 
   puts "Image Url: #{product_img_data_f}"
+
+  puts "Product Description: #{product_desc_data}"
+
   
   final_entry = []
+  final_entry << 'shopee'
   final_entry << cat_label
   final_entry << Brand_dict.fetch(competitor_name_data)
   final_entry << product_name_data
@@ -421,7 +431,9 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   final_entry << prod_listing[2].to_i ### sold data
   final_entry << prod_listing[0] ## product url
   final_entry << product_img_data_f
+  final_entry << product_desc_data
 
+  ####
 
 
   final_l << final_entry

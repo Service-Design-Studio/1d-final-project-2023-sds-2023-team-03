@@ -424,6 +424,12 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
     return
   end
 
+  ## prod desc
+  product_desc = soupy.at_css('div.html\\-content\\ detail\\-content')
+
+  product_desc_data = product_desc.nil? || product_desc.text.empty? ? 'No product description available.' : product_desc.text  
+  ###
+
 
   product_name_data = product_name.text
 
@@ -438,6 +444,8 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
 
   puts "Product Name: #{product_name_data}"
 
+  puts "Product Vouchers: NA"
+
   puts "Initial Price: #{product_initial_price_data}"
 
   puts "Final Price: #{product_final_price_data}"
@@ -447,8 +455,11 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   puts "Product URL: #{prod_listing[0]}"
 
   puts "Image Url: #{product_img_data}"
+
+  puts "Product Description: #{product_desc_data}"
   
   final_entry = []
+  final_entry << 'lazada'
   final_entry << cat_label
   final_entry << Brand_dict.fetch(competitor_name_data)
   final_entry << product_name_data
@@ -458,6 +469,7 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   final_entry << prod_listing[1].to_i ### sold data
   final_entry << prod_listing[0] ## product url
   final_entry << product_img_data
+  final_entry << product_desc_data
 
 
   final_l << final_entry

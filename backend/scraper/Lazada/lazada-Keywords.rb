@@ -172,13 +172,21 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
 
 
   puts "len of names: #{name_data.length}"
+  
+  link.map! do |data|
+    "https://" + data
+  end
 
 
 
   page_count_array = Array.new(name_data.length, page_count )
 
+  platform = Array.new(name_data.length, 'lazada')
+  prod_cat_sub = actual.gsub("_", " ")
+  prod_cat = Array.new(name_data.length, prod_cat_sub)
 
-  zipped_list = link.zip(name_data,page_count_array)
+
+  zipped_list = platform.zip(prod_cat,link,name_data,page_count_array)
   zipped_list.each do |url_location_entry| 
     all_p_urls << url_location_entry
   end

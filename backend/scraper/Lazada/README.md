@@ -13,7 +13,8 @@ Column 7: Final Price
 Column 8: Quantity Sold TOTAL 
 Column 9: Product URL
 Column 10: Product Image URL
-Column 11: Date of API Call
+Column 11: Product Description
+Column 12: Date of API Call
 
 Keywords_data folder;
 Column 1: E-commerce Platform
