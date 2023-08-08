@@ -9,7 +9,7 @@ function InsightAccordions({ categorizedInsights }) {
   return (
     <div style={{ paddingTop: '3em', paddingBottom: '2em' }}>
       <Accordion variant="separated" chevronPosition="left" defaultValue="customization">
-        {categorizedInsights.Critical_Insight.length  && (
+        {categorizedInsights.Critical_Insight.length>0  && (
           <Accordion.Item value="Critical">
             <Accordion.Control>
               <Group noWrap>
@@ -22,7 +22,7 @@ function InsightAccordions({ categorizedInsights }) {
                 </div>
               </Group>
             </Accordion.Control>
-
+            
             <Accordion.Panel>
               <div style={{ alignItems: 'left', paddingLeft: '2em' }}>
                 <AccordionList listItems={categorizedInsights.Critical_Insight} />
