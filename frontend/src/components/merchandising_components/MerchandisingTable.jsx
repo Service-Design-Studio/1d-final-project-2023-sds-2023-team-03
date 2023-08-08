@@ -142,10 +142,10 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                           wrap="wrap"
                         >
                             {record.product_name}
-                            <Group spacing="0">
-                                {containsInsightSeverity(record.insights, 4) ? (<Badge variant="gradient" gradient={{ from: 'red', to: 'red'}}>CRITICAL!</Badge>) : null}
-                                {containsInsight(record.insights, "popular") ? (<Badge color="green">Popular!</Badge>) : null}
-                                {containsInsight(record.insights, "popular_low_stock") ? (<Badge color="red">Restock?</Badge>) : null}
+                            <Group spacing="xs">
+                                {/*containsInsightSeverity(record.insights, 4) ? (<Badge variant="gradient" gradient={{ from: 'red', to: 'red'}}>CRITICAL!</Badge>) : null*/}
+                                {/*containsInsight(record.insights, "popular") ? (<Badge color="green">Popular!</Badge>) : null*/}
+                                {/*containsInsight(record.insights, "popular_low_stock") ? (<Badge color="red">Restock?</Badge>) : null*/}
                             </Group>
                         </Flex>
                     ),
