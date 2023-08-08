@@ -16,6 +16,13 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
     });
     const [selectedKeywords, setSelectedKeywords] = useState(keywords);
 
+    const competitors = useMemo(() => {
+        var competitors = [];
+        if (data.length) competitors = new Set(data.map((e) => e.competitor_name));
+        return [...competitors];
+    });
+    const [selectedCompetitors, setSelectedCompetitors] = useState(competitors);
+
     const [sortStatus, setSortStatus] = useState({ columnAccessor: 'sales', direction: 'desc'});
 
     const isOverallPage = useMemo(() => {
@@ -73,6 +80,10 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             return 0;
         })
         .filter((item) => {
+            if (selectedCompetitors.length && !selectedCompetitors.some((c) => c === item.competitor_name)) {
+                return false;
+            }
+
             if (selectedKeywords.length && !selectedKeywords.some((c) => c === item.keyword)) {
                 return false;
             }
@@ -86,7 +97,7 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
         .slice(first, last)
         setPageData(dataToLoad);
         setFetching(false);
-    }, [sortStatus, page, savedData, nameFilter, selectedKeywords]);
+    }, [sortStatus, page, savedData, nameFilter, selectedKeywords, selectedCompetitors]);
 
     const handleRowClick = (row) => {
         const url = row.product_link
@@ -114,7 +125,20 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             accessor: 'competitor_name',
             textAlignment: 'left',
             width: 80,
-            sortable: true
+            // sortable: true
+            filter: (
+                <MultiSelect
+                    label="Competitors"
+                    description="Show only products from the following competitors:"
+                    data={competitors}
+                    value={selectedCompetitors}
+                    placeholder="Search keywords..."
+                    onChange={setSelectedCompetitors}
+                    clearable
+                    searchable
+                />
+            ),
+            filtering: selectedCompetitors.length > 0
         });
     }
 
