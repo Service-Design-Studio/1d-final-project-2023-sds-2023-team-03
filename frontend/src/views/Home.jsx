@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Home.css';
 import Grouping from '../components/Grouping';
-import Column from '../components/Column';
 import { Button,Loader } from '@mantine/core';
 import axios from 'axios';
 import { useEffect } from 'react';
@@ -134,8 +133,6 @@ useEffect(() => {
 
   function getFilteredProductCategory(productNames) {
     try {
-      // Simulating asynchronous data retrieval
-      // Replace this with actual asynchronous data retrieval from an API or database
       
   
       // Filter and extract prices for the matching product names
