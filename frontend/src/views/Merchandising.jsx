@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDisclosure } from '@mantine/hooks'
-import { Modal, SegmentedControl, Flex, Button } from '@mantine/core'
+import { Modal, Badge, MultiSelect, Flex, Button, Space, Switch } from '@mantine/core'
 import './Merchandising.css';
 import MerchandisingTable from '../components/merchandising_components/MerchandisingTable.jsx';
 import axios from 'axios';
 
 function Logistics() {
   const [data, setData] = useState([]);
-  const [segmentValue, setSegmentValue] = useState('pa')
+  const [tagFilterData, setTagFilterData] = useState({
+    priorities: [],
+    hideOthers: false
+  })
   const [apiLoad, setApiLoad] = useState(true);
   const [errorOpen, errorModalHandler] = useDisclosure(false);
   const isMounted = useRef(false);
@@ -36,32 +39,33 @@ function Logistics() {
   })
 
   useEffect(() => {
-    if (segmentValue === 'pa') {
-      getMerchData()
-    }
-  }, [segmentValue])
-
-  useEffect(() => {
     getMerchData();
   }, [isMounted.current]);
-  
+
   return (
     <>
       <h1 id="sales-title">Merchandising</h1> 
       <Flex gap="sm" align="center">
-        <SegmentedControl 
-          color="blue"
-          radius="lg"
-          value={segmentValue}
-          onChange={setSegmentValue}
-          data={[
-            { label: 'Product Actions', value: 'pa'},
-            { label: 'Insights', value: 'i'}
-          ]}
-        />
         <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
+        <MultiSelect
+          data = {[
+            { value: 'popular', label: (<Badge color='green'>Popular!</Badge>) },
+            { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>) },
+            { value: 4, label: (<Badge variant="gradient" gradient={{ from:"red", to: "red" }}>CRITICAL!</Badge>)}
+          ]}
+          clearable
+          dropdownPosition='top'
+          placeholder='Prioritize product tags'
+          size='xs'
+          onChange={(vals) => setTagFilterData({...tagFilterData, priorities: vals})}
+        />
+        <Switch
+          label="Hide other products?"
+          onChange={(e) => setTagFilterData({...tagFilterData, hideOthers: e.currentTarget.checked})}
+        />
       </Flex>
-      {segmentValue === 'pa' ? <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad}/> : null}
+      <Space h='xs'/>
+      <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
       <Modal
         centered
         opened={errorOpen}

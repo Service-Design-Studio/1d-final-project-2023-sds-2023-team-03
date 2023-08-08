@@ -1,5 +1,5 @@
 import { DataTable } from 'mantine-datatable';
-import { createStyles, MultiSelect, Badge, Flex, Image, Title, Text, Divider } from '@mantine/core';
+import { createStyles, MultiSelect, Badge, Flex, Image, Group, Text, TextInput, Divider } from '@mantine/core';
 import { useState, useEffect, useMemo } from 'react'
 import dayjs from 'dayjs'
 import ProductInsights from './ProductInsights.jsx'
@@ -11,10 +11,15 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
+function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfigs }) {
     const { classes, cx } = useStyles();
-    const [fetching, setFetching] = useState(true)
+    const [nameFilter, setNameFilter] = useState('');
+    const [fetching, setFetching] = useState(true);
     const [savedData, setSavedData] = useState([]);
+    const [tagFilterData, setTagFilterData] = useState({
+        priorities: [],
+        hideOthers: false
+    });
     const [pageLength, setPageLength] = useState(0);
     const [page, setPage] = useState(1);
     const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
@@ -30,14 +35,22 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
 
     useEffect(() => {
         setFetching(true);
+        setTagFilterData(tagFilterConfigs)
         if (data.length) setSavedData(data);
-    }, [data, apiLoad]);
+    }, [data, apiLoad, tagFilterConfigs]);
 
     useEffect(() => {
-        if (savedData.length == 0) {
+        if (savedData.length == 0 && !apiLoad) {
             setFetching(false);
             return;
+        } else if (apiLoad) {
+            return;
+        } else if (apiLoad) {
+            return;
         }
+
+        var finalData = []
+        var priorities = []
 
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
@@ -58,14 +71,54 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
             if (selectedCategories.length && !selectedCategories.some((c) => c === item.product_category)) {
                 return false;
             }
-            return true;
-        });
-        setPageLength(filteredData.length)
 
-        const dataToLoad = filteredData.slice(first, last);
+            if (nameFilter !== '' && !item.product_name.toLowerCase().includes(nameFilter.toLowerCase())) {
+                return false
+            }
+            return true;
+        })
+        
+        filteredData.forEach((r) => {
+            if (tagFilterData.priorities.length == 0) return;
+            var isPriority = false;
+            for (const priority of tagFilterData.priorities) {
+                if (containsInsight(r.insights, priority) || containsInsightSeverity(r.insights, priority)) {
+                    priorities.push(r);
+                    isPriority = true;
+                    break;
+                }
+            }
+
+            if (!isPriority && !tagFilterData.hideOthers) finalData.push(r);
+        });
+
+        if (priorities.length == 0) {
+            finalData = filteredData;
+        } else {
+            priorities.forEach((p) => {
+                finalData.unshift(p);
+            });
+        };
+
+        setPageLength(finalData.length);
+        const dataToLoad = finalData.slice(first, last);
         setPageData(dataToLoad);
         setFetching(false);
-    }, [selectedCategories, sortStatus, page, data, savedData]);
+    }, [selectedCategories, sortStatus, page, savedData, tagFilterData.priorities, tagFilterData.hideOthers, nameFilter]);
+
+    function containsInsight(insights, label) {
+        return insights.map((e) => {
+            return e.name;
+        }).includes(label)
+    }
+
+    function containsInsightSeverity(insights, severity) {
+        return insights.map((e) => {
+            return e.severity.level
+        }).includes(severity)
+    }
+
+    const cellColorSetting = ({ insights }) => cx({ [classes.belowFifty]: containsInsightSeverity(insights, 3) || containsInsightSeverity(insights, 4)})
 
     return (
         <div className='merch-table'>
@@ -79,32 +132,46 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                 { 
                     accessor: 'product_name', 
                     textAlignment: 'left',
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     render: (record) => (
                         <Flex
-                          gap="md"
+                          gap="sm"
                           justify="flex-start"
                           align ="flex-start"
                           direction="row"
                           wrap="wrap"
                         >
-                            {record.stock < 50 ? (<Badge color="red">Restock</Badge>) : null}
                             {record.product_name}
+                            <Group spacing="0">
+                                {containsInsightSeverity(record.insights, 4) ? (<Badge variant="gradient" gradient={{ from: 'red', to: 'red'}}>CRITICAL!</Badge>) : null}
+                                {containsInsight(record.insights, "popular") ? (<Badge color="green">Popular!</Badge>) : null}
+                                {containsInsight(record.insights, "popular_low_stock") ? (<Badge color="red">Restock?</Badge>) : null}
+                            </Group>
                         </Flex>
-                    )
+                    ),
+                    filter: (
+                        <TextInput
+                            label="Product name"
+                            description="Filter products whose names include the inputted text"
+                            placeholder="Search product name..."
+                            value={nameFilter}
+                            onChange={(e) => setNameFilter(e.currentTarget.value)}
+                        />
+                    ),
+                    filtering: nameFilter !== ''
                 },
                 { 
                     accessor: 'stock',
                     textAlignment: 'center',
                     width: 100,
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     sortable: true
                 },
                 {
                     accessor: 'units_sold',
                     textAlignment: 'center',
                     width: 100,
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     sortable: true
                 },
                 { 
@@ -112,7 +179,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                     title: 'Category',
                     textAlignment: 'center',
                     width: 100,
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     filter: (
                         <MultiSelect
                             label="Categories"
@@ -125,13 +192,14 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad }) {
                             searchable
                         />
                     ),
+                    filtering: selectedCategories.length > 0
                 },
                 { 
                     accessor: 'updated_at' ,
                     textAlignment: 'center',
                     title: "Last restocked",
                     width: 100,
-                    cellsClassName: ({ stock }) => cx({ [classes.belowFifty]: stock < threshold}),
+                    cellsClassName: cellColorSetting,
                     render: ( { updated_at } ) => dayjs(updated_at).format('DD/MM/YYYY')
                 }
               ]}

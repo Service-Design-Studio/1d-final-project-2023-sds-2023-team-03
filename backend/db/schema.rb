@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_06_174230) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_07_153620) do
   create_table "competitors", force: :cascade do |t|
     t.integer "product_id"
     t.string "product_category"
@@ -23,6 +23,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_174230) do
     t.datetime "updated_at", null: false
     t.string "competitor_name"
     t.date "date"
+  end
+
+  create_table "lazada_data", force: :cascade do |t|
+    t.string "merchant_name"
+    t.string "keyword"
+    t.string "competitor_name"
+    t.string "product_name"
+    t.string "coupon"
+    t.float "initial_price"
+    t.float "final_price"
+    t.integer "sales"
+    t.string "product_link"
+    t.string "product_image_link"
+    t.date "date_scraped"
+    t.float "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -47,6 +64,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_174230) do
     t.date "date"
     t.float "price"
     t.integer "sales"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shopee_data", force: :cascade do |t|
+    t.string "merchant_name"
+    t.string "keyword"
+    t.string "competitor_name"
+    t.string "product_name"
+    t.string "coupon"
+    t.float "initial_price"
+    t.float "final_price"
+    t.integer "sales"
+    t.string "product_link"
+    t.string "product_image_link"
+    t.date "date_scraped"
+    t.float "discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

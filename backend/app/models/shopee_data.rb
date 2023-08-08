@@ -1,0 +1,2 @@
+class ShopeeData < ApplicationRecord
+end
