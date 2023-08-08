@@ -171,7 +171,7 @@ function Sidebar({handleClearState}) {
         onClose={handleCancelLogout}
         title="PUMA SEA E-Commerce Analytics"
         size="m"
-        overlayClassName="modal-overlay"
+        overlayclassname="modal-overlay"
         xOffset="5wh"
         yOffset="20vh"
       >

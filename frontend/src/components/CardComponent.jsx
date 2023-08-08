@@ -24,7 +24,6 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
     border: '2px solid blue',
   };
   const cardStyles = {
-    boxShadow: '0 5px 15px rgba(0, 0, 0, 0.4)',
     backgroundColor: '#5C8984', // Use different background color on hover
     position: 'relative',
     overflow: 'hidden',

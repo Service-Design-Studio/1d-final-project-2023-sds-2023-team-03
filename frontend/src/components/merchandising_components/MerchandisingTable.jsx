@@ -29,8 +29,6 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
         return [...categories];
     });
     const [selectedCategories, setSelectedCategories] = useState(categories);
-    
-
     const [sortStatus, setSortStatus] = useState({ columnAccessor: 'stock', direction: 'asc'});
 
     useEffect(() => {
