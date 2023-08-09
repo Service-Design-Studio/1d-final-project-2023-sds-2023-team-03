@@ -3,6 +3,7 @@ import { VscWarning } from 'react-icons/vsc';
 import { FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
 import { RiEmotionNormalLine } from 'react-icons/ri';
 import { LuPartyPopper } from 'react-icons/lu';
+import {BsInfoSquare} from 'react-icons/bs'
 import AccordionList from './InsightAccordionList';
 
 function InsightAccordions({ categorizedInsights }) {
@@ -22,7 +23,7 @@ function InsightAccordions({ categorizedInsights }) {
                 </div>
               </Group>
             </Accordion.Control>
-
+            
             <Accordion.Panel>
               <div style={{ alignItems: 'left', paddingLeft: '2em' }}>
                 <AccordionList listItems={categorizedInsights.Critical_Insight} />
@@ -87,37 +88,37 @@ function InsightAccordions({ categorizedInsights }) {
                   </Accordion.Item>
                 )}
 
-        {categorizedInsights.Moderate_Insight.length >0 && (
-          <Accordion.Item value="Moderate">
+        {categorizedInsights.General_Insight.length >0 && (
+          <Accordion.Item value="General">
             <Accordion.Control>
               <Group noWrap>
-                <RiEmotionNormalLine fontSize="2.5em" color="grey" />
+                <BsInfoSquare fontSize="2.5em" color="blue" />
                 <div>
-                  <Text weight={600}>Moderate</Text>
-                  <Text size="sm" color="grey" weight={400}>
-                    Not Causing Issues
+                  <Text weight={600}>General</Text>
+                  <Text size="sm" color="blue" weight={400}>
+                    Overall Information
                   </Text>
                 </div>
               </Group>
             </Accordion.Control>
             <Accordion.Panel>
               <div style={{ alignItems: 'left', paddingLeft: '2em' }}>
-                <AccordionList listItems={categorizedInsights.Moderate_Insight} />
+                <AccordionList listItems={categorizedInsights.General_Insight} />
               </div>
             </Accordion.Panel>
           </Accordion.Item>
         )}
 
          {/* Handle disabling when list is empty */}
-         {categorizedInsights.Moderate_Insight.length === 0 && (
-          <Accordion.Item value="Moderate">
+         {categorizedInsights.General_Insight.length === 0 && (
+          <Accordion.Item value="General">
             <Accordion.Control disabled> 
             <Group noWrap>
-                <RiEmotionNormalLine fontSize="2.5em" color="black"></RiEmotionNormalLine>
+                <BsInfoSquare fontSize="2.5em" color="black"></BsInfoSquare>
                 <div>
-                  <Text weight={600}>Moderate</Text>
+                  <Text weight={600}>General</Text>
                   <Text size="sm" color="black" weight={400}>
-                    Not Causing Issues
+                    Overall Information
                   </Text>
                 </div>
               </Group>

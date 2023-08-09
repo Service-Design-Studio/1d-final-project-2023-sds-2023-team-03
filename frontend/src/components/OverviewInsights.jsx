@@ -17,14 +17,14 @@ const OverviewInsights = ({ insights }) => {
     const categorizedInsights = {
       Critical_Insight: [],
       Severe_Insight: [],
-      Moderate_Insight: [],
+      General_Insight: [],
       Positive_Insight: [],
       Exceptional_Insight: [],
     };
   
     insights.forEach((insight) => {
       if (insight && insight.severity && insight.severity.label) {
-        const categorizedInsight = { text: insight.text }; // Create a new object with the 'text' property
+        const categorizedInsight = { text: insight.text, type: insight.type }; // Create a new object with the 'text' property
         switch (insight.severity.label) {
           case 'Critical':
             categorizedInsights.Critical_Insight.push(categorizedInsight);
@@ -32,8 +32,8 @@ const OverviewInsights = ({ insights }) => {
           case 'Severe':
             categorizedInsights.Severe_Insight.push(categorizedInsight);
             break;
-          case 'Moderate':
-            categorizedInsights.Moderate_Insight.push(categorizedInsight);
+          case 'General':
+            categorizedInsights.General_Insight.push(categorizedInsight);
             break;
           case 'Positive':
             categorizedInsights.Positive_Insight.push(categorizedInsight);
@@ -44,7 +44,16 @@ const OverviewInsights = ({ insights }) => {
           default:
             break;
         }
+        if (insight.severity.label === 'N/A'){
+          categorizedInsights.General_Insight.push(categorizedInsight);
+  
+        }
+
       }
+
+      
+      
+    
     });
   
     return categorizedInsights;

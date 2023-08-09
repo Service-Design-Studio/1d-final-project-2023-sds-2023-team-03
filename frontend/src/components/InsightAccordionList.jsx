@@ -1,21 +1,21 @@
-import { List, ThemeIcon, HoverCard, Text } from '@mantine/core';
-import { IconInfoCircleFilled, IconInfoCircle, IconArrowBadgeRight } from '@tabler/icons-react';
+import { List, ThemeIcon } from '@mantine/core';
+import { IconUsers, IconBuildingStore, IconReportMoney } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
 function AccordionList({ listItems }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const iconStyles = {
-    icon: {
-      transition: 'all 0.1s ease',
-      transform: 'scale(1.2)',
-      color: 'white',
-    },
-    nonHoveredIcon: {
-      transition: 'all 0.1s ease',
-      transform: 'scale(1)',
-      color: 'white',
-    },
+  const getIconByType = (type) => {
+    switch (type) {
+      case 'products':
+        return <IconBuildingStore size="1.1rem" />;
+      case 'sales':
+        return < IconReportMoney size="1.1rem" />;
+      case 'competitors':
+        return < IconUsers size="1.1rem" />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -23,47 +23,20 @@ function AccordionList({ listItems }) {
       <List spacing="xs" size="sm" align="left">
         {listItems.map((item, index) => (
           <React.Fragment key={index}>
-            {item.hoverText ? (
-              <List.Item
-                
-                icon={
-                   <div onMouseEnter={() => setHoveredIndex(index)}
-                   onMouseLeave={() => setHoveredIndex(null)}>
-                  <HoverCard width={250} shadow="md" >
-                    <HoverCard.Target>
-                      <ThemeIcon
-                        color = 'blue'
-                        size={24}
-                        radius="xl"
-                        style={
-                          hoveredIndex === index
-                            ? iconStyles.icon
-                            : iconStyles.nonHoveredIcon
-                        }
-                      >
-                        <IconInfoCircle size="1.2rem" />
-                      </ThemeIcon>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                      <Text size="s">{item.hoverText}</Text>
-                    </HoverCard.Dropdown>
-                  </HoverCard>
-                  </div>
-                }
-              >
-                {item.text}
-              </List.Item>
-            ) : (
-              <List.Item
-                icon={
-                  <ThemeIcon color="grey" size={24} radius="xl">
-                    <IconInfoCircle size="1.2rem" />
+            <List.Item
+              icon={
+                <div
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <ThemeIcon color="#102C57" size={24} radius="xl">
+                    {getIconByType(item.type)}
                   </ThemeIcon>
-                }
-              >
-                {item.text}
-              </List.Item>
-            )}
+                </div>
+              }
+            >
+              {item.text}
+            </List.Item>
           </React.Fragment>
         ))}
       </List>
