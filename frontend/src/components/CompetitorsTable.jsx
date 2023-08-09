@@ -145,6 +145,11 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
     // Continue adding the rest of columns
     columns.push(
         {
+            accessor: 'category',
+            textAlignment: 'center',
+            width: 70
+        },
+        {
             accessor: 'product_name',
             textAlignment: 'left',
             width: 200,
