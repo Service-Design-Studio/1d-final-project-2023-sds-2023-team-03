@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CompetitorsInsightAccordion from './CompetitorsInsightsAccordions'
 
 const CompetitorsInsights = () => {
@@ -41,7 +41,14 @@ const CompetitorsInsights = () => {
     Positive_Insight: [],
     Exceptional_Insight: [],
   };
-  console.log("All insights: ", allInsights);
+
+  const handleProductSalesMouseEnter = () => {
+    setIsProductSalesHovered(true);
+  };
+
+  const handleProductSalesMouseLeave = () => {
+    setIsProductSalesHovered(false);
+  };
 
   return (
     <div style={containerStyle}>
