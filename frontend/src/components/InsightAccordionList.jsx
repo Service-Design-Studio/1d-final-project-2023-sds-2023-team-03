@@ -3,6 +3,7 @@ import { IconInfoCircleFilled, IconInfoCircle, IconArrowBadgeRight } from '@tabl
 import React, { useState } from 'react';
 
 function AccordionList({ listItems }) {
+  console.log("listitems: ", listItems);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const iconStyles = {
