@@ -84,7 +84,8 @@ Dir[Rails.root.join('scraper/Lazada/data/*')].each do |filename|
       data.sales = row[7].to_i,
       data.product_link = row[8],
       data.product_image_link = row[9],
-      data.date_scraped = Date.strptime(row[10], "%d-%m-%Y"),
+      data.product_description = row[10],
+      data.date_scraped = Date.strptime(row[11], "%d-%m-%Y"),
       data.discount = discount
     end
   end
@@ -108,7 +109,8 @@ Dir[Rails.root.join('scraper/Shopee/data/*')].each do |filename|
       sales: row[7].to_i,
       product_link: row[8],
       product_image_link: row[9],
-      date_scraped: Date.strptime(row[10], "%d-%m-%Y"),
+      product_description: row[10],
+      date_scraped: Date.strptime(row[11], "%d-%m-%Y"),
       discount: initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
     )
   end
