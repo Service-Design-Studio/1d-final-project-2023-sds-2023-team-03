@@ -14,7 +14,7 @@ Feature: Fetching competitor data from database after scraping Merchant APIs
 
 	Scenario: Loading top performing products section
 		When I navigate to the top performing products section
-		Then I should see the keywords
+		Then I should see the Shopee/Lazada toggle
 		And I should see top five performing products based on number sold
 
 	Scenario: Loading competitors section
