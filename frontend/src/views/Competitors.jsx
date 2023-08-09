@@ -65,13 +65,15 @@ const Competitors = () => {
   }, [segmentValue, competitorName, getLazadaData, getShopeeData]);
 
   useEffect(() => {
+    if (competitorName.toLowerCase() === 'nike') {
+      setSegmentValue('lazada');
+    }
+  }, [competitorName])
+
+  useEffect(() => {
     isMounted.current = true;
     return () => { isMounted.current = false };
   });
-
-  // useEffect(() => {
-  //   getLazadaData();
-  // }, [isMounted.current]);
 
   useEffect(() => {
     if (segmentValue === 'lazada') {
@@ -94,7 +96,7 @@ const Competitors = () => {
                 onChange={setSegmentValue}
                 data={[
                   { label: 'Lazada', value: 'lazada' },
-                  { label: 'Shopee', value: 'shopee'},
+                  { label: 'Shopee', value: 'shopee', disabled: competitorName.toLowerCase() === 'nike'},
                   { label: 'Insights', value: 'insights' }
                 ]}
               />
