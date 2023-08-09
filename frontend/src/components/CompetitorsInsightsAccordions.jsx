@@ -15,12 +15,8 @@ function CompetitorsInsightAccordions() {
     const ProdText = `Product Name: Skechers Men Transformers SKECHERS Street Stamina V3 Shoes - 802011-BKYL Air-Cooled Memory Foam Vegan
     Product Description: Description:
     
-    
-    
     Boost your style with a striking look Skechers Stamina V3. This vegan design features a lace-up synthetic and mesh upper with a cushioned Skechers Air-Cooled Memory Foam® insole.
-    
-    
-    
+  
     Features:
     
     - Part of the Skechers x Transformers collection
