@@ -22,7 +22,7 @@ function Logistics() {
 
   function getMerchData() {
     setInsightsLoad(true)
-    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/insights/products", {timeout: 10000})
+    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/insights/products", {timeout: 60 * 1000})
     .then((res) => {
       if (res.data) {
         setData(res.data);
@@ -38,7 +38,7 @@ function Logistics() {
 
   function getAnomalyData() {
     setAnomaliesLoad(true)
-    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/anomalies/detect_anomalies?contamination=0.05", {timeout: 20000})
+    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/anomalies/detect_anomalies?contamination=0.05", {timeout: 60 * 1000})
     .then((res) => {
       if (res.data) {
         setAnomalyData(res.data)
