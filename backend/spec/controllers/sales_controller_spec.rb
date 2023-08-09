@@ -45,7 +45,7 @@ let(:new_sale6) { Sale.create! sale_params3 }
   describe 'POST #create' do
     it "should successfully create" do
         post :create, params: {sale: sale_params}
-        
+
         new_sale = Sale.last
         expect(new_sale.product_name).to eq('TestCreate Shoes')
         expect(new_sale.price).to eq(100)
@@ -57,7 +57,7 @@ let(:new_sale6) { Sale.create! sale_params3 }
   describe 'DELETE #delete' do
     it 'should successfully delete' do
         new_sale = Sale.create! valid_attributes
-        
+
         expect do
           delete :destroy, params: {id: new_sale.id}
         end.to change(Sale, :count).by(-1)
@@ -67,8 +67,8 @@ let(:new_sale6) { Sale.create! sale_params3 }
   # Read
   describe 'GET #show' do
     it 'returns a success response' do
-      sale = Sale.create! valid_attributes
-      get :show, params:  { id: sale.id }
+    sale = Sale.create! valid_attributes
+      get :show, params:  { id: sale.product_id }
       expect(response).to be_successful
       expect(response.content_type).to eq('application/json; charset=utf-8')
     end
@@ -109,7 +109,7 @@ let(:new_sale6) { Sale.create! sale_params3 }
         get :index
 
         parsed_response = JSON.parse(response.body)
-        
+
         expect(response).to have_http_status(:success)
         expect(parsed_response.length).to eq(3)
     end
@@ -161,7 +161,7 @@ let(:new_sale6) { Sale.create! sale_params3 }
     it "returns the correct types data in frequencies descending order" do
       get :index, params: { category: new_sale4.product_category, start:'2023-06-01', end: '2023-08-01' }
       parsed_response = JSON.parse(response.body)
-  
+
       expect(parsed_response['types']['frequency']['x_axis'].length).to eq(3)
       expect(parsed_response['types']['frequency']['x_axis'][0]).to eq(new_sale6.product_type)
       expect(parsed_response['types']['frequency']['x_axis'][1]).to eq(new_sale5.product_type)
