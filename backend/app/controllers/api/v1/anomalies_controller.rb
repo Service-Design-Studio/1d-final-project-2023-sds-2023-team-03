@@ -19,7 +19,7 @@ module Api
         file = bucket.create_file StringIO.new(ndjson_data), "product_data.ndjson"
 
         # Step 2: Load data from GCS to BigQuery
-        bigquery = Google::Cloud::Bigquery.new
+        bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
         dataset = bigquery.dataset "ecommerce_data"
         table = dataset.table "product_data"
 

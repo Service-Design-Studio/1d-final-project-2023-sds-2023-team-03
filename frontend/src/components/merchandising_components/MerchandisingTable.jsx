@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfigs }) {
+function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, tagFilterConfigs }) {
     const { classes, cx } = useStyles();
     const [nameFilter, setNameFilter] = useState('');
     const [fetching, setFetching] = useState(true);
@@ -20,6 +20,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
         priorities: [],
         hideOthers: false
     });
+    const [anomalies, setAnomalies] = useState([])
     const [pageLength, setPageLength] = useState(0);
     const [page, setPage] = useState(1);
     const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
@@ -118,6 +119,14 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
         }).includes(severity)
     }
 
+    function checkAnomalous(pid) {
+        if (!anomalies || !anomalies[pid] || !anomalies[pid]["is_anomaly"]) {
+            return false;
+        } else {
+            return anomalies[pid]["anomaly_type"]
+        }
+    }
+
     const cellColorSetting = ({ insights }) => cx({ [classes.belowFifty]: containsInsightSeverity(insights, 3) || containsInsightSeverity(insights, 4)})
 
     return (
@@ -146,6 +155,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                                 {containsInsightSeverity(record.insights, 4) ? (<Badge variant="gradient" gradient={{ from: 'red', to: 'red'}}>CRITICAL!</Badge>) : null}
                                 {containsInsight(record.insights, "popular") ? (<Badge color="green">Popular!</Badge>) : null}
                                 {containsInsight(record.insights, "popular_low_stock") ? (<Badge color="red">Restock?</Badge>) : null}
+                                {checkAnomalous(record.product_id) ? <Badge variant="gradient" gradient={{from: 'green', to: 'green'}}>Anomalous: {checkAnomalous(record.product_id)}</Badge> : null}
                             </Group>
                         </Flex>
                     ),

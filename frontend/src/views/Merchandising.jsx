@@ -7,29 +7,48 @@ import axios from 'axios';
 
 function Logistics() {
   const [data, setData] = useState([]);
+  const [anomalyData, setAnomalyData] = useState([]);
   const [tagFilterData, setTagFilterData] = useState({
     priorities: [],
     hideOthers: false
-  })
+  });
   const [apiLoad, setApiLoad] = useState(true);
+  const [insightsLoad, setInsightsLoad] = useState(true);
+  const [anomaliesLoad, setAnomaliesLoad] = useState(true);
   const [errorOpen, errorModalHandler] = useDisclosure(false);
   const isMounted = useRef(false);
   const threshold = 50;
   const pageSize = 50;
 
   function getMerchData() {
-    setApiLoad(true)
+    setInsightsLoad(true)
     axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/insights/products", {timeout: 10000})
     .then((res) => {
       if (res.data) {
         setData(res.data);
       }
-      setApiLoad(false);
+      setInsightsLoad(false);
     })
     .catch((err) => {
       console.log(err);
-      errorModalHandler.open()
-      setApiLoad(false);
+      errorModalHandler.open();
+      setInsightsLoad(false);
+    })
+  }
+
+  function getAnomalyData() {
+    setAnomaliesLoad(true)
+    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/anomalies/detect_anomalies?contamination=0.05", {timeout: 20000})
+    .then((res) => {
+      if (res.data) {
+        setAnomalyData(res.data)
+      }
+      setAnomaliesLoad(false)
+    })
+    .catch((err) => {
+      console.log(err);
+      errorModalHandler.open();
+      setAnomaliesLoad(false);
     })
   }
 
@@ -40,7 +59,16 @@ function Logistics() {
 
   useEffect(() => {
     getMerchData();
+    getAnomalyData();
   }, [isMounted.current]);
+
+  useEffect(() => {
+    if (!insightsLoad && !anomaliesLoad) {
+      setApiLoad(false);
+    } else {
+      setApiLoad(true);
+    }
+  }, [anomaliesLoad, insightsLoad])
 
   return (
     <>
@@ -65,7 +93,7 @@ function Logistics() {
         />
       </Flex>
       <Space h='xs'/>
-      <MerchandisingTable data={data} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
+      <MerchandisingTable data={data} anomalyData={anomalyData} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
       <Modal
         centered
         opened={errorOpen}
