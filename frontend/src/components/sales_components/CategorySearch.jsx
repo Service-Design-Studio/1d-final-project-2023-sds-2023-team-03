@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import DateSegment from '../DateSegment.jsx'
+import DateSegment from './DateSegment.jsx'
 import CategorySelect from './CategorySelect.jsx'
 import { Box, LoadingOverlay, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
 import { AiOutlineCalendar } from 'react-icons/ai'
