@@ -118,6 +118,14 @@ module VertexAiHelper
             The mesh-lined tongue is connected to the upper\'s inner lining for a secure feel. An alphanumeric logo at the tongue spells out Nike Quest.
             output: Running
 
+            input: Product Name: adidas Lifestyle Nizza RF Slip Shoes Unisex Black S23722
+            Product Description: When worlds collide, magic happens. These adidas shoes are proof. They take vintage B-ball DNA and mix it with a classic design from the world of skate. Voila. Now it's a slip-on. Slide in and go. Anywhere. Anytime.
+            - Slip-on
+            - Textile upper
+            - Rubber outsole
+            - TEXTILE/RUBBER
+            output: Comfortwear
+
             input: #{text}
             output:
             "
