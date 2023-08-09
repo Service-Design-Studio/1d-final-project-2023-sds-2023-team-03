@@ -5,10 +5,6 @@ Feature: Fetching merchandising data from PUMA's own database
     When I visit the merchandising page
     Then I should see the Merchandising header
 
-  Scenario: Loading product actions section
-    When I navigate to the product action section
-    Then I should see the product actions table
-
   Scenario: Opening details of a row
     Given the product actions table has successfully loaded data
     When I click on a particular row

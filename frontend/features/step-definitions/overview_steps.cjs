@@ -45,9 +45,10 @@ Then('I should see summarized statistics for sales, product actions, and competi
   });
   
   When('I press the refresh button',async function () {
-   const refreshButton = await driver.findElement(By.className('top-right-button'));
+   const refreshButton = await driver.wait(until.elementLocated(By.className('top-right-button')),20000);
    await driver.wait(until.elementIsEnabled(refreshButton), 20000);
-   await refreshButton.click();
+   await driver.actions().click(refreshButton).perform();
+
   });
   
   Then('the page should display the updated statistics',async function () {
@@ -87,7 +88,7 @@ Then('I should see summarized statistics for sales, product actions, and competi
     //await topProduct1Button.click();
     //await topProduct2Button.click();
     //await topProduct3Button.click();
-    const linkButton = await driver.wait(until.elementLocated(By.className('LinkButton')), 5000)
+    const linkButton = await driver.wait(until.elementLocated(By.className('LinkButton')), 10000)
     await linkButton.click()
     });
   

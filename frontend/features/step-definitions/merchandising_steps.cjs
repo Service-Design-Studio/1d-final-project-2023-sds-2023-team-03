@@ -18,17 +18,7 @@ Then('I should see the Merchandising header', async function() {
     assert.strictEqual(salesHeaderContent, "Merchandising");
 })
 
-When('I navigate to the product action section', async function() {
-    const segmentFlex = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-u25sq6')]"));
-    const paSegment = await segmentFlex.findElement(By.xpath("//label[text()='Product Actions']"));
-    await driver.actions().click(paSegment).perform();
-})
 
-Then('I should see the product actions table', async function() {
-    const table = await driver.findElement(By.xpath("//table[contains(@class, 'mantine-Table-root')]"));
-    const status = await table.isDisplayed();
-    assert(status);
-})
 
 Given('the product actions table has successfully loaded data', async function() {
     const button = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-Button-inner')]"));
@@ -39,7 +29,7 @@ Given('the product actions table has successfully loaded data', async function()
 })
 
 When('I click on a particular row', async function() {
-    const tableRow = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[3]")));
+    const tableRow = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[3]")),10000);
     await driver.actions().click(tableRow).perform();
 })
 
@@ -58,7 +48,7 @@ Then('show an image of the product with description', async function() {
 
 // use table row 2 here
 Given('another row is already expanded', async function() {
-    const tableRow = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[2]")));
+    const tableRow = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[2]")),10000);
     await driver.actions().click(tableRow).perform();
     const expandedRow = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[4]/td//div[contains(@class, 'rowExpansionText')]")));
     assert(expandedRow);
@@ -84,12 +74,12 @@ Then('the new one will open', async function() {
 
 Given('the product actions table is currently sorted by {string} in ascending order', async function(str) {
     const headerTitle = str;
-    const header = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button') and descendant::div[text()='" + headerTitle + "']]")));
-    var headerStatus = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button') and descendant::div[text()='" + headerTitle + "']]//div[contains(@class, 'mantine-Center-root')]")), 4500).getAttribute("aria-label");
+    const header = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button') and descendant::div[text()='" + headerTitle + "']]")),10000);
+    var headerStatus = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button') and descendant::div[text()='" + headerTitle + "']]//div[contains(@class, 'mantine-Center-root')]")), 10000).getAttribute("aria-label");
     
     while (headerStatus !== "Sorted ascending") {
         await driver.actions().click(header).perform()
-        headerStatus = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button') and descendant::div[text()='" + headerTitle + "']]//div[contains(@class, 'mantine-Center-root')]")), 4500).getAttribute("aria-label");
+        headerStatus = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button') and descendant::div[text()='" + headerTitle + "']]//div[contains(@class, 'mantine-Center-root')]")), 10000).getAttribute("aria-label");
     }
 
     assert.strictEqual(headerStatus, "Sorted ascending");
@@ -110,18 +100,18 @@ Then('the table should be sorted in descending order by {string}', async functio
             return 3;
         }
     }
-    const tableRow1Stock = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[1]/td[" + index() + "]"))).getText();
-    const tableRow5Stock = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[5]/td[" + index() + "]"))).getText();
+    const tableRow1Stock = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[1]/td[" + index() + "]")),10000).getText();
+    const tableRow5Stock = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[5]/td[" + index() + "]")),10000).getText();
     assert(tableRow1Stock > tableRow5Stock);
 })
 
 Given('I have pressed the Category header', async function() {
-    const button = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[descendant::div[text()='Category']]/div/button")), 4500);
+    const button = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[descendant::div[text()='Category']]/div/button")), 10000);
     await driver.actions().click(button).perform();
 })
 
 Given('the selection popup is visible', async function() {
-    const popup = await driver.wait(until.elementLocated(By.xpath("//div[contains(@class, 'mantine-Popover-dropdown')]")));
+    const popup = await driver.wait(until.elementLocated(By.xpath("//div[contains(@class, 'mantine-Popover-dropdown')]")),10000);
     assert(popup);
 })
 

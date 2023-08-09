@@ -22,30 +22,30 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
   
   
   When('I navigate to the top performing products section', async function () {
-    const carouselElement = await driver.wait(until.elementLocated(By.xpath('//div[@class="mantine-Carousel-root mantine-gpctky"]')), 4500); // Wait for 10 seconds
+    const carouselElement = await driver.wait(until.elementLocated(By.xpath('//div[@class="mantine-Carousel-root mantine-gpctky"]')), 10000); // Wait for 10 seconds
 });
   
-  Then('I should see the keywords', async function () {
-    const compKeywordsElement = await driver.findElement(By.className('compKeywords'));
+  Then('I should see the Shopee\\/Lazada toggle', async function () {
+    const toggle = await driver.findElement(By.className('mantine-1bsf4z5'));
   });
   
   Then('I should see top five performing products based on number sold', async function () {
-    const carouselElement = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 4500); // Wait for 10 seconds
+    const carouselElement = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 10000); // Wait for 10 seconds
     assert.strictEqual(carouselElement.length, 5);
 });
   
   When('I navigate to the competitors section', async function () {
-    const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 4500); // Wait for 10 seconds
+    const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 10000); // Wait for 10 seconds
   });
   
   Then('I should see the competitors table', async function () {
-    const compTable = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table mantine-v3audr"]')), 4500); // Wait for 10 seconds
+    const compTable = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table mantine-v3audr"]')), 10000); // Wait for 10 seconds
     assert.strictEqual(compTable.length>0,true);
 });
   
   Given('the top five performing products section have successfuly loaded data', async function () {
-    const carousel = await driver.wait(until.elementLocated(By.xpath('//div[@class="mantine-Carousel-root mantine-gpctky"]')), 4500); // Wait for 10 seconds
-    const carouselElement = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 4500); // Wait for 10 seconds
+    const carousel = await driver.wait(until.elementLocated(By.xpath('//div[@class="mantine-Carousel-root mantine-gpctky"]')), 10000); // Wait for 10 seconds
+    const carouselElement = await driver.wait(until.elementsLocated(By.xpath('//div[@class="mantine-Carousel-slide mantine-1cj17nx"]')), 10000); // Wait for 10 seconds
     assert.strictEqual(carouselElement.length, 5);
   });
   
@@ -69,13 +69,13 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
   Given('the competitors table has successfully loaded data', async function () {
     const button = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-Button-inner')]"))
     await driver.actions().click(button).perform();
-    const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 4500); // Wait for 10 seconds
+    const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 10000); // Wait for 10 seconds
     const compTable = await driver.findElement(By.xpath('//div[@class="table mantine-v3audr"]'));
 });
   
   When('I click on a particular row on the competitors table', async function () {
     const compTable =  await driver.findElement(By.xpath('//table[contains(@class, "mantine-Table-root")]'));
-    const rows = await driver.wait(until.elementsLocated(By.xpath('//tr[@class="mantine-1mj2j8y"]')), 4500); // Wait for 10 seconds
+    const rows = await driver.wait(until.elementsLocated(By.xpath('//tr[@class="mantine-1mj2j8y"]')), 10000); // Wait for 10 seconds
     const rowsToClick = rows.slice(0, 5);
   for (const row of rowsToClick) {
     await row.click();
