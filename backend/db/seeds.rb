@@ -87,6 +87,7 @@ Dir[Rails.root.join('scraper/Lazada/data/*')].each do |filename|
       data.product_description = row[10],
       data.date_scraped = Date.strptime(row[11], "%d-%m-%Y"),
       data.discount = discount
+      data.category = "NIL"
     end
   end
 end
@@ -98,21 +99,22 @@ Dir[Rails.root.join('scraper/Shopee/data/*')].each do |filename|
     initial_price = (row[5] && row[5] != "No Price Reduction") ? row[5].delete("$").to_f : (row[6] ? row[6].delete("$").to_f : 0)
     final_price = row[6] ? row[6].delete("$").to_f : 0
 
-    ShopeeData.create(
-      merchant_name: row[0],
-      keyword: row[1],
-      competitor_name: row[2],
-      product_name: row[3],
-      coupon: row[4],
-      initial_price: initial_price,
-      final_price: final_price,
-      sales: row[7].to_i,
-      product_link: row[8],
-      product_image_link: row[9],
-      product_description: row[10],
-      date_scraped: Date.strptime(row[11], "%d-%m-%Y"),
-      discount: initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
-    )
+    ShopeeData.find_or_create_by(product_name: row[3]) do |data|
+      data.merchant_name = row[0],
+      data.keyword = row[1],
+      data.competitor_name = row[2],
+      data.product_name = row[3],
+      data.coupon = row[4],
+      data.initial_price = initial_price,
+      data.final_price = final_price,
+      data.sales = row[7].to_i,
+      data.product_link = row[8],
+      data.product_image_link = row[9],
+      data.product_description = row[10],
+      data.date_scraped = Date.strptime(row[11], "%d-%m-%Y"),
+      data.discount = initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
+      data.category = "NIL"
+    end
   end
 end
 
