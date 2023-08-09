@@ -177,5 +177,12 @@
         "category": "testingThree",
         "start": "2023",
         "end": "2024"
+    },
+    "testNullData": {
+        "x": [],
+        "y": [],
+        "category": "cat",
+        "start": "start",
+        "end": "end"
     }
 }

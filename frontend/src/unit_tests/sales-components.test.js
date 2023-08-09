@@ -1,18 +1,19 @@
 /**
  * @jest-environment jsdom
  */
-import "@testing-library/jest-dom/extend-expect";
+
 import CategorySelect from '../components/sales_components/CategorySelect.jsx';
 import CategorySearch from '../components/sales_components/CategorySearch.jsx';
 import SalesBar from '../components/sales_components/SalesBar.jsx';
 import SalesSegment from  '../components/sales_components/SalesSegment.jsx';
-import React from 'react';
-import { render, waitFor, screen } from "@testing-library/react";
-import { when } from 'jest-when'
-import userEvent from '@testing-library/user-event'
 import DateSegment from '../components/sales_components/DateSegment.jsx';
 
 import mockSalesData from './sales-components-stub.json';
+
+import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event'
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
     observe: jest.fn(),
@@ -209,10 +210,9 @@ describe('CategorySearch.jsx', () => {
 })
 
 describe('SalesBar.jsx', () => {
-    const getTarget = (inputs) => {
-        return <SalesBar data={inputs.data} label={inputs.label} colour="#ffffff" enableCurrency={inputs.enableCurrency}/>
+    const getTarget = (inputs, t=20) => {
+        return <SalesBar data={inputs.data} label={inputs.label} colour="#ffffff" enableCurrency={inputs.enableCurrency} threshold={t}/>
     }
-    
 
     test('Renders without errors (no currency)', () => {
         const target = getTarget({
@@ -282,30 +282,79 @@ describe('SalesBar.jsx', () => {
         const {container} = render(<MockContainer component={target}/>);
         const labels = container.getElementsByClassName("apexcharts-data-labels");
         expect(labels).toHaveLength(10);
-        expect(labels[0].textContent).toBe("$1.0");
+        expect(labels[0].textContent).toBe("$1.00");
     })
 
-    test('Limits data to 20 points', () => {
-        const {container} = render(<MockContainer component={targetTestFifty}/>);
-        const labels = container.getElementsByClassName("apexcharts-data-labels")
-        expect(labels).toHaveLength(20);
-    })
-
-    test('Limits data to 20 points (currency)', () => {
-        const {container} = render(<MockContainer component={targetTestFifty}/>);
+    test('Limits data to 20 points by default', () => {
+        const target = getTarget({
+            data: mockSalesData.testFifty,
+            label: "testFifty",
+            enableCurrency: false
+        })
+        const {container} = render(<MockContainer component={target}/>);
         const labels = container.getElementsByClassName("apexcharts-data-labels")
         expect(labels).toHaveLength(20);
     })
 
     test('Displays max(X, Y) data points when X points < Y points (1 < 3)', () => {
-        const {container} = render(<MockContainer component={targetTestImbalancedX}/>);
+        const target = getTarget({
+            data: mockSalesData.testImbalancedX,
+            label: "testImbalancedX",
+            enableCurrency: false
+        })
+        const {container} = render(<MockContainer component={target}/>);
         const labels = container.getElementsByClassName("apexcharts-data-labels")
         expect(labels).toHaveLength(3);
     })
 
     test('Displays max(X, Y) data points when Y points < X points (1 < 3)', () => {
-        const {container} = render(<MockContainer component={targetTestImbalancedY}/>);
+        const target = getTarget({
+            data: mockSalesData.testImbalancedY,
+            label: "testImbalancedY",
+            enableCurrency: false
+        })
+        const {container} = render(<MockContainer component={target}/>);
         const labels = container.getElementsByClassName("apexcharts-data-labels")
         expect(labels).toHaveLength(3);
+    })
+
+    test('Renders null data without errors', () => {
+        const target = getTarget({
+            data: mockSalesData.testNullData,
+            label: "testNullData",
+            enableCurrency: false
+        })
+        render(<MockContainer component={target}/>);
+    })
+
+    test('Displays 50+ data points', () => {
+        const target = <SalesBar data={mockSalesData.testFifty} label="testFifty" colour="#ffffff" enableCurrency={false} threshold={50}/>
+        render(<MockContainer component={target}/>);
+    })
+})
+
+describe('SalesSegment.jsx', () => {
+    const segmentState = new TestUseState('');
+    const setSegmentState = (v) => segmentState.value = v;
+    const target = <SalesSegment handleOnChange={setSegmentState}/>
+
+    test('Renders without errors', () => {
+        render(<MockContainer component={target}/>);
+    })
+
+    test('Is on "Product Units" by default', async () => {
+        const {container} = render(<MockContainer component={target}/>);
+        const segments = container.getElementsByClassName("mantine-SegmentedControl-label");
+        expect(segments).toHaveLength(4);
+        expect(segments[0]).toHaveAttribute("data-active");
+    })
+
+    test('Outputs correct segment value', async () => {
+        const {container} = render(<MockContainer component={target}/>);
+        const segments = container.getElementsByClassName("mantine-SegmentedControl-label");
+        expect(segments).toHaveLength(4);
+
+        await userEvent.click(segments[1]);
+        expect(segmentState.value).toBe("revenues");
     })
 })
