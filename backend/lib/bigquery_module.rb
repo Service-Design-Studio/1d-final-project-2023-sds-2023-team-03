@@ -224,20 +224,12 @@ module BigQueryModule
   
     # Process the results and return the data as an array of hashes
     products = results.map do |row|
+      
       {
-        is_anomaly: row[:is_anomaly],
-        product_id: row[:product_id],
-        product_category: row[:product_category],
-        product_type: row[:product_type],
-        product_name: row[:product_name],
-        price: row[:price].to_f,
-        created_at: row[:created_at] ? DateTime.parse(row[:created_at].to_s) : nil,
-        updated_at: row[:updated_at] ? DateTime.parse(row[:updated_at].to_s) : nil,
-        stock: row[:stock].to_i,
-        units_sold: row[:units_sold].to_i,
-        description: row[:description],
-        image_link: row[:image_link],
-        anomaly_type: row[:anomaly_type]
+        row[:product_id] => {
+          :is_anomaly => row[:is_anomaly],
+          :anomaly_type => row[:anomaly_type]
+        }
       }
     end
     products
