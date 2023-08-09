@@ -3,6 +3,7 @@ import { IconUsers, IconBuildingWarehouse, IconReportMoney } from '@tabler/icons
 import React, { useState } from 'react';
 
 function AccordionList({ listItems }) {
+  console.log("listitems: ", listItems);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const getIconByType = (type) => {
