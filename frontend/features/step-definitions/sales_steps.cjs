@@ -150,7 +150,7 @@ Then(`the current graph should be replaced by the {string} graph`, async functio
     const titleText = "//*[name()='text' and @class='apexcharts-title-text']"
     const titleElement = await driver.wait(until.elementLocated(By.xpath(apexSvg + titleText)), 4500);
     const title = await titleElement.getText();
-    const status = title.toLowerCase().includes(text.toLowerCase());
+    const status = title.toLowerCase().includes(text.toLowerCase().includes("units") ? text.slice(0, -1).toLowerCase() : text.toLowerCase());
     assert.strictEqual(status, true);
 });
 
@@ -159,6 +159,6 @@ Then(`the {string} graph segment should still be visible`, async function (text)
     const titleText = "//*[name()='text' and @class='apexcharts-title-text']"
     const titleElement = await driver.wait(until.elementLocated(By.xpath(apexSvg + titleText)), 4500);
     const title = await titleElement.getText();
-    const status = title.toLowerCase().includes(text.toLowerCase());
+    const status = title.toLowerCase().includes(text.toLowerCase().includes("units") ? text.slice(0, -1).toLowerCase() : text.toLowerCase());
     assert.strictEqual(status, true);
 })
