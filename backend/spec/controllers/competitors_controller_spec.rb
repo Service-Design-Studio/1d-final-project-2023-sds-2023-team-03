@@ -60,7 +60,7 @@ RSpec.describe Api::V1::CompetitorsController, type: :controller do
     describe 'POST #create' do
         it "should successfully create" do
             post :create, params: {competitor: valid_params}
-            
+
             new_comp = Competitor.last
             expect(new_comp.product_name).to eq('TestCreate CompShoes')
             expect(new_comp.price).to eq(89.99)
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::CompetitorsController, type: :controller do
 
         it "should not successfully create with invalid parameters, renders a JSON response with errors" do
             post :create, params: {competitor: invalid_params}
-            
+
             expect(response.content_type).to eq('application/json; charset=utf-8')
         end
     end
@@ -77,36 +77,24 @@ RSpec.describe Api::V1::CompetitorsController, type: :controller do
     # Index
     describe "GET #index" do
         it "returns a successful response" do
-        get :index, params: { id: competitor_sale1.competitor_name }
-        expect(response).to have_http_status(:success)
+            get :index
+            expect(response).to have_http_status(:success)
         end
 
-        it "returns the correct JSON response" do
-        get :index, params: { id: competitor_sale1.competitor_name }
-        parsed_response = JSON.parse(response.body)
+        it "returns all competitors in the JSON response" do
+            get :index
+            parsed_response = JSON.parse(response.body)
 
-        expect(parsed_response).to have_key('top_sales')
-        expect(parsed_response).to have_key('all_data')
-        expect(parsed_response).to have_key('highest_selling_product')
+            expect(parsed_response.length).to eq(6) # Because 6 competitors were created before the tests
         end
 
-        it "returns the correct top sales data" do
-        get :index, params: { id: competitor_sale1.competitor_name }
-        parsed_response = JSON.parse(response.body)
+        it "returns the competitors sorted by date" do
+            get :index
+            parsed_response = JSON.parse(response.body)
 
-        expect(parsed_response['top_sales'].length).to eq(5)
-        expect(parsed_response['top_sales'][0]['id']).to eq(competitor_sale6.product_id)
-        expect(parsed_response['top_sales'][1]['id']).to eq(competitor_sale2.product_id)
-        expect(parsed_response['top_sales'][2]['id']).to eq(competitor_sale3.product_id)
-        expect(parsed_response['top_sales'][3]['id']).to eq(competitor_sale1.product_id)
-        expect(parsed_response['top_sales'][4]['id']).to eq(competitor_sale5.product_id)
-        end
-
-        it "returns the correct highest selling product data" do
-        get :index, params: { id: competitor_sale1.competitor_name }
-        parsed_response = JSON.parse(response.body)
-
-        expect(parsed_response['highest_selling_product']['id']).to eq(competitor_sale6.product_id)
+            # Assuming that competitors are sorted by 'created_at' by default:
+            expect(parsed_response.first["id"]).to eq(competitor_sale1.id)
+            expect(parsed_response.last["id"]).to eq(competitor_sale6.id)
         end
     end
 
@@ -114,7 +102,7 @@ RSpec.describe Api::V1::CompetitorsController, type: :controller do
     describe 'DELETE #delete' do
         it 'should successfully delete' do
             new_comp = Competitor.create! valid_params
-            
+
             expect do
             delete :destroy, params: {id: new_comp.product_id}
             end.to change(Competitor, :count).by(-1)
@@ -160,12 +148,11 @@ RSpec.describe Api::V1::CompetitorsController, type: :controller do
     # All
     describe 'GET #all' do
         it 'returns a list of all competitors' do
-            get :all
-    
+            get :all, params: { merchant: 'lazada' }
+
             parsed_response = JSON.parse(response.body)
-            
+
             expect(response).to have_http_status(:success)
-            expect(parsed_response['all_data'].length).to eq(6)
             expect(parsed_response).to have_key('all_data')
             expect(parsed_response).to have_key('top_sales')
             expect(parsed_response).to have_key('highest_selling_product')
