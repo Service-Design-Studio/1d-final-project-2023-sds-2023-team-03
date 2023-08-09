@@ -12,7 +12,6 @@ function Logistics() {
     priorities: [],
     hideOthers: false
   });
-  const [apiLoad, setApiLoad] = useState(true);
   const [insightsLoad, setInsightsLoad] = useState(true);
   const [anomaliesLoad, setAnomaliesLoad] = useState(true);
   const [errorOpen, errorModalHandler] = useDisclosure(false);
@@ -62,19 +61,11 @@ function Logistics() {
     getAnomalyData();
   }, [isMounted.current]);
 
-  useEffect(() => {
-    if (!insightsLoad && !anomaliesLoad) {
-      setApiLoad(false);
-    } else {
-      setApiLoad(true);
-    }
-  }, [anomaliesLoad, insightsLoad])
-
   return (
     <>
       <h1 id="sales-title">Merchandising</h1> 
       <Flex gap="sm" align="center">
-        <Button onClick={getMerchData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
+        <Button onClick={getMerchData} loading={anomaliesLoad || insightsLoad} size="xs" variant="outline">Refresh</Button>
         <MultiSelect
           data = {[
             { value: 'popular', label: (<Badge color='green'>Popular!</Badge>) },
@@ -93,7 +84,7 @@ function Logistics() {
         />
       </Flex>
       <Space h='xs'/>
-      <MerchandisingTable data={data} anomalyData={anomalyData} threshold={threshold} pageSize={pageSize} apiLoad={apiLoad} tagFilterConfigs={tagFilterData}/>
+      <MerchandisingTable data={data} anomalyData={anomalyData} threshold={threshold} pageSize={pageSize} apiLoad={anomaliesLoad || insightsLoad} tagFilterConfigs={tagFilterData}/>
       <Modal
         centered
         opened={errorOpen}
