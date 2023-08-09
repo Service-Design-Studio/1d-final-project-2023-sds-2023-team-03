@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './Home.css';
-import Grouping from '../components/Grouping';
+import Grouping from '../components/overview_components/Grouping';
 import { Button,Loader } from '@mantine/core';
 import axios from 'axios';
 import { useEffect } from 'react';
 import {IoIosRefresh} from 'react-icons/io'
-import Insights from '../components/OverviewInsights'; // Import the Insights component
+import Insights from '../components/overview_components/OverviewInsights'; // Import the Insights component
 
 
 const headingStyle = {
@@ -32,6 +32,7 @@ useEffect(() => {
   const [lastPressedDateTime, setLastPressedDateTime] = useState('');
   const [topProductData, setTopProductData] = useState({
     topProductData: {}
+     
   })
   
   const [insightData, setInsightData] = useState({
@@ -81,7 +82,9 @@ useEffect(() => {
       setInsightData(queryData[2]);
 
       console.log("TopProductData",topProductData);
-      console.log("Inisghtdata",insightData);
+      console.log("ProductData",ProductData);
+      console.log("Insightdata",insightData);
+
 
       setIsDataLoaded(true);
       setIsLoading(false); // Set isLoading to false to indicate that data loading is complete
@@ -158,9 +161,8 @@ useEffect(() => {
         return response.data
       } else {
         return {
-          frequencies: {
-            types: {}
-          }
+          
+          
       }
     }
     } catch (error) {
@@ -248,7 +250,7 @@ useEffect(() => {
         </div>
       )}
       
-      {isDataLoaded && !isLoading && <Grouping 
+      {isDataLoaded && !isLoading && topProductData && ProductData &&<Grouping 
       topProductData=
       {{
         image: getFilteredProductImage(topProductData.frequencies.x_axis),
@@ -262,7 +264,7 @@ useEffect(() => {
     <div style={{ padding: '4em 0', borderBottom: '3px solid #ccc' }}>
     </div>
 
-    {isDataLoaded && !isLoading &&
+    {isDataLoaded && !isLoading && insightData&&
       
       <Insights
         insights = {insightData}
