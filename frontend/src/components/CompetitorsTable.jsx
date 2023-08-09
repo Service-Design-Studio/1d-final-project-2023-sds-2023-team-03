@@ -1,6 +1,7 @@
 import { DataTable } from 'mantine-datatable';
 import { Flex, MultiSelect, TextInput } from '@mantine/core';
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react';
+import CategoryCell from './CompetitorsCategory';
 
 function CompetitorsTable({ data, pageSize, apiLoad }) {
     const [fetching, setFetching] = useState(true)
@@ -147,7 +148,8 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
         {
             accessor: 'category',
             textAlignment: 'center',
-            width: 70
+            width: 70,
+            render: (record) => <CategoryCell record={record} />,
         },
         {
             accessor: 'product_name',
