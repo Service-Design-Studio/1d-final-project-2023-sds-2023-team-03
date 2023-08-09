@@ -1,5 +1,5 @@
 import { List, ThemeIcon } from '@mantine/core';
-import { IconUsers, IconBuildingStore, IconReportMoney } from '@tabler/icons-react';
+import { IconUsers, IconBuildingWarehouse, IconReportMoney } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
 function AccordionList({ listItems }) {
@@ -8,7 +8,7 @@ function AccordionList({ listItems }) {
   const getIconByType = (type) => {
     switch (type) {
       case 'products':
-        return <IconBuildingStore size="1.1rem" />;
+        return <IconBuildingWarehouse size="1.1rem" />;
       case 'sales':
         return < IconReportMoney size="1.1rem" />;
       case 'competitors':
@@ -29,7 +29,7 @@ function AccordionList({ listItems }) {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <ThemeIcon color="#102C57" size={24} radius="xl">
+                  <ThemeIcon color="#61677A" size={24} radius="xl">
                     {getIconByType(item.type)}
                   </ThemeIcon>
                 </div>
