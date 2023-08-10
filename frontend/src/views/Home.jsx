@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Home.css';
 import Grouping from '../components/overview_components/Grouping';
-import { Button,Loader } from '@mantine/core';
+import { Button,Loader, Stack } from '@mantine/core';
 import axios from 'axios';
 import { useEffect } from 'react';
 import {IoIosRefresh} from 'react-icons/io'
@@ -32,13 +32,13 @@ useEffect(() => {
   const [lastPressedDateTime, setLastPressedDateTime] = useState('');
   const [topProductData, setTopProductData] = useState({
     topProductData: {}
-     
+
   })
-  
+
   const [insightData, setInsightData] = useState({
     insightData: {}
   })
-  
+
   const [ProductData, setProductData] = useState({
     productData: {}
   })
@@ -57,7 +57,7 @@ useEffect(() => {
     const thirtyDaysAgoDate = thirtyDaysAgo.toISOString().slice(0, 10);
     const currentDateTime = new Date().toLocaleString();
     setLastPressedDateTime(currentDateTime);
-  
+
     // Wrap the asynchronous operations in Promises
     const topProductPromise = queryTopProduct('Comfortwear', thirtyDaysAgoDate, currentDate);
     const productPromise = queryProducts();
@@ -65,18 +65,18 @@ useEffect(() => {
 
     // Create a Promise that resolves after 2 seconds
     const minWaitPromise = new Promise((resolve) => setTimeout(resolve, 2000));
-  
+
     // Create a Promise that resolves after 20 seconds
     const maxWaitPromise = new Promise((resolve) => setTimeout(resolve, 20000));
-  
+
     // Use Promise.race to set an upper bound of 20 seconds
     try {
       const [queryData] = await Promise.all([
         Promise.all([topProductPromise, productPromise,insightPromise]),
         Promise.race([minWaitPromise, maxWaitPromise]),
       ]);
-    
-  
+
+
       setTopProductData(queryData[0]);
       setProductData(queryData[1]);
       setInsightData(queryData[2]);
@@ -94,7 +94,7 @@ useEffect(() => {
       console.error('Error occurred during API request:', error);
       setIsDataLoaded(false);
     }
-  
+
     setIsRefreshing(false);
   }
 
@@ -102,8 +102,8 @@ useEffect(() => {
     try {
       // Simulating asynchronous data retrieval
       // Replace this with actual asynchronous data retrieval from an API or database
-      
-  
+
+
       // Filter and extract prices for the matching product names
       const filteredPrices =  ProductData
         .filter((product) => productNames.includes(product.product_name))
@@ -120,8 +120,8 @@ useEffect(() => {
     try {
       // Simulating asynchronous data retrieval
       // Replace this with actual asynchronous data retrieval from an API or database
-      
-  
+
+
       // Filter and extract prices for the matching product names
       const filteredPrices =  ProductData
         .filter((product) => productNames.includes(product.product_name))
@@ -136,8 +136,8 @@ useEffect(() => {
 
   function getFilteredProductCategory(productNames) {
     try {
-      
-  
+
+
       // Filter and extract prices for the matching product names
       const filteredPrices =  ProductData
         .filter((product) => productNames.includes(product.product_name))
@@ -161,8 +161,8 @@ useEffect(() => {
         return response.data
       } else {
         return {
-          
-          
+
+
       }
     }
     } catch (error) {
@@ -190,7 +190,7 @@ useEffect(() => {
   }
 
 
-  
+
 
   async function queryProducts() {
     try {
@@ -210,47 +210,33 @@ useEffect(() => {
     }
   }
 
-  
-  
+
+
 
   return (
     <div>
-
-
-  <div style={{ display: 'flex', alignItems: 'center' }}>
-  <h1 id="sales-title" style={{ marginRight: 'auto', marginBottom: 0 }}>Overview</h1>
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', paddingRight:'3em', paddingTop:'2em'}}>
-  <Button
-      className="top-right-button"
-      onClick={handleClick}
-      disabled={isRefreshing} // Disable the button when refreshing is in progress
-      style={{ backgroundColor: '#374259', color: 'white', marginBottom: '1em' }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-      <IoIosRefresh
-          style={{
-            marginRight: '0.5em',
-            animation: isRefreshing ? 'rotate 2s linear infinite' : 'none',
-          }}
-        />        Refresh
+      <h1 style={{ marginRight: 'auto', marginBottom: 0 }}>Overview</h1>
+      {/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingRight:'3em', paddingTop:'2em'}}> */}
+      <div style={{ alignItems: 'center', paddingTop:'1em'}}>
+        <Button
+            className="top-right-button"
+            onClick={handleClick}
+            disabled={isRefreshing} // Disable the button when refreshing is in progress
+            style={{ backgroundColor: '#374259', color: 'white', marginBottom: '1em' }}
+        >
+        <IoIosRefresh style={{ marginRight: '0.5em', animation: isRefreshing ? 'rotate 2s linear infinite' : 'none' }} />Refresh
+        </Button>
+        <p className = 'refreshTime' style={{ margin: 0, fontSize: '0.9em' }}>Last Refreshed: {lastPressedDateTime}</p>
       </div>
-    </Button>
-    
-  
-    <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-    <p style={{ margin: 0 ,fontSize :'0.9em'}}>Last Refreshed:</p>
-    <p className = 'refreshTime' style={{ margin: 0 ,fontSize :'0.9em'}}>{lastPressedDateTime}</p>
-    </div>  
-    </div>
-</div>
+
       <h2 style={headingStyle}>Top Products</h2>
       {isLoading && (
         <div className="loader-overlay">
           <Loader size="xl" />
         </div>
       )}
-      
-      {isDataLoaded && !isLoading && topProductData && ProductData &&<Grouping 
+
+      {isDataLoaded && !isLoading && topProductData && ProductData &&<Grouping
       topProductData=
       {{
         image: getFilteredProductImage(topProductData.frequencies.x_axis),
@@ -259,21 +245,19 @@ useEffect(() => {
         sales: topProductData.frequencies.y_axis,
         yearrev: topProductData.revenues.y_axis,
         price: getFilteredProductPrices(topProductData.frequencies.x_axis)
-        
+
       }} />}
-    <div style={{ padding: '4em 0', borderBottom: '3px solid #ccc' }}>
-    </div>
+      <div style={{ padding: '4em 0', borderBottom: '3px solid #ccc' }}></div>
 
-    {isDataLoaded && !isLoading && insightData&&
-      
-      <Insights
-        insights = {insightData}
+      {isDataLoaded && !isLoading && insightData&&
 
-      />
-    }
-      
+        <Insights
+          insights = {insightData}
+
+        />
+      }
+
     </div>
-    
   );
 }
 

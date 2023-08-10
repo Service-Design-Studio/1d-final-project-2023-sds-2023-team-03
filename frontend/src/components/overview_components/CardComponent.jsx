@@ -17,7 +17,7 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
     borderRadius: 5,
   };
 
-  
+
   const buttonHoverStyles = {
     backgroundColor: 'white',
     color: 'blue',
@@ -57,18 +57,18 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
         </Text>
 
         <Text size="m">{category}</Text>
-        <Text size="m">Price: {price}</Text>
-        <Text size="m">Sales: {sales}</Text>
-        <Text size="m">Monthly revenue: {mthrev.toFixed(2)}</Text>
-      <Text size="m">Annual Revenue: {yearrev.toFixed(2)}</Text>
+        <Text size="m">Price: S${price}</Text>
+        <Text size="m">Number Sold: {sales}</Text>
+        <Text size="m">Monthly revenue: S${mthrev.toFixed(2)}</Text>
+      <Text size="m">Annual Revenue: S${yearrev.toFixed(2)}</Text>
 
         <div style={{ marginTop: 16 }}>
-          
+
         <HoverCard width={250} shadow="md">
           <HoverCard.Target>
               <Button className='LinkButton' style={buttonStyles} hoverStyles={buttonHoverStyles} onClick={handleLinkButtonClick}>
               <BsLink45Deg fontSize='2em' ></BsLink45Deg>
-              </Button>        
+              </Button>
             </HoverCard.Target>
           <HoverCard.Dropdown>
           <Text size="s">
@@ -77,7 +77,7 @@ function CardComponent({ imageUrl, title, price, sales, mthrev, yearrev, categor
           </HoverCard.Dropdown>
       </HoverCard>
         </div>
-      
+
       </Card.Section>
     </Card>
   );
