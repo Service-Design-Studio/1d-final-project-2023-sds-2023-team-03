@@ -58,7 +58,7 @@ function Login({handleLogin}) {
 
     return (
       <div>
-          <h1 id="sales-title">Login</h1>    
+          <h1>Login</h1>
           <ErrorModal opened={errorModal} open={errorModalHandler.open} close={errorModalHandler.close} title="Login failed" content="Your credentials are invalid, or your network may be down."/>
           <Box maw={300} mx="auto">
             <form onSubmit={loginForm.onSubmit((values) => handleSubmit(values))}>
