@@ -9,8 +9,8 @@ import CompetitorsInsights from '../components/CompetitorsInsights';
 
 const Competitors = () => {
   const isMounted = useRef(false);
-  const [lazadaLoad, setLazadaLoad] = useState(true);
-  const [shopeeLoad, setShopeeLoad] = useState(true);
+  const [lazadaLoad, setLazadaLoad] = useState(false);
+  const [shopeeLoad, setShopeeLoad] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
   const [segmentValue, setSegmentValue] = useState('lazada')
   const [lazadaProducts, setLazadaProducts] = useState([]);

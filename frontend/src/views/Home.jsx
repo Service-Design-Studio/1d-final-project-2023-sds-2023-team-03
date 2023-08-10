@@ -154,7 +154,7 @@ useEffect(() => {
     try {
       const response = await axios.get(
         `${API_BASE_URL}/sales?category=${category}&start=${start}&end=${end}`,
-        { timeout: 2000 }
+        { timeout: 60 * 1000 }
       );
       if (response.data) {
         console.log(response.data)
@@ -173,7 +173,7 @@ useEffect(() => {
   async function queryInsights() {
     try {
       console.log(API_BASE_URL+"/insights/global")
-      const response = await axios.get(`${API_BASE_URL}/insights/global`, { timeout: 8000 });
+      const response = await axios.get(`${API_BASE_URL}/insights/global`, { timeout: 60 * 1000 });
       if (response.data) {
         console.log(response.data);
         return response.data;
@@ -196,7 +196,7 @@ useEffect(() => {
     try {
       const response = await axios.get(
         `${API_BASE_URL}/products`,
-        { timeout: 2000 }
+        { timeout: 60 * 1000 }
       );
       if (response.data) {
         return response.data
