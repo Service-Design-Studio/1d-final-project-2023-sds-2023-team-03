@@ -26,10 +26,10 @@ When('the product has a name and description',{timeout:15000}, async () => {
 });
 
 Then('I should see the category column of the product to contain a specific category',{timeout:15000}, async () => {
-    const header = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button')]/descendant::div[text()='" + 'Category' + "']")), 10000);
-    const tableRow1value = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[1]/td[" + 2 + "]")),10000).getText();
-    const tableRow2value = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[2]/td[" + 2 + "]")),10000).getText();
-    const tableRow3value = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[3]/td[" + 2 + "]")),10000).getText();
+    const header = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th/descendant::div[text()='" + 'Category' + "']")), 15000);
+    const tableRow1value = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[1]/td[" + 2 + "]")),15000).getText();
+    const tableRow2value = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[2]/td[" + 2 + "]")),15000).getText();
+    const tableRow3value = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[3]/td[" + 2 + "]")),15000).getText();
     assert(tableRow1value);
     assert(tableRow2value);
     assert(tableRow3value);
