@@ -5,16 +5,16 @@ require 'json'
 require 'cgi'
 require 'csv'
 
-
+## rotate mimic-ing of headless browser
 USER_AGENTS = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15',
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36 Edg/80.0.361.69',
-  # Add more user agents here
 ]
 
 error_urls = []
 
+##  input keywords
 keywords = [
   'sneakers',
   'shoes',
@@ -78,11 +78,17 @@ keywords = [
 
 
 
-
-# Classic (GET)
+## Def request fn
 def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_urls)
 
-  # Input search term
+  # all_p_urls --> append results to this list every time a request is called
+  # page_count --> intuitive
+  # url_keywords --> iterates through each keyword(e.g sneakers%20shoes)
+  # actual --> iterates through each keyword, replacing %20 with _ (e.g sneakers_shoes)
+  # retry_count --> count number of retries, breaks if max is reached
+  # error_urls --> append URLS that could not be scraped (max 5 retries) to this list
+
+  # Base URL
   scrape_link = "https://shopee.sg/mall/search?&keyword=#{url_keywords}&locations=Singapore&noCorrection=true&page=#{page_count}&sortBy=relevancy"
 
   puts "Scraping page #{page_count+1} of #{actual} search term."
@@ -317,26 +323,5 @@ end
 
 puts "ERROR URLS:"
 puts error_urls
-
-
-
-# ###cleans out non-sg merchants
-# all_products_urls.reject! do |url_loc|
-#   !url_loc[1].include?('SG') ||
-#   !['Shoes', 'shoes', 'shoe', 'Shoe','slides','Slides','slippers','Slippers','Sandals','sandals'].any? { |substring| url_loc[0].include?(substring) }
-# end
-
-
-# puts "len of all listings_data(cleaned): #{all_products_urls.length}"
-
-
-
-# puts '---------------------------------------------------------'
-# puts '---------------------------------------------------------'
-# puts 'Combined Scraped Data'
-# puts '---------------------------------------------------------'
-# puts '---------------------------------------------------------'
-# puts "Length of products: #{final_list.length}"
-# puts '---------------------------------------------------------'
 
 
