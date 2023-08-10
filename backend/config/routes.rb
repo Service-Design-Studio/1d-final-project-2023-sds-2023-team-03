@@ -34,10 +34,9 @@ Rails.application.routes.draw do
 
       resources :anomalies do
         collection do
-          get 'automate_post_deployment'
-          get 'detect_anomalies'
-          get 'fetch_products'
-          get '/:load_data_into_bigquery', to: 'anomalies#load_data_into_bigquery'
+          get 'utilities/post_deployment', to: 'anomalies#post_deployment'
+          get 'utilities/fetch_products', to: 'anomalies#fetch_products'
+          get 'utilities/bigquery_data', to: 'anomalies#bigquery_data'
         end
       end
 
