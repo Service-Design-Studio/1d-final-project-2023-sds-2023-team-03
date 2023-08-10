@@ -86,7 +86,7 @@ const Categories = () => {
                     <SalesBar
                         data={
                             {
-                                x: revs ? salesDfata.types.revenue.x_axis : [],
+                                x: revs ? salesData.types.revenue.x_axis : [],
                                 y: revs ? salesData.types.revenue.y_axis : [],
                                 start: salesData.start,
                                 end: salesData.end,
