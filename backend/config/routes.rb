@@ -24,8 +24,8 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :users, only: [:create, :show, :index]
-      resources :competitors, only: [:index, :show] do
+      resources :users, only: [:index, :create, :show, :update, :destroy]
+      resources :competitors, only: [:index, :create, :show, :update, :destroy] do
         collection do
           get 'competitor_sales_data'
           get 'overall', to: 'competitors#all'
@@ -33,11 +33,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :anomalies, only: [] do
+      resources :anomalies do
         collection do
           get 'detect_anomalies'
           get 'fetch_products'  
-          get 'load_data_into_bigquery'
+          get '/:load_data_into_bigquery', to: 'anomalies#load_data_into_bigquery'
         end
       end
 

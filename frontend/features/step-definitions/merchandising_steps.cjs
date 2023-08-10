@@ -20,7 +20,7 @@ Then('I should see the Merchandising header', async function() {
 
 
 
-Given('the product actions table has successfully loaded data', async function() {
+Given('the product actions table has successfully loaded data', {timeout: 15000}, async function() {
     const button = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-Button-inner')]"));
     await driver.actions().click(button).perform();
     const table = await driver.findElement(By.xpath("//table[contains(@class, 'mantine-Table-root')]"))
@@ -28,7 +28,7 @@ Given('the product actions table has successfully loaded data', async function()
     assert(tableRow)
 })
 
-When('I click on a particular row', async function() {
+When('I click on a particular row', {timeout: 15000}, async function() {
     const tableRow = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[3]")),10000);
     await driver.actions().click(tableRow).perform();
 })
@@ -100,6 +100,7 @@ Then('the table should be sorted in descending order by {string}', async functio
             return 3;
         }
     }
+    const header = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button')]/descendant::div[text()='" + "Stock" + "']")), 4500);
     const tableRow1Stock = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[1]/td[" + index() + "]")),10000).getText();
     const tableRow5Stock = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[5]/td[" + index() + "]")),10000).getText();
     assert(tableRow1Stock > tableRow5Stock);

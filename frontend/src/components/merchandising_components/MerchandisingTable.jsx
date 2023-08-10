@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfigs }) {
+function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, tagFilterConfigs }) {
     const { classes, cx } = useStyles();
     const [nameFilter, setNameFilter] = useState('');
     const [fetching, setFetching] = useState(true);
@@ -20,6 +20,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
         priorities: [],
         hideOthers: false
     });
+    const [anomalies, setAnomalies] = useState({})
     const [pageLength, setPageLength] = useState(0);
     const [page, setPage] = useState(1);
     const [pageData, setPageData] = useState(data.length ? data.slice(0, pageSize) : []);
@@ -35,15 +36,14 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
 
     useEffect(() => {
         setFetching(true);
-        setTagFilterData(tagFilterConfigs)
+        if (tagFilterConfigs) setTagFilterData(tagFilterConfigs); setPage(1);
         if (data.length) setSavedData(data);
+        if (anomalyData) setAnomalies(anomalyData);
     }, [data, apiLoad, tagFilterConfigs]);
 
     useEffect(() => {
         if (savedData.length == 0 && !apiLoad) {
             setFetching(false);
-            return;
-        } else if (apiLoad) {
             return;
         } else if (apiLoad) {
             return;
@@ -82,7 +82,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
             if (tagFilterData.priorities.length == 0) return;
             var isPriority = false;
             for (const priority of tagFilterData.priorities) {
-                if (containsInsight(r.insights, priority) || containsInsightSeverity(r.insights, priority)) {
+                if (containsInsight(r.insights, priority) || containsInsightSeverity(r.insights, priority) || checkAnomalous(r.product_id, priority)) {
                     priorities.push(r);
                     isPriority = true;
                     break;
@@ -104,7 +104,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
         const dataToLoad = finalData.slice(first, last);
         setPageData(dataToLoad);
         setFetching(false);
-    }, [selectedCategories, sortStatus, page, savedData, tagFilterData.priorities, tagFilterData.hideOthers, nameFilter]);
+    }, [selectedCategories, sortStatus, page, savedData, tagFilterData.priorities, tagFilterData.hideOthers, nameFilter, apiLoad]);
 
     function containsInsight(insights, label) {
         return insights.map((e) => {
@@ -116,6 +116,19 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
         return insights.map((e) => {
             return e.severity.level
         }).includes(severity)
+    }
+
+    function checkAnomalousType(pid) {
+        if (!anomalies || !anomalies[pid] || !anomalies[pid]["is_anomaly"]) {
+            return false;
+        } else {
+            return anomalies[pid]["anomaly_type"]
+        }
+    }
+
+    function checkAnomalous(pid, type) {
+        if (!anomalies[pid] || typeof(type) !== 'string') return false;
+        return anomalies[pid]["anomaly_type"].toLowerCase() === type.toLowerCase();
     }
 
     const cellColorSetting = ({ insights }) => cx({ [classes.belowFifty]: containsInsightSeverity(insights, 3) || containsInsightSeverity(insights, 4)})
@@ -146,6 +159,8 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                                 {containsInsightSeverity(record.insights, 4) ? (<Badge variant="gradient" gradient={{ from: 'red', to: 'red'}}>CRITICAL!</Badge>) : null}
                                 {containsInsight(record.insights, "popular") ? (<Badge color="green">Popular!</Badge>) : null}
                                 {containsInsight(record.insights, "popular_low_stock") ? (<Badge color="red">Restock?</Badge>) : null}
+                                {checkAnomalousType(record.product_id) === "Low" ? <Badge variant="gradient" gradient={{from: 'red', to: '#25262B'}}>Anomalous: Low</Badge> : null}
+                                {checkAnomalousType(record.product_id) === "High" ? <Badge variant="gradient" gradient={{from: 'green', to: '#25262B'}}>Anomalous: High</Badge> : null}
                             </Group>
                         </Flex>
                     ),
@@ -155,7 +170,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                             description="Filter products whose names include the inputted text"
                             placeholder="Search product name..."
                             value={nameFilter}
-                            onChange={(e) => setNameFilter(e.currentTarget.value)}
+                            onChange={(e) => {setPage(1); setNameFilter(e.currentTarget.value)}}
                         />
                     ),
                     filtering: nameFilter !== ''
@@ -187,7 +202,7 @@ function MerchandisingTable({ data, threshold, pageSize, apiLoad, tagFilterConfi
                             data={categories}
                             value={selectedCategories}
                             placeholder="Search categories..."
-                            onChange={setSelectedCategories}
+                            onChange={(c) => {setPage(1); setSelectedCategories(c)}}
                             clearable
                             searchable
                         />

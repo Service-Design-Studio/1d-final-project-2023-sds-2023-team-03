@@ -133,7 +133,7 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
                     data={competitors}
                     value={selectedCompetitors}
                     placeholder="Search keywords..."
-                    onChange={setSelectedCompetitors}
+                    onChange={(c) => {setPage(1); setSelectedCompetitors(c)}}
                     clearable
                     searchable
                 />
@@ -170,7 +170,7 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
                     description="Filter products whose names include the inputted text"
                     placeholder="Search product name..."
                     value={nameFilter}
-                    onChange={(e) => setNameFilter(e.currentTarget.value)}
+                    onChange={(e) => {setPage(1); setNameFilter(e.currentTarget.value)}}
                 />
             ),
             filtering: nameFilter !== ''
@@ -186,7 +186,7 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
                     data={keywords}
                     value={selectedKeywords}
                     placeholder="Search keywords..."
-                    onChange={setSelectedKeywords}
+                    onChange={(c) => {setPage(1); setSelectedKeywords(c)}}
                     clearable
                     searchable
                 />

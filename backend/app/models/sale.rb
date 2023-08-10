@@ -7,7 +7,9 @@ class Sale < ApplicationRecord
     # queries for sales that match the category, whose dates are in between start/end
     def self.category_time_query(start_date, end_date, category)
         sales = Sale.all
-        sales = sales.where("lower(product_category) = ?", category)
+        if (category != 'overall')
+            sales = sales.where("lower(product_category) = ?", category)
+        end
         sales = sales.where(date: start_date..end_date)
     end
 

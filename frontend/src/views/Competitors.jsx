@@ -9,7 +9,8 @@ import CompetitorsInsights from '../components/CompetitorsInsights';
 
 const Competitors = () => {
   const isMounted = useRef(false);
-  const [apiLoad, setApiLoad] = useState(true);
+  const [lazadaLoad, setLazadaLoad] = useState(false);
+  const [shopeeLoad, setShopeeLoad] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
   const [segmentValue, setSegmentValue] = useState('lazada')
   const [lazadaProducts, setLazadaProducts] = useState([]);
@@ -19,56 +20,39 @@ const Competitors = () => {
 
   const { competitorName } = useParams();
 
-  const getLazadaData = useCallback(() => {
-    setApiLoad(true)
+  const getLazadaData = () => {
+    setLazadaLoad(true)
     let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase()}?merchant=lazada`;
 
-    axios.get(url, {timeout: 10000})
+    axios.get(url, {timeout: 60 * 1000})
     .then((res) => {
       if (res.data.all_data) setLazadaProducts(res.data.all_data);
       if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
-      setApiLoad(false);
+      setLazadaLoad(false);
     })
     .catch((err) => {
       console.log(err);
       setErrorOpen(true);
-      setApiLoad(false);
+      setLazadaLoad(false);
     })
-  }, [competitorName]);
+  };
 
-  const getShopeeData = useCallback(() => {
-    setApiLoad(true)
+  const getShopeeData = () => {
+    setShopeeLoad(true)
     let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase()}?merchant=shopee`;
 
-    axios.get(url, {timeout: 10000})
+    axios.get(url, {timeout: 60 * 1000})
     .then((res) => {
       if (res.data.all_data) setShopeeProducts(res.data.all_data);
       if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
-      setApiLoad(false);
+      setShopeeLoad(false);
     })
     .catch((err) => {
       console.log(err);
       setErrorOpen(true);
-      setApiLoad(false);
+      setShopeeLoad(false);
     })
-  }, [competitorName]);
-
-
-  useEffect(() => {
-    if (segmentValue === 'lazada') {
-      getLazadaData()
-    } else if (segmentValue === 'shopee') {
-      getShopeeData()
-    } else {
-
-    }
-  }, [segmentValue, competitorName, getLazadaData, getShopeeData]);
-
-  useEffect(() => {
-    if (competitorName.toLowerCase() === 'nike') {
-      setSegmentValue('lazada');
-    }
-  }, [competitorName])
+  };
 
   useEffect(() => {
     isMounted.current = true;
@@ -76,12 +60,10 @@ const Competitors = () => {
   });
 
   useEffect(() => {
-    if (segmentValue === 'lazada') {
-      getLazadaData();
-    } else if (segmentValue === 'shopee') {
-      getShopeeData();
-    }
-  }, [isMounted.current, segmentValue, competitorName]);
+    if (competitorName.toLowerCase() === 'nike') setSegmentValue('lazada');
+    if (segmentValue === 'lazada') getLazadaData();
+    if (segmentValue === 'shopee') getShopeeData();
+  }, [isMounted.current, competitorName, segmentValue])
 
   return(
       <>
@@ -96,18 +78,17 @@ const Competitors = () => {
                 onChange={setSegmentValue}
                 data={[
                   { label: 'Lazada', value: 'lazada' },
-                  { label: 'Shopee', value: 'shopee', disabled: competitorName.toLowerCase() === 'nike'},
-                  { label: 'Insights', value: 'insights' }
+                  { label: 'Shopee', value: 'shopee', disabled: competitorName.toLowerCase() === 'nike'}
                 ]}
               />
-              <Button onClick={segmentValue === 'lazada' ? getLazadaData : getShopeeData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
+              <Button onClick={segmentValue === 'lazada' ? getLazadaData : getShopeeData} loading={lazadaLoad || shopeeLoad} size="xs" variant="outline">Refresh</Button>
             </Flex>
 
           <CarouselCard topProducts={topCompetitorSales} />
 
           <div className="table-container">
             {segmentValue === 'insights' ? <CompetitorsInsights /> :
-            <CompetitorsTable data={segmentValue === 'lazada' ? lazadaProducts : shopeeProducts} pageSize={pageSize} apiLoad={apiLoad} />}
+            <CompetitorsTable data={segmentValue === 'lazada' ? lazadaProducts : shopeeProducts} pageSize={pageSize} apiLoad={lazadaLoad || shopeeLoad} />}
 
           </div>
 
