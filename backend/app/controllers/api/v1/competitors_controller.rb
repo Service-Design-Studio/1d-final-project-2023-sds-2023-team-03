@@ -16,7 +16,7 @@ module Api
         # Query to get data for a specific competitor
         queried_name = params[:competitor_name]
 
-        merchant = params[:merchant].downcase
+        merchant = params[:merchant]&.downcase || 'lazada'
         competitor_data_model = merchant == 'lazada' ? LazadaData : ShopeeData
 
         competitor = competitor_data_model.where("LOWER(competitor_name) LIKE ?", queried_name)
@@ -31,7 +31,7 @@ module Api
       end
 
       def all
-        merchant = params[:merchant].downcase
+        merchant = params[:merchant]&.downcase || 'lazada'
         competitor_data_model = merchant == 'lazada' ? LazadaData : ShopeeData
 
         # Query to get data for all competitors

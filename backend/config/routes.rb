@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show, :create, :update, :destroy] do
         collection do
-          get 'update_units_sold', to: 'products#update_units_sold'
+          patch 'units_sold', to: 'products#update_units_sold'
         end
       end
 
@@ -19,7 +19,6 @@ Rails.application.routes.draw do
           get 'all', to: 'sales#all'
           get 'top_categories', to: 'sales#top_categories'
           get 'integrity', to: 'sales#integrity'
-          get 'sales_data'
           get 'top', to: 'sales#top'
         end
       end
@@ -37,7 +36,7 @@ Rails.application.routes.draw do
         collection do
           get 'automate_post_deployment'
           get 'detect_anomalies'
-          get 'fetch_products'  
+          get 'fetch_products'
           get '/:load_data_into_bigquery', to: 'anomalies#load_data_into_bigquery'
         end
       end

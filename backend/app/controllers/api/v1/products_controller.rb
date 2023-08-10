@@ -77,12 +77,12 @@ module Api
           if (!product_sales)
             next
           end
-    
+
           qty_sold = 0
           product_sales.each do |sale|
             qty_sold += sale.sales
           end
-          
+
           out.append ({
             :product => product.product_name,
             :sales => qty_sold
@@ -95,7 +95,7 @@ module Api
 
       private
       def product_params
-        params.require(:product).permit(:product_id, :product_category, :product_type, :product_name, :price, :stock, :units_sold)
+        params.require(:product).permit(:product_id, :product_category, :product_type, :product_name, :price, :stock, :units_sold, :description, :image_link)
       end
     end
   end
