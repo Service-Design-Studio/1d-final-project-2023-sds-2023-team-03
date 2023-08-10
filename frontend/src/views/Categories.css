@@ -10,13 +10,7 @@
     text-align: center;
     overflow-x: hidden;
   }
-  #sales-title {
-    font-family: 'FFDINforPUMA';
-    text-align: left;
-    padding-left: 60px;
 
-
-  }
-  .sales-graph {
-    margin: 0px auto;
-  }
+.sales-graph {
+  margin: 0px auto;
+}
