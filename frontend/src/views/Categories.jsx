@@ -86,7 +86,7 @@ const Categories = () => {
                     <SalesBar
                         data={
                             {
-                                x: revs ? salesData.types.revenue.x_axis : [],
+                                x: revs ? salesDfata.types.revenue.x_axis : [],
                                 y: revs ? salesData.types.revenue.y_axis : [],
                                 start: salesData.start,
                                 end: salesData.end,
@@ -109,7 +109,7 @@ const Categories = () => {
         <>
             <Stack>
             <h1 id="sales-title">Sales Analytics</h1>
-               <CategorySearch handleSalesData={handleSalesData} className="search" url="http://127.0.0.1:3000/api/v1/sales"/>
+               <CategorySearch handleSalesData={handleSalesData} className="search" url="https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/sales"/>
                 <Space h="xl"/>
                 <Space h="xl"/>
                 <div className="sales-segment">
