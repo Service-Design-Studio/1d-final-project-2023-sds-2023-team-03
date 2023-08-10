@@ -92,7 +92,7 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
             if (!isPriority && !tagFilterData.hideOthers) finalData.push(r);
         });
 
-        if (priorities.length == 0) {
+        if (priorities.length == 0 && tagFilterData.priorities.length == 0) {
             finalData = filteredData;
         } else {
             priorities.forEach((p) => {
