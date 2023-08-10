@@ -5,42 +5,54 @@ import { Stack, Modal, SegmentedControl, Button, Flex } from '@mantine/core'
 import CarouselCard from '../components/CarouselCard';
 import CompetitorsTable from '../components/CompetitorsTable';
 import './Competitors.css'
+import CompetitorsInsights from '../components/CompetitorsInsights';
 
 const Competitors = () => {
   const isMounted = useRef(false);
-  const [apiLoad, setApiLoad] = useState(true);
+  const [lazadaLoad, setLazadaLoad] = useState(false);
+  const [shopeeLoad, setShopeeLoad] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
-  const [segmentValue, setSegmentValue] = useState('pa')
-  const [competitorProducts, setCompetitorProducts] = useState([]);
+  const [segmentValue, setSegmentValue] = useState('lazada')
+  const [lazadaProducts, setLazadaProducts] = useState([]);
+  const [shopeeProducts, setShopeeProducts] = useState([]);
   const [topCompetitorSales, setTopCompetitorSales] = useState([]);
   const pageSize = 50;
 
   const { competitorName } = useParams();
 
-  const getCompetitorsData = useCallback(() => {
-    setApiLoad(true)
-    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase() === 'overall' ? 'all' : competitorName}`;
+  const getLazadaData = () => {
+    setLazadaLoad(true)
+    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase()}?merchant=lazada`;
 
-    axios.get(url, {timeout: 10000})
+    axios.get(url, {timeout: 60 * 1000})
     .then((res) => {
-      if (res.data.all_data) setCompetitorProducts(res.data.all_data);
+      if (res.data.all_data) setLazadaProducts(res.data.all_data);
       if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
-      setApiLoad(false);
+      setLazadaLoad(false);
     })
     .catch((err) => {
       console.log(err);
       setErrorOpen(true);
-      setApiLoad(false);
+      setLazadaLoad(false);
     })
-  }, [competitorName]);
+  };
 
+  const getShopeeData = () => {
+    setShopeeLoad(true)
+    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase()}?merchant=shopee`;
 
-  useEffect(() => {
-    if (segmentValue === 'pa') {
-      getCompetitorsData()
-    }
-
-  }, [segmentValue, competitorName, getCompetitorsData]);
+    axios.get(url, {timeout: 60 * 1000})
+    .then((res) => {
+      if (res.data.all_data) setShopeeProducts(res.data.all_data);
+      if (res.data.top_sales) setTopCompetitorSales(res.data.top_sales);
+      setShopeeLoad(false);
+    })
+    .catch((err) => {
+      console.log(err);
+      setErrorOpen(true);
+      setShopeeLoad(false);
+    })
+  };
 
   useEffect(() => {
     isMounted.current = true;
@@ -48,30 +60,36 @@ const Competitors = () => {
   });
 
   useEffect(() => {
-    getCompetitorsData();
-  }, [isMounted.current]);
+    if (competitorName.toLowerCase() === 'nike') setSegmentValue('lazada');
+    if (segmentValue === 'lazada') getLazadaData();
+    if (segmentValue === 'shopee') getShopeeData();
+  }, [isMounted.current, competitorName, segmentValue])
 
   return(
       <>
           <Stack>
-          <h1 id="competitors-title">{competitorName}'s Analytics</h1>
-          <CarouselCard topProducts={topCompetitorSales} />
+          {competitorName.toLowerCase() === 'overall' ? <h1 id="competitors-title">{competitorName} Analytics</h1> : <h1 id="competitors-title">{competitorName}'s Analytics</h1> }
 
-          <div className="table-container">
-            <Flex gap="sm" align="center">
+            <Flex gap="sm" align="center" justify="center">
               <SegmentedControl
                 color="blue"
                 radius="lg"
                 value={segmentValue}
                 onChange={setSegmentValue}
                 data={[
-                  { label: 'Competitors', value: 'pa' },
-                  { label: 'Insights', value: 'i' }
+                  { label: 'Lazada', value: 'lazada' },
+                  { label: 'Shopee', value: 'shopee', disabled: competitorName.toLowerCase() === 'nike'}
                 ]}
               />
-              <Button onClick={getCompetitorsData} loading={apiLoad} size="xs" variant="outline">Refresh</Button>
+              <Button onClick={segmentValue === 'lazada' ? getLazadaData : getShopeeData} loading={lazadaLoad || shopeeLoad} size="xs" variant="outline">Refresh</Button>
             </Flex>
-            {segmentValue === 'pa' ? <CompetitorsTable data={competitorProducts} pageSize={pageSize} apiLoad={apiLoad} /> : null}
+
+          <CarouselCard topProducts={topCompetitorSales} />
+
+          <div className="table-container">
+            {segmentValue === 'insights' ? <CompetitorsInsights /> :
+            <CompetitorsTable data={segmentValue === 'lazada' ? lazadaProducts : shopeeProducts} pageSize={pageSize} apiLoad={lazadaLoad || shopeeLoad} />}
+
           </div>
 
           <Modal

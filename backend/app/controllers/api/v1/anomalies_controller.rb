@@ -6,13 +6,13 @@ module Api
       require 'google/cloud/storage'
       require_relative '../../../../lib/bigquery_module.rb'
 
-
       def clear_bigquery_table
         bigquery = Google::Cloud::Bigquery.new
         dataset = bigquery.dataset "ecommerce_data"
         table = dataset.table "product_data"
         table.delete if table
       end
+
 
       def load_data_into_bigquery
         # Clear the BigQuery table
@@ -30,7 +30,7 @@ module Api
         file = bucket.create_file StringIO.new(ndjson_data), "product_data.ndjson"
       
         # Step 2: Load data from GCS to BigQuery
-        bigquery = Google::Cloud::Bigquery.new
+        bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
         dataset = bigquery.dataset "ecommerce_data"
       
         # Retrieve the table or create it if it doesn't exist

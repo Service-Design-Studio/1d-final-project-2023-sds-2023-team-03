@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "react-apexcharts"
-function SalesBar({ data, label, colour, enableCurrency=false }) {  
+function SalesBar({ data, label, colour, enableCurrency=false, threshold=20 }) {  
     const isUsed = useRef(false);
 
     useEffect(() => {
@@ -17,7 +17,10 @@ function SalesBar({ data, label, colour, enableCurrency=false }) {
             end: data.end
         }
     } else {
-        data.y = data.y.map((n) => {
+        data.x = data.x.slice(0, threshold)
+        data.y = data.y
+        .slice(0, threshold)
+        .map((n) => {
             return Number(n.toFixed(0));
         })
     }

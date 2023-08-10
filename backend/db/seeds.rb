@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
+require 'csv'
+require 'uri'
 
 # Generate 200 products
 200.times do
@@ -27,9 +29,9 @@ require 'faker'
   )
 end
 
-# Generate 200 sales
+# Generate 1000 sales
 existing_product_ids = Product.all.pluck(:product_id)
-200.times do
+1000.times do
   product_id = existing_product_ids.sample
 
   # Use the selected product_id to get the corresponding product details
@@ -46,6 +48,23 @@ existing_product_ids = Product.all.pluck(:product_id)
   )
 end
 
+sales = Sale.all
+products = Product.all
+
+products.each do |product|
+  product_sales = sales.where('product_id = ?', product.product_id)
+  if (!product_sales)
+    next
+  end
+
+  qty_sold = 0
+  product_sales.each do |sale|
+    qty_sold += sale.sales
+  end
+
+  product.update(units_sold: qty_sold)
+end
+
 # Generate 200 competitors
 200.times do
   Competitor.create(
@@ -59,4 +78,77 @@ end
     sales: rand(0..200),
     date: Faker::Date.between(from: '2021-01-01', to: Date.today).end_of_month
   )
+end
+
+Dir[Rails.root.join('scraper/Lazada/data/*')].each do |filename|
+  next if filename.include?("Comfortwear") || filename.include?("Running")
+
+  CSV.foreach(filename) do |row|
+    # initial_price = row[5] == "No Price Reduction" ? row[6].delete("$").to_f : row[5].delete("$").to_f
+    # final_price = row[6].delete("$").to_f
+    initial_price = (row[5] && row[5] != "No Price Reduction") ? row[5].delete("$").to_f : (row[6] ? row[6].delete("$").to_f : 0)
+    final_price = row[6] ? row[6].delete("$").to_f : 0
+    discount = initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
+
+    LazadaData.find_or_create_by(product_name: row[3]) do |data|
+      data.merchant_name = row[0],
+      data.keyword = row[1],
+      data.competitor_name = row[2],
+      data.product_name = row[3],
+      data.coupon = row[4],
+      data.initial_price = initial_price,
+      data.final_price = final_price,
+      data.sales = row[7].to_i,
+      data.product_link = row[8],
+      data.product_image_link = row[9],
+      data.product_description = row[10],
+      data.date_scraped = Date.strptime(row[11], "%d-%m-%Y"),
+      data.discount = discount
+      data.category = "NIL"
+    end
+  end
+end
+
+Dir[Rails.root.join('scraper/Shopee/data/*')].each do |filename|
+  next if filename.include?("Comfortwear") || filename.include?("Running")
+
+  CSV.foreach(filename) do |row|
+    initial_price = (row[5] && row[5] != "No Price Reduction") ? row[5].delete("$").to_f : (row[6] ? row[6].delete("$").to_f : 0)
+    final_price = row[6] ? row[6].delete("$").to_f : 0
+
+    ShopeeData.find_or_create_by(product_name: row[3]) do |data|
+      data.merchant_name = row[0],
+      data.keyword = row[1],
+      data.competitor_name = row[2],
+      data.product_name = row[3],
+      data.coupon = row[4],
+      data.initial_price = initial_price,
+      data.final_price = final_price,
+      data.sales = row[7].to_i,
+      data.product_link = row[8],
+      data.product_image_link = row[9],
+      data.product_description = row[10],
+      data.date_scraped = Date.strptime(row[11], "%d-%m-%Y"),
+      data.discount = initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
+      data.category = "NIL"
+    end
+  end
+end
+
+Dir[Rails.root.join('scraper/Lazada/keywords_data/*')].each do |filename|
+  CSV.foreach(filename) do |row|
+    lazada_data = LazadaData.find_by(product_name: row[3])
+    if lazada_data
+      lazada_data.update(keyword: row[1])
+    end
+  end
+end
+
+Dir[Rails.root.join('scraper/Shopee/keywords_data/*')].each do |filename|
+  CSV.foreach(filename) do |row|
+    shopee_data = ShopeeData.find_by(product_name: row[3])
+    if shopee_data
+      shopee_data.update(keyword: row[1])
+    end
+  end
 end

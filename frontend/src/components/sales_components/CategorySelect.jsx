@@ -8,6 +8,7 @@ function CategorySelect({setCategory}) {
       data={[
         { value: 'comfortwear', label: 'Comfortwear' },
         { value: 'running', label: 'Running' },
+        { value: 'overall', label: 'Overall' }
       ]}
       defaultValue="running"
       onChange={setCategory}

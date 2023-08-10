@@ -43,6 +43,20 @@ gem "bootsnap", require: false
 
 gem "faker"
 
+###scraper-start
+gem 'net-http'
+
+gem 'nokogiri'
+
+gem 'uri'
+
+gem 'json'
+
+gem 'cgi'
+
+gem 'csv'
+###scraper-end
+
 gem "fast_jsonapi"
 
 # Use Sass to process CSS

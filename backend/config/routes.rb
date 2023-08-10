@@ -9,32 +9,45 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :products, only: [:index, :show, :create, :update, :destroy] do
+        collection do
+          get 'update_units_sold', to: 'products#update_units_sold'
+        end
       end
+
       resources :sales, only: [:index, :show, :create, :update, :destroy] do
         collection do
           get 'all', to: 'sales#all'
           get 'top_categories', to: 'sales#top_categories'
           get 'integrity', to: 'sales#integrity'
           get 'sales_data'
+          get 'top', to: 'sales#top'
         end
       end
 
-      resources :users, only: [:create, :show, :index]
-      resources :competitors, only: [:index, :show] do
+      resources :users, only: [:index, :create, :show, :update, :destroy]
+      resources :competitors, only: [:index, :create, :show, :update, :destroy] do
         collection do
           get 'competitor_sales_data'
-          get 'competitors/all', to: 'competitors#all'
-          get 'competitors/overall', to: 'competitors#all'
+          get 'overall', to: 'competitors#all'
+          get '/:competitor_name', to: 'competitors#query'
         end
       end
 
-      resources :anomalies, only: [] do
+      resources :anomalies do
         collection do
           get 'detect_anomalies'
           get 'fetch_products'  
-          get 'load_data_into_bigquery'
+          get '/:load_data_into_bigquery', to: 'anomalies#load_data_into_bigquery'
         end
       end
+
+      resources :insights do
+        collection do
+        end
+      end
+
+      post 'classify-category', to: 'category_classification#classify_category'
+
     end
   end
 

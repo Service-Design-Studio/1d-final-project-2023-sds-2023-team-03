@@ -43,8 +43,26 @@ module Api
       end
 
       def show
-        sale = Sale.find(params[:id])
-        render json: { status: 'SUCCESS', message: 'Loaded sale', data: sale }
+        product_id = params[:id]
+        if params.has_key?(:start) && params.has_key?(:end)
+          start_date = params[:start]
+          end_date = params[:end]
+          sales = Sale.product_time_query(product_id, start_date, end_date)
+        else
+          sales = Sale.where('product_id = ?', product_id)
+        end
+
+        if (sales.length > 0)
+          render :json => sales and return
+        end
+
+        if params.has_key?(:start) && params.has_key?(:end)
+          text = "Sales of product with product_id #{product_id} not found from #{start_date} to #{end_date}."
+        else
+          text = "Sales of product with product_id #{product_id} not found."
+        end
+
+        render :status => 404, :body => text
       end
 
       def update
@@ -77,6 +95,30 @@ module Api
         render :json => out
       end
 
+      def top
+        if !params.has_key?(:place) || params[:place].to_i < 1
+          place = 5
+        else
+          place = params[:place].to_i
+        end
+        
+        if !params.has_key?(:start)
+          start_date = 30.days.ago.to_date
+        else
+          start_date = params[:start]
+        end
+        
+        if !params.has_key?(:end)
+          end_date = Time.now.to_date
+        else
+          end_date = params[:end]
+        end
+        
+
+        out = Sale.top_sales_time_range(place, start_date, end_date)
+        render :json => out
+      end
+
       def integrity
         out_arr = []
         sales = Sale.all
@@ -97,7 +139,7 @@ module Api
 
       private
       def sale_params
-        params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales)
+        params.require(:sale).permit(:product_id, :product_category, :product_type, :product_name, :date, :price, :sales, :place, :start, :end)
       end
     end
   end
