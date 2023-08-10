@@ -46,8 +46,6 @@ Rails.application.routes.draw do
         end
       end
 
-      post 'classify-category', to: 'category_classification#classify_category'
-
     end
   end
 

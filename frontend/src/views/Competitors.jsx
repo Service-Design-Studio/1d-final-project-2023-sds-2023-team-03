@@ -21,7 +21,7 @@ const Competitors = () => {
 
   const getLazadaData = useCallback(() => {
     setApiLoad(true)
-    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase()}?merchant=lazada`;
+    let url = `http://localhost:3000/api/v1/competitors/${competitorName.toLowerCase()}?merchant=lazada`;
 
     axios.get(url, {timeout: 10000})
     .then((res) => {
@@ -38,7 +38,7 @@ const Competitors = () => {
 
   const getShopeeData = useCallback(() => {
     setApiLoad(true)
-    let url = `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/competitors/${competitorName.toLowerCase()}?merchant=shopee`;
+    let url = `http://localhost:3000/api/v1/competitors/${competitorName.toLowerCase()}?merchant=shopee`;
 
     axios.get(url, {timeout: 10000})
     .then((res) => {

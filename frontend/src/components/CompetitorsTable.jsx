@@ -1,7 +1,6 @@
 import { DataTable } from 'mantine-datatable';
 import { Flex, MultiSelect, TextInput } from '@mantine/core';
 import { useState, useEffect, useMemo } from 'react';
-import CategoryCell from './CompetitorsCategory';
 
 function CompetitorsTable({ data, pageSize, apiLoad }) {
     const [fetching, setFetching] = useState(true)
@@ -36,13 +35,12 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
         if (data.length) setSavedData(data);
     }, [data, apiLoad]);
 
-
     useEffect(() => {
         if (savedData.length == 0) {
             setFetching(false);
             return;
         }
-
+    
         const first = (page - 1) * pageSize;
         const last = first + pageSize;
 
@@ -149,7 +147,10 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
             accessor: 'category',
             textAlignment: 'center',
             width: 70,
-            render: (record) => <CategoryCell record={record} />,
+            render: (record) => (
+                <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
+                    {record.category}
+                </Flex>),
         },
         {
             accessor: 'product_name',
