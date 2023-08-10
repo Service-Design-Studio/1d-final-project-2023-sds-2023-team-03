@@ -6,6 +6,9 @@ module Api
       require 'google/cloud/storage'
       require_relative '../../../../lib/bigquery_module.rb'
 
+      DEFAULT_NUM_CLUSTERS = 5 # Set to your desired default value
+      DEFAULT_CONTAMINATION = 0.05 # Set to your desired default value
+
       def clear_bigquery_table
         bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
         dataset = bigquery.dataset "ecommerce_data"
@@ -78,6 +81,24 @@ module Api
 
         render json: products
       end
+
+      def automate_post_deployment
+        # 1. Load data into BigQuery
+        response = load_data_into_bigquery
+        return if performed? # Check if a render or redirect has been performed
+      
+        # 2. Train K-means model
+        num_clusters = (params[:num_clusters] || DEFAULT_NUM_CLUSTERS).to_i
+        BigQueryModule.train_kmeans_model(num_clusters)
+      
+        # 3. Detect anomalies
+        contamination = (params[:contamination] || DEFAULT_CONTAMINATION).to_f
+        anomalies = BigQueryModule.detect_anomalies(contamination)
+      
+        # Render the anomalies or any other required response
+        render json: anomalies
+      end
+      
 
       private
 
