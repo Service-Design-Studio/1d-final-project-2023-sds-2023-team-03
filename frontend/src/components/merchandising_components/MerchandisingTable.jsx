@@ -46,8 +46,6 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
             return;
         } else if (apiLoad) {
             return;
-        } else if (apiLoad) {
-            return;
         }
 
         var finalData = []
@@ -105,7 +103,7 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
         const dataToLoad = finalData.slice(first, last);
         setPageData(dataToLoad);
         setFetching(false);
-    }, [selectedCategories, sortStatus, page, savedData, tagFilterData.priorities, tagFilterData.hideOthers, nameFilter]);
+    }, [selectedCategories, sortStatus, page, savedData, tagFilterData.priorities, tagFilterData.hideOthers, nameFilter, apiLoad]);
 
     function containsInsight(insights, label) {
         return insights.map((e) => {
@@ -165,7 +163,7 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
                             description="Filter products whose names include the inputted text"
                             placeholder="Search product name..."
                             value={nameFilter}
-                            onChange={(e) => setNameFilter(e.currentTarget.value)}
+                            onChange={(e) => {setPage(1); setNameFilter(e.currentTarget.value)}}
                         />
                     ),
                     filtering: nameFilter !== ''
