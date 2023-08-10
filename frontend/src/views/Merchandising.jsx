@@ -64,36 +64,38 @@ function Logistics() {
 
   return (
     <>
-      <h1 id="sales-title">Merchandising</h1> 
-      <Flex gap="sm" align="center">
-        <Button onClick={getMerchData} loading={anomaliesLoad || insightsLoad} size="xs" variant="outline">Refresh</Button>
-        <MultiSelect
-          data = {[
-            { value: 'popular', label: (<Badge color='green'>Popular!</Badge>) },
-            { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>) },
-            { value: 4, label: (<Badge variant="gradient" gradient={{ from:"red", to: "red" }}>CRITICAL!</Badge>)},
-            { value: 'low', label: (<Badge variant="gradient" gradient={{from: 'red', to: '#25262B'}}>Anomalous: Low</Badge>)},
-            { value: 'high', label: (<Badge variant="gradient" gradient={{from: 'green', to: '#25262B'}}>Anomalous: High</Badge>)}
-          ]}
-          clearable
-          dropdownPosition='top'
-          placeholder='Prioritize product tags'
-          size='xs'
-          onChange={(vals) => setTagFilterData({...tagFilterData, priorities: vals})}
-        />
-        <Switch
-          label="Hide other products?"
-          onChange={(e) => setTagFilterData({...tagFilterData, hideOthers: e.currentTarget.checked})}
-        />
-      </Flex>
-      <Space h='xs'/>
-      <MerchandisingTable data={data} anomalyData={anomalyData} threshold={threshold} pageSize={pageSize} apiLoad={anomaliesLoad || insightsLoad} tagFilterConfigs={tagFilterData}/>
+      <h1>Merchandising</h1>
+      <div className="merch-table-container">
+        <Flex gap="sm" align="center">
+          <Button onClick={getMerchData} loading={anomaliesLoad || insightsLoad} size="xs" variant="outline">Refresh</Button>
+          <MultiSelect
+            data = {[
+              { value: 'popular', label: (<Badge color='green'>Popular!</Badge>) },
+              { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>) },
+              { value: 4, label: (<Badge variant="gradient" gradient={{ from:"red", to: "red" }}>CRITICAL!</Badge>)},
+              { value: 'low', label: (<Badge variant="gradient" gradient={{from: 'red', to: '#25262B'}}>Anomalous: Low</Badge>)},
+              { value: 'high', label: (<Badge variant="gradient" gradient={{from: 'green', to: '#25262B'}}>Anomalous: High</Badge>)}
+            ]}
+            clearable
+            dropdownPosition='top'
+            placeholder='Prioritize product tags'
+            size='xs'
+            onChange={(vals) => setTagFilterData({...tagFilterData, priorities: vals})}
+          />
+          <Switch
+            label="Hide other products?"
+            onChange={(e) => setTagFilterData({...tagFilterData, hideOthers: e.currentTarget.checked})}
+          />
+        </Flex>
+        <Space h='xs'/>
+        <MerchandisingTable data={data} anomalyData={anomalyData} threshold={threshold} pageSize={pageSize} apiLoad={anomaliesLoad || insightsLoad} tagFilterConfigs={tagFilterData}/>
+      </div>
       <Modal
         centered
         opened={errorOpen}
         onClose={errorModalHandler.close}
         title="Error"
-      > 
+      >
         There was a problem with loading the data. Please retry from the Merchandising page.
       </Modal>
     </>

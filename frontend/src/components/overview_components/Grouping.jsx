@@ -19,20 +19,23 @@ function Grouping({topProductData}) {
   return (
     <div style={containerStyles}>
       <Group style={groupStyles}>
-      <CardWidth 
-                  className = 'topProduct1'
+      {topProductData.image[0]&&
+          <CardWidth 
+          className = 'topProduct1'
 
-                  imageUrl={topProductData.image[0]}
-                  category = {topProductData.category[0]}
-                  title = {topProductData.title[0]}
-                  price= {topProductData.price[0]}
-                  sales= {topProductData.sales[0]}
-                  mthrev= {topProductData.price[0]*topProductData.sales[0]}
-                  yearrev= {topProductData.yearrev[0]}
-                  
-                  ></CardWidth>
-
-      <CardWidth 
+          imageUrl={topProductData.image[0]}
+          category = {topProductData.category[0]}
+          title = {topProductData.title[0]}
+          price= {topProductData.price[0]}
+          sales= {topProductData.sales[0]}
+          mthrev= {topProductData.price[0]*topProductData.sales[0]}
+          yearrev= {topProductData.yearrev[0]}
+          
+          ></CardWidth>
+      }
+     
+      {topProductData.image[1]&&
+                <CardWidth 
                 className = 'topProduct2'
 
                   imageUrl={topProductData.image[1]}                
@@ -43,9 +46,9 @@ function Grouping({topProductData}) {
                  mthrev= {topProductData.price[1]*topProductData.sales[1]}
                  yearrev= {topProductData.yearrev[1]}
 
-                  ></CardWidth>
-
-      <CardWidth 
+                  ></CardWidth>}
+      {topProductData.image[2]&&
+                <CardWidth 
                   imageUrl={topProductData.image[2]}                
                   className = 'topProduct3'
                  category = {topProductData.category[2]}
@@ -56,6 +59,7 @@ function Grouping({topProductData}) {
                   yearrev= {topProductData.yearrev[2]}
 
                   ></CardWidth>
+      }
     </Group>
     </div>
   );

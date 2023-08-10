@@ -10,19 +10,16 @@
       text-align: center;
       overflow-x: hidden;
     }
-  #sales-title {
-    font-family: 'FFDINforPUMA';
-    text-align: left;
-    padding-left: 60px;
-  }
+
   .table {
     max-width: 1200px;
     width: 100%;
     height: 600px;
   }
-.table-container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-  }
+
+  .table-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
 

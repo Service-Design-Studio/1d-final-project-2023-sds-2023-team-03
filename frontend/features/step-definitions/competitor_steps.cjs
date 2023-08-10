@@ -4,7 +4,9 @@ const assert = require('assert');
 
 const driver = new Builder().forBrowser('chrome').build();
 const websiteUrl = 'https://sds-team-3-ecommerce-analysis-tool-jvfpcfcafa-as.a.run.app/';
-
+driver.manage().setTimeouts({
+  implicit: 10000, // Set an appropriate timeout value
+});
 
 Given('I visit the Competitors page of {string}', async function (competitor) {
   const encodedCompetitor = encodeURIComponent(competitor);
@@ -66,11 +68,12 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
   });
 
   
-  Given('the competitors table has successfully loaded data', async function () {
+  Given('the competitors table has successfully loaded data',{timeout: 15000}, async function () {
     const button = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-Button-inner')]"))
     await driver.actions().click(button).perform();
     const compSect = await driver.wait(until.elementsLocated(By.xpath('//div[@class="table-container"]')), 10000); // Wait for 10 seconds
-    const compTable = await driver.findElement(By.xpath('//div[@class="table mantine-v3audr"]'));
+    const compTable = await  driver.wait(until.elementsLocated(By.xpath('//div[@class="table mantine-v3audr"]')), 10000);
+
 });
   
   When('I click on a particular row on the competitors table', async function () {
@@ -82,23 +85,37 @@ Given('I visit the Competitors page of {string}', async function (competitor) {
   }
 });
   
-  Then('I should be directed to the merchant site of the product in the row', async function () {
+  Then('I should be directed to the merchant site of the product in the row',{timeout: 15000}, async function () {
     const windows = await driver.getAllWindowHandles();
     assert.strictEqual(windows.length > 5, true);
     await driver.switchTo().window(windows[0]);
   });
   
-  Given('the competitors table is currently sorted by {string} in ascending order', async function (column) {
-    // Code to check if the competitors table is sorted by the specified column in ascending order using Selenium
-    // Use 'this.driver' to interact with the WebDriver
-  });
   
   When('I press the {string} header on the competitors table', async function (column) {
-    // Code to click on the specified column header to sort the competitors table using Selenium
-    // Use 'this.driver' to interact with the WebDriver
+    const headerTitle = column;
+    const header = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button')]/descendant::div[text()='" + headerTitle + "']")), 4500);
+    await driver.actions().click(header).perform();
   });
   
   Then('the competitors table should be sorted in descending order by {string}', async function (column) {
-    // Code to check if the competitors table is sorted by the specified column in descending order using Selenium
-    // Use 'this.driver' to interact with the WebDriver
+    const target = column;
+    const index = () => {
+        if (target === "Sales") {
+            return 5;
+        } else if (target === "Initial price") {
+            return 6;
+        }else if (target === "Final price") {
+          return 7;
+      }
+    }
+    const header = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]/thead/tr/th[contains(@role, 'button')]/descendant::div[text()='" + target + "']")), 10000);
+    const tableRow1value = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[1]/td[" + index() + "]")),10000).getText();
+    const tableRow5value = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[5]/td[" + index() + "]")),10000).getText();
+    if(target === "Sales"){
+      assert(tableRow1value >= tableRow5value);
+    }
+    else{
+      assert(tableRow1value <= tableRow5value);
+    }
   });
