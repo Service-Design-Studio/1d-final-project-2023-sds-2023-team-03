@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function Logistics() {
   const [data, setData] = useState([]);
-  const [anomalyData, setAnomalyData] = useState([]);
+  const [anomalyData, setAnomalyData] = useState({});
   const [tagFilterData, setTagFilterData] = useState({
     priorities: [],
     hideOthers: false
@@ -39,6 +39,7 @@ function Logistics() {
     setAnomaliesLoad(true)
     axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/anomalies/detect_anomalies?contamination=0.05", {timeout: 60 * 1000})
     .then((res) => {
+      console.log(res)
       if (res.data) {
         setAnomalyData(res.data)
       }
@@ -70,7 +71,9 @@ function Logistics() {
           data = {[
             { value: 'popular', label: (<Badge color='green'>Popular!</Badge>) },
             { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>) },
-            { value: 4, label: (<Badge variant="gradient" gradient={{ from:"red", to: "red" }}>CRITICAL!</Badge>)}
+            { value: 4, label: (<Badge variant="gradient" gradient={{ from:"red", to: "red" }}>CRITICAL!</Badge>)},
+            { value: 'low', label: (<Badge variant="gradient" gradient={{from: 'yellow', to: 'black'}}>Anomalous: Low</Badge>)},
+            { value: 'high', label: (<Badge variant="gradient" gradient={{from: 'green', to: 'black'}}>Anomalous: High</Badge>)}
           ]}
           clearable
           dropdownPosition='top'
