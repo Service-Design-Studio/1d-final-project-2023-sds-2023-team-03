@@ -247,15 +247,15 @@ module BigQueryModule
     results = job.data.to_a
   
     # Process the results and return the data as an array of hashes
-    products = results.map do |row|
-      
-      {
-        row[:product_id] => {
-          :is_anomaly => row[:is_anomaly],
-          :anomaly_type => row[:anomaly_type]
-        }
+    products = {}
+    results.each do |row|
+      pid = row[:product_id]
+      products[pid] = {
+        :is_anomaly => row[:is_anomaly],
+        :anomaly_type => row[:anomaly_type]
       }
     end
+
     products
   end  
 end

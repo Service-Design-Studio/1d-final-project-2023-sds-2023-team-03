@@ -7,7 +7,7 @@ module Api
       require_relative '../../../../lib/bigquery_module.rb'
 
       def clear_bigquery_table
-        bigquery = Google::Cloud::Bigquery.new
+        bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
         dataset = bigquery.dataset "ecommerce_data"
         table = dataset.table "product_data"
         table.delete if table
