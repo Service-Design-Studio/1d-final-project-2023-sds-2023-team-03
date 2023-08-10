@@ -72,8 +72,8 @@ function Logistics() {
             { value: 'popular', label: (<Badge color='green'>Popular!</Badge>) },
             { value: 'popular_low_stock', label: (<Badge color ='red'>Restock?</Badge>) },
             { value: 4, label: (<Badge variant="gradient" gradient={{ from:"red", to: "red" }}>CRITICAL!</Badge>)},
-            { value: 'low', label: (<Badge variant="gradient" gradient={{from: 'yellow', to: 'black'}}>Anomalous: Low</Badge>)},
-            { value: 'high', label: (<Badge variant="gradient" gradient={{from: 'green', to: 'black'}}>Anomalous: High</Badge>)}
+            { value: 'low', label: (<Badge variant="gradient" gradient={{from: 'red', to: '#25262B'}}>Anomalous: Low</Badge>)},
+            { value: 'high', label: (<Badge variant="gradient" gradient={{from: 'green', to: '#25262B'}}>Anomalous: High</Badge>)}
           ]}
           clearable
           dropdownPosition='top'

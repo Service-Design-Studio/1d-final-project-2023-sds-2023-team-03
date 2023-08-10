@@ -127,7 +127,7 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
     }
 
     function checkAnomalous(pid, type) {
-        if (!anomalies[pid]) return false;
+        if (!anomalies[pid] || typeof(type) !== 'string') return false;
         return anomalies[pid]["anomaly_type"].toLowerCase() === type.toLowerCase();
     }
 
@@ -159,8 +159,8 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
                                 {containsInsightSeverity(record.insights, 4) ? (<Badge variant="gradient" gradient={{ from: 'red', to: 'red'}}>CRITICAL!</Badge>) : null}
                                 {containsInsight(record.insights, "popular") ? (<Badge color="green">Popular!</Badge>) : null}
                                 {containsInsight(record.insights, "popular_low_stock") ? (<Badge color="red">Restock?</Badge>) : null}
-                                {checkAnomalousType(record.product_id) === "Low" ? <Badge variant="gradient" gradient={{from: 'yellow', to: 'black'}}>Anomalous: Low</Badge> : null}
-                                {checkAnomalousType(record.product_id) === "High" ? <Badge variant="gradient" gradient={{from: 'green', to: 'black'}}>Anomalous: High</Badge> : null}
+                                {checkAnomalousType(record.product_id) === "Low" ? <Badge variant="gradient" gradient={{from: 'red', to: '#25262B'}}>Anomalous: Low</Badge> : null}
+                                {checkAnomalousType(record.product_id) === "High" ? <Badge variant="gradient" gradient={{from: 'green', to: '#25262B'}}>Anomalous: High</Badge> : null}
                             </Group>
                         </Flex>
                     ),
