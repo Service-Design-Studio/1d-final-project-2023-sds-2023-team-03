@@ -54,8 +54,7 @@ module Api
           render json: { message: "Data loaded successfully into BigQuery" }
         end
       end
-
-
+      
       # Added the fetch_products action
       def fetch_products
         products = Product.all
