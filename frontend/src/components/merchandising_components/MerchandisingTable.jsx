@@ -36,8 +36,9 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
 
     useEffect(() => {
         setFetching(true);
-        setTagFilterData(tagFilterConfigs)
+        if (tagFilterConfigs) setTagFilterData(tagFilterConfigs); setPage(1);
         if (data.length) setSavedData(data);
+        if (anomalyData.length) setAnomalies(anomalyData);
     }, [data, apiLoad, tagFilterConfigs]);
 
     useEffect(() => {
@@ -195,7 +196,7 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
                             data={categories}
                             value={selectedCategories}
                             placeholder="Search categories..."
-                            onChange={setSelectedCategories}
+                            onChange={(c) => {setPage(1); setSelectedCategories(c)}}
                             clearable
                             searchable
                         />
