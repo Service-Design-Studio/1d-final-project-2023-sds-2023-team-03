@@ -50,7 +50,7 @@ const CategorySearch = ({handleSalesData, url}) => {
         return {
             query: await axios.get(
                 url + `?category=${category}&start=${start}&end=${end}`,
-                {timeout: 10000}
+                {timeout: 120 * 1000}
                 ),
             start: start,
             end: end
