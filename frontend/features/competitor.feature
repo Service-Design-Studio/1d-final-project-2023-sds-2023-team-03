@@ -33,11 +33,12 @@ Feature: Fetching competitor data from database after scraping Merchant APIs
 
 	Scenario: Sorting the rows
 		Given the competitors table has successfully loaded data
-		And the competitors table is currently sorted by "<column>" in ascending order
 		When I press the "<column>" header on the competitors table
 		Then the competitors table should be sorted in descending order by "<column>"
 		Examples:
 		| column |
 		| Sales |
-		| Price |
+		| Initial price |
+		| Final price |
+
 
