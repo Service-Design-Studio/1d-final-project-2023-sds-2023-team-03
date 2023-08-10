@@ -37,7 +37,7 @@ function Logistics() {
 
   function getAnomalyData() {
     setAnomaliesLoad(true)
-    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/anomalies/detect_anomalies?contamination=0.05", {timeout: 60 * 1000})
+    axios.get("https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/anomalies?contamination=0.05", {timeout: 60 * 1000})
     .then((res) => {
       console.log(res)
       if (res.data) {
