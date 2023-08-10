@@ -15,6 +15,8 @@ const MyHeader = () => {
     backgroundColor: '#17594A',
     borderBottom: '1px solid #e5e5e5',
     padding: '1rem', // Use relative units like 'rem'
+    display: 'flex',
+    justifyContent: 'space-between',
   };
 
   const containerStyle = {
@@ -23,12 +25,15 @@ const MyHeader = () => {
     alignItems: 'center',
     marginLeft: '1rem',
     marginRight: '1rem',
+    width: '100%',
+    maxWidth: '100%',
+    padding: '0 7rem'
   };
 
   const logoStyle = {
     width: '8%',
     height: '8%',
-    marginLeft: '-0.625rem', // Use negative margin to adjust positioning
+    marginLeft: '-1.625rem', // Use negative margin to adjust positioning
     paddingRight: '0.75rem', // Use relative units like 'rem'
   };
 
