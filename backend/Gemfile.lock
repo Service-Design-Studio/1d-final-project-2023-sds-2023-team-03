@@ -382,6 +382,7 @@ DEPENDENCIES
   bootsnap
   capybara
   cgi
+  concurrent-ruby
   csv
   cucumber (~> 8.0.0)
   cucumber-rails

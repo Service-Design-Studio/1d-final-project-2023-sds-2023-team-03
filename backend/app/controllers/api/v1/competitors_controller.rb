@@ -3,6 +3,7 @@ require 'json'
 module Api
   module V1
     class CompetitorsController < ApplicationController
+      
        def index
         if params.has_key?(:competitor_name)
           query and return
@@ -16,7 +17,9 @@ module Api
         # Query to get data for a specific competitor
         queried_name = params[:competitor_name]
 
-        merchant = params[:merchant].downcase
+        if params[:merchant]
+          merchant = params[:merchant].downcase
+        end
         competitor_data_model = merchant == 'lazada' ? LazadaData : ShopeeData
 
         competitor = competitor_data_model.where("LOWER(competitor_name) LIKE ?", queried_name)
@@ -31,7 +34,10 @@ module Api
       end
 
       def all
-        merchant = params[:merchant].downcase
+        if params[:merchant]
+          merchant = params[:merchant].downcase
+        end
+        
         competitor_data_model = merchant == 'lazada' ? LazadaData : ShopeeData
 
         # Query to get data for all competitors
@@ -65,6 +71,12 @@ module Api
         rescue ActiveRecord::RecordInvalid
           render json: { status: 'ERROR', message: 'Competitor product not updated', data: competitor.errors }, status: :unprocessable_entity
         end
+      end
+
+      def update_category_for_product
+        competitor = Competitor.find(params[:id])
+        competitor.update_category_with_ai
+        redirect_to competitors_path(competitor), notice: 'Category updated successfully.'
       end
 
       def destroy
