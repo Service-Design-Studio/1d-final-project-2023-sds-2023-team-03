@@ -24,15 +24,16 @@ class Sale < ApplicationRecord
     def self.sales_frequency(sales)
       hash = {}
       sales.each do |p|
-        if hash[p.product_name]
-          hash[p.product_name] += p.sales
+        if hash[p.product_id]
+          hash[p.product_id] += p.sales
         else
-          hash[p.product_name] = p.sales
+          hash[p.product_id] = p.sales
         end
       end
     
       hash = hash.sort_by {|k, v| v}.reverse.to_h
-    
+      hash = hash.transform_keys! { |k| sales.find_by(product_id: k).product_name }
+
       {x_axis: hash.keys, y_axis: hash.values}
     end
 
@@ -44,15 +45,17 @@ class Sale < ApplicationRecord
     def self.sales_revenue(sales)
         hash = {}
         sales.each do |p|
-            if hash[p.product_name] then
-                hash[p.product_name] += p.price * p.sales
+            if hash[p.product_id] then
+                hash[p.product_id] += p.price * p.sales
             else
-                hash[p.product_name] = p.price * p.sales
+                hash[p.product_id] = p.price * p.sales
             end
         end
 
         # sort the hash before stripping keys/values
         hash = hash.sort_by {|k, v| v}.reverse.to_h
+        hash = hash.transform_keys! { |k| sales.find_by(product_id: k).product_name }
+
 
         # output
         {
