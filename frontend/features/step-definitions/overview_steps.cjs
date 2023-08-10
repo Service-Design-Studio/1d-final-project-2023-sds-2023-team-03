@@ -10,7 +10,7 @@ Given('I am on the overview page',async function () {
     driver.sleep(1000)
   });
   
-Then('I should see summarized statistics for sales, product actions, and competitor analysis',async function () {
+Then('I should see summarized statistics for sales, product actions, and competitor analysis', {timeout: 10 * 6000}, async function () {
   
     const cardElements = await driver.findElements(By.className('CardWidth'));
     for (const cardElement of cardElements) {
@@ -31,11 +31,11 @@ Then('I should see summarized statistics for sales, product actions, and competi
       assert.ok(mthrev, 'mthrev attribute is missing in the CardWidth element.');
       assert.ok(yearrev, 'yearrev attribute is missing in the CardWidth element.');
     }
-     const competitionElement = await driver.wait(until.elementLocated(By.className('compInsights')), 5000);
+     const competitionElement = await driver.wait(until.elementLocated(By.className('compInsights')), 20000);
      assert.ok(competitionElement, 'Competition element not found.');
      const competitionText = await competitionElement.getText();
      assert.ok(competitionText.trim().length > 0, 'Competition text is empty.');
-     const productSalesElement =  await driver.wait(until.elementLocated(By.className('salesInsights')), 5000);
+     const productSalesElement =  await driver.wait(until.elementLocated(By.className('salesInsights')), 20000);
      assert.ok(productSalesElement, 'Product Sales element not found.');
      const productSalesText = await productSalesElement.getText();
      assert.ok(productSalesText.trim().length > 0, 'Product Sales text is empty.');

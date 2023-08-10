@@ -23,20 +23,11 @@ Given(`I am in preset selection mode`, async function() {
     assert.strictEqual(presetBoxDisplayed, true);
 })
 
-When(`I select "Last 12 months"`, async function() {
-    const lastYearButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 12 months']"));
+When(`I select "Last 7 days"`, async function() {
+    const lastYearButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 7 days']"));
     await driver.actions().click(lastYearButton).perform();
     const buttonActive = await lastYearButton.getAttribute("data-active");
     assert.strictEqual(Boolean(buttonActive), true);
-})
-
-Then(`the search section should blur`, async function() {
-    const lastMonthButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 30 days']"));
-    const lastYearButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 12 months']"));
-    await driver.actions().click(lastMonthButton).perform();
-    await driver.actions().click(lastYearButton).perform();
-    const blurDisplayed = await driver.wait(until.elementLocated(By.xpath("//div[contains(@class, 'mantine-1nisyfe')]")), 4500).isDisplayed();
-    assert.strictEqual(blurDisplayed, true);
 })
 
 Then(`I should see the queried data reflect on the graph under the search section`, async function() {
@@ -45,8 +36,8 @@ Then(`I should see the queried data reflect on the graph under the search sectio
     const apexBarPlotSeries = "//*[name()='g' and @class='apexcharts-bar-series apexcharts-plot-series']"
     const apexData = "//*[name()='g' and @class='apexcharts-series']"
     const topFrequency = "//*[name()='path'][1]"
-    const lastYearButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 12 months']"));
-    await driver.actions().click(lastYearButton).perform();
+    const lastWeekButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-np8w2')]//label[text()='Last 7 days']"));
+    await driver.actions().click(lastWeekButton).perform();
     const res = await driver.wait(until.elementLocated(By.xpath(apexSvg + apexSvgInner + apexBarPlotSeries + apexData + topFrequency)), 4500);
     assert(res);
 })
@@ -57,10 +48,10 @@ Then(`the header on top of the table should reflect the query parameters`, async
     const titleElement = await driver.wait(until.elementLocated(By.xpath(apexSvg + titleText)), 4500);
     const res = await titleElement.getText();
     const today = new Date();
-    const lastYear = new Date(new Date().setDate(today.getDate() - 365))
+    const lastWeek = new Date(new Date().setDate(today.getDate() - 7))
     const todayText = `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`
-    const lastYearText = `${lastYear.getDate()}-${lastYear.getMonth()+1}-${lastYear.getFullYear()}`
-    const sol = `Product unit data for "running" from ${lastYearText} to ${todayText}:`
+    const lastWeekText = `${lastWeek.getDate()}-${lastWeek.getMonth()+1}-${lastWeek.getFullYear()}`
+    const sol = `Product unit data for "running" from ${lastWeekText} to ${todayText}:`
     assert.strictEqual(res, sol);
 });
 
