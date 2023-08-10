@@ -50,7 +50,7 @@ function InsightAccordions({ categorizedInsights }) {
         )}
 
 
-        {categorizedInsights.Severe_Insight && (
+        {categorizedInsights.Severe_Insight>0 && (
           <Accordion.Item value="Severe">
             <Accordion.Control>
               <Group noWrap>
