@@ -22,18 +22,25 @@ class Sale < ApplicationRecord
     #   y_axis: number of sales of sales (array)
     # the two fields have 1:1 mapping
     def self.sales_frequency(sales)
-      hash = {}
-      sales.each do |p|
-        if hash[p.product_id]
-          hash[p.product_id] += p.sales
-        else
-          hash[p.product_id] = p.sales
+        hash = {}
+        sales.each do |p|
+          if hash[p.product_id]
+            hash[p.product_id] += p.sales
+          else
+            hash[p.product_id] = p.sales
+          end
         end
-      end
-    
-      hash = hash.sort_by {|k, v| v}.reverse.to_h
-      hash = hash.transform_keys! { |k| sales.find_by(product_id: k).product_name }
 
+        hash = hash.sort_by {|k, v| v}.reverse.to_h
+        hash = hash.transform_keys! { |k| 
+          new_key_base = sales.find_by(product_id: k).product_name
+          new_key = new_key_base
+          idx = 1
+          while hash.has_key?(new_key)
+              new_key = new_key_base + " (#{idx})"
+          end
+          new_key 
+        } 
       {x_axis: hash.keys, y_axis: hash.values}
     end
 
@@ -54,7 +61,15 @@ class Sale < ApplicationRecord
 
         # sort the hash before stripping keys/values
         hash = hash.sort_by {|k, v| v}.reverse.to_h
-        hash = hash.transform_keys! { |k| sales.find_by(product_id: k).product_name }
+        hash = hash.transform_keys! { |k| 
+            new_key_base = sales.find_by(product_id: k).product_name
+            new_key = new_key_base
+            idx = 1
+            while hash.has_key?(new_key)
+                new_key = new_key_base + " (#{idx})"
+            end
+            new_key 
+        } 
 
 
         # output
