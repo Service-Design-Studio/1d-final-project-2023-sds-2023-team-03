@@ -73,12 +73,6 @@ module Api
         end
       end
 
-      def update_category_for_product
-        competitor = Competitor.find(params[:id])
-        competitor.update_category_with_ai
-        redirect_to competitors_path(competitor), notice: 'Category updated successfully.'
-      end
-
       def destroy
         competitor = Competitor.find params[:id]
         competitor.destroy

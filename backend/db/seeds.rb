@@ -9,6 +9,7 @@ require 'faker'
 require 'csv'
 require 'uri'
 require 'concurrent-ruby'
+include VertexAiHelper
 
 # Generate 200 products
 200.times do
@@ -142,70 +143,79 @@ end
 # Define a cache to store API responses
 api_response_cache = {}
 api_response_cache_lock = Mutex.new
+count = 0
 
-# Define a method to update category with AI for a single ShopeeData
-def update_category_for_shopee_data(product_data, api_response_cache, api_response_cache_lock)
-  if product_data.product_description.nil?
+def update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock)
+  return unless product_data.category == "NIL"
+  if (product_data.product_description == "No product description available.")
     product_data.update(category: "NIL")
   else
     prod_text = "Product Name: #{product_data.product_name}\nProduct Description: #{product_data.product_description}"
     
-    # Use cached response or perform API request and update cache
     response = nil
-    api_response_cache_lock.synchronize do
-      if api_response_cache.key?(prod_text)
-        response = api_response_cache[prod_text]
-      else
-        response = perform_vertex_ai_request(prod_text)
+    retries = 3
+
+    retries.times do |retry_count|
+      api_response_cache_lock.synchronize do
+        if api_response_cache.key?(prod_text)
+          response = api_response_cache[prod_text]
+          puts "from cache"
+        else
+          response = perform_vertex_ai_request(prod_text)
+          puts "from API"
+        end
+      end
+
+      if response
         api_response_cache[prod_text] = response
+        break
+      end
+
+      if (retries == 1 && response.nil?)
+        puts("#{product_data.product_name}, #{product_data.product_description}")
+        puts("API call failed, retrying (attempt #{retry_count + 1})... #{response}")
+        sleep(60)
       end
     end
 
+    puts("response: \n#{count} \n #{response}")
     if response
       if response.key?('predictions') && response['predictions'].first.key?('content')
         category = response['predictions'].first['content']
         product_data.update(category: category)
         product_data.save!
+        puts("category updated! new: #{category}")
       else
-        Rails.logger.error("Unexpected response format: #{response}")
+        puts("Unexpected response format: #{response}")
       end
     else
       # Handle error
-      Rails.logger.error("Error occurred during category classification")
-      product_data.update(category: "NIL")
+      puts("prod: #{product_data.product_name} \n#{product_data.product_description}")
+      puts("Error occurred during category classification: #{response}")
     end
   end
 end
 
-# Fetch all ShopeeData records
 all_shopee_data = ShopeeData.all
-
-# Fetch all LazadaData records
 all_lazada_data = LazadaData.all
 
-# Combine both datasets into a single array
 all_product_data = all_shopee_data + all_lazada_data
 
-# Define the number of threads to use for parallel processing
 num_threads = 4
 
-# Split the ShopeeData records into batches for parallel processing
 all_data_batches = all_product_data.each_slice(all_product_data.size / num_threads).to_a
 
-# Create a thread pool for parallel processing
 thread_pool = Concurrent::ThreadPoolExecutor.new(
   min_threads: num_threads,
   max_threads: num_threads
 )
 
-# Submit tasks to the thread pool for parallel processing
 all_data_batches.each do |batch|
   batch.each do |product_data|
     thread_pool.post { update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock) }
   end
 end
 
-# Wait for all threads to complete
 thread_pool.shutdown
 thread_pool.wait_for_termination
 
