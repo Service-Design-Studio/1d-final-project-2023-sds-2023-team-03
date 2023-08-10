@@ -95,7 +95,7 @@ function MerchandisingTable({ data, anomalyData, threshold, pageSize, apiLoad, t
         if (priorities.length == 0 && tagFilterData.priorities.length == 0) {
             finalData = filteredData;
         } else {
-            priorities.forEach((p) => {
+            priorities.reverse().forEach((p) => {
                 finalData.unshift(p);
             });
         };
