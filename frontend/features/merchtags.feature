@@ -2,7 +2,7 @@
 Feature: Merchandising Tagging System - Priority Display
 
   Scenario: Visiting the merchandising page
-    When I visit the merchandising page
+    When I visit the merchandising page first
     Then I should see the merchandising table
     And I should see each row populated by row data
 
@@ -41,6 +41,7 @@ Feature: Merchandising Tagging System - Priority Display
 
   Scenario: Sorting under tag priorities
     Given I have filtered for the "Anomalous: Low" tag using the tag filter bar
-    When I sort the table by "stocks" while tagged
+    When I sort the table by stocks while tagged
     Then I should see the products with the "Anomalous: Low" tag sorted
     And I should see every other product under it sorted separately in the same order
+

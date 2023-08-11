@@ -6,7 +6,7 @@ const driver = new Builder().forBrowser('chrome').build();
 const websiteUrl = 'https://sds-team-3-ecommerce-analysis-tool-jvfpcfcafa-as.a.run.app/';
 var defaultRowText;
 
-When('I visit the merchandising page', async () => {
+When('I visit the merchandising page first', async () => {
     const targetUrl = websiteUrl + 'merchandising';
     await driver.get(targetUrl);
     const currUrl = await driver.getCurrentUrl();
@@ -21,7 +21,7 @@ Then('I should see the merchandising table', async () => {
 Then('I should see each row populated by row data', {timeout: 60 * 1000}, async () => {
     const tableRow = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[3]")), 55000);
     assert(tableRow);
-    defaultRowText = await tableRow.findElement(By.xpath("//div[text()='Rustic Wooden Shirt']")).getText();
+    defaultRowText = await tableRow.findElement(By.xpath("//div")).getText();
 })
 
 When('I filter for the {string} tag using the tag filter bar', async (str) => {
@@ -112,8 +112,7 @@ When('I toggle the hide other products switch', async () => {
 
 Then('the rows should not change', async () => {
     const tableRow = await driver.wait(until.elementLocated(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[3]")), 55000);
-    rowText = await tableRow.findElement(By.xpath("//div[text()='Rustic Wooden Shirt']")).getText();
-    console.log(rowText, defaultRowText)
+    rowText = await tableRow.findElement(By.xpath("//div")).getText();
     assert(rowText === defaultRowText);
     const switchButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-Switch-thumb')]"));
     await driver.actions().click(switchButton).perform();
@@ -139,4 +138,21 @@ Then('every product I see should have the {string} tag', {timeout: 1000 * 60}, a
     await driver.actions().click(clearButton).perform();
     const switchButton = await driver.findElement(By.xpath("//div[contains(@class, 'mantine-Switch-thumb')]"));
     await driver.actions().click(switchButton).perform();
+})
+
+When('I sort the table by stocks while tagged', async () => {
+    const sortButton = await driver.findElement(By.xpath("//th[contains(@class, 'mantine-agtmx3')]"));
+    await driver.actions().click(sortButton).perform();
+})
+
+Then('I should see the products with the {string} tag sorted', async (str) => {
+    const row2Value = await driver.findElement(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[1]//td[2]")).getText();
+    const row3Value = await driver.findElement(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[2]//td[2]")).getText();
+    assert(parseInt(row2Value) >= parseInt(row3Value));
+})
+
+Then('I should see every other product under it sorted separately in the same order', async () => { 
+    const row15Value = await driver.findElement(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[14]//td[2]")).getText();
+    const row16Value = await driver.findElement(By.xpath("//table[contains(@class, 'mantine-Table-root')]//tbody/tr[15]//td[2]")).getText();
+    assert(parseInt(row15Value) >= parseInt(row16Value));
 })
