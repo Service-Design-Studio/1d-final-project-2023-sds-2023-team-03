@@ -41,14 +41,7 @@ const CompetitorsInsights = () => {
     Positive_Insight: [],
     Exceptional_Insight: [],
   };
-
-  const handleProductSalesMouseEnter = () => {
-    setIsProductSalesHovered(true);
-  };
-
-  const handleProductSalesMouseLeave = () => {
-    setIsProductSalesHovered(false);
-  };
+  console.log("All insights: ", allInsights);
 
   return (
     <div style={containerStyle}>
