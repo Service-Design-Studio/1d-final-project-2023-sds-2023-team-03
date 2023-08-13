@@ -92,7 +92,7 @@ Dir[Rails.root.join('scraper/Lazada/data/*')].each do |filename|
     final_price = row[6] ? row[6].delete("$").to_f : 0
     discount = initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
 
-    lazadaData = LazadaData.find_or_create_by(product_name: row[3]) do |data|
+    LazadaData.find_or_create_by(product_name: row[3]) do |data|
       data.merchant_name = row[0],
       data.keyword = row[1],
       data.competitor_name = row[2],
@@ -118,7 +118,7 @@ Dir[Rails.root.join('scraper/Shopee/data/*')].each do |filename|
     initial_price = (row[5] && row[5] != "No Price Reduction") ? row[5].delete("$").to_f : (row[6] ? row[6].delete("$").to_f : 0)
     final_price = row[6] ? row[6].delete("$").to_f : 0
 
-    shopeeData = ShopeeData.find_or_create_by(product_name: row[3]) do |data|
+    ShopeeData.find_or_create_by(product_name: row[3]) do |data|
       data.merchant_name = row[0],
       data.keyword = row[1],
       data.competitor_name = row[2],
