@@ -28,6 +28,12 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
         expect(new_product.price).to eq(89)
         expect(new_product.stock).to eq(30)
     end
+
+    it "should not successfully create with invalid parameters, renders a JSON response with errors" do
+      post :create, params: {product: invalid_attributes}
+
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+    end
   end
 
   # Delete
