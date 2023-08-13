@@ -101,3 +101,4 @@ end
 
 gem "google-cloud-bigquery"
 gem "google-cloud-storage"
+gem 'concurrent-ruby'

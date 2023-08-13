@@ -3,6 +3,7 @@ require 'json'
 module Api
   module V1
     class CompetitorsController < ApplicationController
+      
        def index
         if params.has_key?(:competitor_name)
           query and return
@@ -65,6 +66,12 @@ module Api
         rescue ActiveRecord::RecordInvalid
           render json: { status: 'ERROR', message: 'Competitor product not updated', data: competitor.errors }, status: :unprocessable_entity
         end
+      end
+
+      def update_category_for_product
+        competitor = Competitor.find(params[:id])
+        competitor.update_category_with_ai
+        redirect_to competitors_path(competitor), notice: 'Category updated successfully.'
       end
 
       def destroy
