@@ -51,6 +51,12 @@ let(:new_sale6) { Sale.create! sale_params3 }
         expect(new_sale.price).to eq(100)
         expect(new_sale.sales).to eq(8)
     end
+
+    it "should not successfully create with invalid parameters, renders a JSON response with errors" do
+      post :create, params: {sale: invalid_attributes}
+
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+    end
   end
 
   # Delete
