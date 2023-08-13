@@ -1,0 +1,802 @@
+{
+    "1108270": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1115114": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1146099": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1189097": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1272548": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1276849": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1284665": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1309677": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1334644": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1400301": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1429156": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1441259": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1450103": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1499875": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1534759": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1654349": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1655637": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1660810": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1714028": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1731527": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1762056": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1799064": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1805185": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1845687": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1858945": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "1879788": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "1922976": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2085401": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2130368": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2236676": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2289119": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2325623": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2358533": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2368079": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "2376565": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2429925": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2478018": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2517211": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2529611": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "2530246": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2547430": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2596150": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2713972": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2722843": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2819988": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2898242": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2903860": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "2909974": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "2972125": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "2984830": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3072681": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3119517": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3208928": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3302047": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3317534": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3351285": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3353891": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3355228": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "3399194": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "3400668": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3414478": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3448339": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "3478575": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3519255": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3556922": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3559797": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3600271": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3661315": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3761029": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3770705": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3795650": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3798690": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "3883546": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4084943": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4116563": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4123118": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4147931": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4160497": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "4242537": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4259808": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4284116": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4299288": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4454832": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4521619": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4566027": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4617632": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4719255": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4720672": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4808249": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4810359": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4847877": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4847935": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "4903992": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "4971023": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5003121": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5069132": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "5072652": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5088776": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5120013": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "5221563": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5288306": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5384109": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5524604": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "5547517": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5569227": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5598268": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5629751": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5654450": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5681687": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5699736": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5703471": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5726085": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "5886609": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5962283": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "5973817": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6013056": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "6082885": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "6193025": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "6252758": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6253162": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6255755": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6328214": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "6399099": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6467881": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6528595": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6537379": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6539543": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "6540012": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "6541785": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6599191": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6607836": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6609221": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6650150": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6705280": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6816635": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6842285": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6852202": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6896658": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "6940209": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7012923": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7028471": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7031553": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7077352": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7146939": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7207108": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7278138": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "7310323": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7389419": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "7402730": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7497700": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "7603711": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7667713": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7704332": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "7840145": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7897181": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7923401": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7932683": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7943440": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7955679": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7987340": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "7991590": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8028052": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8039024": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8044922": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8047105": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8076632": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8097986": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8229542": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8256769": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8298232": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8305125": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8309001": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8320838": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8328099": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8331392": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8354008": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8458583": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8525362": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8554264": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8674006": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8678523": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8716010": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8745261": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8786664": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8793960": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "8900639": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8902555": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "8992586": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "9090176": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "9272879": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "9273564": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "9282561": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "9387355": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "9453646": {
+      "is_anomaly": true,
+      "anomaly_type": "High"
+    },
+    "9616273": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "9659910": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "9664143": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "9742615": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "9979667": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    },
+    "9991057": {
+      "is_anomaly": false,
+      "anomaly_type": "Not Anomaly"
+    }
+  }

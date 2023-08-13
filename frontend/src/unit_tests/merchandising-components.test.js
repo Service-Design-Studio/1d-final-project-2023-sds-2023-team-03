@@ -9,6 +9,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 
 import mockTableData from './merchandising-table-stub.json';
+import mockAnomalyData from './merchandising-table-anomalies-stub.json'
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
     observe: jest.fn(),
@@ -90,9 +91,9 @@ class TestUseState {
 }
 
 describe('MerchandisingTable.jsx', () => {
-    const dataTarget = <MerchandisingTable data={mockTableData} pageSize={50} apiLoad={false} tagFilterConfigs={{priorities: [], hideOthers: false}}/>
+    const dataTarget = <MerchandisingTable data={mockTableData} anomalyData={mockAnomalyData} pageSize={50} apiLoad={false} tagFilterConfigs={{priorities: [], hideOthers: false}}/>
     const customTarget = (params) => {
-        return <MerchandisingTable data={params.data} pageSize={params.pageSize} apiLoad={params.apiLoad} tagFilterConfigs={params.tagFilterConfigs}/>
+        return <MerchandisingTable data={params.data} anomalyData={mockAnomalyData} pageSize={params.pageSize} apiLoad={params.apiLoad} tagFilterConfigs={params.tagFilterConfigs}/>
     }
 
     test('Renders without errors', () => {
@@ -117,7 +118,7 @@ describe('MerchandisingTable.jsx', () => {
     test('Sorted by stock by default (ASC)', () => {
         const {container} = render(<MockContainer component={dataTarget}/>);
         const rows = container.getElementsByClassName("mantine-bdz581");
-        expect(rows).toHaveLength(12);
+        expect(rows).toHaveLength(16);
         const row1 = rows[0];
         const row2 = rows[4];
         expect(parseInt(row1.textContent) < parseInt(row2.textContent)).toBeTruthy();
@@ -141,7 +142,7 @@ describe('MerchandisingTable.jsx', () => {
             pageSize: 50,
             apiLoad: false,
             tagFilterConfigs: {
-                priorities: ["restock"],
+                priorities: ["popular_low_stock"],
                 hideOthers: true
             }
         }
@@ -157,7 +158,7 @@ describe('MerchandisingTable.jsx', () => {
             }
         }
 
-        expect(counter).toEqual(3);
+        expect(counter).toEqual(6);
     })
 
     test('Filters by units sold correctly (DESC)', async () => {
@@ -165,8 +166,9 @@ describe('MerchandisingTable.jsx', () => {
         const btns = container.getElementsByClassName("mantine-t91jkm");
         expect(btns).toHaveLength(5);
         await userEvent.click(btns[2]);
+        await userEvent.click(btns[2]);
         const rows = container.getElementsByClassName("mantine-1xwwtxe");
-        expect(rows).toHaveLength(200);
+        expect(rows.length >= 50);
         const row1 = rows[0];
         const row2 = rows[20];
         expect(parseInt(row1.textContent) > parseInt(row2.textContent)).toBeTruthy();

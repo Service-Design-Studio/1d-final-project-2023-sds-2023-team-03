@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/20</span>
+                <span class='fraction'>12/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.16% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>19/24</span>
+                <span class='fraction'>8/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.75% </span>
+                <span class="strong">68.75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/16</span>
+                <span class='fraction'>11/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -152,12 +152,12 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,9 +166,9 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -215,11 +215,11 @@ function ProductInsights({ insightData }) {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (!insightData.length) <span class="cstat-no" title="statement not covered" >return;</span>
         setData(insightData
             .filter((e) =&gt; e)
-            .sort((a, b) =&gt; {
-                var keyA = a.severity.level;
-                var keyB = b.severity.level;
-                if (keyA &gt; keyB) return -1;
-                <span class="missing-if-branch" title="else path not taken" >E</span>if (keyA &lt; keyB) return 1;
+            .sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; {
+                var keyA = <span class="cstat-no" title="statement not covered" >a.severity.level;</span>
+                var keyB = <span class="cstat-no" title="statement not covered" >b.severity.level;</span>
+<span class="cstat-no" title="statement not covered" >                if (keyA &gt; keyB) <span class="cstat-no" title="statement not covered" >return -1;</span></span>
+<span class="cstat-no" title="statement not covered" >                if (keyA &lt; keyB) <span class="cstat-no" title="statement not covered" >return 1;</span></span>
 <span class="cstat-no" title="statement not covered" >                return 0;</span>
             }))
 &nbsp;
@@ -228,8 +228,8 @@ function ProductInsights({ insightData }) {
     const classes = useStyles();
     return (
         &lt;Stack spacing = "0"&gt;{data.map((ins) =&gt; {
-            let icon = ins.severity.label === 'Critical' ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;VscWarning fontSize="1.2em" color="white" /&gt; </span>: (ins.severity.label === 'Severe' ? &lt;FiThumbsDown fontSize="1.2em" color="red" /&gt; : (ins.severity.label === 'Moderate' ? &lt;RiEmotionNormalLine fontSize="1.2em" color="black" /&gt; : (ins.severity.label === 'Positive' ? &lt;FiThumbsUp fontSize="1.2em" color="teal" /&gt; : <span class="branch-1 cbranch-no" title="branch not covered" >&lt;LuPartyPopper fontSize="1.2em" color="white" /&gt;)</span>))
-            let textColor = ins.severity.label === 'Moderate' ? 'dark' : (ins.severity.label === 'Critical' || ins.severity.label === 'Severe' ? 'red' : 'green');
+            let icon = ins.severity.label === 'Critical' ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;VscWarning fontSize="1.2em" color="white" /&gt; </span>: (ins.severity.label === 'Severe' ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;FiThumbsDown fontSize="1.2em" color="red" /&gt; </span>: (ins.severity.label === 'Moderate' ? &lt;RiEmotionNormalLine fontSize="1.2em" color="black" /&gt; : (<span class="branch-1 cbranch-no" title="branch not covered" >ins.severity.label === 'Positive' ? &lt;FiThumbsUp fontSize="1.2em" color="teal" /&gt; : &lt;LuPartyPopper fontSize="1.2em" color="white" /&gt;)</span>))
+            let textColor = ins.severity.label === 'Moderate' ? 'dark' : (<span class="branch-1 cbranch-no" title="branch not covered" >ins.severity.label === 'Critical' || ins.severity.label === 'Severe' ? 'red' : 'green')</span>;
             return (
                 &lt;div className={classes.container}&gt;
                     &lt;Badge className={classes.badge}
@@ -256,7 +256,7 @@ export default ProductInsights;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-09T23:07:10.784Z
+                at 2023-08-13T14:17:25.024Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
