@@ -92,7 +92,7 @@ Dir[Rails.root.join('scraper/Lazada/data/*')].each do |filename|
     final_price = row[6] ? row[6].delete("$").to_f : 0
     discount = initial_price != 0 ? (1 - (final_price/initial_price)) * 100 : 0
 
-    lazadaData = LazadaData.find_or_create_by(product_name: row[3]) do |data|
+    LazadaData.find_or_create_by(product_name: row[3]) do |data|
       data.merchant_name = row[0],
       data.keyword = row[1],
       data.competitor_name = row[2],
@@ -119,7 +119,7 @@ Dir[Rails.root.join('scraper/Shopee/data/*')].each do |filename|
     initial_price = (row[5] && row[5] != "No Price Reduction") ? row[5].delete("$").to_f : (row[6] ? row[6].delete("$").to_f : 0)
     final_price = row[6] ? row[6].delete("$").to_f : 0
 
-    shopeeData = ShopeeData.find_or_create_by(product_name: row[3]) do |data|
+    ShopeeData.find_or_create_by(product_name: row[3]) do |data|
       data.merchant_name = row[0],
       data.keyword = row[1],
       data.competitor_name = row[2],
@@ -163,54 +163,49 @@ api_response_cache_lock = Mutex.new
 count = 0
 
 def update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock)
-  return unless product_data.category == "NIL"
-  return unless product_data.category == "NIL"
-  if (product_data.product_description == "No product description available.")
-    product_data.update(category: "NIL")
-  else
-    prod_text = "Product Name: #{product_data.product_name}\nProduct Description: #{product_data.product_description}"
-    
-    response = nil
-    retries = 3
+  return unless (product_data.category == "NIL" || product_data.product_description == "No product description available.")
+  prod_text = "Product Name: #{product_data.product_name}\nProduct Description: #{product_data.product_description}"
+  
+  response = nil
+  retries = 3
 
-    retries.times do |retry_count|
-      api_response_cache_lock.synchronize do
-        if api_response_cache.key?(prod_text)
-          response = api_response_cache[prod_text]
-          puts "from cache"
-        else
-          response = perform_vertex_ai_request(prod_text)
-          puts "from API"
-        end
-      end
-
-      if response
-        api_response_cache[prod_text] = response
-        break
-      end
-
-      if (retries == 1 && response.nil?)
-        puts("#{product_data.product_name}, #{product_data.product_description}")
-        puts("API call failed, retrying (attempt #{retry_count + 1})... #{response}")
-        sleep(60)
-      end
-    end
-
-    puts("response: \n#{count} \n #{response}")
-    if response
-      if response.key?('predictions') && response['predictions'].first.key?('content')
-        category = response['predictions'].first['content']
-        product_data.update(category: category)
-        product_data.save!
-        puts("category updated! new: #{category}")
+  retries.times do |retry_count|
+    api_response_cache_lock.synchronize do
+      if api_response_cache.key?(prod_text)
+        response = api_response_cache[prod_text]
+        puts "from cache"
       else
-        puts("Unexpected response format: #{response}")
+        response = perform_vertex_ai_request(prod_text)
+        puts "from API"
       end
-    else
-      # Handle error
-      puts("prod: #{product_data.product_name} \n#{product_data.product_description}")
-      puts("Error occurred during category classification: #{response}")
     end
+
+    if response
+      api_response_cache[prod_text] = response
+      break
+    end
+
+    if (retries == 1 && response.nil?)
+      puts("#{product_data.product_name}, #{product_data.product_description}")
+      puts("API call failed, retrying (attempt #{retry_count + 1})... #{response}")
+      sleep(60)
+    end
+  end
+
+  puts("response: \n#{count} \n #{response}")
+  if response
+    if response.key?('predictions') && response['predictions'].first.key?('content')
+      category = response['predictions'].first['content']
+      product_data.update(category: category)
+      product_data.save!
+      puts("category updated! new: #{category}")
+    else
+      puts("Unexpected response format: #{response}")
+    end
+  else
+    # Handle error
+    puts("prod: #{product_data.product_name} \n#{product_data.product_description}")
+    puts("Error occurred during category classification: #{response}")
   end
 end
 
