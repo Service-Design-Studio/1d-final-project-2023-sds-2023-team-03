@@ -1,6 +1,7 @@
 # Puma SEA E-Commerce Analytics Tool
 
 A Service Design Studio Project in collaboration with Puma SEA E Commerce Team
+
 [Google Sites](https://sites.google.com/view/ctrl-design/home)
 
 ## Table of Contents
@@ -66,6 +67,19 @@ npm test
 ```
 
 ## Backend
+1. Navigate to Backend folder
+```bash
+   cd .\backend\
+```
+2. Install Backend Dependencies
+```bash
+   bundle install
+```
+3. Data Migration and Seeding
+```bash
+rails db:migrate
+rails db:seed
+```
 
 ## Unit Testing
 
