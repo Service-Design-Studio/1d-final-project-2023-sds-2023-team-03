@@ -43,10 +43,10 @@ Before you begin, ensure you have met the following requirements:
 
 ### Frontend
 - Our frontend utilises the React framework.
-
-#### Set Up
+1. Navigate to Frontend folder
 ```bash
-cd .\frontend\
-
-
-    ####  Backend
+   cd .\frontend\
+2. Install Frontend Dependencies
+`npm i --legacy-peer-deps`
+3. Run in Local Host
+`npm run dev`
