@@ -19,7 +19,7 @@ A Service Design Studio Project in collaboration with Puma SEA E Commerce Team
 
 ## Project Overview
 
-The application is utlises Puma's internal data and its competitor's data (open sourced) to generate relevant insights and visuals to guide business strategy and decisions. Do take note that Puma;'s internal data will be seeded due to the nature of non-disclosure.
+The application is utlises Puma's internal data and its competitor's data (open sourced) to generate relevant insights and visuals to guide business strategy and decisions. Do take note that Puma's internal data will be seeded due to the nature of non-disclosure.
 
 ## Technologies
 
