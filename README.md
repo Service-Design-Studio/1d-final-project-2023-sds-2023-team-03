@@ -52,7 +52,7 @@ Before you begin, ensure you have met the following requirements:
 - Our frontend utilises the React framework.
 1. Navigate to Frontend folder
 ```bash
-   cd .\frontend\
+   cd ./frontend/
 ```
 2. Install Frontend Dependencies
 ```bash
@@ -70,7 +70,7 @@ npm test
 ### Backend
 1. Navigate to Backend folder
 ```bash
-   cd .\backend\
+   cd ./backend/
 ```
 2. Install Backend Dependencies
 ```bash
@@ -80,6 +80,20 @@ npm test
 ```bash
 rails db:migrate
 rails db:seed
+```
+4. Customizing insights
+Located in: /backend/lib/insights
+
+To add:
+```
+- Add a function file and name it accordingly to one of the global or product folders.
+- Add the file name to the bundler according to the insight type.
+```
+  
+To modify:
+```
+- Simply edit the files with the insight name you wish to edit.
+- If the name must be changed, remember to change its output as well as bundler entry as well.
 ```
 
 ### Unit Testing
