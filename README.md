@@ -83,20 +83,58 @@ npm test
 rails db:migrate
 rails db:seed
 ```
-4. Customizing insights
-Located in: /backend/lib/insights
 
-To add:
+### Insights configuration:
+- Located in: /backend/lib/insights
+- Severity levels may be changed in **insights/insights_config.rb**
+- Insights typically have the following output:
 ```
+{
+  :name => "name",        # typically same as file name without "apply"
+  :text => "message",     # message that comes with the insight to be displayed on the frontend
+  :severity => {      
+    :label => InsightsConfig.severity[N],                                # name of severity level, check insights/insights_config.rb for more info
+    :level => InsightsConfig.severity.key(InsightsConfig.severity[1])    # severity level integer, check insights/insights_config.rb for more info
+  },
+  :type => "arbitrary type"  # this is ONLY used in GLOBAL insights; used to determine icon beside the insight in the overview page
+}
+```
+
+### insights/insights_config.rb:
+
+To add new insights, or removing existing ones, remove the insight name from the corresponding array in the InsightsConfig module.
+
+**As each type of insight (global, product, etc.) have different outputs, they each come with a different bundler.**
+
+**This means they're in separate arrays!!**
+```
+@@product_insights = [
+  :apply_sales_change,
+  :apply_declining_seven_days,
+  :apply_popular
+]
+
+@@global_insights = [
+  :insight_a,
+  :insight_b,
+  :insight_c
+]
+```
+
+### To add new insights:
 - Add a function file and name it accordingly to one of the global or product folders.
-- Add the file name to the bundler according to the insight type.
-```
+- Ensure the file outputs an insight according to the above.
+- Check the bundler file to see what inputs each type of insight takes.
+- Add the file name to the config array according to the insight type.
   
-To modify:
-```
+### To modify:
 - Simply edit the files with the insight name you wish to edit.
-- If the name must be changed, remember to change its output as well as bundler entry as well.
-```
+- If the name must be changed, remember to change its output as well as bundler (insights_config.rb) entry as well. 
+
+### To delete:
+- Simply remove the name of the insight from the array in the InsightsConfig module.
+- If need be, delete the file after this.
+
 
 ### Unit Testing
 
