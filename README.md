@@ -1,28 +1,88 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/PW-Vmbf6)
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-7f7980b617ed060a017424585567c406b6ee15c891e84e1186181d67ecf80aa0.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=11186674)
+# Puma SEA E-Commerce Analytics Tool
+
+A Service Design Studio Project in collaboration with Puma SEA E Commerce Team
+
+[Google Sites](https://sites.google.com/view/ctrl-design/home)
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Technologies](#technologies)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Frontend](#Frontend)
+  - [Backend](#Backend)
+  - [Unit Testing](#unit-testing)
+  - [API Testing and Documentation](#api-testing-and-documentation)
 
 
-# README
+## Project Overview
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Provide a brief introduction to the project, its purpose, and main features.
 
-Things you may want to cover:
+## Technologies
 
-* Ruby version
+- Ruby on Rails (Backend)
+- React (Frontend)
+- Google Cloud Platfrom (Deployment)
 
-* System dependencies
+Architecture Diagram
 
-* Configuration
+Microservice Diagram
 
-* Database creation
+## Getting Started
 
-* Database initialization
+### Prerequisites
 
-* How to run the test suite
+Before you begin, ensure you have met the following requirements:
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby: [Installation Guide](https://www.ruby-lang.org/en/documentation/installation/)
+- Node.js and npm: [Installation Guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-* Deployment instructions
+### Installation
 
-* ...
+1. Clone the repository: 
+
+   ```bash
+   git clone https://github.com/Service-Design-Studio/1d-final-project-2023-sds-2023-team-03.git
+   ```
+
+### Frontend
+- Our frontend utilises the React framework.
+1. Navigate to Frontend folder
+```bash
+   cd .\frontend\
+```
+2. Install Frontend Dependencies
+```bash
+npm i --legacy-peer-deps
+```
+3. Run in Local Host
+```bash
+npm run dev
+```
+4. Generate Cucumber Test Case
+```bash
+npm test
+```
+
+### Backend
+1. Navigate to Backend folder
+```bash
+   cd .\backend\
+```
+2. Install Backend Dependencies
+```bash
+   bundle install
+```
+3. Data Migration and Seeding
+```bash
+rails db:migrate
+rails db:seed
+```
+
+### Unit Testing
+
+### API Testing and Documentation
+https://solar-flare-597216.postman.co/workspace/New-Team-Workspace~f21a8933-11ff-4b64-925a-36ea3f69caa1/collection/26558963-f93f0485-05b8-47c9-ac83-f28e647ca5eb?action=share&creator=26558963

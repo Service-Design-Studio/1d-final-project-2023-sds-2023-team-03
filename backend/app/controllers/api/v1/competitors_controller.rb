@@ -15,7 +15,11 @@ module Api
       def query
         # Query to get data for a specific competitor
         queried_name = params[:competitor_name]
-        competitor = Competitor.where("LOWER(competitor_name) LIKE ?", queried_name)
+
+        merchant = params[:merchant]&.downcase || 'lazada'
+        competitor_data_model = merchant == 'lazada' ? LazadaData : ShopeeData
+
+        competitor = competitor_data_model.where("LOWER(competitor_name) LIKE ?", queried_name)
 
         # Query to get top 5 sales for the specific competitor
         top_sales = competitor.order(sales: :desc).limit(5)
@@ -27,8 +31,11 @@ module Api
       end
 
       def all
+        merchant = params[:merchant]&.downcase || 'lazada'
+        competitor_data_model = merchant == 'lazada' ? LazadaData : ShopeeData
+
         # Query to get data for all competitors
-        all_competitors = Competitor.all
+        all_competitors = competitor_data_model.all
 
         # Query to get top 5 sales across all competitors
         top_sales = all_competitors.order(sales: :desc).limit(5)

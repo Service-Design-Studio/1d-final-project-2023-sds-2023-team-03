@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import DateSegment from '../DateSegment.jsx'
+import DateSegment from './DateSegment.jsx'
 import CategorySelect from './CategorySelect.jsx'
 import { Box, LoadingOverlay, Group, ActionIcon, Stack, Space, Tooltip } from '@mantine/core'
 import { AiOutlineCalendar } from 'react-icons/ai'
@@ -10,7 +10,7 @@ import './CategorySearch.css'
 import ErrorModal from '../ErrorModal.jsx'
 import { useDisclosure } from '@mantine/hooks'
 
-const CategorySearch = ({handleSalesData}) => {
+const CategorySearch = ({handleSalesData, url}) => {
     // constants for easy access
     const today = new Date();
     const lastWeek = new Date(new Date().setDate(today.getDate() - 7))
@@ -29,7 +29,6 @@ const CategorySearch = ({handleSalesData}) => {
     const [loading, loadingHandler] = useDisclosure(false)              // loading modal
     const [nullCalendar, nullCalendarHandler] = useDisclosure(false);   // calendar input error modal
     const [timeout, timeoutHandler] = useDisclosure(false);             // search timeout error modal
-
 
     useEffect(() => {
         if (!(calendar && (calendarDate[0] == null || calendarDate[1] == null))) {
@@ -50,8 +49,8 @@ const CategorySearch = ({handleSalesData}) => {
         const end = `${date[1].getDate()}-${date[1].getMonth()+1}-${date[1].getFullYear()}`;
         return {
             query: await axios.get(
-                `https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/sales?category=${category}&start=${start}&end=${end}`,
-                {timeout: 10000}
+                url + `?category=${category}&start=${start}&end=${end}`,
+                {timeout: 120 * 1000}
                 ),
             start: start,
             end: end

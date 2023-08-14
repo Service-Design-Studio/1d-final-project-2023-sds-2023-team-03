@@ -9,18 +9,22 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :products, only: [:index, :show, :create, :update, :destroy] do
+        collection do
+          patch 'units_sold', to: 'products#update_units_sold'
+        end
       end
+
       resources :sales, only: [:index, :show, :create, :update, :destroy] do
         collection do
           get 'all', to: 'sales#all'
           get 'top_categories', to: 'sales#top_categories'
           get 'integrity', to: 'sales#integrity'
-          get 'sales_data'
+          get 'top', to: 'sales#top'
         end
       end
 
-      resources :users, only: [:create, :show, :index]
-      resources :competitors, only: [:index, :show] do
+      resources :users, only: [:index, :create, :show, :update, :destroy]
+      resources :competitors, only: [:index, :create, :show, :update, :destroy] do
         collection do
           get 'competitor_sales_data'
           get 'overall', to: 'competitors#all'
@@ -28,15 +32,21 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :anomalies, only: [] do
+      resources :anomalies do
         collection do
-          get 'create_temp_anomalies_table'
-          get 'create_quantity_stats_table'
-          get 'join_anomalies_with_stats'
-          get 'fetch_products'  
-          get 'load_data_into_bigquery'
+          get 'utilities/post_deployment', to: 'anomalies#post_deployment'
+          get 'utilities/fetch_products', to: 'anomalies#fetch_products'
+          get 'utilities/bigquery_data', to: 'anomalies#bigquery_data'
         end
       end
+
+      resources :insights do
+        collection do
+        end
+      end
+
+      post 'classify-category', to: 'category_classification#classify_category'
+
     end
   end
 

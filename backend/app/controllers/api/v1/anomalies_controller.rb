@@ -4,8 +4,32 @@ module Api
 
       require 'google/cloud/bigquery'
       require 'google/cloud/storage'
+      require_relative '../../../../lib/bigquery_module.rb'
 
-      def load_data_into_bigquery
+      DEFAULT_NUM_CLUSTERS = 5 # Set to your desired default value
+      DEFAULT_CONTAMINATION = 0.05 # Set to your desired default value
+
+      def index
+        contamination = params[:contamination].to_f
+
+        # Call the detect_anomalies method from BigQueryModule
+        products = BigQueryModule.detect_anomalies(contamination)
+
+        render json: products
+      end
+
+      def clear_bigquery_table
+        bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
+        dataset = bigquery.dataset "ecommerce_data"
+        table = dataset.table "product_data"
+        table.delete if table
+      end
+
+
+      def bigquery_data
+        # Clear the BigQuery table
+        clear_bigquery_table
+
         # Fetch products from database
         products = Product.all
 
@@ -18,9 +42,17 @@ module Api
         file = bucket.create_file StringIO.new(ndjson_data), "product_data.ndjson"
 
         # Step 2: Load data from GCS to BigQuery
-        bigquery = Google::Cloud::Bigquery.new
+        bigquery = Google::Cloud::Bigquery.new(project: "sds-group3")
         dataset = bigquery.dataset "ecommerce_data"
-        table = dataset.table "product_data"
+
+        # Retrieve the table or create it if it doesn't exist
+        table = dataset.table("product_data") || BigQueryModule.create_table
+
+        # If table is still nil, raise an error
+        unless table
+          render json: { error: "Failed to retrieve or create BigQuery table." }
+          return
+        end
 
         load_job = table.load_job "gs://puma-products/product_data.ndjson", format: "json"
         load_job.wait_until_done!
@@ -29,13 +61,11 @@ module Api
         if load_job.failed?
           # Log the errors to the Rails log
           Rails.logger.error("BigQuery Load Job Errors: #{load_job.errors.inspect}")
-          
           render json: { error: load_job.error }
         else
           render json: { message: "Data loaded successfully into BigQuery" }
         end
       end
-
 
       # Added the fetch_products action
       def fetch_products
@@ -52,28 +82,23 @@ module Api
         render json: { message: "K-means model with #{num_clusters} clusters is being trained." }
       end
 
-      def create_temp_anomalies_table
-        contamination = params[:contamination].to_f
+      def post_deployment
+        # 1. Load data into BigQuery
+        response = bigquery_data
+        return if performed? # Check if a render or redirect has been performed
 
-        # Call the create_temp_anomalies_table method from BigQueryModule
-        BigQueryModule.create_temp_anomalies_table(contamination)
+        # 2. Train K-means model
+        num_clusters = (params[:num_clusters] || DEFAULT_NUM_CLUSTERS).to_i
+        BigQueryModule.train_kmeans_model(num_clusters)
 
-        render json: { message: "Temp anomalies table created with contamination: #{contamination}" }
-      end
+        # 3. Detect anomalies
+        contamination = (params[:contamination] || DEFAULT_CONTAMINATION).to_f
+        anomalies = BigQueryModule.detect_anomalies(contamination)
 
-      def create_quantity_stats_table
-        # Call the create_quantity_stats_table method from BigQueryModule
-        BigQueryModule.create_quantity_stats_table
-
-        render json: { message: "Quantity stats table created." }
-      end
-
-      def join_anomalies_with_stats
-        # Call the join_anomalies_with_stats method from BigQueryModule
-        anomalies = BigQueryModule.join_anomalies_with_stats
-
+        # Render the anomalies or any other required response
         render json: anomalies
       end
+
 
       private
 

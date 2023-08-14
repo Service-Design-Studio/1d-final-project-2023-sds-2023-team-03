@@ -6,9 +6,8 @@ Feature: Fetching sales data for a specific product category relative to PUMA’
 
   Scenario: Fetching sales data (Happy)
     Given I am in preset selection mode
-    When I select "Last 12 months"
-    Then the search section should blur
-    And I should see the queried data reflect on the graph under the search section
+    When I select "Last 7 days"
+    Then I should see the queried data reflect on the graph under the search section
     And the header on top of the table should reflect the query parameters
 
   Scenario: Search timeout (Sad)

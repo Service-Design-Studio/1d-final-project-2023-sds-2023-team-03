@@ -48,42 +48,66 @@ module BigQueryModule
 
     if table
       puts "Table #{table.table_id} created with schema: #{table.schema.fields}"
+      return table
     else
-      puts "Table creation failed."
+      error_message = "Table creation failed."
+      puts error_message
+      raise StandardError.new(error_message)
     end
   end
 
-  def self.load_data_into_table(data)
-    project_id = "sds-group3"
-    dataset_id = "ecommerce_data" # Replace with your desired dataset ID
-    table_id = "product_data" # Replace with your desired table ID
+  def clear_bigquery_table
+    bigquery = Google::Cloud::Bigquery.new
+    dataset = bigquery.dataset "ecommerce_data"
+    table = dataset.table "product_data"
+    table.delete if table
+  end
+
+  def clear_bigquery_table
+    bigquery = Google::Cloud::Bigquery.new
+    dataset = bigquery.dataset "ecommerce_data"
+    table = dataset.table "product_data"
+    table.delete if table
+  end
+
+  def load_data_into_bigquery
+    # Clear the BigQuery table
+    clear_bigquery_table
   
-    bigquery = Google::Cloud::Bigquery.new(project: project_id)
-    dataset = bigquery.dataset(dataset_id)
-    table = dataset.table(table_id)
+    # Fetch products from database
+    products = Product.all
   
-    rows = data.map do |entry|
-      {
-        product_id: entry[0],
-        product_category: entry[1],
-        product_type: entry[2],
-        product_name: entry[3],
-        price: entry[4].to_f,
-        created_at: entry[5] ? DateTime.parse(entry[5].to_s) : nil,
-        updated_at: entry[6] ? DateTime.parse(entry[6].to_s) : nil,
-        stock: entry[7].to_i,
-        units_sold: entry[8].to_i,
-        description: entry[9],
-        image_link: entry[10]
-      }
+    # Convert products to newline-delimited JSON format
+    ndjson_data = products_to_ndjson(products)
+  
+    # Step 1: Upload to Google Cloud Storage
+    storage = Google::Cloud::Storage.new
+    bucket = storage.bucket "puma-products"
+    file = bucket.create_file StringIO.new(ndjson_data), "product_data.ndjson"
+  
+    # Step 2: Load data from GCS to BigQuery
+    bigquery = Google::Cloud::Bigquery.new
+    dataset = bigquery.dataset "ecommerce_data"
+  
+    # Retrieve the table or create it if it doesn't exist
+    table = dataset.table("product_data") || BigQueryModule.create_table
+  
+    # If table is still nil, raise an error
+    unless table
+      render json: { error: "Failed to retrieve or create BigQuery table." }
+      return
     end
   
-    response = table.insert(rows)
+    load_job = table.load_job "gs://puma-products/product_data.ndjson", format: "json"
+    load_job.wait_until_done!
   
-    if response.success?
-      puts "Data successfully loaded into BigQuery."
+    # Render success/failure message
+    if load_job.failed?
+      # Log the errors to the Rails log
+      Rails.logger.error("BigQuery Load Job Errors: #{load_job.errors.inspect}")
+      render json: { error: load_job.error }
     else
-      puts "Data loading failed: #{response.error}"
+      render json: { message: "Data loaded successfully into BigQuery" }
     end
   end
 
@@ -223,22 +247,15 @@ module BigQueryModule
     results = job.data.to_a
   
     # Process the results and return the data as an array of hashes
-    products = results.map do |row|
-      {
-        product_id: row[:product_id],
-        product_category: row[:product_category],
-        product_type: row[:product_type],
-        product_name: row[:product_name],
-        price: row[:price].to_f,
-        created_at: row[:created_at] ? DateTime.parse(row[:created_at].to_s) : nil,
-        updated_at: row[:updated_at] ? DateTime.parse(row[:updated_at].to_s) : nil,
-        stock: row[:stock].to_i,
-        units_sold: row[:units_sold].to_i,
-        description: row[:description],
-        image_link: row[:image_link],
-        anomaly_type: row[:anomaly_type]
+    products = {}
+    results.each do |row|
+      pid = row[:product_id]
+      products[pid] = {
+        :is_anomaly => row[:is_anomaly],
+        :anomaly_type => row[:anomaly_type]
       }
     end
+
     products
   end  
 end

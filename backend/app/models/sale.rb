@@ -7,29 +7,42 @@ class Sale < ApplicationRecord
     # queries for sales that match the category, whose dates are in between start/end
     def self.category_time_query(start_date, end_date, category)
         sales = Sale.all
-        sales = sales.where("lower(product_category) = ?", category)
+        if (category != 'overall')
+            sales = sales.where("lower(product_category) = ?", category)
+        end
         sales = sales.where(date: start_date..end_date)
     end
 
+    def self.product_time_query(product_id, start_date, end_date)
+        sales = Sale.where('product_id = ? AND date >= ? AND date <= ?', product_id, start_date, end_date)
+    end
 
     # turns the query into a hash containing 2 fields:
     #   x_axis: names of sales (array)
     #   y_axis: number of sales of sales (array)
     # the two fields have 1:1 mapping
     def self.sales_frequency(sales)
-  hash = {}
-  sales.each do |p|
-    if hash[p.product_name]
-      hash[p.product_name] += p.sales
-    else
-      hash[p.product_name] = p.sales
+        hash = {}
+        sales.each do |p|
+          if hash[p.product_id]
+            hash[p.product_id] += p.sales
+          else
+            hash[p.product_id] = p.sales
+          end
+        end
+
+        hash = hash.sort_by {|k, v| v}.reverse.to_h
+        hash = hash.transform_keys! { |k| 
+          new_key_base = sales.find_by(product_id: k).product_name
+          new_key = new_key_base
+          idx = 1
+          while hash.has_key?(new_key)
+              new_key = new_key_base + " (#{idx})"
+          end
+          new_key 
+        } 
+      {x_axis: hash.keys, y_axis: hash.values}
     end
-  end
-
-  hash = hash.sort_by {|k, v| v}.reverse.to_h
-
-  {x_axis: hash.keys, y_axis: hash.values}
-end
 
 
     # turns the query into a hash containing 2 fields:
@@ -39,15 +52,25 @@ end
     def self.sales_revenue(sales)
         hash = {}
         sales.each do |p|
-            if hash[p.product_name] then
-                hash[p.product_name] += p.price * p.sales
+            if hash[p.product_id] then
+                hash[p.product_id] += p.price * p.sales
             else
-                hash[p.product_name] = p.price * p.sales
+                hash[p.product_id] = p.price * p.sales
             end
         end
 
         # sort the hash before stripping keys/values
         hash = hash.sort_by {|k, v| v}.reverse.to_h
+        hash = hash.transform_keys! { |k| 
+            new_key_base = sales.find_by(product_id: k).product_name
+            new_key = new_key_base
+            idx = 1
+            while hash.has_key?(new_key)
+                new_key = new_key_base + " (#{idx})"
+            end
+            new_key 
+        } 
+
 
         # output
         {
@@ -123,4 +146,33 @@ end
         }
     end
 
+    def self.top_sales_time_range(place, start_date, end_date)
+        sales = Sale.where('date >= ? AND date <= ?', start_date, end_date)
+        out = {}
+
+        sales.each do |sale|
+            if (out[sale.product_id])
+                out[sale.product_id] += sale.sales
+            else
+                out[sale.product_id] = sale.sales
+            end
+        end 
+        
+        Hash[out.sort_by {|k, v| v}.reverse[0...place]]
+    end
+
+    def self.bottom_sales_time_range(place, start_date, end_date)
+        sales = Sale.where('date >= ? AND date <= ?', start_date, end_date)
+        out = {}
+
+        sales.each do |sale|
+            if (out[sale.product_id])
+                out[sale.product_id] += sale.sales
+            else
+                out[sale.product_id] = sale.sales
+            end
+        end 
+        
+        Hash[out.sort_by {|k, v| v}[0...place]]
+    end
 end

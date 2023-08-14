@@ -1,0 +1,38 @@
+[
+  {
+    "input": "]",
+    "time": 1870
+  },
+  {
+    "input": "k",
+    "time": 3779
+  },
+  {
+    "input": "E",
+    "time": 5703
+  },
+  {
+    "input": "M",
+    "time": 7440
+  },
+  {
+    "input": "N R",
+    "time": 9099
+  },
+  {
+    "input": "7",
+    "time": 10748
+  },
+  {
+    "input": "Z",
+    "time": 12300
+  },
+  {
+    "input": "_O",
+    "time": 13880
+  },
+  {
+    "input": "!v_C",
+    "time": 15425
+  }
+]

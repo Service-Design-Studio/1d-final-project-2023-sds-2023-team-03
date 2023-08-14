@@ -14,6 +14,11 @@ namespace :bigquery do
     BigQueryModule.create_table
   end
 
+  desc "Load data into BigQuery"
+  task load_data: :environment do
+    BigQueryModule.load_data_into_bigquery
+  end
+
   desc "Train the K-means clustering model"
   task :train_kmeans, [:num_clusters] => :environment do |t, args|
     num_clusters = args.num_clusters.to_i

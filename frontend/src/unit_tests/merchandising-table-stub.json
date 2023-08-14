@@ -1,0 +1,4970 @@
+[
+  {
+    "id": 1,
+    "product_id": 1400301,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Small Linen Watch",
+    "price": 26.6,
+    "created_at": "2023-08-10T22:45:23.130Z",
+    "updated_at": "2023-08-10T22:45:37.716Z",
+    "stock": 353,
+    "units_sold": 400,
+    "description": "Quia corrupti vero. Vel et beatae. Mollitia in ut. Neque consequuntur in. Atque soluta a.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "product_id": 3770705,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Intelligent Aluminum Wallet",
+    "price": 154.18,
+    "created_at": "2023-08-10T22:45:23.148Z",
+    "updated_at": "2023-08-10T22:45:37.727Z",
+    "stock": 178,
+    "units_sold": 251,
+    "description": "Consequuntur molestiae facere. Velit eius voluptatem. Odio necessitatibus et. Aut eos omnis. Enim illum quasi.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "product_id": 8305125,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Durable Iron Wallet",
+    "price": 178.71,
+    "created_at": "2023-08-10T22:45:23.162Z",
+    "updated_at": "2023-08-10T22:45:37.738Z",
+    "stock": 28,
+    "units_sold": 122,
+    "description": "Impedit natus porro. Rerum et velit. Est nisi blanditiis. Iste blanditiis minus. Nihil voluptas quo.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "product_id": 1654349,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Gorgeous Copper Computer",
+    "price": 150.4,
+    "created_at": "2023-08-10T22:45:23.176Z",
+    "updated_at": "2023-08-10T22:45:37.751Z",
+    "stock": 74,
+    "units_sold": 72,
+    "description": "Est aliquid expedita. Praesentium eum quia. Iure sed reprehenderit. Nam aut odio. Maxime quam et.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "product_id": 8039024,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Incredible Marble Pants",
+    "price": 50.34,
+    "created_at": "2023-08-10T22:45:23.189Z",
+    "updated_at": "2023-08-10T22:45:37.764Z",
+    "stock": 284,
+    "units_sold": 527,
+    "description": "Voluptate est voluptatem. Sint aliquam quo. Molestiae explicabo nostrum. Et quisquam incidunt. Est et error.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "product_id": 4454832,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Aerodynamic Plastic Shoes",
+    "price": 194.97,
+    "created_at": "2023-08-10T22:45:23.202Z",
+    "updated_at": "2023-08-10T22:45:37.780Z",
+    "stock": 186,
+    "units_sold": 452,
+    "description": "Sunt ut voluptatem. Est adipisci earum. Necessitatibus quos iusto. Ea incidunt eligendi. Iusto et ut.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "product_id": 8900639,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Rustic Paper Bench",
+    "price": 38.2,
+    "created_at": "2023-08-10T22:45:23.216Z",
+    "updated_at": "2023-08-10T22:45:37.791Z",
+    "stock": 344,
+    "units_sold": 735,
+    "description": "Omnis ut repudiandae. Neque tempora et. Enim natus ad. Temporibus ut voluptas. Cupiditate rem repellat.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "product_id": 3072681,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Synergistic Wool Keyboard",
+    "price": 153.28,
+    "created_at": "2023-08-10T22:45:23.229Z",
+    "updated_at": "2023-08-10T22:45:37.803Z",
+    "stock": 464,
+    "units_sold": 491,
+    "description": "Commodi asperiores sint. Et eum voluptatem. Hic qui odit. Ipsum eius velit. Reiciendis cupiditate aspernatur.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "product_id": 5703471,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Small Steel Bench",
+    "price": 58,
+    "created_at": "2023-08-10T22:45:23.245Z",
+    "updated_at": "2023-08-10T22:45:37.814Z",
+    "stock": 380,
+    "units_sold": 549,
+    "description": "Quisquam doloremque voluptatem. Dolores qui molestiae. Quam repellat molestias. Molestiae est dolor. Aut debitis qui.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "product_id": 1334644,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Aerodynamic Marble Bench",
+    "price": 198.99,
+    "created_at": "2023-08-10T22:45:23.258Z",
+    "updated_at": "2023-08-10T22:45:37.825Z",
+    "stock": 204,
+    "units_sold": 801,
+    "description": "Vel tempore beatae. Id est debitis. Fuga necessitatibus explicabo. Maiores cumque id. Aut quis ex.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is in top 5 sales in the last 30 days with 309 sales!",
+        "severity": {
+          "label": "Exceptional",
+          "level": 0
+        }
+      },
+      {
+        "name": "popular_low_stock",
+        "text": "Product has been very popular in the last 30 days, but has low stock left! (204)",
+        "severity": {
+          "label": "Severe",
+          "level": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "product_id": 2236676,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Aerodynamic Steel Coat",
+    "price": 64.09,
+    "created_at": "2023-08-10T22:45:23.272Z",
+    "updated_at": "2023-08-10T22:45:37.836Z",
+    "stock": 81,
+    "units_sold": 411,
+    "description": "Rerum quam totam. Iusto quia autem. Exercitationem voluptatum sed. Nihil voluptas qui. Voluptatem hic itaque.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "product_id": 3798690,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Sleek Plastic Bottle",
+    "price": 45.99,
+    "created_at": "2023-08-10T22:45:23.285Z",
+    "updated_at": "2023-08-10T22:45:37.848Z",
+    "stock": 254,
+    "units_sold": 528,
+    "description": "Veniam ab et. Officiis at aut. Est voluptatem error. Et velit cumque. Mollitia nulla dolor.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "product_id": 2972125,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Mediocre Cotton Table",
+    "price": 69.39,
+    "created_at": "2023-08-10T22:45:23.298Z",
+    "updated_at": "2023-08-10T22:45:37.858Z",
+    "stock": 375,
+    "units_sold": 1113,
+    "description": "Ex accusantium quos. Quia sed eveniet. Impedit repellendus voluptatem. Explicabo nihil impedit. Cumque necessitatibus nisi.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "product_id": 7146939,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Incredible Linen Watch",
+    "price": 176.74,
+    "created_at": "2023-08-10T22:45:23.312Z",
+    "updated_at": "2023-08-10T22:45:37.868Z",
+    "stock": 312,
+    "units_sold": 195,
+    "description": "Doloribus facere tempore. In possimus alias. Et ipsam cum. Voluptatum culpa qui. Pariatur ea sint.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "product_id": 7077352,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Lightweight Leather Watch",
+    "price": 176.37,
+    "created_at": "2023-08-10T22:45:23.325Z",
+    "updated_at": "2023-08-10T22:45:37.879Z",
+    "stock": 380,
+    "units_sold": 256,
+    "description": "Id autem libero. Nam non quisquam. Architecto magni a. Sequi iste quis. Sit et facilis.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "product_id": 5681687,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Aerodynamic Rubber Bag",
+    "price": 48.81,
+    "created_at": "2023-08-10T22:45:23.337Z",
+    "updated_at": "2023-08-10T22:45:37.892Z",
+    "stock": 315,
+    "units_sold": 622,
+    "description": "Provident eaque iusto. Nihil aspernatur et. Sit ut quia. Ipsa quasi minima. Placeat doloremque doloribus.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "product_id": 6252758,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Incredible Iron Clock",
+    "price": 160.43,
+    "created_at": "2023-08-10T22:45:23.351Z",
+    "updated_at": "2023-08-10T22:45:37.907Z",
+    "stock": 138,
+    "units_sold": 461,
+    "description": "Est error ea. Aut et ratione. Nostrum consequatur dolores. Occaecati reprehenderit molestias. Sed accusantium commodi.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "product_id": 6599191,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Mediocre Wool Pants",
+    "price": 159.49,
+    "created_at": "2023-08-10T22:45:23.365Z",
+    "updated_at": "2023-08-10T22:45:37.921Z",
+    "stock": 173,
+    "units_sold": 454,
+    "description": "At dolorum voluptatem. Sunt nobis ea. Magnam beatae dolores. Cupiditate reprehenderit veniam. Est officia porro.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "product_id": 1922976,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Small Steel Keyboard",
+    "price": 71.42,
+    "created_at": "2023-08-10T22:45:23.377Z",
+    "updated_at": "2023-08-10T22:45:37.935Z",
+    "stock": 389,
+    "units_sold": 456,
+    "description": "Nemo omnis accusantium. Reprehenderit corporis voluptate. Et saepe omnis. Optio ut quia. Inventore voluptates dolores.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 177 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "product_id": 5973817,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Lightweight Steel Bench",
+    "price": 112.65,
+    "created_at": "2023-08-10T22:45:23.390Z",
+    "updated_at": "2023-08-10T22:45:37.949Z",
+    "stock": 132,
+    "units_sold": 0,
+    "description": "Facilis fugit sed. Asperiores perferendis sequi. Culpa laboriosam ullam. Voluptatem aut possimus. Culpa placeat voluptatibus.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "product_id": 8525362,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Durable Wool Bag",
+    "price": 91.79,
+    "created_at": "2023-08-10T22:45:23.406Z",
+    "updated_at": "2023-08-10T22:45:37.963Z",
+    "stock": 290,
+    "units_sold": 798,
+    "description": "Doloribus tempore neque. Voluptas harum eaque. Et in dolore. Ex qui esse. Sit non modi.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "product_id": 6842285,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Aerodynamic Concrete Clock",
+    "price": 17.31,
+    "created_at": "2023-08-10T22:45:23.424Z",
+    "updated_at": "2023-08-10T22:45:37.976Z",
+    "stock": 391,
+    "units_sold": 228,
+    "description": "Accusantium suscipit consequatur. Earum dolorum praesentium. Et qui qui. Et qui doloremque. Nemo magni voluptatem.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "product_id": 8786664,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Intelligent Linen Bench",
+    "price": 37.26,
+    "created_at": "2023-08-10T22:45:23.444Z",
+    "updated_at": "2023-08-10T22:45:37.990Z",
+    "stock": 448,
+    "units_sold": 782,
+    "description": "Esse et laborum. Alias provident voluptas. Sit maxime error. Iure fuga consequatur. Quas repellat dolor.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "product_id": 6607836,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Synergistic Copper Knife",
+    "price": 54.47,
+    "created_at": "2023-08-10T22:45:23.462Z",
+    "updated_at": "2023-08-10T22:45:38.007Z",
+    "stock": 122,
+    "units_sold": 637,
+    "description": "Veritatis cupiditate esse. Ad qui magni. Et quod ut. Beatae unde perferendis. Ipsum quis maiores.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "product_id": 7897181,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Sleek Rubber Pants",
+    "price": 108.6,
+    "created_at": "2023-08-10T22:45:23.480Z",
+    "updated_at": "2023-08-10T22:45:38.024Z",
+    "stock": 308,
+    "units_sold": 344,
+    "description": "Est ratione reiciendis. Saepe cumque id. Atque necessitatibus similique. Dolorum voluptatem deserunt. Ut corporis qui.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "product_id": 9090176,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Practical Copper Plate",
+    "price": 191.36,
+    "created_at": "2023-08-10T22:45:23.500Z",
+    "updated_at": "2023-08-10T22:45:38.037Z",
+    "stock": 6,
+    "units_sold": 608,
+    "description": "Ea alias hic. Similique et sit. Sed sed quae. Minima enim ducimus. Dolorum voluptas sit.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "product_id": 8047105,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Durable Marble Bottle",
+    "price": 146.39,
+    "created_at": "2023-08-10T22:45:23.517Z",
+    "updated_at": "2023-08-10T22:45:38.052Z",
+    "stock": 273,
+    "units_sold": 206,
+    "description": "Ad dolores corrupti. Labore velit perferendis. Ea modi quisquam. Ab velit aut. Nisi fugit eos.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "product_id": 3761029,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Rustic Paper Car",
+    "price": 180.57,
+    "created_at": "2023-08-10T22:45:23.537Z",
+    "updated_at": "2023-08-10T22:45:38.067Z",
+    "stock": 268,
+    "units_sold": 189,
+    "description": "Impedit sit sed. Aliquid qui fuga. Neque quia perspiciatis. Est corrupti enim. Nam qui eos.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "product_id": 3519255,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Durable Aluminum Computer",
+    "price": 139.17,
+    "created_at": "2023-08-10T22:45:23.553Z",
+    "updated_at": "2023-08-10T22:45:38.083Z",
+    "stock": 191,
+    "units_sold": 658,
+    "description": "Doloremque magni commodi. Distinctio consequatur est. Officia non ratione. Voluptatem et sunt. Debitis voluptatem aspernatur.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "product_id": 5547517,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Intelligent Linen Pants",
+    "price": 163.6,
+    "created_at": "2023-08-10T22:45:23.599Z",
+    "updated_at": "2023-08-10T22:45:38.098Z",
+    "stock": 468,
+    "units_sold": 631,
+    "description": "Est ut recusandae. Labore voluptatum maxime. Aut cupiditate aliquam. Exercitationem error nam. Ut dolorem rerum.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "product_id": 1879788,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Durable Iron Bench",
+    "price": 171.45,
+    "created_at": "2023-08-10T22:45:23.611Z",
+    "updated_at": "2023-08-10T22:45:38.113Z",
+    "stock": 274,
+    "units_sold": 291,
+    "description": "Enim placeat et. Maiores et est. Similique beatae omnis. Cumque eligendi cum. Voluptatum dolorem repudiandae.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "product_id": 4720672,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Practical Wool Wallet",
+    "price": 84.92,
+    "created_at": "2023-08-10T22:45:23.622Z",
+    "updated_at": "2023-08-10T22:45:38.128Z",
+    "stock": 260,
+    "units_sold": 403,
+    "description": "Quis voluptas nihil. Veritatis consequatur corporis. Modi cupiditate autem. Omnis numquam consequatur. Consequatur rerum nulla.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "product_id": 1731527,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Awesome Granite Plate",
+    "price": 192.34,
+    "created_at": "2023-08-10T22:45:23.633Z",
+    "updated_at": "2023-08-10T22:45:38.143Z",
+    "stock": 93,
+    "units_sold": 707,
+    "description": "Ipsam quidem laboriosam. Nesciunt dolor quo. Cumque consequuntur sint. Cum et consectetur. Consequatur ab neque.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "product_id": 4160497,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Heavy Duty Iron Clock",
+    "price": 102.1,
+    "created_at": "2023-08-10T22:45:23.647Z",
+    "updated_at": "2023-08-10T22:45:38.159Z",
+    "stock": 182,
+    "units_sold": 1500,
+    "description": "Rerum libero molestias. Sed commodi quia. Odit facere ad. Sapiente voluptates tempora. Repudiandae quisquam occaecati.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is in top 5 sales in the last 30 days with 198 sales!",
+        "severity": {
+          "label": "Exceptional",
+          "level": 0
+        }
+      },
+      {
+        "name": "popular_low_stock",
+        "text": "Product has been very popular in the last 30 days, but has low stock left! (182)",
+        "severity": {
+          "label": "Severe",
+          "level": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "product_id": 2130368,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Intelligent Cotton Shirt",
+    "price": 86.55,
+    "created_at": "2023-08-10T22:45:23.659Z",
+    "updated_at": "2023-08-10T22:45:38.175Z",
+    "stock": 453,
+    "units_sold": 351,
+    "description": "Commodi dolores reprehenderit. Ea iure commodi. Voluptatem sapiente consequatur. Nam enim voluptatum. Temporibus voluptatem et.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "product_id": 1146099,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Enormous Steel Bottle",
+    "price": 160.79,
+    "created_at": "2023-08-10T22:45:23.670Z",
+    "updated_at": "2023-08-10T22:45:38.190Z",
+    "stock": 420,
+    "units_sold": 512,
+    "description": "Rem et aperiam. Provident quam sit. Fugit quod incidunt. Et eius sint. Dicta velit et.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "product_id": 5120013,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Synergistic Paper Knife",
+    "price": 74.36,
+    "created_at": "2023-08-10T22:45:23.681Z",
+    "updated_at": "2023-08-10T22:45:38.205Z",
+    "stock": 374,
+    "units_sold": 1009,
+    "description": "Aut quisquam deserunt. Et fugiat quia. Illum laudantium in. Architecto possimus doloribus. Est illum eius.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "product_id": 6253162,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Practical Wooden Wallet",
+    "price": 126.39,
+    "created_at": "2023-08-10T22:45:23.695Z",
+    "updated_at": "2023-08-10T22:45:38.220Z",
+    "stock": 275,
+    "units_sold": 286,
+    "description": "Consequatur ut occaecati. Omnis est aut. Adipisci quia vitae. Consectetur rerum facilis. Autem qui et.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "product_id": 7278138,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Ergonomic Silk Shoes",
+    "price": 90.66,
+    "created_at": "2023-08-10T22:45:23.707Z",
+    "updated_at": "2023-08-10T22:45:38.234Z",
+    "stock": 262,
+    "units_sold": 1182,
+    "description": "Sit sequi numquam. Excepturi quibusdam animi. Vero eos doloribus. Aut eius ipsam. Sint consequatur placeat.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "product_id": 7031553,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Incredible Leather Pants",
+    "price": 158.47,
+    "created_at": "2023-08-10T22:45:23.718Z",
+    "updated_at": "2023-08-10T22:45:38.249Z",
+    "stock": 367,
+    "units_sold": 468,
+    "description": "Voluptas sunt rerum. Nulla non qui. Dolores assumenda harum. Distinctio minima nam. Rem harum cumque.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "product_id": 4903992,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Practical Linen Computer",
+    "price": 186.2,
+    "created_at": "2023-08-10T22:45:23.729Z",
+    "updated_at": "2023-08-10T22:45:38.264Z",
+    "stock": 74,
+    "units_sold": 527,
+    "description": "Vel qui sint. Sunt repellendus velit. Sint nam enim. Iusto neque in. Explicabo laboriosam fuga.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "product_id": 3119517,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Awesome Cotton Bottle",
+    "price": 193.62,
+    "created_at": "2023-08-10T22:45:23.739Z",
+    "updated_at": "2023-08-10T22:45:38.281Z",
+    "stock": 437,
+    "units_sold": 634,
+    "description": "Placeat deserunt voluptate. Libero impedit voluptatem. Aut harum recusandae. Ut ea ad. Illum omnis pariatur.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "product_id": 6467881,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Synergistic Concrete Plate",
+    "price": 94.94,
+    "created_at": "2023-08-10T22:45:23.752Z",
+    "updated_at": "2023-08-10T22:45:38.296Z",
+    "stock": 293,
+    "units_sold": 359,
+    "description": "Est voluptates qui. Voluptatem provident illum. Nulla est tenetur. Corrupti consequatur velit. Natus est ea.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "product_id": 4810359,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Aerodynamic Wooden Plate",
+    "price": 192,
+    "created_at": "2023-08-10T22:45:23.763Z",
+    "updated_at": "2023-08-10T22:45:38.309Z",
+    "stock": 195,
+    "units_sold": 406,
+    "description": "Aut natus explicabo. Dolorem in ullam. Excepturi illo est. Quia nulla sapiente. Doloremque illo hic.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "product_id": 3353891,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Awesome Linen Clock",
+    "price": 92.51,
+    "created_at": "2023-08-10T22:45:23.776Z",
+    "updated_at": "2023-08-10T22:45:38.324Z",
+    "stock": 431,
+    "units_sold": 465,
+    "description": "Ea unde non. Eligendi qui pariatur. Quasi culpa saepe. Qui odio at. Qui ad tempora.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "product_id": 8256769,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Aerodynamic Paper Wallet",
+    "price": 25.61,
+    "created_at": "2023-08-10T22:45:23.786Z",
+    "updated_at": "2023-08-10T22:45:38.338Z",
+    "stock": 80,
+    "units_sold": 285,
+    "description": "Sit delectus maxime. Ullam ea delectus. Et sunt nisi. Sed ut porro. Blanditiis autem animi.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "product_id": 3302047,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Gorgeous Rubber Shirt",
+    "price": 107.41,
+    "created_at": "2023-08-10T22:45:23.797Z",
+    "updated_at": "2023-08-10T22:45:38.353Z",
+    "stock": 438,
+    "units_sold": 231,
+    "description": "Sed quod rerum. Ut reiciendis dolore. Et dolores ducimus. Vel architecto explicabo. In quod ipsam.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "product_id": 2085401,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Fantastic Steel Bag",
+    "price": 50.8,
+    "created_at": "2023-08-10T22:45:23.808Z",
+    "updated_at": "2023-08-10T22:45:38.368Z",
+    "stock": 281,
+    "units_sold": 487,
+    "description": "Nihil alias qui. Dolores quis voluptas. Quisquam nisi odio. Natus nihil quo. In sed nulla.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "product_id": 6013056,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Sleek Cotton Wallet",
+    "price": 166.83,
+    "created_at": "2023-08-10T22:45:23.820Z",
+    "updated_at": "2023-08-10T22:45:38.381Z",
+    "stock": 464,
+    "units_sold": 968,
+    "description": "Voluptatem tempora unde. Deserunt commodi cum. Facere adipisci aliquid. Ut consectetur explicabo. Voluptas totam consectetur.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 161 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "product_id": 3317534,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Awesome Silk Table",
+    "price": 70.04,
+    "created_at": "2023-08-10T22:45:23.832Z",
+    "updated_at": "2023-08-10T22:45:38.394Z",
+    "stock": 252,
+    "units_sold": 392,
+    "description": "Voluptatem sed assumenda. Vitae fugiat tempora. Neque fugit eum. Ut dignissimos libero. Neque repellat id.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "product_id": 1799064,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Synergistic Leather Car",
+    "price": 87.11,
+    "created_at": "2023-08-10T22:45:23.847Z",
+    "updated_at": "2023-08-10T22:45:38.407Z",
+    "stock": 405,
+    "units_sold": 551,
+    "description": "Autem dolor aut. Et eos quisquam. Nostrum quia dolorum. Omnis praesentium et. Totam itaque explicabo.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 131 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "product_id": 4847877,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Awesome Marble Knife",
+    "price": 66.38,
+    "created_at": "2023-08-10T22:45:23.858Z",
+    "updated_at": "2023-08-10T22:45:38.422Z",
+    "stock": 392,
+    "units_sold": 647,
+    "description": "Officia a explicabo. Officiis cumque cum. Ut perspiciatis aliquam. Repellendus et eum. Voluptatum sed est.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "product_id": 3883546,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Synergistic Plastic Chair",
+    "price": 66.65,
+    "created_at": "2023-08-10T22:45:23.869Z",
+    "updated_at": "2023-08-10T22:45:38.437Z",
+    "stock": 482,
+    "units_sold": 22,
+    "description": "At accusamus praesentium. Eum labore ducimus. Distinctio omnis dolorem. Rerum et eum. Dolor nemo ea.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "product_id": 1115114,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Awesome Linen Chair",
+    "price": 100.72,
+    "created_at": "2023-08-10T22:45:23.879Z",
+    "updated_at": "2023-08-10T22:45:38.452Z",
+    "stock": 389,
+    "units_sold": 942,
+    "description": "A harum autem. Nemo nostrum ut. Non sit quis. Consectetur iusto possimus. Et rerum est.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "product_id": 5726085,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Incredible Marble Clock",
+    "price": 78.12,
+    "created_at": "2023-08-10T22:45:23.890Z",
+    "updated_at": "2023-08-10T22:45:38.467Z",
+    "stock": 157,
+    "units_sold": 1027,
+    "description": "Ut corporis ea. Vel ipsum illum. Pariatur fugit sapiente. Veritatis pariatur sed. Quas mollitia dolores.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "product_id": 3414478,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Sleek Granite Knife",
+    "price": 35.84,
+    "created_at": "2023-08-10T22:45:23.901Z",
+    "updated_at": "2023-08-10T22:45:38.479Z",
+    "stock": 268,
+    "units_sold": 358,
+    "description": "Eaque ut veritatis. Eligendi quo voluptatem. Voluptas nihil voluptatem. Atque nihil consequatur. Commodi sunt ipsa.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "product_id": 5524604,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Gorgeous Bronze Table",
+    "price": 67.15,
+    "created_at": "2023-08-10T22:45:23.912Z",
+    "updated_at": "2023-08-10T22:45:38.493Z",
+    "stock": 62,
+    "units_sold": 1018,
+    "description": "Cumque dolorem fugit. Esse aliquam ratione. Voluptates autem in. Odio omnis voluptatem. Est tempora dolores.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "product_id": 2325623,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Lightweight Wooden Knife",
+    "price": 65.44,
+    "created_at": "2023-08-10T22:45:23.922Z",
+    "updated_at": "2023-08-10T22:45:38.507Z",
+    "stock": 107,
+    "units_sold": 311,
+    "description": "Aperiam tempore omnis. Magni dolor expedita. Omnis excepturi qui. Corporis non animi. Quam modi odit.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "product_id": 2358533,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Gorgeous Linen Pants",
+    "price": 60.25,
+    "created_at": "2023-08-10T22:45:23.932Z",
+    "updated_at": "2023-08-10T22:45:38.522Z",
+    "stock": 236,
+    "units_sold": 188,
+    "description": "Id soluta at. Aut voluptate voluptas. Debitis omnis quisquam. Omnis mollitia beatae. Praesentium atque ad.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "product_id": 7497700,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Fantastic Wool Bottle",
+    "price": 164.51,
+    "created_at": "2023-08-10T22:45:23.943Z",
+    "updated_at": "2023-08-10T22:45:38.538Z",
+    "stock": 50,
+    "units_sold": 793,
+    "description": "Eos quibusdam cupiditate. Voluptate ut quam. Qui optio quam. Voluptas id debitis. Quis possimus aliquam.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "product_id": 8076632,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Lightweight Aluminum Gloves",
+    "price": 155.54,
+    "created_at": "2023-08-10T22:45:23.954Z",
+    "updated_at": "2023-08-10T22:45:38.553Z",
+    "stock": 278,
+    "units_sold": 87,
+    "description": "Eos eveniet excepturi. Iste corrupti alias. Aut maiores consequuntur. Corrupti excepturi et. Sint voluptas dolor.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "product_id": 6896658,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Lightweight Leather Clock",
+    "price": 199.75,
+    "created_at": "2023-08-10T22:45:23.964Z",
+    "updated_at": "2023-08-10T22:45:38.567Z",
+    "stock": 79,
+    "units_sold": 523,
+    "description": "Cupiditate sed ut. Numquam temporibus repellendus. Tempore vel commodi. Eligendi animi ut. Itaque dolore quia.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "product_id": 2984830,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Durable Steel Bench",
+    "price": 60.19,
+    "created_at": "2023-08-10T22:45:23.977Z",
+    "updated_at": "2023-08-10T22:45:38.581Z",
+    "stock": 350,
+    "units_sold": 6,
+    "description": "Vero tenetur aliquid. Facilis amet quasi. Rerum nostrum voluptatum. Quasi sit rerum. Maiores vero error.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "product_id": 6609221,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Small Iron Bag",
+    "price": 169.58,
+    "created_at": "2023-08-10T22:45:23.987Z",
+    "updated_at": "2023-08-10T22:45:38.595Z",
+    "stock": 178,
+    "units_sold": 527,
+    "description": "Cupiditate pariatur eligendi. Consequatur et velit. Repudiandae reiciendis qui. Ipsa est velit. Modi vero dolore.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "product_id": 3559797,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Awesome Marble Lamp",
+    "price": 92.7,
+    "created_at": "2023-08-10T22:45:23.998Z",
+    "updated_at": "2023-08-10T22:45:38.608Z",
+    "stock": 164,
+    "units_sold": 470,
+    "description": "Consequatur libero nostrum. Et hic laborum. Delectus sunt qui. Unde sit aliquid. Culpa corrupti voluptatem.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is in top 5 sales in the last 30 days with 187 sales!",
+        "severity": {
+          "label": "Exceptional",
+          "level": 0
+        }
+      },
+      {
+        "name": "popular_low_stock",
+        "text": "Product has been very popular in the last 30 days, but has low stock left! (164)",
+        "severity": {
+          "label": "Severe",
+          "level": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "product_id": 6705280,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Mediocre Iron Knife",
+    "price": 30.88,
+    "created_at": "2023-08-10T22:45:24.010Z",
+    "updated_at": "2023-08-10T22:45:38.626Z",
+    "stock": 273,
+    "units_sold": 583,
+    "description": "Molestiae eaque dolorem. Asperiores cupiditate et. Pariatur non alias. Alias aut tenetur. Molestiae facere esse.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "product_id": 4808249,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Mediocre Wool Bottle",
+    "price": 185.79,
+    "created_at": "2023-08-10T22:45:24.021Z",
+    "updated_at": "2023-08-10T22:45:38.641Z",
+    "stock": 459,
+    "units_sold": 263,
+    "description": "Vel omnis consequuntur. Qui veritatis iste. Voluptatibus officiis cupiditate. Non delectus qui. Ea dolores ipsum.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "product_id": 1276849,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Mediocre Paper Shirt",
+    "price": 147.47,
+    "created_at": "2023-08-10T22:45:24.032Z",
+    "updated_at": "2023-08-10T22:45:38.654Z",
+    "stock": 247,
+    "units_sold": 130,
+    "description": "Illum unde quis. Tenetur labore cum. Modi dignissimos nobis. Eum reiciendis nemo. Dolor aut similique.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "product_id": 6539543,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Aerodynamic Copper Bag",
+    "price": 40.17,
+    "created_at": "2023-08-10T22:45:24.043Z",
+    "updated_at": "2023-08-10T22:45:38.668Z",
+    "stock": 182,
+    "units_sold": 683,
+    "description": "Impedit ut atque. Illum voluptatem dignissimos. Quae et qui. Sapiente quod ab. Perspiciatis ullam sit.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "product_id": 4284116,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Fantastic Iron Table",
+    "price": 149.95,
+    "created_at": "2023-08-10T22:45:24.054Z",
+    "updated_at": "2023-08-10T22:45:38.683Z",
+    "stock": 216,
+    "units_sold": 641,
+    "description": "Dolor placeat reprehenderit. Odio eos non. Hic pariatur aperiam. Voluptatem aut ab. In debitis sint.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "product_id": 2722843,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Ergonomic Steel Bag",
+    "price": 62.59,
+    "created_at": "2023-08-10T22:45:24.066Z",
+    "updated_at": "2023-08-10T22:45:38.698Z",
+    "stock": 423,
+    "units_sold": 624,
+    "description": "Ut possimus ratione. Voluptatum accusantium quos. Et adipisci commodi. Unde ea minima. Labore quibusdam optio.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "product_id": 6082885,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Enormous Marble Bench",
+    "price": 171.88,
+    "created_at": "2023-08-10T22:45:24.077Z",
+    "updated_at": "2023-08-10T22:45:38.714Z",
+    "stock": 107,
+    "units_sold": 1103,
+    "description": "Animi quis et. Dignissimos totam molestiae. Dolore voluptas dolores. In dolorem mollitia. Doloribus enim deleniti.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "product_id": 2530246,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Small Plastic Coat",
+    "price": 88.94,
+    "created_at": "2023-08-10T22:45:24.088Z",
+    "updated_at": "2023-08-10T22:45:38.730Z",
+    "stock": 473,
+    "units_sold": 633,
+    "description": "Maxime itaque voluptatem. Quia aspernatur accusamus. Corporis assumenda minus. Sunt velit dolorem. Dolore quae similique.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "product_id": 1762056,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Incredible Plastic Car",
+    "price": 185.44,
+    "created_at": "2023-08-10T22:45:24.099Z",
+    "updated_at": "2023-08-10T22:45:38.744Z",
+    "stock": 375,
+    "units_sold": 739,
+    "description": "Ad voluptatem totam. Dolor est explicabo. Et hic sunt. Illum ut ad. Fuga qui est.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "product_id": 5962283,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Fantastic Leather Shoes",
+    "price": 124.12,
+    "created_at": "2023-08-10T22:45:24.113Z",
+    "updated_at": "2023-08-10T22:45:38.758Z",
+    "stock": 378,
+    "units_sold": 282,
+    "description": "Ratione eos explicabo. Quae accusamus ipsa. Ad voluptatem est. Error eos perferendis. Quam tempora non.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "product_id": 4242537,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Rustic Linen Bag",
+    "price": 158.54,
+    "created_at": "2023-08-10T22:45:24.124Z",
+    "updated_at": "2023-08-10T22:45:38.772Z",
+    "stock": 185,
+    "units_sold": 268,
+    "description": "Animi eum cum. Nihil et quod. Aut sit nobis. Omnis voluptates dolores. Ut officia magnam.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "product_id": 5003121,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Small Copper Wallet",
+    "price": 21.29,
+    "created_at": "2023-08-10T22:45:24.135Z",
+    "updated_at": "2023-08-10T22:45:38.786Z",
+    "stock": 268,
+    "units_sold": 588,
+    "description": "Quod nesciunt consequatur. Pariatur quia et. Vero beatae fuga. Eum occaecati harum. Qui et nam.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "product_id": 8331392,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Ergonomic Copper Hat",
+    "price": 56.79,
+    "created_at": "2023-08-10T22:45:24.146Z",
+    "updated_at": "2023-08-10T22:45:38.801Z",
+    "stock": 244,
+    "units_sold": 446,
+    "description": "Quisquam sint dolorum. Eius esse inventore. Est at numquam. Numquam ut blanditiis. Voluptas doloribus voluptatem.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 137 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "product_id": 7028471,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Gorgeous Plastic Hat",
+    "price": 80.32,
+    "created_at": "2023-08-10T22:45:24.155Z",
+    "updated_at": "2023-08-10T22:45:38.815Z",
+    "stock": 124,
+    "units_sold": 598,
+    "description": "Nulla quos harum. Odit quo et. Minus harum cupiditate. Nulla aliquam voluptatem. Saepe odio amet.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "product_id": 8229542,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Lightweight Silk Car",
+    "price": 138.79,
+    "created_at": "2023-08-10T22:45:24.167Z",
+    "updated_at": "2023-08-10T22:45:38.830Z",
+    "stock": 241,
+    "units_sold": 242,
+    "description": "Exercitationem ab qui. Saepe qui reiciendis. Consequatur suscipit ut. Enim temporibus magnam. Eos est non.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "product_id": 2517211,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Mediocre Aluminum Lamp",
+    "price": 171.3,
+    "created_at": "2023-08-10T22:45:24.179Z",
+    "updated_at": "2023-08-10T22:45:38.845Z",
+    "stock": 245,
+    "units_sold": 212,
+    "description": "Nihil occaecati optio. Quo et dolor. Sit totam et. Ut ut autem. Vitae quidem assumenda.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "product_id": 4566027,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Heavy Duty Cotton Plate",
+    "price": 117.16,
+    "created_at": "2023-08-10T22:45:24.191Z",
+    "updated_at": "2023-08-10T22:45:38.860Z",
+    "stock": 468,
+    "units_sold": 547,
+    "description": "Et nam autem. Ipsam ex aliquid. Consequuntur laboriosam saepe. Velit veritatis quos. Totam impedit temporibus.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "product_id": 1309677,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Intelligent Cotton Gloves",
+    "price": 146.25,
+    "created_at": "2023-08-10T22:45:24.204Z",
+    "updated_at": "2023-08-10T22:45:38.873Z",
+    "stock": 268,
+    "units_sold": 795,
+    "description": "Quaerat sed consequatur. Quibusdam repellendus voluptatem. Enim dolores vero. Ut soluta et. Doloribus non quaerat.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "product_id": 1272548,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Gorgeous Copper Pants",
+    "price": 87.36,
+    "created_at": "2023-08-10T22:45:24.215Z",
+    "updated_at": "2023-08-10T22:45:38.887Z",
+    "stock": 154,
+    "units_sold": 450,
+    "description": "Eum id et. Et atque dicta. Eveniet itaque praesentium. Voluptatibus animi natus. Consequatur consequatur ipsam.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "product_id": 8309001,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Lightweight Wooden Watch",
+    "price": 171.1,
+    "created_at": "2023-08-10T22:45:24.226Z",
+    "updated_at": "2023-08-10T22:45:38.900Z",
+    "stock": 227,
+    "units_sold": 404,
+    "description": "Quo magni sit. Accusantium deleniti harum. Nobis ex magni. Incidunt et provident. Voluptates nemo voluptate.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "product_id": 8097986,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Awesome Steel Watch",
+    "price": 189.78,
+    "created_at": "2023-08-10T22:45:24.237Z",
+    "updated_at": "2023-08-10T22:45:38.914Z",
+    "stock": 297,
+    "units_sold": 755,
+    "description": "Quia dignissimos numquam. Saepe eligendi qui. Doloribus qui nemo. In qui nemo. Totam dolorem voluptate.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "product_id": 8745261,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Intelligent Bronze Watch",
+    "price": 132.75,
+    "created_at": "2023-08-10T22:45:24.250Z",
+    "updated_at": "2023-08-10T22:45:38.925Z",
+    "stock": 144,
+    "units_sold": 882,
+    "description": "Aut explicabo eos. Doloremque sint natus. Aut iusto hic. Commodi temporibus suscipit. Similique adipisci consequatur.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "product_id": 3399194,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Practical Iron Bench",
+    "price": 197.84,
+    "created_at": "2023-08-10T22:45:24.261Z",
+    "updated_at": "2023-08-10T22:45:38.936Z",
+    "stock": 279,
+    "units_sold": 693,
+    "description": "Consequatur iusto quis. Inventore ipsam sed. Nesciunt debitis omnis. Sapiente praesentium consectetur. Architecto aut ullam.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "product_id": 7667713,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Practical Rubber Knife",
+    "price": 38.08,
+    "created_at": "2023-08-10T22:45:24.273Z",
+    "updated_at": "2023-08-10T22:45:38.947Z",
+    "stock": 95,
+    "units_sold": 650,
+    "description": "Quis enim libero. Rerum inventore et. Sequi minima qui. Deleniti ut velit. Ut in necessitatibus.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 165 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      },
+      {
+        "name": "popular_low_stock",
+        "text": "Product has been very popular in the last 30 days, but has low stock left! (95)",
+        "severity": {
+          "label": "Severe",
+          "level": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "product_id": 3556922,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Enormous Silk Knife",
+    "price": 41.32,
+    "created_at": "2023-08-10T22:45:24.283Z",
+    "updated_at": "2023-08-10T22:45:38.959Z",
+    "stock": 184,
+    "units_sold": 305,
+    "description": "Vitae quisquam tempora. Sint et aliquam. Dolorem omnis unde. Ullam architecto repellendus. Ipsam ut aliquid.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "product_id": 6537379,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Incredible Granite Knife",
+    "price": 142.91,
+    "created_at": "2023-08-10T22:45:24.293Z",
+    "updated_at": "2023-08-10T22:45:38.969Z",
+    "stock": 272,
+    "units_sold": 385,
+    "description": "Dolores voluptatem pariatur. Voluptas quos architecto. Quo ipsum voluptas. Aut quasi optio. Consectetur doloribus et.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "product_id": 5629751,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Ergonomic Granite Hat",
+    "price": 65.56,
+    "created_at": "2023-08-10T22:45:24.304Z",
+    "updated_at": "2023-08-10T22:45:38.980Z",
+    "stock": 133,
+    "units_sold": 322,
+    "description": "Illum neque necessitatibus. Est architecto atque. Ut rerum quia. Dolore et ipsa. Illum repellat dolorem.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "product_id": 7402730,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Sleek Paper Keyboard",
+    "price": 144.9,
+    "created_at": "2023-08-10T22:45:24.315Z",
+    "updated_at": "2023-08-10T22:45:38.991Z",
+    "stock": 335,
+    "units_sold": 176,
+    "description": "Illum rerum repudiandae. Recusandae maiores nisi. Fuga assumenda corporis. Libero repellat asperiores. Nihil ab voluptatem.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "product_id": 8328099,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Fantastic Cotton Coat",
+    "price": 43.48,
+    "created_at": "2023-08-10T22:45:24.325Z",
+    "updated_at": "2023-08-10T22:45:39.003Z",
+    "stock": 391,
+    "units_sold": 222,
+    "description": "Ipsum consequatur enim. Placeat assumenda dolorem. Velit quia consequatur. Neque delectus at. Occaecati beatae sit.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "product_id": 8298232,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Synergistic Wooden Shoes",
+    "price": 119.99,
+    "created_at": "2023-08-10T22:45:24.336Z",
+    "updated_at": "2023-08-10T22:45:39.016Z",
+    "stock": 281,
+    "units_sold": 266,
+    "description": "Quae quia veritatis. Sit ut sint. Deserunt voluptatibus dolorem. Porro quas qui. Ullam quaerat veritatis.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "product_id": 9616273,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Aerodynamic Plastic Bottle",
+    "price": 166.78,
+    "created_at": "2023-08-10T22:45:24.346Z",
+    "updated_at": "2023-08-10T22:45:39.029Z",
+    "stock": 223,
+    "units_sold": 365,
+    "description": "Reiciendis omnis tempora. Labore voluptate suscipit. Cumque et consequatur. Suscipit laudantium sit. Sed iusto dicta.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "product_id": 1108270,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Ergonomic Plastic Shoes",
+    "price": 69.93,
+    "created_at": "2023-08-10T22:45:24.356Z",
+    "updated_at": "2023-08-10T22:45:39.041Z",
+    "stock": 11,
+    "units_sold": 962,
+    "description": "Blanditiis ratione in. Consectetur omnis iusto. Quae rerum est. Assumenda laudantium nostrum. Est dolorem hic.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "product_id": 7932683,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Aerodynamic Cotton Car",
+    "price": 71.73,
+    "created_at": "2023-08-10T22:45:24.370Z",
+    "updated_at": "2023-08-10T22:45:39.053Z",
+    "stock": 173,
+    "units_sold": 362,
+    "description": "Nostrum numquam aperiam. Animi est et. Animi dolor est. Provident sapiente ab. Natus voluptates sed.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "product_id": 9742615,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Durable Rubber Coat",
+    "price": 56.35,
+    "created_at": "2023-08-10T22:45:24.380Z",
+    "updated_at": "2023-08-10T22:45:39.066Z",
+    "stock": 497,
+    "units_sold": 438,
+    "description": "Eos quos molestiae. Sit aliquam facere. Sint fuga quia. Voluptatem voluptates ut. Non et aliquid.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "product_id": 1655637,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Small Rubber Lamp",
+    "price": 173.13,
+    "created_at": "2023-08-10T22:45:24.391Z",
+    "updated_at": "2023-08-10T22:45:39.077Z",
+    "stock": 416,
+    "units_sold": 160,
+    "description": "Voluptatem hic harum. Deleniti ut nam. Consequatur exercitationem omnis. Ea eaque aut. Saepe rerum culpa.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "product_id": 5699736,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Incredible Paper Clock",
+    "price": 10.65,
+    "created_at": "2023-08-10T22:45:24.401Z",
+    "updated_at": "2023-08-10T22:45:39.090Z",
+    "stock": 330,
+    "units_sold": 333,
+    "description": "Et saepe qui. Et doloribus consectetur. Ratione esse accusamus. Explicabo unde perferendis. Fugit magnam atque.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "product_id": 7207108,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Synergistic Aluminum Watch",
+    "price": 19.65,
+    "created_at": "2023-08-10T22:45:24.412Z",
+    "updated_at": "2023-08-10T22:45:39.102Z",
+    "stock": 223,
+    "units_sold": 536,
+    "description": "Amet laudantium aut. Fugiat cumque sequi. Maxime impedit ab. Totam mollitia tempora. Occaecati velit sit.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "product_id": 1534759,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Lightweight Concrete Pants",
+    "price": 111.91,
+    "created_at": "2023-08-10T22:45:24.421Z",
+    "updated_at": "2023-08-10T22:45:39.113Z",
+    "stock": 181,
+    "units_sold": 611,
+    "description": "Et quisquam voluptate. Et assumenda voluptatem. Alias molestias tempora. Rerum animi aut. Eum nihil et.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "product_id": 2713972,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Mediocre Iron Bench",
+    "price": 55.82,
+    "created_at": "2023-08-10T22:45:24.431Z",
+    "updated_at": "2023-08-10T22:45:39.124Z",
+    "stock": 277,
+    "units_sold": 362,
+    "description": "Itaque aut repellat. Aut aut illo. Reprehenderit quis quis. Et sed aut. Cupiditate ipsa est.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "product_id": 3351285,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Durable Marble Knife",
+    "price": 16.85,
+    "created_at": "2023-08-10T22:45:24.441Z",
+    "updated_at": "2023-08-10T22:45:39.137Z",
+    "stock": 432,
+    "units_sold": 142,
+    "description": "Facere est iusto. Mollitia aut officia. Aliquam ut mollitia. Eos soluta rem. Nulla temporibus quam.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "product_id": 7012923,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Gorgeous Leather Hat",
+    "price": 56.77,
+    "created_at": "2023-08-10T22:45:24.450Z",
+    "updated_at": "2023-08-10T22:45:39.149Z",
+    "stock": 228,
+    "units_sold": 542,
+    "description": "Explicabo est corrupti. Aut magni aut. Qui a temporibus. Ea animi id. Rerum repudiandae incidunt.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "product_id": 6255755,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Ergonomic Linen Keyboard",
+    "price": 68.51,
+    "created_at": "2023-08-10T22:45:24.460Z",
+    "updated_at": "2023-08-10T22:45:39.161Z",
+    "stock": 207,
+    "units_sold": 110,
+    "description": "Quis et animi. Adipisci et eaque. Sit facilis laborum. Delectus dolores fugiat. Cupiditate pariatur veniam.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "product_id": 5654450,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Practical Copper Clock",
+    "price": 161.15,
+    "created_at": "2023-08-10T22:45:24.470Z",
+    "updated_at": "2023-08-10T22:45:39.173Z",
+    "stock": 52,
+    "units_sold": 548,
+    "description": "Rem pariatur debitis. Et ducimus adipisci. Voluptatem nam quia. Quis consectetur architecto. Saepe esse illo.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "product_id": 1499875,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Incredible Linen Pants",
+    "price": 120.23,
+    "created_at": "2023-08-10T22:45:24.479Z",
+    "updated_at": "2023-08-10T22:45:39.185Z",
+    "stock": 444,
+    "units_sold": 444,
+    "description": "Enim in et. Deleniti doloremque in. Et minima voluptate. Ut qui et. Nulla nesciunt occaecati.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "product_id": 8044922,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Enormous Rubber Bag",
+    "price": 95.56,
+    "created_at": "2023-08-10T22:45:24.491Z",
+    "updated_at": "2023-08-10T22:45:39.197Z",
+    "stock": 33,
+    "units_sold": 730,
+    "description": "Et et nihil. Atque deserunt ipsam. Labore doloremque ut. Quisquam dolor quia. Voluptatem voluptate laborum.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "product_id": 1714028,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Rustic Aluminum Shirt",
+    "price": 44.77,
+    "created_at": "2023-08-10T22:45:24.502Z",
+    "updated_at": "2023-08-10T22:45:39.210Z",
+    "stock": 192,
+    "units_sold": 1019,
+    "description": "Impedit hic qui. Ut amet dolor. Et voluptas et. Aut earum illum. Nesciunt illo magnam.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "product_id": 4147931,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Durable Concrete Chair",
+    "price": 73.92,
+    "created_at": "2023-08-10T22:45:24.512Z",
+    "updated_at": "2023-08-10T22:45:39.221Z",
+    "stock": 440,
+    "units_sold": 289,
+    "description": "Sequi voluptatibus voluptates. Quia at odit. Ea blanditiis facere. Maiores et dolores. Ut et distinctio.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "product_id": 6816635,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Enormous Aluminum Pants",
+    "price": 27.15,
+    "created_at": "2023-08-10T22:45:24.521Z",
+    "updated_at": "2023-08-10T22:45:39.234Z",
+    "stock": 317,
+    "units_sold": 241,
+    "description": "Repellat natus voluptatum. Aut placeat vel. Iusto maiores tenetur. Et porro et. Facilis necessitatibus nostrum.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "product_id": 7955679,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Aerodynamic Granite Bench",
+    "price": 45.31,
+    "created_at": "2023-08-10T22:45:24.531Z",
+    "updated_at": "2023-08-10T22:45:39.245Z",
+    "stock": 367,
+    "units_sold": 359,
+    "description": "Et necessitatibus voluptas. Molestiae rem omnis. Vero consectetur ea. Sed eum tempora. Minus ea vero.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "product_id": 4123118,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Lightweight Granite Chair",
+    "price": 162.32,
+    "created_at": "2023-08-10T22:45:24.540Z",
+    "updated_at": "2023-08-10T22:45:39.256Z",
+    "stock": 436,
+    "units_sold": 378,
+    "description": "Aperiam quidem ipsam. Ea laborum molestiae. Eum eaque adipisci. Perferendis qui facilis. Repellendus eos alias.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "product_id": 9991057,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Sleek Copper Chair",
+    "price": 55.59,
+    "created_at": "2023-08-10T22:45:24.550Z",
+    "updated_at": "2023-08-10T22:45:39.267Z",
+    "stock": 93,
+    "units_sold": 76,
+    "description": "Et et minima. Illum libero qui. Alias aut consectetur. Nisi quidem tempore. Distinctio nam omnis.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "product_id": 3208928,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Rustic Linen Chair",
+    "price": 65.11,
+    "created_at": "2023-08-10T22:45:24.560Z",
+    "updated_at": "2023-08-10T22:45:39.277Z",
+    "stock": 409,
+    "units_sold": 431,
+    "description": "Ut aut dolores. Ipsam aut et. Cum ex reiciendis. Eligendi ut sed. Maiores perspiciatis iure.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "product_id": 6399099,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Awesome Leather Computer",
+    "price": 178.2,
+    "created_at": "2023-08-10T22:45:24.571Z",
+    "updated_at": "2023-08-10T22:45:39.287Z",
+    "stock": 362,
+    "units_sold": 607,
+    "description": "Harum qui eum. Esse nam sit. Est quos quidem. Sunt qui a. Id sint et.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "product_id": 6328214,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Sleek Cotton Shoes",
+    "price": 59.01,
+    "created_at": "2023-08-10T22:45:24.584Z",
+    "updated_at": "2023-08-10T22:45:39.298Z",
+    "stock": 252,
+    "units_sold": 784,
+    "description": "Eum labore et. Officiis dolorem explicabo. Non nihil ea. Adipisci maiores dolorem. Perspiciatis maxime fuga.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "product_id": 4521619,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Intelligent Concrete Plate",
+    "price": 84.33,
+    "created_at": "2023-08-10T22:45:24.596Z",
+    "updated_at": "2023-08-10T22:45:39.309Z",
+    "stock": 4,
+    "units_sold": 209,
+    "description": "Iure vel laboriosam. Aut modi iusto. Cumque veniam ut. Voluptatem eligendi quam. Quos officiis perferendis.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "product_id": 1845687,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Gorgeous Leather Wallet",
+    "price": 87.14,
+    "created_at": "2023-08-10T22:45:24.608Z",
+    "updated_at": "2023-08-10T22:45:39.320Z",
+    "stock": 125,
+    "units_sold": 284,
+    "description": "Ab accusamus magni. Quibusdam molestias explicabo. Fugiat animi maiores. Illum et nihil. Animi velit ut.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "product_id": 9387355,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Incredible Silk Plate",
+    "price": 176.09,
+    "created_at": "2023-08-10T22:45:24.624Z",
+    "updated_at": "2023-08-10T22:45:39.339Z",
+    "stock": 71,
+    "units_sold": 894,
+    "description": "Nam ut odio. Harum ut et. Labore numquam animi. Ipsum voluptatum officia. In est corrupti.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 123,
+    "product_id": 8674006,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Small Rubber Bench",
+    "price": 122.59,
+    "created_at": "2023-08-10T22:45:24.643Z",
+    "updated_at": "2023-08-10T22:45:39.350Z",
+    "stock": 155,
+    "units_sold": 196,
+    "description": "Dolor odio possimus. Ipsam vel sit. Dolor quisquam veniam. Soluta non perspiciatis. Similique voluptas modi.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 124,
+    "product_id": 6528595,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Practical Paper Lamp",
+    "price": 182.74,
+    "created_at": "2023-08-10T22:45:24.656Z",
+    "updated_at": "2023-08-10T22:45:39.362Z",
+    "stock": 234,
+    "units_sold": 499,
+    "description": "Aliquid neque nulla. Doloremque dignissimos ex. Quibusdam praesentium sunt. Molestiae dolor recusandae. Autem et non.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 125,
+    "product_id": 9664143,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Ergonomic Leather Gloves",
+    "price": 95.82,
+    "created_at": "2023-08-10T22:45:24.669Z",
+    "updated_at": "2023-08-10T22:45:39.373Z",
+    "stock": 248,
+    "units_sold": 526,
+    "description": "Aut cumque nulla. Et est amet. Exercitationem laboriosam perspiciatis. Dolor aut adipisci. Voluptate enim suscipit.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 126,
+    "product_id": 9453646,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Synergistic Leather Watch",
+    "price": 159.56,
+    "created_at": "2023-08-10T22:45:24.682Z",
+    "updated_at": "2023-08-10T22:45:39.385Z",
+    "stock": 86,
+    "units_sold": 880,
+    "description": "Sit ipsa praesentium. Ut eos ratione. Sapiente nisi provident. Dolorum officia autem. Sit tenetur quod.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 137 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      },
+      {
+        "name": "popular_low_stock",
+        "text": "Product has been very popular in the last 30 days, but has low stock left! (86)",
+        "severity": {
+          "label": "Severe",
+          "level": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": 127,
+    "product_id": 7310323,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Sleek Iron Shoes",
+    "price": 132.79,
+    "created_at": "2023-08-10T22:45:24.694Z",
+    "updated_at": "2023-08-10T22:45:39.396Z",
+    "stock": 261,
+    "units_sold": 324,
+    "description": "Placeat facilis libero. Saepe ea et. Accusamus optio quia. Illum et repellendus. Est vitae magni.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "product_id": 7991590,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Sleek Silk Plate",
+    "price": 106.12,
+    "created_at": "2023-08-10T22:45:24.705Z",
+    "updated_at": "2023-08-10T22:45:39.407Z",
+    "stock": 140,
+    "units_sold": 809,
+    "description": "Esse consequatur dolor. Explicabo sit sequi. Assumenda corrupti fugit. Incidunt eum et. Maxime asperiores et.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 129,
+    "product_id": 3355228,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Enormous Cotton Coat",
+    "price": 94.85,
+    "created_at": "2023-08-10T22:45:24.718Z",
+    "updated_at": "2023-08-10T22:45:39.419Z",
+    "stock": 225,
+    "units_sold": 707,
+    "description": "Voluptas fuga aut. Necessitatibus officiis nisi. Veritatis voluptas quo. Quibusdam aspernatur iure. Iste hic nobis.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "product_id": 2529611,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Intelligent Concrete Pants",
+    "price": 148.14,
+    "created_at": "2023-08-10T22:45:24.730Z",
+    "updated_at": "2023-08-10T22:45:39.432Z",
+    "stock": 378,
+    "units_sold": 778,
+    "description": "Alias non eaque. Aut recusandae voluptates. Consequatur adipisci exercitationem. Quo consequatur illo. Ut reprehenderit ex.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is in top 5 sales in the last 30 days with 193 sales!",
+        "severity": {
+          "label": "Exceptional",
+          "level": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": 131,
+    "product_id": 6540012,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Incredible Copper Lamp",
+    "price": 104.1,
+    "created_at": "2023-08-10T22:45:24.744Z",
+    "updated_at": "2023-08-10T22:45:39.444Z",
+    "stock": 314,
+    "units_sold": 936,
+    "description": "Similique rerum sit. Qui sit porro. Rerum nihil sit. In et laudantium. Dolorum voluptatem magnam.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 132,
+    "product_id": 2289119,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Ergonomic Bronze Computer",
+    "price": 61.82,
+    "created_at": "2023-08-10T22:45:24.757Z",
+    "updated_at": "2023-08-10T22:45:39.455Z",
+    "stock": 56,
+    "units_sold": 31,
+    "description": "Esse cupiditate provident. Excepturi et dicta. Omnis id nulla. Voluptas esse quos. Vero cum debitis.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "product_id": 3478575,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Rustic Granite Watch",
+    "price": 74.16,
+    "created_at": "2023-08-10T22:45:24.774Z",
+    "updated_at": "2023-08-10T22:45:39.467Z",
+    "stock": 477,
+    "units_sold": 479,
+    "description": "Aut laudantium nulla. Illum voluptas nihil. Iure dolorem et. Enim sit magnam. Voluptas vel accusantium.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 131 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 134,
+    "product_id": 8320838,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Awesome Paper Clock",
+    "price": 65.94,
+    "created_at": "2023-08-10T22:45:24.787Z",
+    "updated_at": "2023-08-10T22:45:39.477Z",
+    "stock": 152,
+    "units_sold": 255,
+    "description": "Voluptatem magni voluptates. Corrupti nam quia. Ut voluptatem dolores. Veritatis iusto doloribus. Quibusdam laborum est.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 135,
+    "product_id": 7943440,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Durable Copper Bench",
+    "price": 118.29,
+    "created_at": "2023-08-10T22:45:24.800Z",
+    "updated_at": "2023-08-10T22:45:39.488Z",
+    "stock": 250,
+    "units_sold": 173,
+    "description": "Ut ea totam. Mollitia cupiditate ratione. Occaecati dolores cumque. Esse rerum repellat. Reiciendis accusamus blanditiis.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 136,
+    "product_id": 8678523,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Awesome Aluminum Car",
+    "price": 97.17,
+    "created_at": "2023-08-10T22:45:24.812Z",
+    "updated_at": "2023-08-10T22:45:39.499Z",
+    "stock": 423,
+    "units_sold": 622,
+    "description": "Modi ad eligendi. Voluptatem pariatur saepe. Impedit iure veritatis. In sit laboriosam. Et qui velit.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 137,
+    "product_id": 7603711,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Mediocre Cotton Coat",
+    "price": 99.62,
+    "created_at": "2023-08-10T22:45:24.824Z",
+    "updated_at": "2023-08-10T22:45:39.510Z",
+    "stock": 388,
+    "units_sold": 52,
+    "description": "Veritatis molestiae sunt. Eum vel dolorum. Officiis nihil et. Doloribus maiores temporibus. Praesentium dicta quis.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 138,
+    "product_id": 2819988,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Small Granite Table",
+    "price": 141.06,
+    "created_at": "2023-08-10T22:45:24.837Z",
+    "updated_at": "2023-08-10T22:45:39.522Z",
+    "stock": 403,
+    "units_sold": 376,
+    "description": "Est facere et. Esse maiores officiis. Est quos quidem. Odit nesciunt facilis. Iste id suscipit.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 139,
+    "product_id": 5221563,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Ergonomic Rubber Plate",
+    "price": 158.94,
+    "created_at": "2023-08-10T22:45:24.850Z",
+    "updated_at": "2023-08-10T22:45:39.535Z",
+    "stock": 271,
+    "units_sold": 609,
+    "description": "Vero qui eligendi. Repellendus iusto excepturi. Animi qui a. Aut velit veritatis. Exercitationem vel eum.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "product_id": 2596150,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Small Plastic Bottle",
+    "price": 138.95,
+    "created_at": "2023-08-10T22:45:24.863Z",
+    "updated_at": "2023-08-10T22:45:39.547Z",
+    "stock": 272,
+    "units_sold": 533,
+    "description": "Sunt aliquam quisquam. Porro quia similique. Quasi voluptatem molestiae. Voluptatum et aut. Exercitationem natus consectetur.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 141,
+    "product_id": 7840145,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Small Silk Table",
+    "price": 170.08,
+    "created_at": "2023-08-10T22:45:24.876Z",
+    "updated_at": "2023-08-10T22:45:39.558Z",
+    "stock": 8,
+    "units_sold": 524,
+    "description": "Illum et sint. Voluptatem aut libero. Laborum eos sed. Consequatur iure tempore. Suscipit aspernatur eos.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 142,
+    "product_id": 1450103,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Aerodynamic Wooden Bag",
+    "price": 107.36,
+    "created_at": "2023-08-10T22:45:24.888Z",
+    "updated_at": "2023-08-10T22:45:39.570Z",
+    "stock": 398,
+    "units_sold": 538,
+    "description": "Assumenda beatae qui. Minus aut rerum. Enim maiores quae. Sit vero quisquam. Voluptate aliquam voluptatem.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "product_id": 8354008,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Enormous Leather Keyboard",
+    "price": 96.84,
+    "created_at": "2023-08-10T22:45:24.900Z",
+    "updated_at": "2023-08-10T22:45:39.583Z",
+    "stock": 470,
+    "units_sold": 558,
+    "description": "Fuga quas perferendis. Sequi ratione et. Ut doloremque et. Molestiae nam praesentium. Eius eveniet officiis.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 144,
+    "product_id": 2898242,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Enormous Wool Bottle",
+    "price": 103.48,
+    "created_at": "2023-08-10T22:45:24.915Z",
+    "updated_at": "2023-08-10T22:45:39.593Z",
+    "stock": 453,
+    "units_sold": 335,
+    "description": "Qui quae qui. Soluta iste quisquam. Pariatur et fuga. Porro aut molestiae. Dolore sapiente excepturi.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "product_id": 1805185,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Rustic Iron Shirt",
+    "price": 171.6,
+    "created_at": "2023-08-10T22:45:24.929Z",
+    "updated_at": "2023-08-10T22:45:39.605Z",
+    "stock": 350,
+    "units_sold": 617,
+    "description": "Praesentium at ut. Consequuntur ut rerum. Autem ut eaque. Tempore provident excepturi. Adipisci aut commodi.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 146,
+    "product_id": 3795650,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Practical Leather Watch",
+    "price": 124.83,
+    "created_at": "2023-08-10T22:45:24.941Z",
+    "updated_at": "2023-08-10T22:45:39.618Z",
+    "stock": 116,
+    "units_sold": 319,
+    "description": "Sit voluptas modi. Illo reprehenderit est. Pariatur a non. In voluptas sint. Voluptates totam quam.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "product_id": 8793960,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Small Wool Table",
+    "price": 179.48,
+    "created_at": "2023-08-10T22:45:24.953Z",
+    "updated_at": "2023-08-10T22:45:39.631Z",
+    "stock": 171,
+    "units_sold": 169,
+    "description": "A dolore perspiciatis. Nisi asperiores doloremque. Dolor molestiae accusamus. Soluta est qui. Sunt temporibus est.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 148,
+    "product_id": 5384109,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Aerodynamic Cotton Shoes",
+    "price": 198.39,
+    "created_at": "2023-08-10T22:45:24.965Z",
+    "updated_at": "2023-08-10T22:45:39.644Z",
+    "stock": 172,
+    "units_sold": 299,
+    "description": "Ab harum vero. Illum eveniet eos. Est quia praesentium. In nostrum ratione. Est eos dolor.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 149,
+    "product_id": 1284665,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Fantastic Rubber Shirt",
+    "price": 199.94,
+    "created_at": "2023-08-10T22:45:24.977Z",
+    "updated_at": "2023-08-10T22:45:39.655Z",
+    "stock": 121,
+    "units_sold": 738,
+    "description": "Ea ab et. Unde voluptatum aut. Rem rerum eum. Perferendis quaerat dolorem. Et repudiandae quae.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "product_id": 9282561,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Fantastic Linen Watch",
+    "price": 193.51,
+    "created_at": "2023-08-10T22:45:24.990Z",
+    "updated_at": "2023-08-10T22:45:39.667Z",
+    "stock": 456,
+    "units_sold": 344,
+    "description": "Vel molestias distinctio. Architecto expedita ab. Ab tempora aut. Est facilis nihil. Occaecati nostrum repellat.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 151,
+    "product_id": 8028052,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Synergistic Bronze Bag",
+    "price": 23.54,
+    "created_at": "2023-08-10T22:45:25.002Z",
+    "updated_at": "2023-08-10T22:45:39.680Z",
+    "stock": 336,
+    "units_sold": 445,
+    "description": "Atque dignissimos ea. Atque esse numquam. Et minima numquam. Ratione cum enim. Sit rerum ducimus.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 152,
+    "product_id": 7923401,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Ergonomic Bronze Shoes",
+    "price": 76.78,
+    "created_at": "2023-08-10T22:45:25.016Z",
+    "updated_at": "2023-08-10T22:45:39.692Z",
+    "stock": 334,
+    "units_sold": 505,
+    "description": "Nisi libero est. Officiis exercitationem autem. Dolorem commodi mollitia. Enim veritatis doloremque. Et voluptatem vel.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "product_id": 2547430,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Ergonomic Wool Plate",
+    "price": 153.92,
+    "created_at": "2023-08-10T22:45:25.029Z",
+    "updated_at": "2023-08-10T22:45:39.703Z",
+    "stock": 494,
+    "units_sold": 354,
+    "description": "Possimus sit sit. Officia qui veniam. Magni ab suscipit. Placeat aspernatur eaque. Provident minus voluptatem.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 154,
+    "product_id": 4847935,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Lightweight Steel Shoes",
+    "price": 16.4,
+    "created_at": "2023-08-10T22:45:25.042Z",
+    "updated_at": "2023-08-10T22:45:39.715Z",
+    "stock": 303,
+    "units_sold": 735,
+    "description": "Laborum hic non. Similique tempore odit. Iure quia perferendis. Neque ut tenetur. Aliquam ut eum.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 155,
+    "product_id": 1429156,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Practical Steel Shirt",
+    "price": 137.97,
+    "created_at": "2023-08-10T22:45:25.055Z",
+    "updated_at": "2023-08-10T22:45:39.726Z",
+    "stock": 242,
+    "units_sold": 937,
+    "description": "Incidunt sequi illo. Enim eaque qui. Occaecati molestiae consequuntur. Rerum qui officia. Quia tenetur quidem.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 156,
+    "product_id": 3448339,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Enormous Bronze Computer",
+    "price": 107.85,
+    "created_at": "2023-08-10T22:45:25.071Z",
+    "updated_at": "2023-08-10T22:45:39.739Z",
+    "stock": 423,
+    "units_sold": 933,
+    "description": "Rerum rerum ut. Iste tenetur neque. Cumque accusantium blanditiis. Maxime aliquam quisquam. Omnis et quo.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 157,
+    "product_id": 7389419,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Fantastic Marble Coat",
+    "price": 101.17,
+    "created_at": "2023-08-10T22:45:25.083Z",
+    "updated_at": "2023-08-10T22:45:39.751Z",
+    "stock": 335,
+    "units_sold": 819,
+    "description": "Voluptatem enim est. Tenetur et blanditiis. Non cupiditate quibusdam. Earum omnis accusantium. Aspernatur et facere.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "product_id": 3400668,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Fantastic Paper Bottle",
+    "price": 110.69,
+    "created_at": "2023-08-10T22:45:25.095Z",
+    "updated_at": "2023-08-10T22:45:39.762Z",
+    "stock": 316,
+    "units_sold": 508,
+    "description": "Aut qui voluptatem. Aut eius saepe. Molestiae aliquid aliquam. Qui consequatur impedit. Impedit sit nobis.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 159,
+    "product_id": 9273564,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Aerodynamic Steel Wallet",
+    "price": 178.85,
+    "created_at": "2023-08-10T22:45:25.107Z",
+    "updated_at": "2023-08-10T22:45:39.773Z",
+    "stock": 311,
+    "units_sold": 742,
+    "description": "Esse error omnis. Magnam in sequi. Sed mollitia ipsum. Veritatis excepturi tempore. Delectus asperiores rerum.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "product_id": 5598268,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Rustic Cotton Table",
+    "price": 12.29,
+    "created_at": "2023-08-10T22:45:25.120Z",
+    "updated_at": "2023-08-10T22:45:39.785Z",
+    "stock": 332,
+    "units_sold": 302,
+    "description": "Nisi aperiam iure. Natus blanditiis quia. Et repudiandae sed. Quae optio iure. Corrupti harum impedit.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 161,
+    "product_id": 2478018,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Incredible Cotton Coat",
+    "price": 190.88,
+    "created_at": "2023-08-10T22:45:25.132Z",
+    "updated_at": "2023-08-10T22:45:39.796Z",
+    "stock": 386,
+    "units_sold": 272,
+    "description": "Deleniti et maiores. Sequi dolorem ipsam. Aliquid molestiae cumque. Quam quia quas. Eaque non vel.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 162,
+    "product_id": 1189097,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Mediocre Concrete Lamp",
+    "price": 61.85,
+    "created_at": "2023-08-10T22:45:25.145Z",
+    "updated_at": "2023-08-10T22:45:39.807Z",
+    "stock": 31,
+    "units_sold": 141,
+    "description": "Ex suscipit totam. Quo voluptates dignissimos. Tempore alias iusto. Atque voluptas deserunt. Exercitationem consectetur unde.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 163,
+    "product_id": 6852202,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Ergonomic Concrete Table",
+    "price": 141.58,
+    "created_at": "2023-08-10T22:45:25.160Z",
+    "updated_at": "2023-08-10T22:45:39.817Z",
+    "stock": 157,
+    "units_sold": 0,
+    "description": "Autem perspiciatis sit. Sint et sunt. Perspiciatis impedit qui. Aut id aut. Laboriosam dolor autem.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 164,
+    "product_id": 4971023,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Gorgeous Plastic Watch",
+    "price": 143.48,
+    "created_at": "2023-08-10T22:45:25.172Z",
+    "updated_at": "2023-08-10T22:45:39.830Z",
+    "stock": 472,
+    "units_sold": 470,
+    "description": "Et et quod. Non quia quia. Reprehenderit dicta aut. Aliquid itaque necessitatibus. Ut eos temporibus.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 165,
+    "product_id": 4084943,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Rustic Steel Coat",
+    "price": 64.24,
+    "created_at": "2023-08-10T22:45:25.185Z",
+    "updated_at": "2023-08-10T22:45:39.842Z",
+    "stock": 319,
+    "units_sold": 513,
+    "description": "Debitis molestiae harum. Vel facere nemo. Et ratione tempore. Omnis dolore qui. Voluptatem incidunt ut.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 166,
+    "product_id": 4116563,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Sleek Steel Clock",
+    "price": 128.92,
+    "created_at": "2023-08-10T22:45:25.199Z",
+    "updated_at": "2023-08-10T22:45:39.854Z",
+    "stock": 184,
+    "units_sold": 393,
+    "description": "Qui laudantium aut. Similique occaecati sapiente. Qui quisquam cupiditate. Dignissimos aut et. Pariatur recusandae a.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 102 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "product_id": 9979667,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Practical Leather Table",
+    "price": 72.53,
+    "created_at": "2023-08-10T22:45:25.217Z",
+    "updated_at": "2023-08-10T22:45:39.863Z",
+    "stock": 251,
+    "units_sold": 247,
+    "description": "Voluptate consequuntur ut. Recusandae voluptas nesciunt. Amet sint qui. Occaecati vel sed. Enim quia sit.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "product_id": 1660810,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Enormous Wool Table",
+    "price": 139.6,
+    "created_at": "2023-08-10T22:45:25.228Z",
+    "updated_at": "2023-08-10T22:45:39.873Z",
+    "stock": 194,
+    "units_sold": 344,
+    "description": "Consequatur doloribus excepturi. Aspernatur excepturi alias. Aliquam modi quidem. Rerum dolorum quia. Blanditiis magni ad.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "product_id": 8458583,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Rustic Plastic Knife",
+    "price": 62.33,
+    "created_at": "2023-08-10T22:45:25.242Z",
+    "updated_at": "2023-08-10T22:45:39.883Z",
+    "stock": 2,
+    "units_sold": 452,
+    "description": "Cupiditate cumque ut. Numquam voluptas qui. Omnis fugiat porro. Laborum aut similique. Laborum dolore iste.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "product_id": 3600271,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Fantastic Bronze Hat",
+    "price": 56.01,
+    "created_at": "2023-08-10T22:45:25.255Z",
+    "updated_at": "2023-08-10T22:45:39.893Z",
+    "stock": 400,
+    "units_sold": 362,
+    "description": "Et non iste. Amet repellat vel. Commodi saepe est. Expedita reiciendis fugit. Alias sint sed.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "product_id": 5288306,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Aerodynamic Paper Wallet",
+    "price": 44.18,
+    "created_at": "2023-08-10T22:45:25.268Z",
+    "updated_at": "2023-08-10T22:45:39.905Z",
+    "stock": 409,
+    "units_sold": 367,
+    "description": "Voluptas quam nihil. Provident quo consequatur. Ratione ea magnam. Tempore porro fugit. Placeat quia sunt.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 172,
+    "product_id": 1441259,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Heavy Duty Bronze Watch",
+    "price": 131.06,
+    "created_at": "2023-08-10T22:45:25.285Z",
+    "updated_at": "2023-08-10T22:45:39.918Z",
+    "stock": 425,
+    "units_sold": 322,
+    "description": "Deserunt velit nihil. Et maxime illo. Occaecati iusto consectetur. Recusandae accusantium magnam. Ullam sed quis.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 173,
+    "product_id": 7987340,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Small Marble Wallet",
+    "price": 101.29,
+    "created_at": "2023-08-10T22:45:25.298Z",
+    "updated_at": "2023-08-10T22:45:39.930Z",
+    "stock": 164,
+    "units_sold": 435,
+    "description": "Totam aut expedita. In numquam quo. Illum totam impedit. Nihil autem sapiente. Ut nostrum quae.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 174,
+    "product_id": 2903860,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Heavy Duty Aluminum Bag",
+    "price": 109.03,
+    "created_at": "2023-08-10T22:45:25.311Z",
+    "updated_at": "2023-08-10T22:45:39.944Z",
+    "stock": 143,
+    "units_sold": 746,
+    "description": "Ex enim quasi. Reprehenderit eos eaque. Consequuntur quia voluptatibus. Sit voluptatibus sed. Eos quaerat harum.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 175,
+    "product_id": 2429925,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Aerodynamic Cotton Knife",
+    "price": 156.99,
+    "created_at": "2023-08-10T22:45:25.324Z",
+    "updated_at": "2023-08-10T22:45:39.959Z",
+    "stock": 207,
+    "units_sold": 374,
+    "description": "Non quo nemo. Qui aut perspiciatis. Cumque dolor veniam. Consequatur excepturi aperiam. Dignissimos ab quae.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 176,
+    "product_id": 4617632,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Gorgeous Steel Car",
+    "price": 99.29,
+    "created_at": "2023-08-10T22:45:25.338Z",
+    "updated_at": "2023-08-10T22:45:39.974Z",
+    "stock": 476,
+    "units_sold": 299,
+    "description": "Placeat nobis alias. Sunt consectetur deserunt. Velit qui eligendi. Dolore illo adipisci. Maiores et harum.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 177,
+    "product_id": 4299288,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Enormous Copper Computer",
+    "price": 186.72,
+    "created_at": "2023-08-10T22:45:25.351Z",
+    "updated_at": "2023-08-10T22:45:39.989Z",
+    "stock": 95,
+    "units_sold": 277,
+    "description": "Tenetur et minus. Omnis eos rerum. Cupiditate qui repellat. Autem officia consequuntur. Aut quasi fuga.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 178,
+    "product_id": 5886609,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Sleek Steel Table",
+    "price": 69.81,
+    "created_at": "2023-08-10T22:45:25.368Z",
+    "updated_at": "2023-08-10T22:45:40.003Z",
+    "stock": 407,
+    "units_sold": 123,
+    "description": "Provident deserunt sed. Non aliquid est. Rerum sit magni. Fuga aut necessitatibus. Dolorem nesciunt provident.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 179,
+    "product_id": 2909974,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Gorgeous Aluminum Pants",
+    "price": 163.33,
+    "created_at": "2023-08-10T22:45:25.381Z",
+    "updated_at": "2023-08-10T22:45:40.018Z",
+    "stock": 480,
+    "units_sold": 333,
+    "description": "Eius dolorem eveniet. Eum rem voluptate. Quis asperiores ex. Aut sit quis. Reiciendis corporis consectetur.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 180,
+    "product_id": 8902555,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Durable Marble Bottle",
+    "price": 17.69,
+    "created_at": "2023-08-10T22:45:25.395Z",
+    "updated_at": "2023-08-10T22:45:40.032Z",
+    "stock": 162,
+    "units_sold": 692,
+    "description": "Libero voluptas sit. Nam dolor cupiditate. Aut pariatur et. Non unde expedita. Voluptas est dolores.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 181,
+    "product_id": 6650150,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Rustic Linen Hat",
+    "price": 74.93,
+    "created_at": "2023-08-10T22:45:25.408Z",
+    "updated_at": "2023-08-10T22:45:40.047Z",
+    "stock": 399,
+    "units_sold": 656,
+    "description": "Esse id est. Earum sed et. Excepturi perspiciatis natus. Nihil qui quia. Natus officia ut.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 182,
+    "product_id": 6940209,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Fantastic Cotton Hat",
+    "price": 137.49,
+    "created_at": "2023-08-10T22:45:25.421Z",
+    "updated_at": "2023-08-10T22:45:40.062Z",
+    "stock": 339,
+    "units_sold": 525,
+    "description": "Fugit vero ullam. Omnis ut quia. Est cumque alias. Maiores deserunt perspiciatis. Eaque qui sed.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 183,
+    "product_id": 5072652,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Fantastic Wooden Bench",
+    "price": 182.71,
+    "created_at": "2023-08-10T22:45:25.434Z",
+    "updated_at": "2023-08-10T22:45:40.075Z",
+    "stock": 306,
+    "units_sold": 168,
+    "description": "Minus laborum est. Est facilis necessitatibus. Ut dolore accusamus. Enim aperiam sed. Totam quibusdam expedita.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 184,
+    "product_id": 7704332,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Synergistic Steel Lamp",
+    "price": 156.65,
+    "created_at": "2023-08-10T22:45:25.448Z",
+    "updated_at": "2023-08-10T22:45:40.091Z",
+    "stock": 31,
+    "units_sold": 925,
+    "description": "Dicta aut qui. Eos est error. Sed nemo minima. Ut sint minus. Facere sit natus.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "product_id": 5088776,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Sleek Paper Clock",
+    "price": 19.9,
+    "created_at": "2023-08-10T22:45:25.461Z",
+    "updated_at": "2023-08-10T22:45:40.106Z",
+    "stock": 145,
+    "units_sold": 396,
+    "description": "Voluptate et libero. Eum quis architecto. Enim quis nulla. Dolor nisi omnis. Reprehenderit quis exercitationem.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 186,
+    "product_id": 2376565,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Lightweight Paper Gloves",
+    "price": 56.7,
+    "created_at": "2023-08-10T22:45:25.473Z",
+    "updated_at": "2023-08-10T22:45:40.119Z",
+    "stock": 141,
+    "units_sold": 643,
+    "description": "Saepe asperiores dignissimos. Quia dolor sint. Sapiente qui sed. Qui nisi at. Aut architecto quo.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 187,
+    "product_id": 8992586,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Rustic Wool Bottle",
+    "price": 11.25,
+    "created_at": "2023-08-10T22:45:25.486Z",
+    "updated_at": "2023-08-10T22:45:40.134Z",
+    "stock": 190,
+    "units_sold": 675,
+    "description": "Similique et accusamus. Tempora iste consequatur. Nam quidem veritatis. Quis temporibus et. Eos quis non.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 188,
+    "product_id": 6193025,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Gorgeous Wooden Car",
+    "price": 48.25,
+    "created_at": "2023-08-10T22:45:25.497Z",
+    "updated_at": "2023-08-10T22:45:40.148Z",
+    "stock": 307,
+    "units_sold": 683,
+    "description": "Eos vitae saepe. Quisquam alias necessitatibus. Nam repudiandae quo. Ut quo culpa. Eaque quis accusantium.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 189,
+    "product_id": 4719255,
+    "product_category": "Comfortwear",
+    "product_type": "Accessories",
+    "product_name": "Ergonomic Paper Plate",
+    "price": 103.98,
+    "created_at": "2023-08-10T22:45:25.510Z",
+    "updated_at": "2023-08-10T22:45:40.163Z",
+    "stock": 307,
+    "units_sold": 389,
+    "description": "Perferendis assumenda qui. Ut cum quod. Aut deserunt eum. Sint exercitationem et. Fugiat illum culpa.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 190,
+    "product_id": 9659910,
+    "product_category": "Running",
+    "product_type": "Shorts",
+    "product_name": "Synergistic Steel Lamp",
+    "price": 147.45,
+    "created_at": "2023-08-10T22:45:25.524Z",
+    "updated_at": "2023-08-10T22:45:40.179Z",
+    "stock": 425,
+    "units_sold": 528,
+    "description": "Iure ut rem. Eos quia voluptatem. Qui et odit. Praesentium molestiae molestiae. In et nihil.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 191,
+    "product_id": 8716010,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Gorgeous Bronze Bottle",
+    "price": 124.54,
+    "created_at": "2023-08-10T22:45:25.535Z",
+    "updated_at": "2023-08-10T22:45:40.195Z",
+    "stock": 469,
+    "units_sold": 941,
+    "description": "Et aut mollitia. Aut consequatur omnis. Expedita officia aut. Ut voluptate corrupti. Sapiente consectetur ut.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is in top 5 sales in the last 30 days with 196 sales!",
+        "severity": {
+          "label": "Exceptional",
+          "level": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": 192,
+    "product_id": 1858945,
+    "product_category": "Comfortwear",
+    "product_type": "Shoes",
+    "product_name": "Practical Concrete Bottle",
+    "price": 187.32,
+    "created_at": "2023-08-10T22:45:25.547Z",
+    "updated_at": "2023-08-10T22:45:40.210Z",
+    "stock": 91,
+    "units_sold": 1081,
+    "description": "Facere et eos. Ducimus laborum voluptas. Quam ut voluptatem. Ratione ad est. Eveniet minima ut.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 193,
+    "product_id": 2368079,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Sleek Silk Chair",
+    "price": 29.54,
+    "created_at": "2023-08-10T22:45:25.559Z",
+    "updated_at": "2023-08-10T22:45:40.224Z",
+    "stock": 20,
+    "units_sold": 865,
+    "description": "Eum quas et. Illum dolores provident. Dolore quae neque. Ut minus ullam. Doloremque tenetur placeat.",
+    "image_link": "https://media.sketchfab.com/models/090413b247ed41d6a8b45e321e58e543/thumbnails/9720380901344db0a462f800ad36f999/43c4225f2ff54377a1fda223c6f44dfe.jpeg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 194,
+    "product_id": 4259808,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Incredible Granite Bench",
+    "price": 157.61,
+    "created_at": "2023-08-10T22:45:25.571Z",
+    "updated_at": "2023-08-10T22:45:40.238Z",
+    "stock": 164,
+    "units_sold": 370,
+    "description": "Sit in nostrum. Vitae ut sapiente. Pariatur quod dolores. Corporis suscipit culpa. Et qui soluta.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 138 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 195,
+    "product_id": 5069132,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Enormous Wooden Watch",
+    "price": 20.7,
+    "created_at": "2023-08-10T22:45:25.585Z",
+    "updated_at": "2023-08-10T22:45:40.252Z",
+    "stock": 50,
+    "units_sold": 811,
+    "description": "Aspernatur delectus necessitatibus. Ipsam natus qui. Necessitatibus commodi perspiciatis. Enim natus est. Ut impedit architecto.",
+    "image_link": "https://img.freepik.com/premium-photo/colorful-brown-sneakers-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12519.jpg?w=360",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      },
+      {
+        "name": "popular",
+        "text": "Product is very popular with 128 sales in the last 30 days!",
+        "severity": {
+          "label": "Positive",
+          "level": 1
+        }
+      },
+      {
+        "name": "popular_low_stock",
+        "text": "Product has been very popular in the last 30 days, but has low stock left! (50)",
+        "severity": {
+          "label": "Severe",
+          "level": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": 196,
+    "product_id": 9272879,
+    "product_category": "Running",
+    "product_type": "Tshirts",
+    "product_name": "Mediocre Paper Gloves",
+    "price": 15.42,
+    "created_at": "2023-08-10T22:45:25.598Z",
+    "updated_at": "2023-08-10T22:45:40.265Z",
+    "stock": 332,
+    "units_sold": 866,
+    "description": "Sit consequatur ut. Omnis omnis natus. Iure rerum recusandae. Et inventore vitae. Ipsam placeat sed.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 197,
+    "product_id": 5569227,
+    "product_category": "Comfortwear",
+    "product_type": "Shorts",
+    "product_name": "Lightweight Granite Chair",
+    "price": 111.37,
+    "created_at": "2023-08-10T22:45:25.609Z",
+    "updated_at": "2023-08-10T22:45:40.280Z",
+    "stock": 227,
+    "units_sold": 448,
+    "description": "Dolores porro enim. Quae cupiditate aut. Unde accusamus minima. Ratione nostrum dolorem. Reprehenderit libero sint.",
+    "image_link": "https://img.freepik.com/premium-photo/blue-sneaker-sole-concept-bright-fashionable-sneakers-3d-rendering_116124-12470.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 198,
+    "product_id": 3661315,
+    "product_category": "Running",
+    "product_type": "Shoes",
+    "product_name": "Sleek Marble Keyboard",
+    "price": 28.11,
+    "created_at": "2023-08-10T22:45:25.619Z",
+    "updated_at": "2023-08-10T22:45:40.293Z",
+    "stock": 209,
+    "units_sold": 499,
+    "description": "Pariatur modi aut. Fugit rerum dicta. Nostrum autem quibusdam. Et ut doloribus. Dolorem sed et.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 199,
+    "product_id": 6541785,
+    "product_category": "Comfortwear",
+    "product_type": "Tshirts",
+    "product_name": "Rustic Rubber Chair",
+    "price": 19.58,
+    "created_at": "2023-08-10T22:45:25.629Z",
+    "updated_at": "2023-08-10T22:45:40.307Z",
+    "stock": 239,
+    "units_sold": 170,
+    "description": "Architecto omnis aliquid. Temporibus veniam voluptatem. Laudantium illo hic. Harum quidem quia. Ex rerum occaecati.",
+    "image_link": "https://www.3dcadbrowser.com/th/1/105/105296.webp",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 200,
+    "product_id": 8554264,
+    "product_category": "Running",
+    "product_type": "Accessories",
+    "product_name": "Small Aluminum Bench",
+    "price": 89.12,
+    "created_at": "2023-08-10T22:45:25.641Z",
+    "updated_at": "2023-08-10T22:45:40.324Z",
+    "stock": 269,
+    "units_sold": 722,
+    "description": "Culpa assumenda beatae. Exercitationem et deleniti. Incidunt rerum magni. Sunt commodi qui. Veniam consectetur incidunt.",
+    "image_link": "https://cdn.dribbble.com/users/115601/screenshots/1075457/shoeshaded.jpg",
+    "insights": [
+      {
+        "name": "sales_change",
+        "text": "Sales for this product have not changed since 24 hours ago (2023-08-12).",
+        "severity": {
+          "label": "Moderate",
+          "level": 2
+        }
+      }
+    ]
+  }
+]

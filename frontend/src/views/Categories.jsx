@@ -28,7 +28,7 @@ const Categories = () => {
         switch (render) {
             case "frequencies":
                 return (
-                    <SalesBar 
+                    <SalesBar
                         data={
                             {
                                 x: salesData.frequencies.x_axis,
@@ -59,7 +59,7 @@ const Categories = () => {
                         colour="#006341"
                     />
                 )
-            
+
             case "types-frequencies":
                 const freqs = salesData.types.frequency;
 
@@ -108,8 +108,8 @@ const Categories = () => {
     return(
         <>
             <Stack>
-            <h1 id="sales-title">Sales Analytics</h1>
-               <CategorySearch handleSalesData={handleSalesData} className="search"/>
+            <h1>Sales Analytics</h1>
+               <CategorySearch handleSalesData={handleSalesData} className="search" url="https://sds-team3-backend-v4txkfic3a-as.a.run.app/api/v1/sales"/>
                 <Space h="xl"/>
                 <Space h="xl"/>
                 <div className="sales-segment">

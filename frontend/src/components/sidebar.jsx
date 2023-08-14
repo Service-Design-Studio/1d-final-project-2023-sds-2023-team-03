@@ -50,7 +50,7 @@ function Sidebar({handleClearState}) {
   const handleMouseEnter = () => {
     setExpanded(true);
   };
-  
+
   const handleMouseLeave = () => {
     setExpanded(false);
     setDropdownOpen(false); // Close dropdown when sidebar minimizes
@@ -59,15 +59,15 @@ function Sidebar({handleClearState}) {
   const handleLogout = () => {
     setLogoutModalOpen(true);
   };
-  
+
   const handleConfirmLogout = () => {
     // Add your logic for Home button click
     handleClearState();
-    navigate('/login');  
+    navigate('/login');
     setLogoutModalOpen(false);
     setExpanded(false);
   };
-  
+
   const handleCancelLogout = () => {
     setLogoutModalOpen(false);
   };
@@ -149,7 +149,7 @@ function Sidebar({handleClearState}) {
     </animated.div>
 
 
-      {isExpanded && (
+      {/* {isExpanded && (
         <animated.div className="logout-button" style={logoutButtonAnimation}>
         <motion.button
           onClick={handleLogout}
@@ -161,7 +161,7 @@ function Sidebar({handleClearState}) {
           Logout
         </motion.button>
       </animated.div>
-      )}
+      )} */}
       <div className="react-icon">
         <VscMenu />
       </div>
