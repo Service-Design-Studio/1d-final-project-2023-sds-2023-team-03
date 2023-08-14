@@ -138,6 +138,20 @@ To add new insights, or removing existing ones, remove the insight name from the
 
 
 ### Unit Testing
+Unit tests can be found under the spec folder (backend/spec) for the Controllers, Models, and Insights. Unit tests are done in RSpec. The tests under 'controllers' tests all the controller methods, tests under 'models' for all the model functions, and tests under 'insights' are separated into two: global insights and product insights. The former are insights that appears in the Overview page, while the latter appears in the Merchandising page.
+To run all the tests in spec folder:
+```
+rake spec
+```
+
+To run individual test files:
+```
+rspec spec/{folder under spec}/{file name}
+```
+E.g.
+```
+rspec spec/controllers/sales_controller_spec.rb
+```
 
 ### API Testing and Documentation
 https://solar-flare-597216.postman.co/workspace/New-Team-Workspace~f21a8933-11ff-4b64-925a-36ea3f69caa1/collection/26558963-f93f0485-05b8-47c9-ac83-f28e647ca5eb?action=share&creator=26558963
