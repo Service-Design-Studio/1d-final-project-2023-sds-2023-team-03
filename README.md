@@ -28,8 +28,10 @@ Provide a brief introduction to the project, its purpose, and main features.
 - Google Cloud Platfrom (Deployment)
 
 Architecture Diagram
+![Architecture Diagram](https://github.com/Service-Design-Studio/1d-final-project-2023-sds-2023-team-03/blob/main/image-1.png?raw=true)
 
 Microservice Diagram
+![Microservice Diagram](https://github.com/Service-Design-Studio/1d-final-project-2023-sds-2023-team-03/blob/main/image-2.png?raw=true)
 
 ## Getting Started
 
