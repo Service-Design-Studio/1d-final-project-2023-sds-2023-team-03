@@ -14,6 +14,7 @@ A Service Design Studio Project in collaboration with Puma SEA E Commerce Team
   - [Frontend](#Frontend)
   - [Backend](#Backend)
   - [Unit Testing](#unit-testing)
+  - [API Testing and Documentation](#api-testing-and-documentation)
 
 
 ## Project Overview
@@ -83,4 +84,5 @@ rails db:seed
 
 ### Unit Testing
 
-
+### API Testing and Documentation
+https://solar-flare-597216.postman.co/workspace/New-Team-Workspace~f21a8933-11ff-4b64-925a-36ea3f69caa1/collection/26558963-f93f0485-05b8-47c9-ac83-f28e647ca5eb?action=share&creator=26558963
