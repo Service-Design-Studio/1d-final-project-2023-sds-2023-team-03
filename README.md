@@ -46,7 +46,7 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/Service-Design-Studio/1d-final-project-2023-sds-2023-team-03.git
    ```
 
-## Frontend
+### Frontend
 - Our frontend utilises the React framework.
 1. Navigate to Frontend folder
 ```bash
@@ -65,8 +65,8 @@ npm run dev
 npm test
 ```
 
-## Backend
+### Backend
 
-## Unit Testing
+### Unit Testing
 
 
