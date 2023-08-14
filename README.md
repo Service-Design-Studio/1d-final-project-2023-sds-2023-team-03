@@ -85,7 +85,7 @@ rails db:migrate
 rails db:seed
 ```
 
-### Insights configuration:
+### Insights configuration
 - Located in: /backend/lib/insights
 - Severity levels may be changed in **insights/insights_config.rb**
 - Insights typically have the following output:
