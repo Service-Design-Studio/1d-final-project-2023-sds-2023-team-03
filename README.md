@@ -11,8 +11,9 @@ A Service Design Studio Project in collaboration with Puma SEA E Commerce Team
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Frontend](#Frontend)
-  - [Backend](#Backend)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+  - [Insights Configuration](#insights-configuration)
   - [Unit Testing](#unit-testing)
   - [API Testing and Documentation](#api-testing-and-documentation)
 
