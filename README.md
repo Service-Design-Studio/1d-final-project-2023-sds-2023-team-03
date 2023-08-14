@@ -1,6 +1,7 @@
-# Project Name
+# Puma SEA E-Commerce Analytics Tool
 
-Short project description goes here.
+A Service Design Studio Project in collaboration with Puma SEA E Commerce Team
+[Google Sites](https://sites.google.com/view/ctrl-design/home)
 
 ## Table of Contents
 
@@ -24,6 +25,10 @@ Provide a brief introduction to the project, its purpose, and main features.
 - React (Frontend)
 - Google Cloud Platfrom (Deployment)
 
+Architecture Diagram
+
+Microservice Diagram
+
 ## Getting Started
 
 ### Prerequisites
@@ -33,7 +38,7 @@ Before you begin, ensure you have met the following requirements:
 - Ruby: [Installation Guide](https://www.ruby-lang.org/en/documentation/installation/)
 - Node.js and npm: [Installation Guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-### Installation
+## Installation
 
 1. Clone the repository: 
 
@@ -41,7 +46,7 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/Service-Design-Studio/1d-final-project-2023-sds-2023-team-03.git
    ```
 
-### Frontend
+## Frontend
 - Our frontend utilises the React framework.
 1. Navigate to Frontend folder
 ```bash
@@ -59,3 +64,9 @@ npm run dev
 ```bash
 npm test
 ```
+
+## Backend
+
+## Unit Testing
+
+
