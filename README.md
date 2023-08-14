@@ -15,7 +15,6 @@ A Service Design Studio Project in collaboration with Puma SEA E Commerce Team
   - [Backend](#Backend)
   - [Unit Testing](#unit-testing)
 
-
 ## Project Overview
 
 Provide a brief introduction to the project, its purpose, and main features.
@@ -26,9 +25,9 @@ Provide a brief introduction to the project, its purpose, and main features.
 - React (Frontend)
 - Google Cloud Platfrom (Deployment)
 
-Architecture Diagram
+![Architecture Diagram](architecture-diagram.png)
 
-Microservice Diagram
+![Microservice Diagram](microservice-diagram.png)
 
 ## Getting Started
 
@@ -41,46 +40,59 @@ Before you begin, ensure you have met the following requirements:
 
 ### Installation
 
-1. Clone the repository: 
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/Service-Design-Studio/1d-final-project-2023-sds-2023-team-03.git
    ```
 
 ### Frontend
+
 - Our frontend utilises the React framework.
+
 1. Navigate to Frontend folder
+
 ```bash
    cd .\frontend\
 ```
+
 2. Install Frontend Dependencies
+
 ```bash
 npm i --legacy-peer-deps
 ```
+
 3. Run in Local Host
+
 ```bash
 npm run dev
 ```
+
 4. Generate Cucumber Test Case
+
 ```bash
 npm test
 ```
 
 ### Backend
+
 1. Navigate to Backend folder
+
 ```bash
    cd .\backend\
 ```
+
 2. Install Backend Dependencies
+
 ```bash
    bundle install
 ```
+
 3. Data Migration and Seeding
+
 ```bash
 rails db:migrate
 rails db:seed
 ```
 
 ### Unit Testing
-
-
