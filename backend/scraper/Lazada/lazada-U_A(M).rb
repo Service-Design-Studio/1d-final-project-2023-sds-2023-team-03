@@ -11,6 +11,7 @@ search_term = 'U_A(M)'
 ###########################################################################
 
 
+## USER AGENTS
 USER_AGENTS = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15',
@@ -18,11 +19,12 @@ USER_AGENTS = [
   # Add more user agents here
 ]
 
+##INITIATE PAGE COUNT START TO PUT INTO URL
 page_count = 1
 all_products_urls = []
 it = 0
 
-
+## NUMBER OF URLS FOR EACH CATEGORY
 Url_len = {
   'Running'=> 2,
   'Comfortwear' => 2, 
@@ -36,8 +38,7 @@ Url_len = {
   'U_A(W)' => 2
 }
 
-
-
+## URLS TO SCRAPE, BASED ON SEARCH TERM
 def get_url(s_term,its,page_c)
   url_dict = {
     'Running'=> ["https://www.lazada.sg/men-sports-running-shoes/?location=local&page=#{page_c}&service=official","https://www.lazada.sg/women-sport-shoes-running-shoes/?location=local&service=official&page=#{page_c}"],
@@ -56,18 +57,20 @@ def get_url(s_term,its,page_c)
 
 end
 
-# Classic (GET)
+
 def send_request(all_p_urls,page_count,search_term,it)
 
+  # PRINTS PAGE COUNT
   puts "page count is #{page_count}"
 
   url_to_call = get_url(search_term,it,page_count).to_s
 
+  # PRINTS URL BEING SCRAPED
   puts "url: #{url_to_call}"
 
   url = URI.encode_www_form_component(url_to_call)
 
-
+  #DEFINES JS CODES TO SCROLL SHOPEE N LOAD DATA
   js_scenario = <<~JS
   {
     "instructions": [
@@ -80,6 +83,7 @@ def send_request(all_p_urls,page_count,search_term,it)
   JS
   
 
+  #CHANGE API KEY TO CURRENT API KEY ON SCRAPINGBEE BELOW:
   uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&country_code=sg&wait_browser=load&json_response=True&block_resources=False&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
 
   # Randomly select a user agent
@@ -135,7 +139,7 @@ def send_request(all_p_urls,page_count,search_term,it)
   # Parse the HTML data
   soup = Nokogiri::HTML(body_data)
 
-  #Set containers
+  ## SET THE RELEVANT CONTAINERS TO GUIDE WHERE TO SEARCH FOR ELEMENTS
   if search_term == 'Comfortwear' || search_term == 'Running'
     puts 'Scraping by Categories...'
     soup_container = soup.at_css('div._17mcb')
@@ -143,6 +147,7 @@ def send_request(all_p_urls,page_count,search_term,it)
 
     puts 'getting links, qty sold/mth'
     
+    ## CONVERT TO TEXT, REMOVES HTML TAGS
     link = link_container.css('a > @href')
     sold_checker = soup_container.css("div._6uN7R")
     link_data = link.map(&:text)
@@ -158,6 +163,8 @@ def send_request(all_p_urls,page_count,search_term,it)
     
     link = link_container.css('a > @href')
     sold_checker = soup_container.css("div._6uN7R")
+
+    ## CONVERT TO TEXT, REMOVES HTML TAGS
     link_data = link.map(&:text)
     sold_checker_data = sold_checker.map(&:text)
 
@@ -166,8 +173,7 @@ def send_request(all_p_urls,page_count,search_term,it)
   sold_data = []
   final_link = []
 
-  # puts "This is sold_checker_data: #{sold_checker_data}"
-
+  ## CHECKS FOR QTY SOLD
   sold_checker_data.each do |cleaned|
     if cleaned == ''
       sold_data << 0
@@ -180,18 +186,18 @@ def send_request(all_p_urls,page_count,search_term,it)
     final_link << "https:" + data
   end
 
-  # puts "Pre-append: #{final_link}"
-
   puts "len of urls: #{final_link.length}"
 
   puts "len of sold_data: #{sold_data.length}"
 
-
+  # ZIPS ALL THE DATA, PRE-APPEND TO ALL_PRODUCT_URLS
   zipped_list = final_link.zip(sold_data)
   zipped_list.each do |url_location_entry| 
     all_p_urls << url_location_entry
   end
   
+
+    ## CHECKS TO SEE IF NEXT PAGE BUTTON EXISTS
   page_bool = soup.at_css("li.ant\\-pagination\\-next")
 
   # puts page_bool
@@ -220,37 +226,40 @@ def send_request(all_p_urls,page_count,search_term,it)
 
   send_request(all_p_urls,page_count,search_term,it)
 
+  ##RESCUE METHODS = RETRIES URLS, AFTER 20S.
+
+
 rescue NoMethodError => e
   if e.message.include?("undefined method `css' for nil:NilClass")
     puts "HTTP Request succeeded, but the required element was not found in the HTML."
     puts "Retrying in 10 seconds..."
-    sleep(10)
+    sleep(20)
     send_request(all_p_urls, page_count,search_term,it)
   else
     puts "HTTP Request failed (#{e.message}), retrying..."
     puts "Retrying in 10 seconds..."
-    sleep(10)
+    sleep(20)
     send_request(all_p_urls, page_count,search_term,it)
   end
 rescue EOFError => e
   puts "HTTP Request failed (end of file reached)"
   puts "Retrying in 10 seconds..."
-  sleep(10)
+  sleep(20)
   send_request(all_p_urls, page_count,search_term,it)
 rescue StandardError => e
   puts "HTTP Request failed (end of file reached)"
   puts "Retrying in 10 seconds..."
-  sleep(10)
+  sleep(20)
   send_request(all_p_urls, page_count,search_term,it)
 end
 
 
 
-
+## INITIATES SCRAPE
 send_request(all_products_urls,page_count,search_term,it)
 
 
-
+#LEN OF ALL PRODUCT LISTING SCRAPED
 # puts "all product details: #{all_products_urls}"
 
 
@@ -259,12 +268,12 @@ puts "len of all listings_data: #{all_products_urls.length}"
 
 
 
-###cleans out non shoes
+## CLEANS FOR FOOTWEAR IN PRODUCT URL
 all_products_urls.reject! do |url_loc|
   !['Shoes', 'shoes', 'shoe', 'Shoe','slides','Slides','slippers','Slippers','Sandals','sandals','boots','Boots'].any? { |substring| url_loc[0].include?(substring) }
 end
 
-
+#LEN OF ALL PRODUCT LISTING SCRAPED(CLEANED)
 puts "len of all listings_data(cleaned): #{all_products_urls.length}"
 
 
@@ -280,6 +289,8 @@ puts 'ENTERING INTO URLS'
 puts "............................................"
 puts "............................................"
 
+
+## ASSIGNS CORRECT BRAND BASED ON OFFICIAL SELLER NAME
 Brand_dict = {
   'adidassg' => "Adidas",
   'asicsofficial'=> "Asics",
@@ -297,13 +308,17 @@ Brand_dict = {
   'Nike'=>'Nike'
 }
 
+## BRANDS PUMA IS CONCERNED WITH 
 Impt_brands = ['adidassg','asicsofficial','skecherssg','sauconyofficial',
-              'under_armour_official','puma_singapore','salomon.sg', "ASICS",
-              'PUMA','Skechers','adidas','Nike','Under Armour','skecherssg'
-              ]
+                'under_armour_official','puma_singapore','salomon.sg', "ASICS",
+                'PUMA','Skechers','adidas','Nike','Under Armour','skecherssg'
+                ]
 
 final_list = []
 # error_urls = []
+
+
+## IF SEARCH TERM != RUNNING OR COMFORTWEAR, ASSIGN CATEGORY AS NIL. NEW FEATURE TO ASSIGN CATEGORY BASED ON PROD. DESC.
 
 if search_term == 'Running'
   prod_label = 'Running'
@@ -313,20 +328,24 @@ else
   prod_label = 'NIL'
 end
 
-
+#CREATE REQ FOR EACH UNIQUE PRODUCT LISTING
 def send_request_url(final_l,prod_listing,cat_label,retry_number)
 
 
+  ## CHECK IF MAX RETRIES HAS BEEN HIT
   if retry_number == 5
     puts 'Product cannot be scraped (Max retries of 5 has been reached)'
     puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     return
   end
 
+  ##PRINTS PRODUCT BRING SCRAPED
   puts prod_listing[0]
 
   url = URI.encode_www_form_component(prod_listing[0])
 
+
+  ## WAIT FOR PAGE LOAD AND SCROLL, JUST IN CASE
   js_scenario = <<~JS
   {
     "instructions": [
@@ -337,8 +356,7 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   JS
 
   
-  # Response_iteration = Response_iteration + 1
-
+  ### CHANGE API KEY TO CURRENT API KEY ON SCRAPINGBEE
   uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&wait_browser=load&json_response=True&block_resources=True&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
   # Randomly select a user agent
   user_agent = USER_AGENTS.sample
@@ -378,22 +396,22 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   # Parse the JSON string
   data = JSON.parse(json_string)
 
-  # body_data = data['resolved-url']
   puts 'resolved-url'
   puts data['resolved-url']
 
   body_data = data['body']
 
-  # puts body_data
+
 
   puts '--------------------- Extracting! ---------------------'
 
   # Parse the HTML data
   soupy = Nokogiri::HTML(body_data)
 
+  ### CONTAINER FOR PRODUCT INFO
   soup = soupy.at_css('div.pdp\\-block\\ pdp\\-block__product\\-detail')
 
-
+  ### CONTAINER FOR SELLER INFO
   soupz = soupy.at_css('div.seller\\-name\\-retail')
 
 
@@ -418,6 +436,7 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
 
   puts "compet name data: #{competitor_name_data}"
 
+  ## IF COMPETITOR NAME IS NOT INSIDE BRANDS THAT I WANT TO SCRAPE, SKIP PRODUCT
   unless Impt_brands.include?(competitor_name_data)
     puts 'Product is not sold by official seller! Skipping...'
     puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
@@ -425,14 +444,19 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   end
 
 
-
-  ## prod desc
+  ## PRODUCT DESC
   product_desc = soupy.at_css('div.html\\-content\\ detail\\-content')
 
+
+  ##CONVERSION TO TEXT
+  ## IF EMPTY, PROD DESC = N/A
   product_desc_data = product_desc.nil? || product_desc.text.empty? ? 'No product description available.' : product_desc.text  
   ###
 
+  ###LAZADA UNABLE TO GET VOUCHERS W SCRAPINGBEE, EXPLORE USING SELENIUM
 
+  
+  ## REMOVES HTML TAGS
   product_name_data = product_name.text
 
   product_final_price_data = product_final_price.text
@@ -460,6 +484,7 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
 
   puts "Product Description: #{product_desc_data}"
   
+  ##APPEND PRODUCT INFO TO FINAL LIST
   final_entry = []
   final_entry << 'lazada'
   final_entry << cat_label
@@ -478,6 +503,9 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   puts "final_entry: #{final_entry}"
 
   puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+
+
+  ## RESCUES HANDLE THE RETRIES, W A MAXIMUM OF 5 RETRIES.
 
 rescue NoMethodError => e
   # Handle the error when 'at_css' method fails due to nil value
@@ -500,12 +528,11 @@ end
 
 
 
-##############
+##LOOPS THROUGH ALL PRODUCTS URLS AND SCRAPES EACH PRODUCT. INITIATE SCRAPE.
 all_products_urls.each do |entry|
   retry_no = 0
   puts "PRODUCT NUMBER: #{all_products_urls.index(entry)+1} out of #{all_products_urls.length}"
   send_request_url(final_list,entry,prod_label,retry_no)
-
 end
 
 puts '---------------------------------------------------------'
@@ -517,12 +544,14 @@ puts "Length of products: #{final_list.length}"
 puts '---------------------------------------------------------'
 
 
+## SETS TIME 
 current_time = Time.now
 date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
 time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
 
 csv_filename = "./data/lazada_#{search_term}_product_list_#{date_str}_#{time_str}.csv"
 
+##SAVES DATA IN CSV UNDER /data
 CSV.open(csv_filename, 'w') do |csv|
   final_list.each do |row|
     row << date_str

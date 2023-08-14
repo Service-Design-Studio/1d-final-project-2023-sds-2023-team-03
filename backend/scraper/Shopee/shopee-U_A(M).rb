@@ -10,7 +10,7 @@ require 'csv'
 search_term = 'U_A(M)'
 ###########################################################################
 
-
+## USER AGENTS
 USER_AGENTS = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15',
@@ -21,11 +21,9 @@ page_count = 0
 all_products_urls = []
 
 
-# Classic (GET)
 def send_request(all_p_urls,page_count,search_term)
 
-  # Input search term
-
+  ## URLS TO SCRAPE, BASED ON SEARCH TERM
   url_dict = {
     'Running'=> "https://shopee.sg/mall/search?facet=11012070%2C11012195&keyword=running%20shoes&noCorrection=true&page=#{page_count}&sortBy=sales",
     'Comfortwear' => "https://shopee.sg/mall/search?keyword=sneakers&locations=Singapore&noCorrection=true&page=#{page_count}&sortBy=sales",
@@ -37,13 +35,19 @@ def send_request(all_p_urls,page_count,search_term)
     'U_A(W)' => "https://shopee.sg/under_armour_official?page=#{page_count}&shopCollection=102500265&sortBy=sales"
   }
 
+
+  # PRINTS PAGE COUNT
   puts "page count is #{page_count+1}"
 
-
+  # PRINTS URL BEING SCRAPED
   puts url_dict[search_term]
+
+
 
   url = URI.encode_www_form_component(url_dict[search_term])
 
+
+  #DEFINES JS CODES TO SCROLL SHOPEE N LOAD DATA
   js_scenario = <<~JS
   {
     "instructions": [
@@ -65,8 +69,7 @@ def send_request(all_p_urls,page_count,search_term)
     ]}
   JS
   
-  # Response_iteration = Response_iteration + 1
-
+  #CHANGE API KEY TO CURRENT API KEY ON SCRAPINGBEE BELOW:
   uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&country_code=sg&wait_browser=networkidle2&json_response=True&block_resources=False&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
 
   # Randomly select a user agent
@@ -88,12 +91,9 @@ def send_request(all_p_urls,page_count,search_term)
   # Fetch Request
   res = http.request(req)
   puts "Response HTTP Status Code: #{res.code}"
-  # puts "Response HTTP Response Body: #{res.body}"
 
   puts '--------------------- Parsing! ---------------------'
 
-
-  # Assuming you have JSON data in bytes format
   json_data = res.body
 
   # Decode the bytes data into a string
@@ -102,11 +102,11 @@ def send_request(all_p_urls,page_count,search_term)
   # Parse the JSON string
   data = JSON.parse(json_string)
 
-  # body_data = data['resolved-url']
+  ## PRINTS RESOLVED URL GIVEN BY SCRAPINGBEE CLIENT
   puts 'resolved-url'
   puts data['resolved-url']
 
-
+  ## SETS THE HTML RESPONSE TO BODY_DATA
   body_data = data['body']
 
 
@@ -116,13 +116,16 @@ def send_request(all_p_urls,page_count,search_term)
   # Parse the HTML data
   soup = Nokogiri::HTML(body_data)
 
-  #Set containers
+
+
+  ## SET THE RELEVANT CONTAINERS TO GUIDE WHERE TO SEARCH FOR ELEMENTS
   if search_term == 'Comfortwear' || search_term == 'Running'
     puts 'Scraping by Categories...'
     soup_container = soup.at_css('div.row\\ shopee-search-item-result__items')
 
     puts 'getting links, locations and qty sold/mth'
     link = soup_container.css('a > @href')
+
 
     location = soup_container.css("div.zGGwiV")
     sold = soup_container.css("div.r6HknA")
@@ -131,11 +134,12 @@ def send_request(all_p_urls,page_count,search_term)
     puts "location: #{location}"
     puts "sold :#{sold}"
 
+    ## CONVERT TO TEXT, REMOVES HTML TAGS
     link_data = link.map(&:text)
-
     sold_data_raw = sold.map(&:text)
     location_data = location.map(&:text)
   else
+
     puts 'Scraping by Brands...'
     soup_container = soup.at_css('div.shop\\-search\\-result\\-view')
 
@@ -144,15 +148,16 @@ def send_request(all_p_urls,page_count,search_term)
     sold = soup_container.css("div.sPnnFI")
     final_link =[]
 
+    ## CONVERT TO TEXT, REMOVES HTML TAGS
     link_data = link.map(&:text)
-
     sold_data_raw = sold.map(&:text)
+    ## CREATES SG FOR LOCATIONS AS FLAGSHIP IS ASSUMED TO BE IN SG
     location_data = Array.new(link_data.length, 'SG')
   end
 
-
   sold_data = []
 
+  ## CLEANS DATA IF SOLD OR SOLD/MONTH, ELSE IF N/A, PUT QTY SOLD TO 0
   sold_data_raw.each do |cleaned|
     if cleaned.include?('month')
       sold_data << cleaned.gsub(' sold/month','').to_i
@@ -163,7 +168,7 @@ def send_request(all_p_urls,page_count,search_term)
     end
   end
 
-
+  ## ADDS HTTPS://... TO THE PRODUCT URL LINK
   link_data.each do |data|
     final_link << "https://shopee.sg" + data
   end
@@ -175,20 +180,18 @@ def send_request(all_p_urls,page_count,search_term)
 
   puts "len of sold_data: #{sold_data.length}"
 
-  # puts "len of img_urls: #{img_data.length}"
 
-  
-  # zipped_list = final_link.zip(location_data,sold_data,img_data) ## w img
+  # ZIPS ALL THE DATA, PRE-APPEND TO ALL_PRODUCT_URLS
   zipped_list = final_link.zip(location_data,sold_data)
   zipped_list.each do |url_location_entry| 
     all_p_urls << url_location_entry
   end
 
-  
+  ## CHECKS TO SEE IF NEXT PAGE BUTTON EXISTS
   page_bool = soup.at_css("div.shopee-mini-page-controller")
 
-  # puts page_bool
-  if page_bool.to_s.include?("shopee-button-outline shopee-mini-page-controller__next-btn shopee-button-outline--disabled")
+  # CONDITION TO CHECK IF LAST PAGE OR PAGE COUNT == 5
+  if page_bool.to_s.include?("shopee-button-outline shopee-mini-page-controller__next-btn shopee-button-outline--disabled") || page_count == 5
     puts 'next page does not exist, terminating'
     return
   else 
@@ -196,11 +199,14 @@ def send_request(all_p_urls,page_count,search_term)
   end
   puts '-------------------------------------------------------------------------------'
 
+  ##MOVES TO NEXT PAGE IF EXISTS
   page_count += 1
 
-
+  ##RECURSIVE
   send_request(all_p_urls,page_count,search_term)
 
+
+  ##RESCUE METHODS = RETRIES URLS, AFTER 20S.
 rescue NoMethodError => e
   if e.message.include?("undefined method `css' for nil:NilClass")
     puts "HTTP Request succeeded, but the required element was not found in the HTML."
@@ -222,19 +228,21 @@ rescue StandardError => e
   send_request(all_p_urls, page_count, search_term)
 end
 
+## INITIATES SCRAPE
 send_request(all_products_urls,page_count,search_term)
 
+
+#LEN OF ALL PRODUCT LISTING SCRAPED
 puts "len of all listings_data: #{all_products_urls.length}"
-# puts "All urls n loc: #{all_products_urls}"
 
 
-###cleans out non-sg merchants
+## CLEANS OUT NON-SG MERCHANTS + LOOKS FOR FOOTWEAR IN PRODUCT URL
 all_products_urls.reject! do |url_loc|
   !url_loc[1].include?('SG') ||
   !['Shoes', 'shoes', 'shoe', 'Shoe','slides','Slides','slippers','Slippers','Sandals','sandals','boots','Boots'].any? { |substring| url_loc[0].include?(substring) }
 end
 
-
+#LEN OF ALL PRODUCT LISTING SCRAPED(CLEANED)
 puts "len of all listings_data(cleaned): #{all_products_urls.length}"
 
 
@@ -248,6 +256,8 @@ puts 'ENTERING INTO URLS'
 puts "............................................"
 puts "............................................"
 
+
+## ASSIGNS CORRECT BRAND BASED ON OFFICIAL SELLER NAME
 Brand_dict = {
   'adidassg' => "Adidas",
   'asicsofficial'=> "Asics",
@@ -257,11 +267,14 @@ Brand_dict = {
   'puma_singapore'=> "Puma",
 }
 
+
+## BRANDS PUMA IS CONCERNED WITH 
 Impt_brands = ['adidassg','asicsofficial','skecherssg','under_armour_official','puma_singapore']
 
 final_list = []
 error_urls = []
 
+## IF SEARCH TERM != RUNNING OR COMFORTWEAR, ASSIGN CATEGORY AS NIL. NEW FEATURE TO ASSIGN CATEGORY BASED ON PROD. DESC.
 if search_term == 'Running'
   prod_label = 'Running'
 elsif search_term == 'Comfortwear'
@@ -271,19 +284,23 @@ else
 end
 
 
+#CREATE REQ FOR EACH UNIQUE PRODUCT LISTING
 def send_request_url(final_l,prod_listing,cat_label,retry_number)
 
-
+  ## CHECK IF MAX RETRIES HAS BEEN HIT
   if retry_number == 5
     puts 'Product cannot be scraped (Max retries of 5 has been reached)'
     puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     return
   end
 
+  ##PRINTS PRODUCT BRING SCRAPED
   puts "url: #{prod_listing[0]}"
 
   url = URI.encode_www_form_component(prod_listing[0])
 
+
+  ## WAIT FOR PAGE LOAD AND SCROLL, JUST IN CASE
   js_scenario = <<~JS
   {
     "instructions": [
@@ -291,12 +308,16 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
     {"scroll_y": 2544}
     ]}
   JS
-  
-  # Response_iteration = Response_iteration + 1
 
+
+  ### CHANGE API KEY TO CURRENT API KEY ON SCRAPINGBEE
   uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&wait_browser=load&json_response=True&block_resources=True&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
   # Randomly select a user agent
   user_agent = USER_AGENTS.sample
+
+
+
+  ###SAME AS ABOVE REQUEST
 
   # Create client
   http = Net::HTTP.new(uri.host, uri.port)
@@ -311,14 +332,10 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   req['Accept-Language'] = 'en-US,en;q=0.9'
   req['Accept'] = 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
 
-  # Add more headers if needed
-  # req['Accept-Encoding'] = 'gzip, deflate'
 
   # Fetch Request
   res = http.request(req)
   puts "Response HTTP Status Code: #{res.code}"
-  # puts "Response HTTP Response Body: #{res.body}"
-
 
 
   puts '--------------------- Parsing! ---------------------'
@@ -333,10 +350,8 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   # Parse the JSON string
   data = JSON.parse(json_string)
 
-  # body_data = data['resolved-url']
   puts 'resolved-url'
   puts data['resolved-url']
-  # puts data['body']
 
   body_data = data['body']
 
@@ -345,17 +360,16 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   # Parse the HTML data
   soupy = Nokogiri::HTML(body_data)
 
+  ### CONTAINER FOR PRODUCT INFO
   soup = soupy.at_css('div.flex-auto.flex-column.swTqJe')
 
+  ### CONTAINER FOR SELLER INFO
+  compet = soupy.at_css('div.oAVg4E')
 
+  competitor_name = compet.at_css('div.VlDReK')
 
-  soupz = soupy.at_css('div.oAVg4E')
-
-  competitor_name = soupz.at_css('div.VlDReK')
-
+  ## CHECKS FOR VOUCHERS
   prod_voucher = soup.css('div.voucher\\-ticket\\ voucher\\-ticket\\-\\-SG\\ voucher\\-ticket\\-\\-seller\\-mini\\-solid\\ mini\\-voucher\\-with\\-popover')
-
-  # product_qty = soup.at_css('div.e9sAa2')
 
   product_name = soup.at_css('div._44qnta')
   
@@ -366,22 +380,30 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   img_perlisting = soupy.at_css("div.cxDtMn")
   product_img = img_perlisting.css("div > @style")
 
-  ## prod desc
+  ## PRODUCT DESC
   product_desc = soupy.at_css('div.f7AU53')
 
+  ##CONVERSION TO TEXT
+
+  ## IF EMPTY, PROD DESC = N/A
   product_desc_data = product_desc.nil? || product_desc.text.empty? ? 'No product description available.' : product_desc.text  
-  ###
+
+
 
   competitor_name_data = competitor_name.text
 
   puts "compet name data: #{competitor_name_data}"
 
+
+  ## IF COMPETITOR NAME IS NOT INSIDE BRANDS THAT I WANT TO SCRAPE, SKIP PRODUCT
   unless Impt_brands.include?(competitor_name_data)
     puts 'Product is not sold by official seller! Skipping...'
     puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     return
   end
 
+
+  ## CHECK IF PRODUCT VOUCHERS EXIST; CLEAN UP VOUCHERS.
   if prod_voucher.nil? || prod_voucher.text.empty?
     product_voucher_data = 'NA'
   elsif prod_voucher.map(&:text).length == 1
@@ -391,11 +413,9 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
     product_voucher_data = product_voucher_data.join(", ")
   end
 
-
-  # product_qty_data = product_qty.text
+  ## REMOVES HTML TAGS
   product_name_data = product_name.text
   product_final_price_data = product_final_price.text
-  # product_voucher_data = prod_voucher.nil? || prod_voucher.text.empty? ? 'NA' : prod_voucher.text
   product_initial_price_data = product_initial_price.nil? || product_initial_price.text.empty? ? 'No Price Reduction' : product_initial_price.text
   product_img_data = product_img.to_s
   product_img_data_f = product_img_data.match(/url\(["']([^"']+)["']\)/)[1]
@@ -419,7 +439,7 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
 
   puts "Product Description: #{product_desc_data}"
 
-  
+  ##APPEND PRODUCT INFO TO FINAL LIST
   final_entry = []
   final_entry << 'shopee'
   final_entry << cat_label
@@ -439,7 +459,11 @@ def send_request_url(final_l,prod_listing,cat_label,retry_number)
   final_l << final_entry
   puts "final_entry: #{final_entry}"
 
+
   puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>next product>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+
+
+  ## RESCUES HANDLE THE RETRIES, W A MAXIMUM OF 5 RETRIES.
 
 rescue NoMethodError => e
   # Handle the error when 'at_css' method fails due to nil value
@@ -454,7 +478,7 @@ rescue StandardError => e
   send_request_url(final_l,prod_listing,cat_label,retry_number)
 end
 
-
+##LOOPS THROUGH ALL PRODUCTS URLS AND SCRAPES EACH PRODUCT. INITIATE SCRAPE.
 all_products_urls.each do |entry|
   retry_no = 0
   puts "PRODUCT NUMBER: #{all_products_urls.index(entry)+1} out of #{all_products_urls.length}"
@@ -469,11 +493,13 @@ puts '---------------------------------------------------------'
 puts "Length of products: #{final_list.length}"
 puts '---------------------------------------------------------'
 
-
+## SETS TIME 
 current_time = Time.now
 date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
 time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
 
+
+##SAVES DATA IN CSV UNDER /data
 csv_filename = "./data/shopee_#{search_term}_product_list_#{date_str}_#{time_str}.csv"
 
 CSV.open(csv_filename, 'w') do |csv|
