@@ -2,6 +2,17 @@
 Data structure of csv files (Shopee)
 ------------------------------------
 
+**Shopee has no NIKE flagship store.
+
+
+=====Scraping by brands/categories=====
+To get data for each brand/category, run the specific shopee-<brand/category>.rb ruby file.
+The data will be output in the./data folder.
+
+=====Scraping by keywords=====
+To get data for each keyword, run the shopee-Keywords.rb ruby file.
+The data will be output in the./keywords_data folder.
+
 Data folder;
 Column 1: E-commerce Platform
 Column 2: Running/Comfortwear Categories, if not, NIL (competitor)

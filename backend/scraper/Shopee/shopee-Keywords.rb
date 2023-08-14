@@ -14,7 +14,7 @@ USER_AGENTS = [
 
 error_urls = []
 
-##  input keywords
+## INPUTS KEYWORD LIST TO INPUT INTO URL
 keywords = [
   'sneakers',
   'shoes',
@@ -95,6 +95,7 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
 
   url = URI.encode_www_form_component(scrape_link)
 
+  ## LOADS PAGE AND SCROLLS TO LOAD PRODUCTS.
   js_scenario = <<~JS
   {
     "instructions": [
@@ -115,10 +116,9 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
     ]}
   JS
 
-
+  #### RMB TO CHANGE API KEY
   uri = URI("https://app.scrapingbee.com/api/v1/?api_key=VNC7VJ04BQLZWL821KJ4ZLG17ON45K4Y56P59QZMDNZBWRFAS0LIK47I3KFH6AMLUXPHIUIFBDOMIOUE&url=#{url}&stealth_proxy=True&country_code=sg&wait_browser=networkidle2&json_response=True&block_resources=False&block_ads=True&js_scenario=" + CGI.escape(js_scenario))
 
-  # Randomly select a user agent
   user_agent = USER_AGENTS.sample
 
   # Create client
@@ -165,12 +165,12 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
 
 
   puts "Starting keyword scrape for page #{page_count+1} of #{actual}"
-
+  
+  ## SETS CONTAINERS FOR RESULTS N IMG URLS
   soup_container = soup.at_css('div.row\\ shopee-search-item-result__items')
   img_container1 = soup_container.css('div.yvbeD6\\ KUUypF')
-  # puts "img_container1: #{img_container1}"
   img_container = img_container1.css('img[class=_7DTxhh\\ vc8g9F] > @src')
-  # puts "img_container: #{img_container}"
+
 
   puts 'getting names and product n img links'
 
@@ -179,9 +179,8 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
 
   final_link =[]
 
+  ## REMOVES HTML TAGS
   img_data = img_container.map(&:text)
-
-  # puts "img_data: #{img_data}"
 
   link_data = prod_link.map(&:text)
 
@@ -196,25 +195,26 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
 
   puts "len of urls: #{final_link.length}"
 
-
   puts "len of names: #{name_data.length}"
 
   puts "len of img urls: #{img_data.length}"
 
   page_count_array = Array.new(name_data.length, page_count+1 )
 
+
+  ##CREATES PLATFORM AND KEYWORD TAG COLUMNS IN CSV
   platform = Array.new(name_data.length, 'shopee')
   prod_cat_sub = actual.gsub("_", " ")
   prod_cat = Array.new(name_data.length, prod_cat_sub)
 
 
-
+  ## APPEND PRODUCT TO FINAL LIST
   zipped_list = platform.zip(prod_cat,final_link,name_data,img_data,page_count_array)
   zipped_list.each do |url_location_entry| 
     all_p_urls << url_location_entry
   end
 
-  
+  ## CHECKS FOR NEXT PAGE
   page_bool = soup.at_css("div.shopee-mini-page-controller")
 
   # puts page_bool
@@ -230,6 +230,8 @@ def send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_url
 
 
   send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_urls)
+
+  ## RETRIES URLS 10 TIMES IF FAILS
 
 rescue NoMethodError => e
   if e.message.include?("undefined method `css' for nil:NilClass")
@@ -277,6 +279,8 @@ rescue StandardError => e
   send_request(all_p_urls,page_count,url_keywords,actual,retry_count,error_urls)
 end
 
+
+#LOOPS THRU EACH KEYWORD
 keywords.each do |keyword_snippet|
 
   ## for each keyword
@@ -284,8 +288,11 @@ keywords.each do |keyword_snippet|
   page_count = 0
   retry_count = 0
 
+  ## USED FOR SAVING CSV
   keyword_actual = keyword_snippet.gsub("%20", "_")
 
+
+  ## INITIATES SCRAPE
   send_request(all_products_urls,page_count,keyword_snippet,keyword_actual, retry_count,error_urls)
 
 
@@ -295,15 +302,16 @@ keywords.each do |keyword_snippet|
   puts ' -----------------------------------'
   puts ' -----------------------------------'
 
-
+  ## SET TIME
   current_time = Time.now
   date_str = current_time.strftime('%d-%m-%Y') # Format the date as YYYY-MM-DD
   time_str = current_time.strftime('%M_%H') # Format the time as HH-MM-SS
 
   csv_filename = "./keywords_data/shopee_products_by_#{keyword_actual}_#{date_str}_#{time_str}.csv"
 
-  if all_products_urls.length != 0
 
+  ## SAVE CSV FOR CURRENT KEYWORD RESULTS
+  if all_products_urls.length != 0
     CSV.open(csv_filename, 'w') do |csv|
       all_products_urls.each do |row|
         row << date_str
@@ -317,10 +325,10 @@ keywords.each do |keyword_snippet|
 
   puts "Moving onto next keyword..."
 
-  
 
 end
 
+## KEYWORDS THAT COULD NOT BE SCRAPED OR HAVE 0 RESULTS
 puts "ERROR URLS:"
 puts error_urls
 
