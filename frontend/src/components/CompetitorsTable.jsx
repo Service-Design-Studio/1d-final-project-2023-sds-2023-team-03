@@ -155,6 +155,15 @@ function CompetitorsTable({ data, pageSize, apiLoad }) {
     */
     columns.push(
         {
+            accessor: 'category',
+            textAlignment: 'center',
+            width: 70,
+            render: (record) => (
+                <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
+                    {record.category}
+                </Flex>),
+        },
+        {
             accessor: 'product_name',
             textAlignment: 'left',
             width: 200,

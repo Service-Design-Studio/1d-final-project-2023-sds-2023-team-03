@@ -158,52 +158,66 @@ end
 # Define a cache to store API responses
 api_response_cache = {}
 api_response_cache_lock = Mutex.new
-count = 0
 
-def update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock)
-  return unless (product_data.category == "NIL" || product_data.product_description == "No product description available.")
-  prod_text = "Product Name: #{product_data.product_name}\nProduct Description: #{product_data.product_description}"
-  
-  response = nil
-  retries = 3
+# Track calls
+api_state = { api_calls_start_time: Time.now, api_call_count: 0 }
 
-  retries.times do |retry_count|
-    api_response_cache_lock.synchronize do
-      if api_response_cache.key?(prod_text)
-        response = api_response_cache[prod_text]
-        puts "from cache"
+def update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock, api_state)
+  if Time.now - api_state[:api_calls_start_time] >= 60
+    puts "reset"
+    api_state[:api_calls_start_time] = Time.now
+    api_state[:api_call_count] = 0
+  end
+
+  if product_data.category == "NIL"
+    prod_text = "Product Name: #{product_data.product_name}\nProduct Description: #{product_data.product_description}"
+    
+    response = nil
+    retries = 3
+
+    retries.times do |retry_count|
+      api_response_cache_lock.synchronize do
+        if api_response_cache.key?(prod_text)
+          response = api_response_cache[prod_text]
+        else
+          if api_state[:api_call_count] < 60
+            response = perform_vertex_ai_request(prod_text)
+            api_state[:api_call_count] = api_state[:api_call_count] + 1
+          end
+        end
+      end
+      
+      if !response.nil?
+        api_response_cache[prod_text] = response
+        break
       else
-        response = perform_vertex_ai_request(prod_text)
-        puts "from API"
+        puts("API call failed, retrying (attempt #{retry_count + 1})...")
+      end
+
+      if (retry_count == 1 && response.nil?)
+        puts("API call failed, retrying (attempt 3)...")
+        puts "sleep time: #{60 - (Time.now - api_state[:api_calls_start_time])}"
+        sleep(60 - (Time.now - api_state[:api_calls_start_time]))
       end
     end
 
     if response
-      api_response_cache[prod_text] = response
-      break
-    end
-
-    if (retries == 1 && response.nil?)
-      puts("#{product_data.product_name}, #{product_data.product_description}")
-      puts("API call failed, retrying (attempt #{retry_count + 1})... #{response}")
-      sleep(60)
-    end
-  end
-
-  puts("response: \n#{count} \n #{response}")
-  if response
-    if response.key?('predictions') && response['predictions'].first.key?('content')
-      category = response['predictions'].first['content']
-      product_data.update(category: category)
-      product_data.save!
-      puts("category updated! new: #{category}")
+      if response.key?('predictions') && response['predictions'].first.key?('content')
+        category = response['predictions'].first['content']
+        product_data.update(category: category)
+        product_data.save!
+        puts("category updated! new: #{category}")
+      else
+        puts("Unexpected response format: #{response}")
+      end
     else
-      puts("Unexpected response format: #{response}")
+      # Handle error
+      puts("#{product_data.product_name}, #{product_data.product_description}")
+      puts("Error occurred during category classification")
     end
   else
-    # Handle error
-    puts("prod: #{product_data.product_name} \n#{product_data.product_description}")
-    puts("Error occurred during category classification: #{response}")
+    puts "skipped"
+    return
   end
 end
 
@@ -223,7 +237,7 @@ thread_pool = Concurrent::ThreadPoolExecutor.new(
 
 all_data_batches.each do |batch|
   batch.each do |product_data|
-    thread_pool.post { update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock) }
+    thread_pool.post { update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock, api_state) }
   end
 end
 
