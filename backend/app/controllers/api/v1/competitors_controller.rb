@@ -3,6 +3,7 @@ require 'json'
 module Api
   module V1
     class CompetitorsController < ApplicationController
+      
        def index
         if params.has_key?(:competitor_name)
           query and return

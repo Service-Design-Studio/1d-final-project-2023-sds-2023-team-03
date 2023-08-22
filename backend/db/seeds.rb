@@ -8,6 +8,8 @@
 require 'faker'
 require 'csv'
 require 'uri'
+require 'concurrent-ruby'
+include VertexAiHelper
 
 # Generate 200 products
 200.times do
@@ -152,3 +154,93 @@ Dir[Rails.root.join('scraper/Shopee/keywords_data/*')].each do |filename|
     end
   end
 end
+
+# Define a cache to store API responses
+api_response_cache = {}
+api_response_cache_lock = Mutex.new
+
+# Track calls
+api_state = { api_calls_start_time: Time.now, api_call_count: 0 }
+
+def update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock, api_state)
+  if Time.now - api_state[:api_calls_start_time] >= 60
+    puts "reset"
+    api_state[:api_calls_start_time] = Time.now
+    api_state[:api_call_count] = 0
+  end
+
+  if product_data.category == "NIL"
+    prod_text = "Product Name: #{product_data.product_name}\nProduct Description: #{product_data.product_description}"
+    
+    response = nil
+    retries = 3
+
+    retries.times do |retry_count|
+      api_response_cache_lock.synchronize do
+        if api_response_cache.key?(prod_text)
+          response = api_response_cache[prod_text]
+        else
+          if api_state[:api_call_count] < 60
+            response = perform_vertex_ai_request(prod_text)
+            api_state[:api_call_count] = api_state[:api_call_count] + 1
+          end
+        end
+      end
+      
+      if !response.nil?
+        api_response_cache[prod_text] = response
+        break
+      else
+        puts("API call failed, retrying (attempt #{retry_count + 1})...")
+      end
+
+      if (retry_count == 1 && response.nil?)
+        puts("API call failed, retrying (attempt 3)...")
+        puts "sleep time: #{60 - (Time.now - api_state[:api_calls_start_time])}"
+        sleep(60 - (Time.now - api_state[:api_calls_start_time]))
+      end
+    end
+
+    if response
+      if response.key?('predictions') && response['predictions'].first.key?('content')
+        category = response['predictions'].first['content']
+        product_data.update(category: category)
+        product_data.save!
+        puts("category updated! new: #{category}")
+      else
+        puts("Unexpected response format: #{response}")
+      end
+    else
+      # Handle error
+      puts("#{product_data.product_name}, #{product_data.product_description}")
+      puts("Error occurred during category classification")
+    end
+  else
+    # puts "skipped"
+    return
+  end
+end
+
+all_shopee_data = ShopeeData.all
+all_lazada_data = LazadaData.all
+
+all_product_data = all_shopee_data + all_lazada_data
+
+num_threads = 4
+
+all_data_batches = all_product_data.each_slice(all_product_data.size / num_threads).to_a
+
+thread_pool = Concurrent::ThreadPoolExecutor.new(
+  min_threads: num_threads,
+  max_threads: num_threads
+)
+
+all_data_batches.each do |batch|
+  batch.each do |product_data|
+    thread_pool.post { update_category_for_product_data(product_data, api_response_cache, api_response_cache_lock, api_state) }
+  end
+end
+
+thread_pool.shutdown
+thread_pool.wait_for_termination
+
