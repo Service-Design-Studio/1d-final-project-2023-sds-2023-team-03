@@ -216,7 +216,7 @@ def update_category_for_product_data(product_data, api_response_cache, api_respo
       puts("Error occurred during category classification")
     end
   else
-    puts "skipped"
+    # puts "skipped"
     return
   end
 end
